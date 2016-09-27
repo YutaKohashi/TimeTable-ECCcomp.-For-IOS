@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AA59F1D9A11A800C53C48 /* SaveManager.swift */; };
 		794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */; };
 		794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66711D96B7C300C1D9B6 /* ViewController.swift */; };
 		794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794F66731D96B7C300C1D9B6 /* Main.storyboard */; };
@@ -18,12 +19,17 @@
 		794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66881D96BB8B00C1D9B6 /* SaveModel.swift */; };
 		794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */; };
 		794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */; };
+		79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */; };
+		79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B074001D98B55600F62F15 /* SystemConfiguration.framework */; };
+		79B074031D98D90D00F62F15 /* HttpConnectionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */; };
+		79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E095F31D984AC200A5248D /* iocn ver1.6.0.png */; };
 		9FD5B03D1462A2463F5ED835 /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		413EB346CD1299EC4C947E50 /* Pods-EccStudentCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.release.xcconfig"; sourceTree = "<group>"; };
+		790AA59F1D9A11A800C53C48 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
 		794F666C1D96B7C300C1D9B6 /* EccStudentCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EccStudentCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		794F66711D96B7C300C1D9B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +43,10 @@
 		794F66881D96BB8B00C1D9B6 /* SaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveModel.swift; sourceTree = "<group>"; };
 		794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
+		79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsBase.swift; sourceTree = "<group>"; };
+		79B074001D98B55600F62F15 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnectionBase.swift; sourceTree = "<group>"; };
+		79E095F31D984AC200A5248D /* iocn ver1.6.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iocn ver1.6.0.png"; sourceTree = "<group>"; };
 		F6DE13691C44FF176BF7F602 /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */,
 				9FD5B03D1462A2463F5ED835 /* Pods_EccStudentCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,11 +100,15 @@
 				794F66711D96B7C300C1D9B6 /* ViewController.swift */,
 				794F66731D96B7C300C1D9B6 /* Main.storyboard */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
+				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
 				794F667B1D96B7C300C1D9B6 /* LaunchScreen.storyboard */,
 				794F667E1D96B7C300C1D9B6 /* Info.plist */,
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
 				794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */,
 				794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */,
+				79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */,
+				79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */,
+				790AA59F1D9A11A800C53C48 /* SaveManager.swift */,
 			);
 			path = EccStudentCom;
 			sourceTree = "<group>";
@@ -101,6 +116,7 @@
 		8B655494E76771243EACB99F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79B074001D98B55600F62F15 /* SystemConfiguration.framework */,
 				0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */,
 			);
 			name = Frameworks;
@@ -169,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
+				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
 				794F667A1D96B7C300C1D9B6 /* Assets.xcassets in Resources */,
 				794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */,
 			);
@@ -229,12 +246,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B074031D98D90D00F62F15 /* HttpConnectionBase.swift in Sources */,
+				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,
+				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,
 				794F66861D96B8C900C1D9B6 /* Regexp.swift in Sources */,
 				794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */,
 			);

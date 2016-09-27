@@ -18,6 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        sleep(2);
+        
+        let flg = ToolsBase().loginCheck() //分岐条件
+        
+        let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
+        var viewController:UIViewController
+        
+        
+        //表示するビューコントローラーを指定
+        if  flg {
+            viewController = storyboard.instantiateViewControllerWithIdentifier("MainView") as UIViewController
+        } else {
+            viewController = storyboard.instantiateViewControllerWithIdentifier("LoginView") as UIViewController
+        }
+        
+        
+        window?.rootViewController = viewController
+        
         return true
     }
 
@@ -44,6 +62,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        if let fileURL = Realm.Configuration.defaultConfiguration.fileURL {
 //            try! NSFileManager.defaultManager().removeItemAtURL(fileURL)
 //        }
+        
+        if ToolsBase().CheckReachability("google.com") {
+            print("インターネットへの接続が確認されました")
+        } else {
+            print("インターネットに接続してください")
+            
+            ToolsBase().showToast("インターネット未接続", isShortLong:true)
+            
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -114,6 +141,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    
 
 }
 

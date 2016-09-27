@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class GetValuesBase{
     
     let regex:NSRegularExpression
@@ -16,12 +17,15 @@ class GetValuesBase{
     init(_ pattern: String) {
         self.pattern = pattern
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpressionOptions.CaseInsensitive)
+
     }
     
     init(_ pattern1: String , _ pattern2: String) {
         self.pattern = pattern1 + "(.+?)" + pattern2
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpressionOptions.CaseInsensitive)
     }
+    
+ 
     
     func isMatch(input: String) -> Bool {
         let matches = self.regex.matchesInString( input, options: [], range:NSMakeRange(0, input.characters.count) )
@@ -42,19 +46,12 @@ class GetValuesBase{
         return ""
     }
     
-//    func getGroupValues(input: String) -> String {
-//        if self.isMatch(input) {
-//            let matches = self.regex.matchesInString( input, options: [], range:NSMakeRange(0, input.characters.count) )
-//            var results: [String] = []
-//            matches.forEach { match in
-//                results.append( (input as NSString).substringWithRange(match.rangeAtIndex(1)) )
-//            }
-//            
-//            return results[0]
-//        }
-//        //一致しないときは空文字を返す
-//        return ""
-//    }
+    //特定の文字列が含まれているか
+    func ContainsCheck(target:String) -> Bool{
+        return target.containsString(pattern)
+        
+    }
+
     
     func getGroupValues(input: String) -> [String] {
         var results: [String] = []
@@ -83,6 +80,9 @@ class GetValuesBase{
         //一致しないときは空文字を返す
         return ""
     }
+    
+    
+ 
     
 }
 

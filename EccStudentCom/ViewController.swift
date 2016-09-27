@@ -8,31 +8,57 @@
 
 import UIKit
 import RealmSwift
+import MaterialKit
+import KRProgressHUD
+import MetalKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
-    private var myActivityIndicator: UIActivityIndicatorView!
     private let userId:String = "2140257"
     private let password:String = "455478"
     
+    private var ActivityIndicator: MKActivityIndicator!
+    
     var mLastResponseHtml : String!
+    
+    @IBOutlet weak var idTextField: MKTextField!
+    @IBOutlet weak var passwordTextField: MKTextField!
+   
+    @IBOutlet weak var loginButton: MKButton!
     
     let URL1 :String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
     let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
     let URL3 : String  = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
  
-    @IBOutlet weak var idTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+//    @IBOutlet weak var idTextField: MKTextField!
+//    @IBOutlet weak var passwordTextField: MKTextField!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        //背景色を変更
-        //        self.view.backgroundColor = 0x123456
-        // 背景色を黒に設定する.
-        self.view.backgroundColor = UIColor.blackColor()
+        self.setStatusBarBackgroundColor(UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
+        // ステータスバーのスタイル変更を促す
+        self.setNeedsStatusBarAppearanceUpdate();
+        
+        //パスワード入力フィールドをpasswordmodeに
+        passwordTextField.secureTextEntry = true
+        
+        self.passwordTextField.delegate = self;
+        
+//        loginButton = MKButton(frame: CGRect(x: 10, y: 10, width: 100, height: 35))
+//        loginButton.maskEnabled = true
+////        loginButton.rippleLocation = .TapLocation
+////        loginButton.rippleLayerColor = UIColor.MKColor.LightGreen
+//        
+//        loginButton.maskEnabled = true
+//        loginButton.rippleLayerColor = UIColor.cyanColor()
+        loginButton.layer.cornerRadius = 10    //角のR設定
+        loginButton.layer.masksToBounds = true
+//        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,11 +66,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func tabLoginBtn(sender: UIButton) {
+    @IBAction func tabLoginBtn(sender: MKButton) {
         
-        if !loginCheck(){
-            return
+        self.view.endEditing(true)
+        
+        
+        //インターネットに接続されていないのときはアラート表示
+        if !ToolsBase().CheckReachability("google.com"){
+//            ToolsBase().showToast("インターネットに接続されていません", isShortLong: true)
+            self.showWarningForInternet()
+            return;
+            
         }
+        
+        if self.checkTextFiled(){
+            self.showWarningForTextField()
+            return;
+        }
+        
+//         let uiView:UIView  = UIView(frame: self.view!.bounds)
+        showIndicator()
         
         // ログイン画面へ遷移し必要な値を取得する
         let myUrl = NSURL(string: URL1);
@@ -61,15 +102,30 @@ class ViewController: UIViewController {
             data, response, error in
             if error != nil
             {
+                 self.hideIndicator()
+                let sec:Double = 1
+                let delay = sec * Double(NSEC_PER_SEC)
+                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue(), {
+                    self.showError()
+                })
                 print("error=\(error)")
-                return
+                return;
             }
-            // You can print out response object
-//            print("response = \(response)")
-            // Print out response body
-            self.mLastResponseHtml = String(data: data!, encoding: NSUTF8StringEncoding)!
-//            print("responseString = \(self.mLastResponseHtml)")
             
+            self.mLastResponseHtml = String(data: data!, encoding: NSUTF8StringEncoding)!
+            
+            //正常に遷移できているか確認
+            if !GetValuesBase("ログイン").ContainsCheck(self.mLastResponseHtml){
+                 self.hideIndicator()
+                let sec:Double = 1
+                let delay = sec * Double(NSEC_PER_SEC)
+                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue(), {
+                    self.showError()
+                })
+                return;
+            }
             
             /*********************** ログイン画面　*****************************************
              ****************************************************************************
@@ -80,7 +136,7 @@ class ViewController: UIViewController {
             let request = NSMutableURLRequest(URL:myUrl!)
             
             request.HTTPMethod = "POST"// Compose a query string
-            
+        
             
             let __LASTFOCUS = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__LASTFOCUS\" id=\"__LASTFOCUS\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __VIEWSTATE =  self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"(.*?)\"").getValues(self.mLastResponseHtml))
@@ -89,8 +145,8 @@ class ViewController: UIViewController {
             let __EVENTTARGET = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTTARGET\" id=\"__EVENTTARGET\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __EVENTARGUMENT = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __EVENTVALIDATION = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
-            let  ctl00$ContentPlaceHolder1$txtUserId  : String = self.userId
-            let ctl00$ContentPlaceHolder1$txtPassword :String = self.password
+            let  ctl00$ContentPlaceHolder1$txtUserId  : String = self.idTextField.text!
+            let ctl00$ContentPlaceHolder1$txtPassword :String = self.passwordTextField.text!
             let  ctl00$ContentPlaceHolder1$btnLogin : String = self.uriEncode("ログイン")
             //
             let postString :String = "__LASTFOCUS=" + __LASTFOCUS + "&__VIEWSTATE=" + __VIEWSTATE + "&__SCROLLPOSITIONX=" +  __SCROLLPOSITIONX + "&__SCROLLPOSITIONY=" +  __SCROLLPOSITIONY + "&__EVENTTARGET=" + __EVENTTARGET + "&__EVENTARGUMENT=" + __EVENTARGUMENT + "&__EVENTVALIDATION=" + __EVENTVALIDATION + "&ctl00%24ContentPlaceHolder1%24txtUserId=" + ctl00$ContentPlaceHolder1$txtUserId + "&ctl00%24ContentPlaceHolder1%24txtPassword=" + ctl00$ContentPlaceHolder1$txtPassword + "&ctl00%24ContentPlaceHolder1%24btnLogin=" + ctl00$ContentPlaceHolder1$btnLogin;
@@ -104,14 +160,26 @@ class ViewController: UIViewController {
                 data, response, error in
                 if error != nil
                 {
+                     self.hideIndicator()
+                    self.showError()
                     print("error=\(error)")
-                    return
+                    return;
                 }
-                // You can print out response object
-//                print("response = \(response)")
-                // Print out response body
+                
                 self.mLastResponseHtml  = String(data: data!, encoding: NSUTF8StringEncoding)!
-//                print("responseString2 = \( self.mLastResponseHtml )")
+                
+                //正常に遷移できているか確認
+                if !GetValuesBase("ログオフ").ContainsCheck(self.mLastResponseHtml){
+                     self.hideIndicator()
+                    let sec:Double = 1
+                    let delay = sec * Double(NSEC_PER_SEC)
+                    let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                    dispatch_after(time, dispatch_get_main_queue(), {
+                        self.showError()
+                    })
+                    
+                    return;
+                }
                 
                 
                 /********************* ログイン ****************************
@@ -146,100 +214,59 @@ class ViewController: UIViewController {
                     data, response, error in
                     if error != nil
                     {
+                         self.hideIndicator()
+                        let sec:Double = 1
+                        let delay = sec * Double(NSEC_PER_SEC)
+                        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                        dispatch_after(time, dispatch_get_main_queue(), {
+                            self.showError()
+                        })
                         print("error=\(error)")
-                        return
+                        return;
                     }
-                    // You can print out response object
-//                    print("response = \(response)")
-                    // Print out response body
+                    
                     self.mLastResponseHtml = String(data: data!, encoding: NSUTF8StringEncoding)
-//                    print("self.mLastResponseHtml = \(self.mLastResponseHtml)")
+                    
+                    //正常に遷移できているか確認
+                    if !GetValuesBase("教科名").ContainsCheck(self.mLastResponseHtml){
+                         self.hideIndicator()
+                        let sec:Double = 1
+                        let delay = sec * Double(NSEC_PER_SEC)
+                        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                        dispatch_after(time, dispatch_get_main_queue(), {
+                            self.showError()
+                        })
+                        return;
+                    }
                     
                     
                     /********************* 出席率画面 ****************************/
+                    
                     //Realmをインスタンス化
                     let realm = try! Realm()
                     
-                    var value:String = self.mLastResponseHtml.stringByReplacingOccurrencesOfString("\r", withString: "")
-                    value = value.stringByReplacingOccurrencesOfString("\n", withString: "")
-//                    print("value = \(value)")
-                    let narrowHtml :String = GetValuesBase("<table class=\"GridVeiwTable\"","</table>").narrowingValues(value)
+                    //出席率をデータベースへ保存
+                    let saveManager = SaveManager()
+                    saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
                     
-                    //教科ごと
-                    let results: [String] =  GetValuesBase("<tr>.*?</tr>").getGroupValues(narrowHtml)
+                    self.hideIndicator()
                     
-                    var item:String! = ""
-                    var rowCount = 0
-                    var firstRowFlg: Bool = true
+
+                    //ログインしたことを保存
+                    saveManager.saveLoginState(true)
+                    //passIdを保存
+                    saveManager.saveIdPass(self.idTextField.text!, pass: self.passwordTextField.text!)
                     
-                    for row:String in results{
-                        let col: [String] =  GetValuesBase("<td.*?</td>").getGroupValues(row)
+                    dispatch_async(dispatch_get_main_queue(), {
                         
-                        let saveModel = SaveModel()
+                        self.showSuccess()
                         
-                        firstRowFlg = true
-                        rowCount = 0
-                        for td:String in col{
-                            if(firstRowFlg){
-                                //教科名を取得
-                                saveModel.subjectName = GetValuesBase("<img(?:\\\".*?\\\"|\\'.*?\\'|[^\\'\\\"])*?>(.+?)</a>").getValues(td)
-                                firstRowFlg = false
-                                print("subjectName= \(saveModel.subjectName)")
-                            }else{
-                                item = GetValuesBase("<font(?:\\\".*?\\\"|\\'.*?\\'|[^\\'\\\"])*?>(.+?)</font>").getValues(td)
-                                item = self.removeNBSP(item)
-                                item = self.removePercent(item)
-                                
-                                switch rowCount {
-                                case 1:
-                                    saveModel.unit = item
-                                    print("unit= \(item)")
-                                case 2:
-                                    saveModel.attendanceNumber = item
-                                    print("attendanceNumber= \(item)")
-                                case 3:
-                                    saveModel.absentNumber = item
-                                    print("absentNumber= \(item)")
-                                case 4:
-                                    saveModel.lateNumber = item
-                                    print("lateNumber= \(item)")
-                                case 5:
-                                    saveModel.publicAbsentNumber1 = item
-                                    print("publicAbsentNumber1= \(item)")
-                                case 6:
-                                    saveModel.publicAbsentNumber2 = item
-                                    print("publicAbsentNumber2= \(item)")
-                                case 7:
-                                    saveModel.attendanceRate = item
-                                    print("attendanceRate= \(item)")
-                                case 8:
-                                    saveModel.shortageNumber = item
-                                    print("shortageNumber= \(item)")
-                                default:
-                                    print("default")
-                                    
-                                }
-                                
-                            }
-                            rowCount+=1
-                        }
-                        
-                        //データを保存
-                        try! realm.write {
-                            realm.add(saveModel)
-                        }
-                        print(" \("")")
-                        print("------------------- \("")")
-                        print(" \("")")
-                        
-                    }
-                    
-//                    1行目で遷移したいViewControllerがあるstoryboardを指定
-//                    2行目で遷移先のViewControllerを指定
-//                    3行目で遷移を行う
-                    let storyboard: UIStoryboard = self.storyboard!
-                    let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
-                    self.presentViewController(nextView, animated: true, completion: nil)
+                        //View controller code
+                        let storyboard: UIStoryboard = self.storyboard!
+                        let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
+                        self.presentViewController(nextView, animated: true, completion: nil)
+
+                    })
                     
 //                    print("response = \(results[0])")
                     
@@ -267,18 +294,99 @@ class ViewController: UIViewController {
     
     //テキストフィールドに値が入力されているか
     func loginCheck() -> Bool{
-        var bool: Bool = true
         
-        if String(idTextField.text).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
-            bool = false
-        }
+        let ud = NSUserDefaults.standardUserDefaults()
+        let bool : Bool = ud.boolForKey("login") ?? false
         
-        if String(passwordTextField.text).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "" {
-            bool = false
-        }
         return bool
         
     }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        // trueの場合はステータスバー非表示
+        return false;
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        // ステータスバーを白くする
+        return UIStatusBarStyle.LightContent;
+    }
+    
+   
+    func showIndicator(){
+        
+        KRProgressHUD.show(progressHUDStyle: .White, maskType: .Black, activityIndicatorStyle: .Color(UIColor.blueColor(), UIColor.blueColor()),message: "お待ち下さい")
+    }
+    
+    func hideIndicator(){
+        KRProgressHUD.dismiss()
+//        }
+    }
+    
+    func showError(){
+        KRProgressHUD.showError(progressHUDStyle: .WhiteColor,maskType: .Black)
+        
+        let sec:Double = 4
+        let delay = sec * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            KRProgressHUD.dismiss()
+        })
+    }
+    
+    func showSuccess(){
+        KRProgressHUD.showSuccess(progressHUDStyle: .WhiteColor,maskType: .Black)
+        
+        let sec:Double = 3
+        let delay = sec * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            KRProgressHUD.dismiss()
+        })
+    }
+    
+    func showWarningForInternet(){
+        KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType: .Black,message:"インターネット未接続")
+        
+        let sec:Double = 4
+        let delay = sec * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            KRProgressHUD.dismiss()
+        })
+    }
+    
+    
+    func showWarningForTextField(){
+        KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType: .Black,message:"未入力")
+        
+        let sec:Double = 4
+        let delay = sec * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            KRProgressHUD.dismiss()
+        })
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func checkTextFiled() -> Bool{
+        var flg:Bool = false
+         let num = idTextField.text?.characters.count
+        if num == 0{
+            
+            flg = true
+        }
+        let num2 = passwordTextField.text?.characters.count
+        if num2 == 0{
+            flg = true
+        }
+        return flg
+    }
+    
 
     
     //URLエンコードを行うメソッド
@@ -293,6 +401,15 @@ class ViewController: UIViewController {
     }
     func removeNBSP(str:String)->String{
         return str.stringByReplacingOccurrencesOfString("&nbsp;", withString: "0")
+    }
+    
+    func setStatusBarBackgroundColor(color: UIColor) {
+        
+        guard  let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView else {
+            return
+        }
+        
+        statusBar.backgroundColor = color
     }
     
     
