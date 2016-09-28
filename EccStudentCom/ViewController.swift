@@ -31,11 +31,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
     let URL3 : String  = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
  
-//    @IBOutlet weak var idTextField: MKTextField!
-//    @IBOutlet weak var passwordTextField: MKTextField!
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,14 +43,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.passwordTextField.delegate = self;
         
-//        loginButton = MKButton(frame: CGRect(x: 10, y: 10, width: 100, height: 35))
-//        loginButton.maskEnabled = true
-////        loginButton.rippleLocation = .TapLocation
-////        loginButton.rippleLayerColor = UIColor.MKColor.LightGreen
-//        
-//        loginButton.maskEnabled = true
-//        loginButton.rippleLayerColor = UIColor.cyanColor()
-        loginButton.layer.cornerRadius = 10    //角のR設定
+        //ログインボタン設定
+        loginButton.layer.cornerRadius = 10    //角の設定
         loginButton.layer.masksToBounds = true
 //        
         
@@ -76,24 +65,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //            ToolsBase().showToast("インターネットに接続されていません", isShortLong: true)
             self.showWarningForInternet()
             return;
-            
         }
         
+        //テキストフィールドチェック
         if self.checkTextFiled(){
             self.showWarningForTextField()
             return;
         }
         
-//         let uiView:UIView  = UIView(frame: self.view!.bounds)
+        //プログレスダイアログ表示
         showIndicator()
         
         // ログイン画面へ遷移し必要な値を取得する
         let myUrl = NSURL(string: URL1);
-        
         let request = NSMutableURLRequest(URL:myUrl!);
         
-        request.HTTPMethod = "GET";// Compose a query string
-        
+        request.HTTPMethod = "GET";
         let postString = "";
         
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
@@ -132,11 +119,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
              ****************************************************************************/
             
             let myUrl = NSURL(string: self.URL2)
-            
             let request = NSMutableURLRequest(URL:myUrl!)
             
-            request.HTTPMethod = "POST"// Compose a query string
-        
+            request.HTTPMethod = "POST"
             
             let __LASTFOCUS = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__LASTFOCUS\" id=\"__LASTFOCUS\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __VIEWSTATE =  self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"(.*?)\"").getValues(self.mLastResponseHtml))
@@ -177,19 +162,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     dispatch_after(time, dispatch_get_main_queue(), {
                         self.showError()
                     })
-                    
                     return;
                 }
-                
                 
                 /********************* ログイン ****************************
                  *********************************************************/
                 
                 let myUrl = NSURL(string: self.URL3);
-                
                 let request = NSMutableURLRequest(URL:myUrl!);
                 
-                request.HTTPMethod = "POST";// Compose a query string
+                request.HTTPMethod = "POST";
                 
                 let  __EVENTTARGET2 = self.uriEncode("ctl00$btnSyuseki")
                 let  __EVENTARGUMENT2 = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
@@ -239,7 +221,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         return;
                     }
                     
-                    
                     /********************* 出席率画面 ****************************/
                     
                     //Realmをインスタンス化
@@ -249,8 +230,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let saveManager = SaveManager()
                     saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
                     
+                    //ダイアログ非表示
                     self.hideIndicator()
-                    
 
                     //ログインしたことを保存
                     saveManager.saveLoginState(true)
@@ -259,17 +240,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         
+                        //成功ダイアログ表示
                         self.showSuccess()
                         
-                        //View controller code
+                        //出席率表示画面へ遷移
                         let storyboard: UIStoryboard = self.storyboard!
                         let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
                         self.presentViewController(nextView, animated: true, completion: nil)
 
                     })
-                    
-//                    print("response = \(results[0])")
-                    
                     
                     /*************************************************************/
                     
@@ -287,19 +266,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
         task.resume()
-    
-
-
     }
     
     //テキストフィールドに値が入力されているか
     func loginCheck() -> Bool{
-        
         let ud = NSUserDefaults.standardUserDefaults()
         let bool : Bool = ud.boolForKey("login") ?? false
         
         return bool
-        
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -311,16 +285,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // ステータスバーを白くする
         return UIStatusBarStyle.LightContent;
     }
-    
    
+    //ログイン時に表示するダイアログ
     func showIndicator(){
-        
         KRProgressHUD.show(progressHUDStyle: .White, maskType: .Black, activityIndicatorStyle: .Color(UIColor.blueColor(), UIColor.blueColor()),message: "お待ち下さい")
     }
     
     func hideIndicator(){
         KRProgressHUD.dismiss()
-//        }
     }
     
     func showError(){
@@ -356,7 +328,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    
     func showWarningForTextField(){
         KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType: .Black,message:"未入力")
         
@@ -373,11 +344,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    //テキストフィールドチェック
     func checkTextFiled() -> Bool{
         var flg:Bool = false
          let num = idTextField.text?.characters.count
         if num == 0{
-            
             flg = true
         }
         let num2 = passwordTextField.text?.characters.count
@@ -387,8 +358,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return flg
     }
     
-
-    
     //URLエンコードを行うメソッド
     func uriEncode(str: String) -> String {
         let allowedCharacterSet = NSMutableCharacterSet.alphanumericCharacterSet()
@@ -396,9 +365,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return str.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet)!
     }
     
+    //％を取り除く
     func removePercent(str:String) -> String{
         return str.stringByReplacingOccurrencesOfString("%", withString: "")
     }
+    
+    //&nbspを取り除く
     func removeNBSP(str:String)->String{
         return str.stringByReplacingOccurrencesOfString("&nbsp;", withString: "0")
     }
@@ -408,11 +380,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         guard  let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView else {
             return
         }
-        
         statusBar.backgroundColor = color
     }
-    
-    
 
 }
 

@@ -75,13 +75,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
             data, response, error in
             if error != nil
             {
-//                self.hideIndicator()
-//                let sec:Double = 1
-//                let delay = sec * Double(NSEC_PER_SEC)
-//                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                dispatch_after(time, dispatch_get_main_queue(), {
-//                    self.showError()
-//                })
                 print("error=\(error)")
                 return;
             }
@@ -90,14 +83,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
             
             //正常に遷移できているか確認
             if !GetValuesBase("ログイン").ContainsCheck(self.mLastResponseHtml){
-//                self.hideIndicator()
-//                let sec:Double = 1
-//                let delay = sec * Double(NSEC_PER_SEC)
-//                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                dispatch_after(time, dispatch_get_main_queue(), {
-//                    self.showError()
-//                })
-                
                  refreshControl.endRefreshing()
                 return;
             }
@@ -135,9 +120,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                 data, response, error in
                 if error != nil
                 {
-//                    self.hideIndicator()
-//                    self.showError()
-//                    print("error=\(error)")
+                    print("error=\(error)")
                     return;
                 }
                 
@@ -145,24 +128,15 @@ class TableViewController: UIViewController, UITableViewDataSource {
                 
                 //正常に遷移できているか確認
                 if !GetValuesBase("ログオフ").ContainsCheck(self.mLastResponseHtml){
-//                    self.hideIndicator()
-//                    let sec:Double = 1
-//                    let delay = sec * Double(NSEC_PER_SEC)
-//                    let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                    dispatch_after(time, dispatch_get_main_queue(), {
-//                        self.showError()
-//                    })
                     print("error=ログインできませんでした")
                     refreshControl.endRefreshing()
                     return;
                 }
                 
-                
                 /********************* ログイン ****************************
                  *********************************************************/
                 
                 let myUrl = NSURL(string: self.URL3);
-                
                 let request = NSMutableURLRequest(URL:myUrl!);
                 
                 request.HTTPMethod = "POST";// Compose a query string
@@ -190,13 +164,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     data, response, error in
                     if error != nil
                     {
-//                        self.hideIndicator()
-//                        let sec:Double = 1
-//                        let delay = sec * Double(NSEC_PER_SEC)
-//                        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                        dispatch_after(time, dispatch_get_main_queue(), {
-//                            self.showError()
-//                        })
                         print("error=\(error)")
                         return;
                     }
@@ -205,16 +172,9 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     
                     //正常に遷移できているか確認
                     if !GetValuesBase("教科名").ContainsCheck(self.mLastResponseHtml){
-//                        self.hideIndicator()
-//                        let sec:Double = 1
-//                        let delay = sec * Double(NSEC_PER_SEC)
-//                        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                        dispatch_after(time, dispatch_get_main_queue(), {
-//                            self.showError()
-//                        })
+                        refreshControl.endRefreshing()
                         return;
                     }
-                    
                     
                     /********************* 出席率画面 ****************************/
                     
@@ -228,61 +188,24 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     let saveManager = SaveManager()
                     saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
                     
-        
-                    
                     //テーブルを再読み込みする。
                     self.tableView.reloadData()
-                    
+                    //pullToRefresh終了
                     refreshControl.endRefreshing()
-//                    self.tableView.addSubview(refreshControl)
-//                    self.hideIndicator()
-                    
-                    
-                    //ログインしたことを保存
-//                    saveManager.saveLoginState(true)
-                    //passIdを保存
-//                    saveManager.saveIdPass(self.idTextField.text!, pass: self.passwordTextField.text!)
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        
-////                        self.showSuccess()
-//                        
-//                        //View controller code
-//                        let storyboard: UIStoryboard = self.storyboard!
-//                        let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
-//                        self.presentViewController(nextView, animated: true, completion: nil)
-//                        
-//                    })
-                    
-                    //                    print("response = \(results[0])")
-                    
                     
                     /*************************************************************/
-                    
                 }
                 task.resume()
                 /************************************************************************************
                  ************************************************************************************/
-                
             }
             task.resume()
-            
             /************************************************************************************
              ************************************************************************************
              ************************************************************************************/
-            
         }
         task.resume()
-
-   
-        
-   
-        
-        //読込中の表示を消す。
-//        tableView.subviews(0).endRefreshing()
     }
-    
-    
     
     @IBAction func logoutBtn(sender: UIBarButtonItem) {
         // ① UIAlertControllerクラスのインスタンスを生成
@@ -315,10 +238,9 @@ class TableViewController: UIViewController, UITableViewDataSource {
                 let storyboard: UIStoryboard = self.storyboard!
                 let nextView = storyboard.instantiateViewControllerWithIdentifier("LoginView") as! ViewController
                 self.presentViewController(nextView, animated: true, completion: nil)
-                
             })
-            
         })
+        
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
             // ボタンが押された時の処理を書く（クロージャ実装）
@@ -362,7 +284,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let saveModel = realm.objects(SaveModel)
         
         cell.setCell(saveModel[indexPath.row].subjectName,unitNum: saveModel[indexPath.row].unit,attendanceNum: saveModel[indexPath.row].attendanceNumber,absentNum: saveModel[indexPath.row].absentNumber,lateNum: saveModel[indexPath.row].lateNumber,pubAbsentnum1: saveModel[indexPath.row].publicAbsentNumber1,pubAbsentnum2: saveModel[indexPath.row].publicAbsentNumber2,attendanceRateNum: saveModel[indexPath.row].attendanceRate,shortageNum: saveModel[indexPath.row].shortageNumber)
-        
         
         return cell
         

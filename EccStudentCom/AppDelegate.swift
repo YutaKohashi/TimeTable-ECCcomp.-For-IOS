@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import RealmSwift
+import KRProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,16 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         sleep(2);
         
-        let flg = ToolsBase().loginCheck() //分岐条件
-        
         let storyboard:UIStoryboard =  UIStoryboard(name: "Main",bundle:nil)
         var viewController:UIViewController
         
         
         //表示するビューコントローラーを指定
-        if  flg {
+        if  ToolsBase().loginCheck() {
+            //ログイン処理が完了しているとき
             viewController = storyboard.instantiateViewControllerWithIdentifier("MainView") as UIViewController
         } else {
+            //ログイン処理が完了していない
             viewController = storyboard.instantiateViewControllerWithIdentifier("LoginView") as UIViewController
         }
         
@@ -64,11 +65,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         if ToolsBase().CheckReachability("google.com") {
-            print("インターネットへの接続が確認されました")
+            print("インターネットへの接続が確認されています")
         } else {
+            //未接続
+            //ダイアログ表示
+            KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType:.Black,message:"インターネット未接続")
             print("インターネットに接続してください")
-            
-            ToolsBase().showToast("インターネット未接続", isShortLong:true)
+        
             
         }
     }
