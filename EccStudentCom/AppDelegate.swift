@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //表示するビューコントローラーを指定
         if  ToolsBase().loginCheck() {
             //ログイン処理が完了しているとき
-            viewController = storyboard.instantiateViewControllerWithIdentifier("MainView") as UIViewController
+//            viewController = storyboard.instantiateViewControllerWithIdentifier("MainView") as UIViewController
+                        viewController = storyboard.instantiateViewControllerWithIdentifier("BaseView") as UIViewController
         } else {
             //ログイン処理が完了していない
             viewController = storyboard.instantiateViewControllerWithIdentifier("LoginView") as UIViewController

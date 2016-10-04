@@ -10,7 +10,6 @@ import UIKit
 import RealmSwift
 import MaterialKit
 import KRProgressHUD
-import MetalKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -146,7 +145,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if error != nil
                 {
                      self.hideIndicator()
-                    self.showError()
                     print("error=\(error)")
                     return;
                 }
@@ -244,9 +242,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         self.showSuccess()
                         
                         //出席率表示画面へ遷移
+//                        let storyboard: UIStoryboard = self.storyboard!
+//                        let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
+//                        self.presentViewController(nextView, animated: true, completion: nil)
+
                         let storyboard: UIStoryboard = self.storyboard!
-                        let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
-                        self.presentViewController(nextView, animated: true, completion: nil)
+                        let nextView = storyboard.instantiateViewControllerWithIdentifier("BaseView") as UIViewController;                      self.presentViewController(nextView, animated: true, completion: nil)
 
                     })
                     
@@ -330,7 +331,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func showWarningForTextField(){
         KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType: .Black,message:"未入力")
-        
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)
         let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
