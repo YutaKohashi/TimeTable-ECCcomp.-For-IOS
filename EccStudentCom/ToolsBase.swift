@@ -18,13 +18,13 @@ class ToolsBase{
         
     }
     
-    func showToast(message:String,isShortLong:Bool){
+    func showToast(_ message:String,isShortLong:Bool){
     }
     
-    func CheckReachability(host_name:String)->Bool{
+    func CheckReachability(_ host_name:String)->Bool{
         
         let reachability = SCNetworkReachabilityCreateWithName(nil, host_name)!
-        var flags = SCNetworkReachabilityFlags.ConnectionAutomatic
+        var flags = SCNetworkReachabilityFlags.connectionAutomatic
         if !SCNetworkReachabilityGetFlags(reachability, &flags) {
             return false
         }
@@ -36,8 +36,8 @@ class ToolsBase{
     //テキストフィールドに値が入力されているか
     func loginCheck() -> Bool{
         
-        let ud = NSUserDefaults.standardUserDefaults()
-        let bool : Bool = ud.boolForKey("login") ?? false
+        let ud = UserDefaults.standard
+        let bool : Bool = ud.bool(forKey: "login") 
         
         return bool
         

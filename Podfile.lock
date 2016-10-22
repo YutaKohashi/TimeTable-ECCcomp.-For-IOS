@@ -1,23 +1,39 @@
 PODS:
   - KRProgressHUD (1.7.0)
-  - MaterialKit (0.4)
-  - Realm (1.1.0):
-    - Realm/Headers (= 1.1.0)
-  - Realm/Headers (1.1.0)
-  - RealmSwift (1.1.0):
-    - Realm (= 1.1.0)
+  - Realm (2.0.2):
+    - Realm/Headers (= 2.0.2)
+  - Realm/Headers (2.0.2)
+  - RealmSwift (2.0.2):
+    - Realm (= 2.0.2)
 
 DEPENDENCIES:
   - KRProgressHUD
-  - MaterialKit (~> 0.4)
-  - RealmSwift
+  - Realm (from `https://github.com/realm/realm-cocoa.git`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`)
+
+EXTERNAL SOURCES:
+  Realm:
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  Realm:
+    :commit: be0555b550093bb65629055861ac2a0d9ab00e4f
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: be0555b550093bb65629055861ac2a0d9ab00e4f
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
 
 SPEC CHECKSUMS:
   KRProgressHUD: eb23a52e98069190660e33167e870cf2d80a435f
-  MaterialKit: 2e5267bcf410b82793f2b92d2111f8ae4ed2c3f2
-  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
-  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
+  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
+  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
 
-PODFILE CHECKSUM: 71253fba60c82ea93f43b1dd40340194f4d524f4
+PODFILE CHECKSUM: 22bca3af460bba194d2f18b93beae2e01e8701fe
 
 COCOAPODS: 1.0.1

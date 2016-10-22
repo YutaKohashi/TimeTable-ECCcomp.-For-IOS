@@ -11,10 +11,10 @@ import RealmSwift
 
 class SaveManager{
     
-    func saveAttendanceRate(realm:Realm ,mLastResponseHtml:String){
+    func saveAttendanceRate(_ realm:Realm ,mLastResponseHtml:String){
         
-        var value:String = mLastResponseHtml.stringByReplacingOccurrencesOfString("\r", withString: "")
-        value = value.stringByReplacingOccurrencesOfString("\n", withString: "")
+        var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
+        value = value.replacingOccurrences(of: "\n", with: "")
         //                    print("value = \(value)")
         let narrowHtml :String = GetValuesBase("<table class=\"GridVeiwTable\"","</table>").narrowingValues(value)
         
@@ -88,45 +88,45 @@ class SaveManager{
         }
     }
     
-    func saveLoginState(bool:Bool){
+    func saveLoginState(_ bool:Bool){
         //ログインしたことを保存
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.setBool(bool, forKey: "login")
+        let ud = UserDefaults.standard
+        ud.set(bool, forKey: "login")
         ud.synchronize()
     }
     
     //ログイン時に使用したid,passを保存
-    func saveIdPass(id:String,pass:String){
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.setObject(id, forKey: "id")
-        ud.setObject(pass, forKey: "pass")
+    func saveIdPass(_ id:String,pass:String){
+        let ud = UserDefaults.standard
+        ud.set(id, forKey: "id")
+        ud.set(pass, forKey: "pass")
         ud.synchronize()
     }
     
     //id,passを削除
     func removeSavedIdPass(){
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.removeObjectForKey("id")
-        ud.removeObjectForKey("pass")
+        let ud = UserDefaults.standard
+        ud.removeObject(forKey: "id")
+        ud.removeObject(forKey: "pass")
     }
     
     //saveされているIdを取得
     func getSavedId() -> String{
-        let ud = NSUserDefaults.standardUserDefaults()
-        return ud.objectForKey("id")  as! String
+        let ud = UserDefaults.standard
+        return ud.object(forKey: "id")  as! String
     }
     
     //saveされているpassを取得
     func getSavedPass() -> String{
-        let ud = NSUserDefaults.standardUserDefaults()
-        return ud.objectForKey("pass")  as! String
+        let ud = UserDefaults.standard
+        return ud.object(forKey: "pass")  as! String
     }
     
-    func removePercent(str:String) -> String{
-        return str.stringByReplacingOccurrencesOfString("%", withString: "")
+    func removePercent(_ str:String) -> String{
+        return str.replacingOccurrences(of: "%", with: "")
     }
-    func removeNBSP(str:String)->String{
-        return str.stringByReplacingOccurrencesOfString("&nbsp;", withString: "0")
+    func removeNBSP(_ str:String)->String{
+        return str.replacingOccurrences(of: "&nbsp;", with: "0")
     }
     
 }

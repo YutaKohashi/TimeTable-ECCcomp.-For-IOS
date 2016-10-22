@@ -37,14 +37,14 @@ class CustomTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
     
     /// 画像・タイトル・説明文を設定するメソッド
-    func setCell(subject: String,unitNum: String,attendanceNum: String,absentNum: String,lateNum: String,pubAbsentnum1: String,pubAbsentnum2: String,attendanceRateNum: String,shortageNum:String) {
+    func setCell(_ subject: String,unitNum: String,attendanceNum: String,absentNum: String,lateNum: String,pubAbsentnum1: String,pubAbsentnum2: String,attendanceRateNum: String,shortageNum:String) {
         
         subjectName.text = subject
         unit.text = unitNum

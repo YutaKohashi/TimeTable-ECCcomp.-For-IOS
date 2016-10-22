@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RealmSwift
 import KRProgressHUD
-import MaterialKit
 
 class HttpConnectionBase{
     
@@ -20,7 +19,7 @@ class HttpConnectionBase{
     
     var mLastResponseHtml : String!
     
-    func requestAttendanceRate(view:UIView,presentViewController:ViewController,storyBoard:UIStoryboard){
+    func requestAttendanceRate(_ view:UIView,presentViewController:ViewController,storyBoard:UIStoryboard){
         
 //        // ログイン画面へ遷移し必要な値を取得する
 //        let myUrl = NSURL(string: URL1);
@@ -192,17 +191,17 @@ class HttpConnectionBase{
     }
     
     //URLエンコードを行うメソッド
-    func uriEncode(str: String) -> String {
-        let allowedCharacterSet = NSMutableCharacterSet.alphanumericCharacterSet()
-        allowedCharacterSet.addCharactersInString("-._~")
-        return str.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet)!
+    func uriEncode(_ str: String) -> String {
+        let allowedCharacterSet = NSMutableCharacterSet.alphanumeric()
+        allowedCharacterSet.addCharacters(in: "-._~")
+        return str.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet as CharacterSet)!
     }
     
-    func removePercent(str:String) -> String{
-        return str.stringByReplacingOccurrencesOfString("%", withString: "")
+    func removePercent(_ str:String) -> String{
+        return str.replacingOccurrences(of: "%", with: "")
     }
-    func removeNBSP(str:String)->String{
-        return str.stringByReplacingOccurrencesOfString("&nbsp;", withString: "0")
+    func removeNBSP(_ str:String)->String{
+        return str.replacingOccurrences(of: "&nbsp;", with: "0")
     }
     
 }

@@ -8,12 +8,12 @@
 
 #define REALM_VERSION               "unknown"
 
-#define REALM_INSTALL_PREFIX        "/Users/realm/workspace/core_osx/install"
-#define REALM_INSTALL_EXEC_PREFIX   "/Users/realm/workspace/core_osx/install"
-#define REALM_INSTALL_INCLUDEDIR    "/Users/realm/workspace/core_osx/install/include"
-#define REALM_INSTALL_BINDIR        "/Users/realm/workspace/core_osx/install/bin"
-#define REALM_INSTALL_LIBDIR        "/Users/realm/workspace/core_osx/install/lib"
-#define REALM_INSTALL_LIBEXECDIR    "/Users/realm/workspace/core_osx/install/libexec"
+#define REALM_INSTALL_PREFIX        "/Users/realm/workspace/realm/realm-core/master/install"
+#define REALM_INSTALL_EXEC_PREFIX   "/Users/realm/workspace/realm/realm-core/master/install"
+#define REALM_INSTALL_INCLUDEDIR    "/Users/realm/workspace/realm/realm-core/master/install/include"
+#define REALM_INSTALL_BINDIR        "/Users/realm/workspace/realm/realm-core/master/install/bin"
+#define REALM_INSTALL_LIBDIR        "/Users/realm/workspace/realm/realm-core/master/install/lib"
+#define REALM_INSTALL_LIBEXECDIR    "/Users/realm/workspace/realm/realm-core/master/install/libexec"
 
 #ifdef REALM_DEBUG
 #  define REALM_MAX_BPNODE_SIZE     1000

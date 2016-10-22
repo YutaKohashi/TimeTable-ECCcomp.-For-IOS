@@ -8,24 +8,23 @@
 
 import UIKit
 import RealmSwift
-import MaterialKit
 import KRProgressHUD
 import MetalKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
-    private let userId:String = "2140257"
-    private let password:String = "455478"
-    
-    private var ActivityIndicator: MKActivityIndicator!
+    fileprivate let userId:String = "2140257"
+    fileprivate let password:String = "455478"
+//    
+//    fileprivate var ActivityIndicator: MKActivityIndicator!
     
     var mLastResponseHtml : String!
     
-    @IBOutlet weak var idTextField: MKTextField!
-    @IBOutlet weak var passwordTextField: MKTextField!
+    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
    
-    @IBOutlet weak var loginButton: MKButton!
+    @IBOutlet weak var loginButton: UIButton!
     
     let URL1 :String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
     let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
@@ -34,12 +33,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setStatusBarBackgroundColor(UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
+        self.setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
         // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
         
         //パスワード入力フィールドをpasswordmodeに
-        passwordTextField.secureTextEntry = true
+        passwordTextField.isSecureTextEntry = true
         
         self.passwordTextField.delegate = self;
         
@@ -55,7 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func tabLoginBtn(sender: MKButton) {
+    @IBAction func tabLoginBtn(_ sender: UIButton) {
         
         self.view.endEditing(true)
         
@@ -77,38 +76,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
         showIndicator()
         
         // ログイン画面へ遷移し必要な値を取得する
-        let myUrl = NSURL(string: URL1);
-        let request = NSMutableURLRequest(URL:myUrl!);
-        
-        request.HTTPMethod = "GET";
+        //let myUrl = URL(string: URL1);
+        //let request = NSMutableURLRequest(url:myUrl!);
+        //var request = URLRequest(url: URL(string: URL1)!)
+        var request = URLRequest(url: URL(string: URL1)!)
+        request.httpMethod = "GET";
         let postString = "";
         
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
+        request.httpBody = postString.data(using: String.Encoding.utf8);
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+        let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
             if error != nil
             {
                  self.hideIndicator()
                 let sec:Double = 1
                 let delay = sec * Double(NSEC_PER_SEC)
-                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue(), {
+                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: time, execute: {
                     self.showError()
                 })
                 print("error=\(error)")
                 return;
             }
             
-            self.mLastResponseHtml = String(data: data!, encoding: NSUTF8StringEncoding)!
+            self.mLastResponseHtml = String(data: data!, encoding: String.Encoding.utf8)!
             
             //正常に遷移できているか確認
             if !GetValuesBase("ログイン").ContainsCheck(self.mLastResponseHtml){
                  self.hideIndicator()
                 let sec:Double = 1
                 let delay = sec * Double(NSEC_PER_SEC)
-                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue(), {
+                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: time, execute: {
                     self.showError()
                 })
                 return;
@@ -118,10 +118,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
              ****************************************************************************
              ****************************************************************************/
             
-            let myUrl = NSURL(string: self.URL2)
-            let request = NSMutableURLRequest(URL:myUrl!)
-            
-            request.HTTPMethod = "POST"
+            //let myUrl = URL(string: self.URL2)
+            //let request = NSMutableURLRequest(url:myUrl!)
+            var request = URLRequest(url: URL(string: self.URL2)!)
+            request.httpMethod = "POST"
             
             let __LASTFOCUS = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__LASTFOCUS\" id=\"__LASTFOCUS\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __VIEWSTATE =  self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"(.*?)\"").getValues(self.mLastResponseHtml))
@@ -139,9 +139,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             request.addValue("http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx", forHTTPHeaderField: "Referer")
             request.addValue("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87", forHTTPHeaderField: "User-Agent")
             request.addValue("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", forHTTPHeaderField: "Accept")
-            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
+            request.httpBody = postString.data(using: String.Encoding.utf8);
 //            print("postString = \(postString)")
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            let task = URLSession.shared.dataTask(with: request) {
                 data, response, error in
                 if error != nil
                 {
@@ -151,15 +151,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     return;
                 }
                 
-                self.mLastResponseHtml  = String(data: data!, encoding: NSUTF8StringEncoding)!
+                self.mLastResponseHtml  = String(data: data!, encoding: String.Encoding.utf8)!
                 
                 //正常に遷移できているか確認
                 if !GetValuesBase("ログオフ").ContainsCheck(self.mLastResponseHtml){
                      self.hideIndicator()
                     let sec:Double = 1
                     let delay = sec * Double(NSEC_PER_SEC)
-                    let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                    dispatch_after(time, dispatch_get_main_queue(), {
+                    let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                    DispatchQueue.main.asyncAfter(deadline: time, execute: {
                         self.showError()
                     })
                     return;
@@ -168,10 +168,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 /********************* ログイン ****************************
                  *********************************************************/
                 
-                let myUrl = NSURL(string: self.URL3);
-                let request = NSMutableURLRequest(URL:myUrl!);
-                
-                request.HTTPMethod = "POST";
+                //let myUrl = URL(string: self.URL3);
+                //let request = NSMutableURLRequest(url:myUrl!);
+                var request = URLRequest(url: URL(string: self.URL3)!)
+                request.httpMethod = "POST";
                 
                 let  __EVENTTARGET2 = self.uriEncode("ctl00$btnSyuseki")
                 let  __EVENTARGUMENT2 = self.uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
@@ -190,32 +190,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 let postString = "__EVENTTARGET=" + __EVENTTARGET2 + "&__EVENTARGUMENT=" + __EVENTARGUMENT2 + "&__VIEWSTATE=" + __VIEWSTATE2 + "&__SCROLLPOSITIONX=" + __SCROLLPOSITIONX2 + "&__SCROLLPOSITIONY=" + __SCROLLPOSITIONY2 + "&__EVENTVALIDATION=" + __EVENTVALIDATION2 + "&ctl00%24txtWindowOpenFlg=" + ctl00$txtWindowOpenFlg + "&ctl00%24txtWindowOpenUrl=" + ctl00$txtWindowOpenUrl + "&ctl00%24txtWindowOpenName=" + ctl00$txtWindowOpenName + "&ctl00%24txtWindowOpenStyle=" + ctl00$txtWindowOpenStyle + "&ctl00%24txtSearchKey=" + ctl00$txtSearchKey + "&ctl00%24txtParamKey=" + ctl00$txtParamKey + "&ctl00%24txtCssFileName=" + ctl00$txtCssFileName + "&ctl00%24txtHeadTitle=" + ctl00$txtHeadTitle;
                 
-                request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
+                request.httpBody = postString.data(using: String.Encoding.utf8);
                 
-                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+                let task = URLSession.shared.dataTask(with: request) {
                     data, response, error in
                     if error != nil
                     {
                          self.hideIndicator()
                         let sec:Double = 1
                         let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                        dispatch_after(time, dispatch_get_main_queue(), {
+                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
                             self.showError()
                         })
                         print("error=\(error)")
                         return;
                     }
                     
-                    self.mLastResponseHtml = String(data: data!, encoding: NSUTF8StringEncoding)
+                    self.mLastResponseHtml = String(data: data!, encoding: String.Encoding.utf8)
                     
                     //正常に遷移できているか確認
                     if !GetValuesBase("教科名").ContainsCheck(self.mLastResponseHtml){
                          self.hideIndicator()
                         let sec:Double = 1
                         let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                        dispatch_after(time, dispatch_get_main_queue(), {
+                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
                             self.showError()
                         })
                         return;
@@ -238,15 +238,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     //passIdを保存
                     saveManager.saveIdPass(self.idTextField.text!, pass: self.passwordTextField.text!)
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         
                         //成功ダイアログ表示
                         self.showSuccess()
                         
                         //出席率表示画面へ遷移
                         let storyboard: UIStoryboard = self.storyboard!
-                        let nextView = storyboard.instantiateViewControllerWithIdentifier("MainView") as! TableViewController
-                        self.presentViewController(nextView, animated: true, completion: nil)
+                        let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! TableViewController
+                        self.present(nextView, animated: true, completion: nil)
 
                     })
                     
@@ -270,25 +270,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //テキストフィールドに値が入力されているか
     func loginCheck() -> Bool{
-        let ud = NSUserDefaults.standardUserDefaults()
-        let bool : Bool = ud.boolForKey("login") ?? false
+        let ud = UserDefaults.standard
+        let bool : Bool = ud.bool(forKey: "login") 
         
         return bool
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
         return false;
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle : UIStatusBarStyle {
         // ステータスバーを白くする
-        return UIStatusBarStyle.LightContent;
+        return UIStatusBarStyle.lightContent;
     }
    
     //ログイン時に表示するダイアログ
     func showIndicator(){
-        KRProgressHUD.show(progressHUDStyle: .White, maskType: .Black, activityIndicatorStyle: .Color(UIColor.blueColor(), UIColor.blueColor()),message: "お待ち下さい")
+        KRProgressHUD.show(progressHUDStyle: .white, maskType: .black, activityIndicatorStyle: .color(UIColor.blue, UIColor.blue),message: "お待ち下さい")
     }
     
     func hideIndicator(){
@@ -296,50 +296,50 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showError(){
-        KRProgressHUD.showError(progressHUDStyle: .WhiteColor,maskType: .Black)
+        KRProgressHUD.showError(progressHUDStyle: .whiteColor,maskType: .black)
         
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)
-        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
+        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             KRProgressHUD.dismiss()
         })
     }
     
     func showSuccess(){
-        KRProgressHUD.showSuccess(progressHUDStyle: .WhiteColor,maskType: .Black)
+        KRProgressHUD.showSuccess(progressHUDStyle: .whiteColor,maskType: .black)
         
         let sec:Double = 3
         let delay = sec * Double(NSEC_PER_SEC)
-        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
+        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             KRProgressHUD.dismiss()
         })
     }
     
     func showWarningForInternet(){
-        KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType: .Black,message:"インターネット未接続")
+        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType: .black,message:"インターネット未接続")
         
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)
-        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
+        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             KRProgressHUD.dismiss()
         })
     }
     
     func showWarningForTextField(){
-        KRProgressHUD.showWarning(progressHUDStyle: .WhiteColor,maskType: .Black,message:"未入力")
+        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType: .black,message:"未入力")
         
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)
-        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
+        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             KRProgressHUD.dismiss()
         })
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
@@ -359,27 +359,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     //URLエンコードを行うメソッド
-    func uriEncode(str: String) -> String {
-        let allowedCharacterSet = NSMutableCharacterSet.alphanumericCharacterSet()
-        allowedCharacterSet.addCharactersInString("-._~")
-        return str.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet)!
+    func uriEncode(_ str: String) -> String {
+        let allowedCharacterSet = NSMutableCharacterSet.alphanumeric()
+        allowedCharacterSet.addCharacters(in: "-._~")
+        return str.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet as CharacterSet)!
     }
     
     //％を取り除く
-    func removePercent(str:String) -> String{
-        return str.stringByReplacingOccurrencesOfString("%", withString: "")
+    func removePercent(_ str:String) -> String{
+        return str.replacingOccurrences(of: "%", with: "")
     }
     
     //&nbspを取り除く
-    func removeNBSP(str:String)->String{
-        return str.stringByReplacingOccurrencesOfString("&nbsp;", withString: "0")
+    func removeNBSP(_ str:String)->String{
+        return str.replacingOccurrences(of: "&nbsp;", with: "0")
     }
+    
+   // func setStatusBarBackgroundColor(_ color: UIColor) {
+        
+     //   guard  let statusBar = (UIApplication.shared.value(forKey: "statusBarWindow") as AnyObject).value(forKey: "statusBar") as? UIView else {
+     //       return
+     //   }
+   //  //   statusBar.backgroundColor = color
+//    }
     
     func setStatusBarBackgroundColor(color: UIColor) {
         
-        guard  let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView else {
-            return
-        }
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        
         statusBar.backgroundColor = color
     }
 
