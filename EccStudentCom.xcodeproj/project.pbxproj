@@ -93,24 +93,56 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
-				794F66881D96BB8B00C1D9B6 /* SaveModel.swift */,
-				794F66841D96B8C900C1D9B6 /* Regexp.swift */,
-				794F66851D96B8C900C1D9B6 /* GetValuesBase.swift */,
+				796DE3EE1DC3855000BF5ABE /* ViewController */,
+				796DE3ED1DC3853E00BF5ABE /* View */,
+				796DE3EC1DC384D100BF5ABE /* Model */,
+				796DE3EB1DC384A600BF5ABE /* Tools */,
 				794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */,
-				794F66711D96B7C300C1D9B6 /* ViewController.swift */,
-				794F66731D96B7C300C1D9B6 /* Main.storyboard */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
 				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
-				794F667B1D96B7C300C1D9B6 /* LaunchScreen.storyboard */,
 				794F667E1D96B7C300C1D9B6 /* Info.plist */,
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
-				794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */,
-				794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */,
-				79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */,
-				79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */,
-				790AA59F1D9A11A800C53C48 /* SaveManager.swift */,
 			);
 			path = EccStudentCom;
+			sourceTree = "<group>";
+		};
+		796DE3EB1DC384A600BF5ABE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */,
+				794F66851D96B8C900C1D9B6 /* GetValuesBase.swift */,
+				794F66841D96B8C900C1D9B6 /* Regexp.swift */,
+				79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */,
+				790AA59F1D9A11A800C53C48 /* SaveManager.swift */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		796DE3EC1DC384D100BF5ABE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */,
+				794F66881D96BB8B00C1D9B6 /* SaveModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		796DE3ED1DC3853E00BF5ABE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		796DE3EE1DC3855000BF5ABE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				794F66711D96B7C300C1D9B6 /* ViewController.swift */,
+				794F66731D96B7C300C1D9B6 /* Main.storyboard */,
+				794F667B1D96B7C300C1D9B6 /* LaunchScreen.storyboard */,
+				794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		8B655494E76771243EACB99F /* Frameworks */ = {

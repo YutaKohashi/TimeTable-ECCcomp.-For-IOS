@@ -1,15 +1,17 @@
 PODS:
   - KRProgressHUD (1.7.0)
-  - Realm (2.0.2):
-    - Realm/Headers (= 2.0.2)
-  - Realm/Headers (2.0.2)
-  - RealmSwift (2.0.2):
-    - Realm (= 2.0.2)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
+  - SlideMenuControllerSwift (3.0.0)
 
 DEPENDENCIES:
   - KRProgressHUD
   - Realm (from `https://github.com/realm/realm-cocoa.git`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`)
+  - SlideMenuControllerSwift
 
 EXTERNAL SOURCES:
   Realm:
@@ -21,19 +23,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Realm:
-    :commit: be0555b550093bb65629055861ac2a0d9ab00e4f
+    :commit: eb4c36f2b7e287f82bb1ca67602fff20ac030a1a
     :git: https://github.com/realm/realm-cocoa.git
     :submodules: true
   RealmSwift:
-    :commit: be0555b550093bb65629055861ac2a0d9ab00e4f
+    :commit: eb4c36f2b7e287f82bb1ca67602fff20ac030a1a
     :git: https://github.com/realm/realm-cocoa.git
     :submodules: true
 
 SPEC CHECKSUMS:
   KRProgressHUD: eb23a52e98069190660e33167e870cf2d80a435f
-  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
-  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 79a9bc83e7ef4fbde17e0f303c5fadb99264a6be
+  SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
 
-PODFILE CHECKSUM: 22bca3af460bba194d2f18b93beae2e01e8701fe
+PODFILE CHECKSUM: c352b23242ff5171b023a97a9be1eb253a2f76b8
 
 COCOAPODS: 1.0.1
