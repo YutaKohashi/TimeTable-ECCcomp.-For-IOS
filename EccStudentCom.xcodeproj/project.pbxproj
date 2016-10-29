@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AA59F1D9A11A800C53C48 /* SaveManager.swift */; };
+		791423CE1DC44F9B00C44EC0 /* TimeTableSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791423CD1DC44F9B00C44EC0 /* TimeTableSaveModel.swift */; };
 		794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */; };
 		794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66711D96B7C300C1D9B6 /* ViewController.swift */; };
 		794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794F66731D96B7C300C1D9B6 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		413EB346CD1299EC4C947E50 /* Pods-EccStudentCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.release.xcconfig"; sourceTree = "<group>"; };
 		790AA59F1D9A11A800C53C48 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		791423CD1DC44F9B00C44EC0 /* TimeTableSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableSaveModel.swift; sourceTree = "<group>"; };
 		794F666C1D96B7C300C1D9B6 /* EccStudentCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EccStudentCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		794F66711D96B7C300C1D9B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		791423CF1DC45D4900C44EC0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		794F66631D96B7C300C1D9B6 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +102,7 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
+				791423CF1DC45D4900C44EC0 /* API */,
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
 				796DE3ED1DC3853E00BF5ABE /* View */,
 				796DE3EC1DC384D100BF5ABE /* Model */,
@@ -123,6 +133,7 @@
 			children = (
 				794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */,
 				794F66881D96BB8B00C1D9B6 /* SaveModel.swift */,
+				791423CD1DC44F9B00C44EC0 /* TimeTableSaveModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -285,6 +296,7 @@
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,
+				791423CE1DC44F9B00C44EC0 /* TimeTableSaveModel.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,
 				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,
@@ -406,7 +418,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EccStudentCom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuta.kohashi.EccStudentCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,7 +436,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EccStudentCom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuta.kohashi.EccStudentCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";

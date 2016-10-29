@@ -250,19 +250,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
                     })
                     
-                    /*************************************************************/
+                    /***************************************/
                     
                 }
                 task.resume()
-                /************************************************************************************
-                 ************************************************************************************/
+                /*******************************************
+                 *******************************************/
                 
             }
             task.resume()
             
-            /************************************************************************************
-             ************************************************************************************
-             ************************************************************************************/
+            /************************************************
+             ************************************************
+             ************************************************/
             
         }
         task.resume()
@@ -374,15 +374,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func removeNBSP(_ str:String)->String{
         return str.replacingOccurrences(of: "&nbsp;", with: "0")
     }
-    
-   // func setStatusBarBackgroundColor(_ color: UIColor) {
-        
-     //   guard  let statusBar = (UIApplication.shared.value(forKey: "statusBarWindow") as AnyObject).value(forKey: "statusBar") as? UIView else {
-     //       return
-     //   }
-   //  //   statusBar.backgroundColor = color
-//    }
-    
+
     func setStatusBarBackgroundColor(color: UIColor) {
         
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
