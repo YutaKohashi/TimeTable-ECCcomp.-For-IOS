@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
+  - AsyncSwift (2.0.0)
   - KRProgressHUD (1.7.0)
   - PromiseKit (4.0.3):
     - PromiseKit/Foundation (= 4.0.3)
@@ -20,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - AsyncSwift
   - KRProgressHUD
   - PromiseKit (~> 4.0)
   - Realm (from `https://github.com/realm/realm-cocoa.git`)
@@ -45,11 +47,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
   KRProgressHUD: eb23a52e98069190660e33167e870cf2d80a435f
   PromiseKit: dfe8fcc6445674fb23378d89990838c1cbdbf05a
   Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
   RealmSwift: 79a9bc83e7ef4fbde17e0f303c5fadb99264a6be
 
-PODFILE CHECKSUM: 20f381e5c2ed3af6afa43feda52500e10dd79c51
+PODFILE CHECKSUM: 5473e32a68e03ccbd68716642b7d8d53c6d6f521
 
 COCOAPODS: 1.0.1

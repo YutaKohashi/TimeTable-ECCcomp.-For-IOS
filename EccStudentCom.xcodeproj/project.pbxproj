@@ -22,6 +22,7 @@
 		79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */; };
 		79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B074001D98B55600F62F15 /* SystemConfiguration.framework */; };
 		79B074031D98D90D00F62F15 /* HttpConnectionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */; };
+		79DCB3701DC4C93800590AD8 /* HttpRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCB36F1DC4C93800590AD8 /* HttpRequestBase.swift */; };
 		79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E095F31D984AC200A5248D /* iocn ver1.6.0.png */; };
 		9FD5B03D1462A2463F5ED835 /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsBase.swift; sourceTree = "<group>"; };
 		79B074001D98B55600F62F15 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnectionBase.swift; sourceTree = "<group>"; };
+		79DCB36F1DC4C93800590AD8 /* HttpRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestBase.swift; sourceTree = "<group>"; };
 		79E095F31D984AC200A5248D /* iocn ver1.6.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iocn ver1.6.0.png"; sourceTree = "<group>"; };
 		F6DE13691C44FF176BF7F602 /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 		79DCB36E1DC4C47800590AD8 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				79DCB36F1DC4C93800590AD8 /* HttpRequestBase.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79DCB3701DC4C93800590AD8 /* HttpRequestBase.swift in Sources */,
 				79B074031D98D90D00F62F15 /* HttpConnectionBase.swift in Sources */,
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,

@@ -81,6 +81,19 @@ class GetValuesBase{
         return ""
     }
     
+    func getToken(_ input: String) -> String {
+        if self.isMatch(input) {
+            let matches = self.regex.matches( in: input, options: [], range:NSMakeRange(0, input.characters.count) )
+            var results: [String] = []
+            matches.forEach { match in
+                results.append( (input as NSString).substring(with: match.rangeAt(1)))
+            }
+            
+            return results[0].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+        //一致しないときは空文字を返す
+        return ""
+    }
     
  
     

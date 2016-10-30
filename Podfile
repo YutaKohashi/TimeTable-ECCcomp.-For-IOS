@@ -7,6 +7,7 @@ pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :submodule
 pod 'KRProgressHUD'
 pod 'PromiseKit', '~> 4.0'
 pod 'Alamofire', '~> 4.0'
+pod 'AsyncSwift'
 
 end
 

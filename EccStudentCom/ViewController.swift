@@ -75,6 +75,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //プログレスダイアログ表示
         showIndicator()
         
+//        var httpresult:String = HttpRequestBase().login()
+        
+//        print(httpresult)
         // ログイン画面へ遷移し必要な値を取得する
         //let myUrl = URL(string: URL1);
         //let request = NSMutableURLRequest(url:myUrl!);
@@ -84,6 +87,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let postString = "";
         
         request.httpBody = postString.data(using: String.Encoding.utf8);
+        
         
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
