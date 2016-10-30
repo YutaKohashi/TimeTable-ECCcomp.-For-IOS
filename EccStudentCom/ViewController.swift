@@ -245,7 +245,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         
                         //出席率表示画面へ遷移
                         let storyboard: UIStoryboard = self.storyboard!
-                        let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! TableViewController
+                        //let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! TableViewController
+                        let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
                         self.present(nextView, animated: true, completion: nil)
 
                     })

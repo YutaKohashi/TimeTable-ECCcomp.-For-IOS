@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KRProgressHUD
 
 
 class GetValuesBase{
@@ -25,6 +26,11 @@ class GetValuesBase{
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpression.Options.caseInsensitive)
     }
     
+    init(){
+        self.pattern = ""
+        self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpression.Options.caseInsensitive)
+
+    }
  
     
     func isMatch(_ input: String) -> Bool {
@@ -81,6 +87,30 @@ class GetValuesBase{
         return ""
     }
     
+    //URLエンコードを行うメソッド
+    func uriEncode(_ str: String) -> String {
+        let allowedCharacterSet = NSMutableCharacterSet.alphanumeric()
+        allowedCharacterSet.addCharacters(in: "-._~")
+        return str.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet as CharacterSet)!
+    }
+    
+    func removePercent(_ str:String) -> String{
+        return str.replacingOccurrences(of: "%", with: "")
+    }
+    func removeNBSP(_ str:String)->String{
+        return str.replacingOccurrences(of: "&nbsp;", with: "0")
+    }
+    
+    func showWarningForInternet(){
+        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType: .black,message:"インターネット未接続")
+        
+        let sec:Double = 4
+        let delay = sec * Double(NSEC_PER_SEC)
+        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
+            KRProgressHUD.dismiss()
+        })
+    }
     
  
     

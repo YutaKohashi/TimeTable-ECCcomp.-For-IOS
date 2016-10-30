@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginView" id="BYZ-38-t0r" customClass="ViewController" customModule="EccStudentCom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="BYZ-38-t0r" customClass="ViewController" customModule="EccStudentCom" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -144,12 +144,125 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43" y="439"/>
+            <point key="canvasLocation" x="-90" y="391"/>
         </scene>
-        <!--Table View Controller-->
+        <!--時間割-->
+        <scene sceneID="He1-7c-v2e">
+            <objects>
+                <viewController id="l4k-84-Pj5" customClass="TimeTableViewController" customModule="EccStudentCom" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HGD-Pg-Fxg"/>
+                        <viewControllerLayoutGuide type="bottom" id="NWQ-2D-dsM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AAv-nb-SMv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oc3-pE-9On">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="9j1-ld-4HJ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="xWG-sk-s40"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="時間割" id="qml-ND-c65"/>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49R-Al-9KI">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGw-LV-Y01" userLabel="DummyHorizontalView">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="QO3-58-f5a"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oet-dg-PWm" userLabel="MondayTableVIew">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2mI-DG-Jsv" userLabel="TuesdayTableView">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="44g-IS-QSb" userLabel="WednesdayTableView">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hKF-aO-TfC" userLabel="ThursdayTableView">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-EL-vQw" userLabel="FridayTableView">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hKF-aO-TfC" firstAttribute="width" secondItem="LGw-LV-Y01" secondAttribute="width" multiplier="0.2" id="03d-K5-1fQ"/>
+                                    <constraint firstItem="D5m-EL-vQw" firstAttribute="width" secondItem="LGw-LV-Y01" secondAttribute="width" multiplier="0.2" id="0QO-DH-dab"/>
+                                    <constraint firstItem="LGw-LV-Y01" firstAttribute="top" secondItem="49R-Al-9KI" secondAttribute="top" id="35q-yr-9aZ"/>
+                                    <constraint firstItem="2mI-DG-Jsv" firstAttribute="width" secondItem="LGw-LV-Y01" secondAttribute="width" multiplier="0.2" id="3jx-WF-yy3"/>
+                                    <constraint firstAttribute="trailing" secondItem="LGw-LV-Y01" secondAttribute="trailing" id="96C-0c-K1W"/>
+                                    <constraint firstItem="hKF-aO-TfC" firstAttribute="leading" secondItem="44g-IS-QSb" secondAttribute="trailing" id="D6S-O9-Hlb"/>
+                                    <constraint firstAttribute="bottom" secondItem="44g-IS-QSb" secondAttribute="bottom" id="Di6-yy-u7W"/>
+                                    <constraint firstItem="D5m-EL-vQw" firstAttribute="top" secondItem="LGw-LV-Y01" secondAttribute="bottom" id="EmF-f6-csW"/>
+                                    <constraint firstItem="hKF-aO-TfC" firstAttribute="top" secondItem="LGw-LV-Y01" secondAttribute="bottom" id="Hlx-PQ-9ny"/>
+                                    <constraint firstItem="oet-dg-PWm" firstAttribute="width" secondItem="LGw-LV-Y01" secondAttribute="width" multiplier="0.2" id="Jaa-ZZ-Dgw"/>
+                                    <constraint firstItem="oet-dg-PWm" firstAttribute="leading" secondItem="49R-Al-9KI" secondAttribute="leading" id="NLM-PH-VdB"/>
+                                    <constraint firstItem="44g-IS-QSb" firstAttribute="leading" secondItem="2mI-DG-Jsv" secondAttribute="trailing" id="PJZ-Zw-eGD"/>
+                                    <constraint firstItem="2mI-DG-Jsv" firstAttribute="top" secondItem="LGw-LV-Y01" secondAttribute="bottom" id="PnP-Gn-OBR"/>
+                                    <constraint firstAttribute="bottom" secondItem="oet-dg-PWm" secondAttribute="bottom" id="VI6-5L-yae"/>
+                                    <constraint firstItem="2mI-DG-Jsv" firstAttribute="leading" secondItem="oet-dg-PWm" secondAttribute="trailing" id="WAg-WX-aJ3"/>
+                                    <constraint firstItem="oet-dg-PWm" firstAttribute="top" secondItem="LGw-LV-Y01" secondAttribute="bottom" id="XDG-MQ-EnN"/>
+                                    <constraint firstItem="D5m-EL-vQw" firstAttribute="leading" secondItem="hKF-aO-TfC" secondAttribute="trailing" id="ffd-jL-VFN"/>
+                                    <constraint firstAttribute="bottom" secondItem="2mI-DG-Jsv" secondAttribute="bottom" id="mdu-V2-KF8"/>
+                                    <constraint firstItem="44g-IS-QSb" firstAttribute="width" secondItem="LGw-LV-Y01" secondAttribute="width" multiplier="0.2" id="nY7-qa-QYQ"/>
+                                    <constraint firstItem="LGw-LV-Y01" firstAttribute="leading" secondItem="49R-Al-9KI" secondAttribute="leading" id="o77-I6-Tmw"/>
+                                    <constraint firstAttribute="bottom" secondItem="D5m-EL-vQw" secondAttribute="bottom" id="pZE-lx-Xw9"/>
+                                    <constraint firstItem="44g-IS-QSb" firstAttribute="top" secondItem="LGw-LV-Y01" secondAttribute="bottom" id="weK-Cu-jeC"/>
+                                    <constraint firstAttribute="bottom" secondItem="hKF-aO-TfC" secondAttribute="bottom" id="z4L-je-DVg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Oc3-pE-9On" firstAttribute="leading" secondItem="AAv-nb-SMv" secondAttribute="leading" id="4Qj-jh-JpI"/>
+                            <constraint firstItem="NWQ-2D-dsM" firstAttribute="top" secondItem="49R-Al-9KI" secondAttribute="bottom" id="4zG-W8-R3d"/>
+                            <constraint firstAttribute="trailing" secondItem="Oc3-pE-9On" secondAttribute="trailing" id="PGd-sn-wol"/>
+                            <constraint firstAttribute="trailing" secondItem="49R-Al-9KI" secondAttribute="trailing" id="SkA-kW-3Sg"/>
+                            <constraint firstItem="49R-Al-9KI" firstAttribute="top" secondItem="Oc3-pE-9On" secondAttribute="bottom" id="aYB-Ke-GT0"/>
+                            <constraint firstItem="Oc3-pE-9On" firstAttribute="top" secondItem="HGD-Pg-Fxg" secondAttribute="bottom" id="mpJ-i7-IrG"/>
+                            <constraint firstItem="49R-Al-9KI" firstAttribute="leading" secondItem="AAv-nb-SMv" secondAttribute="leading" id="yLI-gJ-nku"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="時間割" image="square-individual-nine-7.png" id="BGK-hz-I5t"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3y-m8-zqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="820" y="781.25937031484261"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="lop-I1-wku">
+            <objects>
+                <tabBarController storyboardIdentifier="MainView" id="IZb-BX-ahb" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="z19-Al-BpU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="l4k-84-Pj5" kind="relationship" relationship="viewControllers" id="qkX-gW-mWH"/>
+                        <segue destination="llI-dX-hoP" kind="relationship" relationship="viewControllers" id="hqb-xt-sW3"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pSp-ik-4xh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1255" y="-144"/>
+        </scene>
+        <!--出席照会-->
         <scene sceneID="UE6-os-nrv">
             <objects>
-                <viewController storyboardIdentifier="MainView" id="llI-dX-hoP" customClass="TableViewController" customModule="EccStudentCom" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S3y-dB-u4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="llI-dX-hoP" customClass="TableViewController" customModule="EccStudentCom" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vIz-vy-IAX"/>
                         <viewControllerLayoutGuide type="bottom" id="INl-V4-Tdm"/>
@@ -205,7 +318,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="0.19620150862068966" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.20402502696689317" green="0.68326461596826615" blue="0.96149270304568524" alpha="0.1950510377302786" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="zao-bo-YYn" secondAttribute="bottom" id="3rG-4x-n00"/>
                                                         <constraint firstAttribute="trailing" secondItem="zao-bo-YYn" secondAttribute="trailing" id="NdG-0k-Hx6"/>
@@ -553,13 +666,17 @@
                             <constraint firstItem="xaq-Yt-8lz" firstAttribute="top" secondItem="4KV-9c-Rvk" secondAttribute="bottom" id="ybF-Ba-GxW"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="出席照会" image="text-align-justify-7.png" id="p1o-pa-Arn"/>
                     <connections>
                         <outlet property="tableView" destination="xaq-Yt-8lz" id="frv-hR-Det"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S3y-dB-u4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="728" y="431"/>
+            <point key="canvasLocation" x="1684" y="683"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="square-individual-nine-7.png" width="30" height="30"/>
+        <image name="text-align-justify-7.png" width="30" height="30"/>
+    </resources>
 </document>

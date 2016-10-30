@@ -19,6 +19,10 @@
 		794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66881D96BB8B00C1D9B6 /* SaveModel.swift */; };
 		794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */; };
 		794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */; };
+		799F60151DC5B80100C95A68 /* TImeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TImeTableViewController.swift */; };
+		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
+		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
+		799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */; };
 		79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */; };
 		79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B074001D98B55600F62F15 /* SystemConfiguration.framework */; };
 		79B074031D98D90D00F62F15 /* HttpConnectionBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */; };
@@ -43,6 +47,10 @@
 		794F66881D96BB8B00C1D9B6 /* SaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveModel.swift; sourceTree = "<group>"; };
 		794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
+		799F60141DC5B80100C95A68 /* TImeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TImeTableViewController.swift; sourceTree = "<group>"; };
+		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
+		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
+		799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-align-justify-7.png"; sourceTree = "<group>"; };
 		79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsBase.swift; sourceTree = "<group>"; };
 		79B074001D98B55600F62F15 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		79B074021D98D90D00F62F15 /* HttpConnectionBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnectionBase.swift; sourceTree = "<group>"; };
@@ -100,6 +108,8 @@
 				794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
 				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
+				799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */,
+				799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */,
 				794F667E1D96B7C300C1D9B6 /* Info.plist */,
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
 			);
@@ -114,6 +124,7 @@
 				794F66841D96B8C900C1D9B6 /* Regexp.swift */,
 				79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */,
 				790AA59F1D9A11A800C53C48 /* SaveManager.swift */,
+				799F60161DC5B93000C95A68 /* StatusbarManager.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -141,6 +152,7 @@
 				794F66731D96B7C300C1D9B6 /* Main.storyboard */,
 				794F667B1D96B7C300C1D9B6 /* LaunchScreen.storyboard */,
 				794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */,
+				799F60141DC5B80100C95A68 /* TImeTableViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -218,7 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
+				799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */,
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
+				799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */,
 				794F667A1D96B7C300C1D9B6 /* Assets.xcassets in Resources */,
 				794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */,
 			);
@@ -281,6 +295,8 @@
 			files = (
 				79B074031D98D90D00F62F15 /* HttpConnectionBase.swift in Sources */,
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
+				799F60151DC5B80100C95A68 /* TImeTableViewController.swift in Sources */,
+				799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
