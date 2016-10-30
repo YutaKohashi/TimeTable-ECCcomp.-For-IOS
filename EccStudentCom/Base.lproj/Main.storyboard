@@ -235,6 +235,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="時間割" image="square-individual-nine-7.png" id="BGK-hz-I5t"/>
+                    <connections>
+                        <outlet property="fridayTableView" destination="D5m-EL-vQw" id="pca-M7-0gc"/>
+                        <outlet property="mondayTableView" destination="oet-dg-PWm" id="BSa-c2-bvX"/>
+                        <outlet property="thursdayTableView" destination="hKF-aO-TfC" id="2F4-ec-O5V"/>
+                        <outlet property="tuesdayTableView" destination="2mI-DG-Jsv" id="Bbx-Eg-rir"/>
+                        <outlet property="wednesdayTableView" destination="44g-IS-QSb" id="h7L-Xq-W7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3y-m8-zqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,7 +268,6 @@
         <!--出席照会-->
         <scene sceneID="UE6-os-nrv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S3y-dB-u4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="llI-dX-hoP" customClass="TableViewController" customModule="EccStudentCom" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vIz-vy-IAX"/>
@@ -300,7 +306,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tMa-VI-MNn" id="j5Y-mg-hHg">
-                                            <frame key="frameInset" width="600" height="89.5"/>
+                                            <frame key="frameInset" width="600" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijZ-zV-Ywr" customClass="VerticalCriterionView">
@@ -671,6 +677,7 @@
                         <outlet property="tableView" destination="xaq-Yt-8lz" id="frv-hR-Det"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S3y-dB-u4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1684" y="683"/>
         </scene>

@@ -230,13 +230,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let saveManager = SaveManager()
                     saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
                     
+                    
+                    
                     //ダイアログ非表示
-                    self.hideIndicator()
+                    //self.hideIndicator()
 
                     //ログインしたことを保存
                     saveManager.saveLoginState(true)
                     //passIdを保存
                     saveManager.saveIdPass(self.idTextField.text!, pass: self.passwordTextField.text!)
+                    
                     
                     DispatchQueue.main.async(execute: {
                         

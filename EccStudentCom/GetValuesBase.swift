@@ -27,7 +27,7 @@ class GetValuesBase{
     }
     
     init(){
-        self.pattern = ""
+        self.pattern = "(.+?)"
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpression.Options.caseInsensitive)
 
     }

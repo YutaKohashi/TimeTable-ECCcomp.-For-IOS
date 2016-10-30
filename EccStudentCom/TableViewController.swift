@@ -19,6 +19,8 @@ class TableViewController: UIViewController, UITableViewDataSource {
     let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
     let URL3 : String  = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,6 +72,8 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let postString = "";
         
         request.httpBody = postString.data(using: String.Encoding.utf8);
+        
+        
         
 //        let task = URLSession.shared.dataTask(with: request, completionHandler: {
         let task = URLSession.shared.dataTask(with: request) {
