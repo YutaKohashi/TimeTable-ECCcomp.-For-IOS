@@ -94,11 +94,26 @@ class GetValuesBase{
         return str.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet as CharacterSet)!
     }
     
+    //％を取り除く
     func removePercent(_ str:String) -> String{
         return str.replacingOccurrences(of: "%", with: "")
     }
+        //&nbspを取り除く
     func removeNBSP(_ str:String)->String{
         return str.replacingOccurrences(of: "&nbsp;", with: "0")
+    }
+    
+    //改行コード\nを削除
+    func removeLineCodeN(_ str:String) -> String{
+        return str.replacingOccurrences(of: "\n", with: "")
+    }
+    //改行コード\rを削除
+    func removeLineCodeR(_ str:String) -> String{
+        return str.replacingOccurrences(of: "\r", with: "")
+    }
+    //タブコード\tを削除
+    func removeTabCode(_ str:String) -> String{
+        return str.replacingOccurrences(of: "\t", with: "")
     }
     
     func showWarningForInternet(){
