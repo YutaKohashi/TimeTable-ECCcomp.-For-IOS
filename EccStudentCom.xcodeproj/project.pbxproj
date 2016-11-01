@@ -21,6 +21,10 @@
 		794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66881D96BB8B00C1D9B6 /* SaveModel.swift */; };
 		794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */; };
 		794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */; };
+		79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */; };
+		79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */; };
+		79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */; };
+		79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */; };
 		799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TimeTableViewController.swift */; };
 		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
 		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
@@ -29,7 +33,7 @@
 		79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B074001D98B55600F62F15 /* SystemConfiguration.framework */; };
 		79B9DD921DC62600009153B6 /* TimeTableSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */; };
 		79B9DD941DC78975009153B6 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD931DC78975009153B6 /* HttpRequest.swift */; };
-		79B9DD971DC79561009153B6 /* CustomTimeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD961DC79561009153B6 /* CustomTimeTableCell.swift */; };
+		79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */; };
 		79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E095F31D984AC200A5248D /* iocn ver1.6.0.png */; };
 		9FD5B03D1462A2463F5ED835 /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +57,10 @@
 		794F66881D96BB8B00C1D9B6 /* SaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveModel.swift; sourceTree = "<group>"; };
 		794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
+		79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTimeTableCellTue.swift; path = Assets.xcassets/CustomTimeTableCellTue.swift; sourceTree = "<group>"; };
+		79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellWed.swift; sourceTree = "<group>"; };
+		79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellThur.swift; sourceTree = "<group>"; };
+		79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellFri.swift; sourceTree = "<group>"; };
 		799F60141DC5B80100C95A68 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
 		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
@@ -61,7 +69,7 @@
 		79B074001D98B55600F62F15 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableSaveModel.swift; sourceTree = "<group>"; };
 		79B9DD931DC78975009153B6 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
-		79B9DD961DC79561009153B6 /* CustomTimeTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCell.swift; sourceTree = "<group>"; };
+		79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellMon.swift; sourceTree = "<group>"; };
 		79E095F31D984AC200A5248D /* iocn ver1.6.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iocn ver1.6.0.png"; sourceTree = "<group>"; };
 		F6DE13691C44FF176BF7F602 /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,7 +152,11 @@
 				794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */,
 				794F66881D96BB8B00C1D9B6 /* SaveModel.swift */,
 				79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */,
-				79B9DD961DC79561009153B6 /* CustomTimeTableCell.swift */,
+				79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */,
+				79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */,
+				79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */,
+				79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */,
+				79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -314,17 +326,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
+				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
+				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
+				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,
 				799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */,
 				79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
 				79B9DD941DC78975009153B6 /* HttpRequest.swift in Sources */,
-				79B9DD971DC79561009153B6 /* CustomTimeTableCell.swift in Sources */,
+				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				79292D541DC5F8B800F15299 /* HttpRequestBase.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,
 				79B9DD921DC62600009153B6 /* TimeTableSaveModel.swift in Sources */,
+				79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,
 				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,

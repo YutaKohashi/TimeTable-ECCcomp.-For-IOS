@@ -32,11 +32,24 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         thursdayTableView.isScrollEnabled = false
         fridayTableView.isScrollEnabled = false
         //区切り線をなくす
-        mondayTableView.separatorColor = UIColor.clear
-        tuesdayTableView.separatorColor = UIColor.clear
-        wednesdayTableView.separatorColor = UIColor.clear
-        thursdayTableView.separatorColor = UIColor.clear
-        fridayTableView.separatorColor = UIColor.clear
+//        mondayTableView.separatorColor = UIColor.lightGray
+//        tuesdayTableView.separatorColor = UIColor.lightGray
+//        wednesdayTableView.separatorColor = UIColor.lightGray
+//        thursdayTableView.separatorColor = UIColor.lightGray
+//        fridayTableView.separatorColor = UIColor.lightGray
+        //選択不可に
+        mondayTableView.allowsSelection = false
+        tuesdayTableView.allowsSelection = false
+        wednesdayTableView.allowsSelection = false
+        thursdayTableView.allowsSelection = false
+        fridayTableView.allowsSelection = false
+
+        
+//        mondayTableView.rowHeight = UITableViewAutomaticDimension
+//        tuesdayTableView.rowHeight = UITableViewAutomaticDimension
+//        wednesdayTableView.rowHeight = UITableViewAutomaticDimension
+//        thursdayTableView.rowHeight = UITableViewAutomaticDimension
+//        fridayTableView.rowHeight = UITableViewAutomaticDimension
         
         mondayTableView.dataSource = self
         tuesdayTableView.dataSource = self
@@ -58,43 +71,44 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
 //        }
         switch tableView.tag {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
+          
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row].room)
+            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5].room)
             return cell
             
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TueCustomCell") as! CustomTimeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TueCustomCell") as! CustomTimeTableViewCellTue
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row].room)
+            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 1].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5 + 1].room)
             return cell
             
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WedCustomCell") as! CustomTimeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WedCustomCell") as! CustomTimeTableViewCellWed
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row].room)
+            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 2].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5 + 2].room)
             return cell
             
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ThurCustomCell") as! CustomTimeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ThurCustomCell") as! CustomTimeTableViewCellThur
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row].room)
+            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 3].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row  * 5 + 3].room)
             return cell
             
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FriCustomCell") as! CustomTimeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FriCustomCell") as! CustomTimeTableViewCellFri
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row].room)
+            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 4].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5 + 4].room)
             return cell
         
         default:
@@ -102,7 +116,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
 
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
         let realm = try! Realm()
         let saveModel = realm.objects(TimeTableSaveModel.self)
         // セルに値を設定
@@ -139,15 +153,15 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
 //    }
 //    
     
-//    override var prefersStatusBarHidden : Bool {
-//        // trueの場合はステータスバー非表示
-//        return false;
-//    }
-//    
-//    override var preferredStatusBarStyle : UIStatusBarStyle {
-//        // ステータスバーを白くする
-//        return UIStatusBarStyle.lightContent;
-//    }
-//    
+    override var prefersStatusBarHidden : Bool {
+        // trueの場合はステータスバー非表示
+        return false;
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        // ステータスバーを白くする
+        return UIStatusBarStyle.lightContent;
+    }
+    
 
 }

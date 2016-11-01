@@ -1,5 +1,5 @@
 //
-//  CustomTimeTableCell.swift
+//  CustomTimeTableCellThur.swift
 //  EccStudentCom
 //
 //  Created by YutaKohashi on 2016/11/01.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class CustomTimeTableViewCell: UITableViewCell {
+class CustomTimeTableViewCellThur: UITableViewCell {
     
     
+//    @IBOutlet weak var subjectName: UILabel!
+//    @IBOutlet weak var room: UILabel!
     @IBOutlet weak var subjectName: UILabel!
-    @IBOutlet weak var room: UILabel!
+    @IBOutlet weak var rooom: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +31,7 @@ class CustomTimeTableViewCell: UITableViewCell {
     func setCell(_ subject: String,roomN: String) {
         
         subjectName.text = subject
-        room.text = roomN
+        rooom.text = roomN
     }
     
 }
