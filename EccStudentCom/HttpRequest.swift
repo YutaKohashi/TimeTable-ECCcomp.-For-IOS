@@ -11,7 +11,7 @@ import UIKit
 
 class HttpRequest:HttpRequestBase{
     
-    // 時間割と出席照会を取得し保存するメソッド
+    // MARK:時間割と出席照会を取得し保存するメソッド
     func reequestTimeTableAttendanseRate(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (Bool) -> Void) -> Void {
         
         // 時間割

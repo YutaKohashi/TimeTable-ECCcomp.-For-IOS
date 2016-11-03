@@ -33,17 +33,17 @@ class ToolsBase{
         return (isReachable && !needsConnection)
     }
     
-    //テキストフィールドに値が入力されているか
+    // MARK:ログインチェック
     func loginCheck() -> Bool{
         
         let ud = UserDefaults.standard
         let bool : Bool = ud.bool(forKey: "login") 
         
         return bool
-        
+
     }
     
-    //テキストフィールドチェック
+    // MARK:テキストフィールドチェック
     func checkTextFiled(idTextField:UITextField,passwordTextField:UITextField) -> Bool{
         var flg:Bool = false
         let num = idTextField.text?.characters.count

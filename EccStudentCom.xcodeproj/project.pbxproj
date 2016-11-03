@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BBFD672743C6BF82AAE1D85 /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694C4405E9EEC991D7DD0E11 /* Pods_EccStudentCom.framework */; };
+		79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79043BC51DCB692B00A7B131 /* LoginViewController.swift */; };
 		790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AA59F1D9A11A800C53C48 /* SaveManager.swift */; };
 		79292D541DC5F8B800F15299 /* HttpRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79292D531DC5F8B800F15299 /* HttpRequestBase.swift */; };
 		79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79292D551DC5FA8300F15299 /* DialogManager.swift */; };
@@ -21,6 +23,7 @@
 		794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66881D96BB8B00C1D9B6 /* SaveModel.swift */; };
 		794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */; };
 		794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */; };
+		795D41CC1DC9840900F9407E /* Settings-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D41CB1DC9840900F9407E /* Settings-50.png */; };
 		79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */; };
 		79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */; };
 		79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */; };
@@ -35,12 +38,18 @@
 		79B9DD941DC78975009153B6 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD931DC78975009153B6 /* HttpRequest.swift */; };
 		79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */; };
 		79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E095F31D984AC200A5248D /* iocn ver1.6.0.png */; };
-		9FD5B03D1462A2463F5ED835 /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */; };
+		79F1FB371DC985C9007B7386 /* gear-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB361DC985C9007B7386 /* gear-7.png */; };
+		79F1FB391DC99400007B7386 /* PreferenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB381DC99400007B7386 /* PreferenceController.swift */; };
+		79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB3A1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift */; };
+		79F1FB3D1DCA3AF6007B7386 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB3C1DCA3AF6007B7386 /* AboutViewController.swift */; };
+		79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */; };
+		79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB401DCA3E6D007B7386 /* about_html.html */; };
+		79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		413EB346CD1299EC4C947E50 /* Pods-EccStudentCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.release.xcconfig"; sourceTree = "<group>"; };
+		694C4405E9EEC991D7DD0E11 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79043BC51DCB692B00A7B131 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		790AA59F1D9A11A800C53C48 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
 		79292D531DC5F8B800F15299 /* HttpRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestBase.swift; sourceTree = "<group>"; };
 		79292D551DC5FA8300F15299 /* DialogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogManager.swift; sourceTree = "<group>"; };
@@ -57,6 +66,7 @@
 		794F66881D96BB8B00C1D9B6 /* SaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveModel.swift; sourceTree = "<group>"; };
 		794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
+		795D41CB1DC9840900F9407E /* Settings-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-50.png"; sourceTree = "<group>"; };
 		79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTimeTableCellTue.swift; path = Assets.xcassets/CustomTimeTableCellTue.swift; sourceTree = "<group>"; };
 		79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellWed.swift; sourceTree = "<group>"; };
 		79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellThur.swift; sourceTree = "<group>"; };
@@ -71,7 +81,15 @@
 		79B9DD931DC78975009153B6 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellMon.swift; sourceTree = "<group>"; };
 		79E095F31D984AC200A5248D /* iocn ver1.6.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iocn ver1.6.0.png"; sourceTree = "<group>"; };
-		F6DE13691C44FF176BF7F602 /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
+		79F1FB361DC985C9007B7386 /* gear-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7.png"; sourceTree = "<group>"; };
+		79F1FB381DC99400007B7386 /* PreferenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceController.swift; sourceTree = "<group>"; };
+		79F1FB3A1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTimeTableViewController.swift; sourceTree = "<group>"; };
+		79F1FB3C1DCA3AF6007B7386 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LisenceViewController.swift; sourceTree = "<group>"; };
+		79F1FB401DCA3E6D007B7386 /* about_html.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_html.html; sourceTree = "<group>"; };
+		79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ecclogo-dark2.png"; sourceTree = "<group>"; };
+		83B14B6ECAD88E1A05784CC7 /* Pods-EccStudentCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.release.xcconfig"; sourceTree = "<group>"; };
+		E54328D2A426D706B1BA3C53 /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,29 +98,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */,
-				9FD5B03D1462A2463F5ED835 /* Pods_EccStudentCom.framework in Frameworks */,
+				5BBFD672743C6BF82AAE1D85 /* Pods_EccStudentCom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		78B563A427800D5977CDE6C3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F6DE13691C44FF176BF7F602 /* Pods-EccStudentCom.debug.xcconfig */,
-				413EB346CD1299EC4C947E50 /* Pods-EccStudentCom.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		794F66631D96B7C300C1D9B6 = {
 			isa = PBXGroup;
 			children = (
 				794F666E1D96B7C300C1D9B6 /* EccStudentCom */,
 				794F666D1D96B7C300C1D9B6 /* Products */,
-				78B563A427800D5977CDE6C3 /* Pods */,
 				8B655494E76771243EACB99F /* Frameworks */,
+				9420821AB057DBC5063C45AF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,16 +126,18 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
+				79F1FB441DCA3F4B007B7386 /* HTML */,
 				79B9DD951DC789E4009153B6 /* API */,
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
-				796DE3ED1DC3853E00BF5ABE /* View */,
 				796DE3EC1DC384D100BF5ABE /* Model */,
 				796DE3EB1DC384A600BF5ABE /* Tools */,
 				794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
+				795D41CB1DC9840900F9407E /* Settings-50.png */,
 				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
 				799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */,
 				799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */,
+				79F1FB361DC985C9007B7386 /* gear-7.png */,
 				794F667E1D96B7C300C1D9B6 /* Info.plist */,
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
 			);
@@ -161,13 +172,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		796DE3ED1DC3853E00BF5ABE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		796DE3EE1DC3855000BF5ABE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +180,11 @@
 				794F667B1D96B7C300C1D9B6 /* LaunchScreen.storyboard */,
 				794F668A1D96D5BA00C1D9B6 /* TableViewController.swift */,
 				799F60141DC5B80100C95A68 /* TimeTableViewController.swift */,
+				79F1FB381DC99400007B7386 /* PreferenceController.swift */,
+				79F1FB3A1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift */,
+				79F1FB3C1DCA3AF6007B7386 /* AboutViewController.swift */,
+				79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */,
+				79043BC51DCB692B00A7B131 /* LoginViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -189,13 +198,31 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		79F1FB441DCA3F4B007B7386 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */,
+				79F1FB401DCA3E6D007B7386 /* about_html.html */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
 		8B655494E76771243EACB99F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				79B074001D98B55600F62F15 /* SystemConfiguration.framework */,
-				0CCD9E344EBF61E9F15E9643 /* Pods_EccStudentCom.framework */,
+				694C4405E9EEC991D7DD0E11 /* Pods_EccStudentCom.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9420821AB057DBC5063C45AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E54328D2A426D706B1BA3C53 /* Pods-EccStudentCom.debug.xcconfig */,
+				83B14B6ECAD88E1A05784CC7 /* Pods-EccStudentCom.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,12 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 794F66811D96B7C300C1D9B6 /* Build configuration list for PBXNativeTarget "EccStudentCom" */;
 			buildPhases = (
-				587831EE9D61341567146A02 /* [CP] Check Pods Manifest.lock */,
+				4C920BE651B9C80E94166B34 /* [CP] Check Pods Manifest.lock */,
 				794F66681D96B7C300C1D9B6 /* Sources */,
 				794F66691D96B7C300C1D9B6 /* Frameworks */,
 				794F666A1D96B7C300C1D9B6 /* Resources */,
-				EC7BA98DEAA2CB981C6D8534 /* [CP] Embed Pods Frameworks */,
-				680D878F626D140E0C21CB12 /* [CP] Copy Pods Resources */,
+				D1A836AC8BA0BD308B17139E /* [CP] Embed Pods Frameworks */,
+				0A3D992AB26A2E298FFE560C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,34 +288,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79F1FB371DC985C9007B7386 /* gear-7.png in Resources */,
+				795D41CC1DC9840900F9407E /* Settings-50.png in Resources */,
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
 				799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */,
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
 				799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */,
 				794F667A1D96B7C300C1D9B6 /* Assets.xcassets in Resources */,
+				79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */,
 				794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */,
+				79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		587831EE9D61341567146A02 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		680D878F626D140E0C21CB12 /* [CP] Copy Pods Resources */ = {
+		0A3D992AB26A2E298FFE560C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,7 +319,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC7BA98DEAA2CB981C6D8534 /* [CP] Embed Pods Frameworks */ = {
+		4C920BE651B9C80E94166B34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D1A836AC8BA0BD308B17139E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,9 +358,11 @@
 			files = (
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
 				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
+				79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */,
 				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,
+				79F1FB3D1DCA3AF6007B7386 /* AboutViewController.swift in Sources */,
 				799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */,
 				79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
@@ -339,12 +372,15 @@
 				79292D541DC5F8B800F15299 /* HttpRequestBase.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,
+				79F1FB391DC99400007B7386 /* PreferenceController.swift in Sources */,
 				79B9DD921DC62600009153B6 /* TimeTableSaveModel.swift in Sources */,
 				79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,
 				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,
 				794F66861D96B8C900C1D9B6 /* Regexp.swift in Sources */,
+				79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */,
+				79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */,
 				794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,7 +492,7 @@
 		};
 		794F66821D96B7C300C1D9B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6DE13691C44FF176BF7F602 /* Pods-EccStudentCom.debug.xcconfig */;
+			baseConfigurationReference = E54328D2A426D706B1BA3C53 /* Pods-EccStudentCom.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -474,7 +510,7 @@
 		};
 		794F66831D96B7C300C1D9B6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 413EB346CD1299EC4C947E50 /* Pods-EccStudentCom.release.xcconfig */;
+			baseConfigurationReference = 83B14B6ECAD88E1A05784CC7 /* Pods-EccStudentCom.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

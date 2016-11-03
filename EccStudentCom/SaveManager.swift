@@ -40,8 +40,8 @@ class SaveManager{
                     print("subjectName= \(saveModel.subjectName)")
                 }else{
                     item = GetValuesBase("<font(?:\\\".*?\\\"|\\'.*?\\'|[^\\'\\\"])*?>(.+?)</font>").getValues(td)
-                    item = self.removeNBSP(item)
-                    item = self.removePercent(item)
+                    item = GetValuesBase().removeNBSP(item)
+                    item = GetValuesBase().removePercent(item)
                     
                     switch rowCount {
                     case 1:
@@ -70,9 +70,7 @@ class SaveManager{
                         print("shortageNumber= \(item)")
                     default:
                         print("default")
-                        
                     }
-                    
                 }
                 rowCount+=1
             }
@@ -84,11 +82,10 @@ class SaveManager{
             print(" \("")")
             print("------------------- \("")")
             print(" \("")")
-            
         }
     }
     
-    //時間割をRealmを使用して保存するメソッド
+    // MARK:時間割をRealmを使用して保存するメソッド
     //第一引数 realm
     //第二引数 html
     //第三引数 先生名配列
@@ -141,14 +138,9 @@ class SaveManager{
                 }
                 colNum+=1
             }
-            
-            
             //行カウントをインクリメント
            rowNum+=1
         }
-        
-        print(value)
-        
     }
     
     
@@ -223,20 +215,16 @@ class SaveManager{
             //行カウントをインクリメント
             rowNum+=1
         }
-        
-        //print(value)
-        
     }
     
-    
+    // MARK://ログインしたことを保存
     func saveLoginState(_ bool:Bool){
-        //ログインしたことを保存
         let ud = UserDefaults.standard
         ud.set(bool, forKey: "login")
         ud.synchronize()
     }
     
-    //ログイン時に使用したid,passを保存
+    // MARK:ログイン時に使用したid,passを保存
     func saveIdPass(_ id:String,pass:String){
         let ud = UserDefaults.standard
         ud.set(id, forKey: "id")
@@ -244,32 +232,29 @@ class SaveManager{
         ud.synchronize()
     }
     
-    //id,passを削除
+    // MARK:id,passを削除
     func removeSavedIdPass(){
         let ud = UserDefaults.standard
         ud.removeObject(forKey: "id")
         ud.removeObject(forKey: "pass")
     }
     
-    //saveされているIdを取得
+    // MARK:saveされているIdを取得
     func getSavedId() -> String{
         let ud = UserDefaults.standard
         return ud.object(forKey: "id")  as! String
     }
     
-    //saveされているpassを取得
+    // MARK:saveされているpassを取得
     func getSavedPass() -> String{
         let ud = UserDefaults.standard
         return ud.object(forKey: "pass")  as! String
     }
-    
-    func removePercent(_ str:String) -> String{
-        return str.replacingOccurrences(of: "%", with: "")
-    }
-    func removeNBSP(_ str:String)->String{
-        return str.replacingOccurrences(of: "&nbsp;", with: "0")
-    }
-    
-
-    
+//
+//    func removePercent(_ str:String) -> String{
+//        return str.replacingOccurrences(of: "%", with: "")
+//    }
+//    func removeNBSP(_ str:String)->String{
+//        return str.replacingOccurrences(of: "&nbsp;", with: "0")
+//    }
 }

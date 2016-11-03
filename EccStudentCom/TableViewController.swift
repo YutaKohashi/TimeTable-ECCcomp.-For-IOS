@@ -19,8 +19,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
     let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
     let URL3 : String  = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,7 +46,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
         refresh.addTarget(self, action: #selector(TableViewController.refreshTable(_:)), for: .valueChanged)
         //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
         self.tableView.addSubview(refresh)
-
     }
     
     //テーブルビュー引っ張り時の呼び出しメソッド
@@ -63,8 +60,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
         }
         
         // ログイン画面へ遷移し必要な値を取得する
-        //let myUrl = URL(string: URL1)
-        //var request = NSMutableURLRequest(url:myUrl!);
         var request = URLRequest(url: URL(string: URL1)!)
         
         request.httpMethod = "GET";// Compose a query string
@@ -73,9 +68,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
         
         request.httpBody = postString.data(using: String.Encoding.utf8);
         
-        
-        
-//        let task = URLSession.shared.dataTask(with: request, completionHandler: {
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
             if error != nil
@@ -294,18 +286,8 @@ class TableViewController: UIViewController, UITableViewDataSource {
         cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,unitNum: saveModel[(indexPath as NSIndexPath).row].unit,attendanceNum: saveModel[(indexPath as NSIndexPath).row].attendanceNumber,absentNum: saveModel[(indexPath as NSIndexPath).row].absentNumber,lateNum: saveModel[(indexPath as NSIndexPath).row].lateNumber,pubAbsentnum1: saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber1,pubAbsentnum2: saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber2,attendanceRateNum: saveModel[(indexPath as NSIndexPath).row].attendanceRate,shortageNum: saveModel[(indexPath as NSIndexPath).row].shortageNumber)
         
         return cell
-        
     }
-    
-//    func setStatusBarBackgroundColor(_ color: UIColor) {
-        
- //       guard  let statusBar = (UIApplication.shared.value(forKey: "statusBarWindow") as AnyObject).value(forKey: "statusBar") as? UIView else {
- //           return
- //       }
-        
- //       statusBar.backgroundColor = color
-        
-  //  }
+
     
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
