@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -711,10 +710,10 @@
             </objects>
             <point key="canvasLocation" x="798" y="666"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Base Tab View Controller-->
         <scene sceneID="lop-I1-wku">
             <objects>
-                <tabBarController storyboardIdentifier="MainView" id="IZb-BX-ahb" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainView" id="IZb-BX-ahb" customClass="BaseTabViewController" customModule="EccStudentCom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="z19-Al-BpU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -757,20 +756,12 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="出席照会" id="BcV-ud-UV9">
-                                        <rightBarButtonItems>
-                                            <barButtonItem image="gear-7.png" id="zW6-OG-Pxr">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <segue destination="GMA-kd-gwc" kind="presentation" id="mvF-On-AWz"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem title="Item" id="j95-Bx-MOv">
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <action selector="logoutBtn:" destination="llI-dX-hoP" id="IgH-uq-3ut"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
+                                        <barButtonItem key="rightBarButtonItem" image="gear-7.png" id="zW6-OG-Pxr">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="GMA-kd-gwc" kind="presentation" id="mvF-On-AWz"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1203,7 +1194,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="出席照会" id="VOm-UN-q08">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="I1I-Uh-hWD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="I1I-Uh-hWD">
                                         <rect key="frame" x="0.0" y="265" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1I-Uh-hWD" id="QcL-D2-1Zm">

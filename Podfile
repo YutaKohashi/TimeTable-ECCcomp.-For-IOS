@@ -5,6 +5,7 @@ pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => 
 pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => true
 
 pod 'KRProgressHUD'
+
 end
 
 post_install do |installer|
@@ -13,4 +14,7 @@ post_install do |installer|
             config.build_settings['SWIFT_VERSION'] = "3.0"
         end
     end
+
+    require 'fileutils'
+    FileUtils.cp_r('/Users/yutakohashi/SourceTreeFiles/EccStudentCom/Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom-acknowledgements.plist', '/Users/yutakohashi/SourceTreeFiles/EccStudentCom/EccStudentCom/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
 end

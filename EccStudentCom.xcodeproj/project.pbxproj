@@ -45,6 +45,9 @@
 		79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB401DCA3E6D007B7386 /* about_html.html */; };
 		79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */; };
 		79F573791DCC460500E62898 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F573781DCC460500E62898 /* lisence.html */; };
+		79F5737B1DCCDFCC00E62898 /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */; };
+		79F5737E1DCCE09300E62898 /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5737D1DCCE09300E62898 /* UITabBarController.swift */; };
+		79F573801DCCFDB700E62898 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79F5737F1DCCFDB700E62898 /* Settings.bundle */; };
 		B89F627E1EACE9B0F0F0928B /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +94,9 @@
 		79F1FB401DCA3E6D007B7386 /* about_html.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_html.html; sourceTree = "<group>"; };
 		79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ecclogo-dark2.png"; sourceTree = "<group>"; };
 		79F573781DCC460500E62898 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = lisence.html; sourceTree = "<group>"; };
+		79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
+		79F5737D1DCCE09300E62898 /* UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
+		79F5737F1DCCFDB700E62898 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = EccStudentCom/Settings.bundle; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				794F666E1D96B7C300C1D9B6 /* EccStudentCom */,
+				79F5737F1DCCFDB700E62898 /* Settings.bundle */,
 				794F666D1D96B7C300C1D9B6 /* Products */,
 				8B655494E76771243EACB99F /* Frameworks */,
 				AC544450CC24B7CF6203BE75 /* Pods */,
@@ -128,6 +135,8 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
+				79F573811DCD092800E62898 /* Assets */,
+				79F5737C1DCCE07500E62898 /* Extension */,
 				79F1FB441DCA3F4B007B7386 /* HTML */,
 				79B9DD951DC789E4009153B6 /* API */,
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
@@ -135,11 +144,6 @@
 				796DE3EB1DC384A600BF5ABE /* Tools */,
 				794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
-				795D41CB1DC9840900F9407E /* Settings-50.png */,
-				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
-				799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */,
-				799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */,
-				79F1FB361DC985C9007B7386 /* gear-7.png */,
 				794F667E1D96B7C300C1D9B6 /* Info.plist */,
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
 			);
@@ -187,6 +191,7 @@
 				79F1FB3C1DCA3AF6007B7386 /* AboutViewController.swift */,
 				79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */,
 				79043BC51DCB692B00A7B131 /* LoginViewController.swift */,
+				79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -208,6 +213,26 @@
 				79F1FB401DCA3E6D007B7386 /* about_html.html */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		79F5737C1DCCE07500E62898 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				79F5737D1DCCE09300E62898 /* UITabBarController.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		79F573811DCD092800E62898 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				795D41CB1DC9840900F9407E /* Settings-50.png */,
+				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
+				799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */,
+				799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */,
+				79F1FB361DC985C9007B7386 /* gear-7.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		8B655494E76771243EACB99F /* Frameworks */ = {
@@ -295,6 +320,7 @@
 				795D41CC1DC9840900F9407E /* Settings-50.png in Resources */,
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
 				799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */,
+				79F573801DCCFDB700E62898 /* Settings.bundle in Resources */,
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
 				79F573791DCC460500E62898 /* lisence.html in Resources */,
 				799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */,
@@ -381,6 +407,8 @@
 				79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,
+				79F5737E1DCCE09300E62898 /* UITabBarController.swift in Sources */,
+				79F5737B1DCCDFCC00E62898 /* BaseTabViewController.swift in Sources */,
 				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,
 				794F66861D96B8C900C1D9B6 /* Regexp.swift in Sources */,
 				79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */,
