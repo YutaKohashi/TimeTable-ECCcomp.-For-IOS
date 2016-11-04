@@ -44,6 +44,7 @@
 		79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */; };
 		79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB401DCA3E6D007B7386 /* about_html.html */; };
 		79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */; };
+		79F573791DCC460500E62898 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F573781DCC460500E62898 /* lisence.html */; };
 		B89F627E1EACE9B0F0F0928B /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LisenceViewController.swift; sourceTree = "<group>"; };
 		79F1FB401DCA3E6D007B7386 /* about_html.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_html.html; sourceTree = "<group>"; };
 		79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ecclogo-dark2.png"; sourceTree = "<group>"; };
+		79F573781DCC460500E62898 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = lisence.html; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -201,6 +203,7 @@
 		79F1FB441DCA3F4B007B7386 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				79F573781DCC460500E62898 /* lisence.html */,
 				79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */,
 				79F1FB401DCA3E6D007B7386 /* about_html.html */,
 			);
@@ -293,6 +296,7 @@
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
 				799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */,
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
+				79F573791DCC460500E62898 /* lisence.html in Resources */,
 				799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */,
 				794F667A1D96B7C300C1D9B6 /* Assets.xcassets in Resources */,
 				79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */,

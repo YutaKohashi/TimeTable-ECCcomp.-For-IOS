@@ -10,11 +10,20 @@ import UIKit
 
 class LisenceViewController: UIViewController {
 
+    @IBOutlet weak var webView: UIWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
-        // ステータスバーのスタイル変更を促す
-        self.setNeedsStatusBarAppearanceUpdate();
+//        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
+//        // ステータスバーのスタイル変更を促す
+//        self.setNeedsStatusBarAppearanceUpdate();
+        
+        webView.scrollView.bounces = false
+        let path : String = Bundle.main.path(forResource: "lisence", ofType:"html")!
+        DispatchQueue.main.async(execute: {
+            //View controller code
+            self.webView.loadRequest(NSURLRequest(url: NSURL(string: path)! as URL) as URLRequest)
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,15 +32,6 @@ class LisenceViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示

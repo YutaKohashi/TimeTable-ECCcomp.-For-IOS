@@ -22,10 +22,10 @@ class TableViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
-        // ステータスバーのスタイル変更を促す
-        self.setNeedsStatusBarAppearanceUpdate();
-        
+//        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
+//        // ステータスバーのスタイル変更を促す
+//        self.setNeedsStatusBarAppearanceUpdate();
+//        
         //cellを選択不可に
         tableView.allowsSelection = false
         //区切り線をなくす

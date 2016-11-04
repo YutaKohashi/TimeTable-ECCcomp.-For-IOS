@@ -21,9 +21,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
-//        // ステータスバーのスタイル変更を促す
-//        self.setNeedsStatusBarAppearanceUpdate();
+        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
+        // ステータスバーのスタイル変更を促す
+        self.setNeedsStatusBarAppearanceUpdate();
         
         //各tableViewのスクロールを無効化
         mondayTableView.isScrollEnabled = false

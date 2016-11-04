@@ -14,8 +14,8 @@ class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
-        // ステータスバーのスタイル変更を促す
+//        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
+//        // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
         
 //        var backButton = UIBarButtonItem()
@@ -24,9 +24,10 @@ class AboutViewController: UIViewController {
        
         
         webView.scrollView.bounces = false
+          let path : String = Bundle.main.path(forResource: "about_html", ofType:"html")!
         DispatchQueue.main.async(execute: {
             //View controller code
-            let path : String = Bundle.main.path(forResource: "about_html", ofType:"html")!
+          
             self.webView.loadRequest(NSURLRequest(url: NSURL(string: path)! as URL) as URLRequest)
         })
         //デリゲート先に自分を設定する。
