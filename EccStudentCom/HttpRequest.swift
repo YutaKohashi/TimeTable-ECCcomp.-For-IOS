@@ -40,6 +40,31 @@ class HttpRequest:HttpRequestBase{
         })
     }
     
+    // MARK:出席照会リストをPullDown時に使用
+    func refreshAttendanseRate(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
+        self.reequestAttendanseRate(userId: userId, password: password) { (requestResult) in
+            //成功時のみ
+            if(requestResult.bool){
+                //Realmをインスタンス化
+                let realm = try! Realm()
+                //一度データを削除
+                let savemodels = realm.objects(SaveModel)
+                savemodels.forEach({ (model) in
+                    try! realm.write() {
+                        realm.delete(model)
+                    }
+                })
+                
+                //出席率をデータベースへ保存
+                let saveManager = SaveManager()
+                saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
+                
+
+            }
+            callback(requestResult.bool)
+        }
+    }
+    
     // MARK:時間割と出席照会を取得し保存するメソッド
     func reequestTimeTableAttendanseRate(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
         

@@ -116,16 +116,7 @@ class GetValuesBase{
         return str.replacingOccurrences(of: "\t", with: "")
     }
     
-    func showWarningForInternet(){
-        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType: .black,message:"インターネット未接続")
-        
-        let sec:Double = 4
-        let delay = sec * Double(NSEC_PER_SEC)
-        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-            KRProgressHUD.dismiss()
-        })
-    }
+ 
     
  
     

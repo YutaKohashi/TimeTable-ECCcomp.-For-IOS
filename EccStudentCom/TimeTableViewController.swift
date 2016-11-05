@@ -12,6 +12,8 @@ import KRProgressHUD
 
 class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
     
+    var refreshFlg:Bool = false
+    
     @IBOutlet weak var mondayTableView: UITableView!
     @IBOutlet weak var tuesdayTableView: UITableView!
     @IBOutlet weak var wednesdayTableView: UITableView!
@@ -47,16 +49,29 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //TODO
+        if(refreshFlg){
+            mondayTableView.reloadData()
+            tuesdayTableView.reloadData()
+            wednesdayTableView.reloadData()
+            thursdayTableView.reloadData()
+            fridayTableView.reloadData()
+            refreshFlg = false
+        }
+     
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
     }
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // セルを取得
-//        if(tableView.tag == 0 ){
-//      
-//        }
+
         switch tableView.tag {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon

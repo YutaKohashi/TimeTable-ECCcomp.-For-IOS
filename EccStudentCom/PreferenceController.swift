@@ -19,17 +19,11 @@ class PreferenceController : UITableViewController{
         super.viewDidLoad()
         let btn_back = UIBarButtonItem()
         btn_back.title = ""
-        
-//        self.navigationItem.backBarButtonItem?.tintColor
-        
         self.navigationItem.backBarButtonItem = btn_back
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //完了ボタンが押下されたとき
@@ -43,6 +37,13 @@ class PreferenceController : UITableViewController{
         switch indexPath.section {
         case 0:
             if(indexPath.row == 0){
+                
+                //インターネットに接続されていないのときはアラート表示
+                if !ToolsBase().CheckReachability("google.com"){
+                    DialogManager().showWarningForInternet()
+                    return;
+                }
+                
                 DialogManager().showIndicator()
                 HttpRequest().updateTimetable(userId: SaveManager().getSavedId(), password: SaveManager().getSavedPass(),callback: {
                     requestResultBool in
@@ -54,7 +55,6 @@ class PreferenceController : UITableViewController{
                         DispatchQueue.main.asyncAfter(deadline: time, execute: {
                              DialogManager().showSuccess()
                         })
-                        
                     }else{
                         DialogManager().hideIndicator()
                         let sec:Double = 0.8
