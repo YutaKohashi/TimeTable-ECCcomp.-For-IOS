@@ -220,7 +220,7 @@ class SaveManager{
     // MARK://ログインしたことを保存
     func saveLoginState(_ bool:Bool){
         let ud = UserDefaults.standard
-        ud.set(bool, forKey: "login")
+        ud.set(bool, forKey: "login" + "1.2.0")
         ud.synchronize()
     }
     

@@ -37,7 +37,7 @@ class ToolsBase{
     func loginCheck() -> Bool{
         
         let ud = UserDefaults.standard
-        let bool : Bool = ud.bool(forKey: "login") 
+        let bool : Bool = ud.bool(forKey: "login" + "1.2.0")
         
         return bool
 

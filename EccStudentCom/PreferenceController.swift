@@ -68,12 +68,14 @@ class PreferenceController : UITableViewController{
             }
             break
         case 1:
-            break
-        case 2:
+            //セクションを削除追加することで変化するので注意
             if (indexPath.row == 0){
                 //ログアウト
-              logout()
+                logout()
             }
+            break
+        case 2:
+            
             break
         default:
             break
@@ -114,7 +116,7 @@ class PreferenceController : UITableViewController{
             }
             
             let ud = UserDefaults.standard
-            ud.set(false, forKey: "login")
+            ud.set(false, forKey: "login" + "1.2.0")
             ud.synchronize()
             
             //保存されていたpassIdを削除

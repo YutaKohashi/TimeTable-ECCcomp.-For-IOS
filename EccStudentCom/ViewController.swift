@@ -83,7 +83,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     DialogManager().showSuccess()
                 })
                 DispatchQueue.main.async(execute: {
-                     DialogManager().showSuccess()
+                     //DialogManager().showSuccess()
                     
                     //出席率表示画面へ遷移
                     let storyboard: UIStoryboard = self.storyboard!
