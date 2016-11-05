@@ -54,10 +54,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
         
-        
         //インターネットに接続されていないのときはアラート表示
         if !ToolsBase().CheckReachability("google.com"){
-//            ToolsBase().showToast("インターネットに接続されていません", isShortLong: true)
             DialogManager().showWarningForInternet()
             return;
         }
@@ -68,25 +66,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return;
         }
         
-//        HttpRequest().requestTimeTable(idTextField: idTextField, passwordTextField: passwordTextField,callback: {
-//            requestResultBool in
-//            
-//            if(requestResultBool){
-//                DispatchQueue.main.async(execute: {
-//                    DialogManager().showSuccess()
-//                    
-//                    
-//                })
-//            }else{
-//                //失敗
-//            }
-//        })
-    
+        //インジゲータダイアログ表示
+         DialogManager().showIndicator()
+
         HttpRequest().reequestTimeTableAttendanseRate(idTextField: idTextField, passwordTextField: passwordTextField,callback: {
             requestResultBool in
             
             if(requestResultBool){
                 //成功
+                DialogManager().hideIndicator()
+                let sec:Double = 1
+                let delay = sec * Double(NSEC_PER_SEC)
+                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                    //成功ダイアログ表示
+                    DialogManager().showSuccess()
+                })
                 DispatchQueue.main.async(execute: {
                      DialogManager().showSuccess()
                     
@@ -99,6 +94,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 })
             }else{
                 //失敗
+                DialogManager().hideIndicator()
+                let sec:Double = 1
+                let delay = sec * Double(NSEC_PER_SEC)
+                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                    //エラーダイアログ表示
+                    DialogManager().showError()
+                })
             }
         })
 

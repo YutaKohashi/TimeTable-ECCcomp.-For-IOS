@@ -48,6 +48,7 @@ class PreferenceController : UITableViewController{
             break
         case 2:
             if (indexPath.row == 0){
+                //ログアウト
               logout()
             }
             break

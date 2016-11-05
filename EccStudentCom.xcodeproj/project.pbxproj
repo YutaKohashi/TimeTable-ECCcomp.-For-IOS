@@ -27,6 +27,7 @@
 		79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */; };
 		79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */; };
 		79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */; };
+		798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078D1DCD8E0B00929F17 /* CallBackClass.swift */; };
 		799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TimeTableViewController.swift */; };
 		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
 		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
@@ -76,6 +77,7 @@
 		79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellWed.swift; sourceTree = "<group>"; };
 		79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellThur.swift; sourceTree = "<group>"; };
 		79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellFri.swift; sourceTree = "<group>"; };
+		798C078D1DCD8E0B00929F17 /* CallBackClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackClass.swift; sourceTree = "<group>"; };
 		799F60141DC5B80100C95A68 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
 		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
@@ -135,10 +137,10 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
+				79B9DD951DC789E4009153B6 /* API */,
 				79F573811DCD092800E62898 /* Assets */,
 				79F5737C1DCCE07500E62898 /* Extension */,
 				79F1FB441DCA3F4B007B7386 /* HTML */,
-				79B9DD951DC789E4009153B6 /* API */,
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
 				796DE3EC1DC384D100BF5ABE /* Model */,
 				796DE3EB1DC384A600BF5ABE /* Tools */,
@@ -201,6 +203,7 @@
 			children = (
 				79292D531DC5F8B800F15299 /* HttpRequestBase.swift */,
 				79B9DD931DC78975009153B6 /* HttpRequest.swift */,
+				798C078D1DCD8E0B00929F17 /* CallBackClass.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */,
 				79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
+				798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */,
 				79B9DD941DC78975009153B6 /* HttpRequest.swift in Sources */,
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,

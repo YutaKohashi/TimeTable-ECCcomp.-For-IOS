@@ -34,9 +34,9 @@ class HttpRequestBase{
     
 
     // MARK:時間割を取得するメソッド（クロージャあり）
-    func requestTimeTable(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (Bool) -> Void) -> Void {
-        //プログレスダイアログ表示
-        DialogManager().showIndicator()
+    func requestTimeTable(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (CallBackClass) -> Void) -> Void {
+        //コールバックインスタンス
+        var callbackClass = CallBackClass()
         
         var request = URLRequest(url: URL(string: URL4)!)
         request.httpMethod = "GET";
@@ -48,16 +48,10 @@ class HttpRequestBase{
             data, response, error in
             if error != nil
             {
-                DialogManager().hideIndicator()
-                let sec:Double = 1
-                let delay = sec * Double(NSEC_PER_SEC)
-                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                    DialogManager().showError()
-                })
                 print("error=\(error)")
                 self.requestResultBool = false
-                callback(self.requestResultBool)
+                callbackClass.bool = self.requestResultBool
+                callback(callbackClass)
                 return;
             }
             
@@ -65,15 +59,9 @@ class HttpRequestBase{
             
             //正常に遷移できているか確認
             if !GetValuesBase("ログイン").ContainsCheck(self.mLastResponseHtml){
-                DialogManager().hideIndicator()
-                let sec:Double = 1
-                let delay = sec * Double(NSEC_PER_SEC)
-                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                    DialogManager().showError()
-                })
                 self.requestResultBool = false
-                callback(self.requestResultBool)
+                callbackClass.bool = self.requestResultBool
+                callback(callbackClass)
                 return;
             }
             
@@ -100,11 +88,10 @@ class HttpRequestBase{
                 data, response, error in
                 if error != nil
                 {
-                    DialogManager().hideIndicator()
-                    DialogManager().showError()
                     print("error=\(error)")
                     self.requestResultBool = false
-                    callback(self.requestResultBool)
+                    callbackClass.bool = self.requestResultBool
+                    callback(callbackClass)
                     return;
                 }
                 
@@ -112,15 +99,9 @@ class HttpRequestBase{
                 
                 //正常に遷移できているか確認
                 if !GetValuesBase("ログアウト").ContainsCheck(self.mLastResponseHtml){
-                    DialogManager().hideIndicator()
-                    let sec:Double = 1
-                    let delay = sec * Double(NSEC_PER_SEC)
-                    let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                        DialogManager().showError()
-                    })
                     self.requestResultBool = false
-                    callback(self.requestResultBool)
+                    callbackClass.bool = self.requestResultBool
+                    callback(callbackClass)
                     return;
                 }
                 
@@ -129,16 +110,10 @@ class HttpRequestBase{
                 
                 print("mLastResponseHtml  :  " + self.mLastResponseHtml)
                 
-                //TODO :: getTeacherNameメソッドで不具合あり
-                //var teacherNames:[String] = self.getTeacherName(html: self.mLastResponseHtml)
-                let realmSwift = try! Realm()
-                
-                //先生名配列が取得に失敗しているため仮メソッドを使用
-                //SaveManager().saveTimeTable(realmSwift, mLastResponseHtml: self.mLastResponseHtml,teacherNames: teacherNames)
-                SaveManager().saveTimeTable(realmSwift, mLastResponseHtml: self.mLastResponseHtml)
-                
                 self.requestResultBool = true
-                callback(self.requestResultBool)
+                callbackClass.string = self.mLastResponseHtml
+                callbackClass.bool = self.requestResultBool
+                callback(callbackClass)
                 
                 /************************************************************************************
                  ************************************************************************************/
@@ -155,15 +130,12 @@ class HttpRequestBase{
     }
   
     // MARK:出席率関連を取得するメソッド (クロージャあり)
-    func reequestAttendanseRate(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (Bool) -> Void) -> Void {
-        //プログレスダイアログ表示
-        DialogManager().showIndicator()
-    
+    // CallBackClasを返す ()
+    func reequestAttendanseRate(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (CallBackClass) -> Void) -> Void {
         
-        // ログイン画面へ遷移し必要な値を取得する
-        //let myUrl = URL(string: URL1);
-        //let request = NSMutableURLRequest(url:myUrl!);
-        //var request = URLRequest(url: URL(string: URL1)!)
+        //コールバッククラスインスタンス化
+        var callBackClass = CallBackClass()
+        
         var request = URLRequest(url: URL(string: URL1)!)
         request.httpMethod = "GET";
         let postString = "";
@@ -174,16 +146,10 @@ class HttpRequestBase{
             data, response, error in
             if error != nil
             {
-                DialogManager().hideIndicator()
-                let sec:Double = 1
-                let delay = sec * Double(NSEC_PER_SEC)
-                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                    DialogManager().showError()
-                })
                 print("error=\(error)")
                 self.requestResultBool = false
-                callback(self.requestResultBool)
+                callBackClass.bool = self.requestResultBool
+                callback(callBackClass)
                 return;
             }
             
@@ -191,15 +157,9 @@ class HttpRequestBase{
             
             //正常に遷移できているか確認
             if !GetValuesBase("ログイン").ContainsCheck(self.mLastResponseHtml){
-                DialogManager().hideIndicator()
-                let sec:Double = 1
-                let delay = sec * Double(NSEC_PER_SEC)
-                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                    DialogManager().showError()
-                })
                 self.requestResultBool = false
-                callback(self.requestResultBool)
+                callBackClass.bool = self.requestResultBool
+                callback(callBackClass)
                 return;
             }
             
@@ -207,8 +167,6 @@ class HttpRequestBase{
              ****************************************************************************
              ****************************************************************************/
             
-            //let myUrl = URL(string: self.URL2)
-            //let request = NSMutableURLRequest(url:myUrl!)
             var request = URLRequest(url: URL(string: self.URL2)!)
             request.httpMethod = "POST"
             
@@ -234,11 +192,10 @@ class HttpRequestBase{
                 data, response, error in
                 if error != nil
                 {
-                    DialogManager().hideIndicator()
-                    DialogManager().showError()
                     print("error=\(error)")
                     self.requestResultBool = false
-                    callback(self.requestResultBool)
+                    callBackClass.bool = self.requestResultBool
+                    callback(callBackClass)
                     return;
                 }
                 
@@ -246,23 +203,15 @@ class HttpRequestBase{
                 
                 //正常に遷移できているか確認
                 if !GetValuesBase("ログオフ").ContainsCheck(self.mLastResponseHtml){
-                    DialogManager().hideIndicator()
-                    let sec:Double = 1
-                    let delay = sec * Double(NSEC_PER_SEC)
-                    let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                    DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                        DialogManager().showError()
-                    })
                     self.requestResultBool = false
-                    callback(self.requestResultBool)
+                    callBackClass.bool = self.requestResultBool
+                    callback(callBackClass)
                     return;
                 }
                 
                 /********************* ログイン ****************************
                  *********************************************************/
                 
-                //let myUrl = URL(string: self.URL3);
-                //let request = NSMutableURLRequest(url:myUrl!);
                 var request = URLRequest(url: URL(string: self.URL3)!)
                 request.httpMethod = "POST";
                 
@@ -289,16 +238,10 @@ class HttpRequestBase{
                     data, response, error in
                     if error != nil
                     {
-                        DialogManager().hideIndicator()
-                        let sec:Double = 1
-                        let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                            DialogManager().showError()
-                        })
                         print("error=\(error)")
                         self.requestResultBool = false
-                        callback(self.requestResultBool)
+                        callBackClass.bool = self.requestResultBool
+                        callback(callBackClass)
                         return;
                     }
                     
@@ -306,37 +249,18 @@ class HttpRequestBase{
                     
                     //正常に遷移できているか確認
                     if !GetValuesBase("教科名").ContainsCheck(self.mLastResponseHtml){
-                        DialogManager().hideIndicator()
-                        let sec:Double = 1
-                        let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                            DialogManager().showError()
-                        })
                         self.requestResultBool = false
-                        callback(self.requestResultBool)
+                        callBackClass.bool = self.requestResultBool
+                        callback(callBackClass)
                         return;
                     }
                     
                     /********************* 出席率画面 ****************************/
-                    
-                    //Realmをインスタンス化
-                    let realm = try! Realm()
-                    
-                    //出席率をデータベースへ保存
-                    let saveManager = SaveManager()
-                    saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
-                    
-                    //ダイアログ非表示
-                    //self.hideIndicator()
-                    
-                    //ログインしたことを保存
-                    saveManager.saveLoginState(true)
-                    //passIdを保存
-                    saveManager.saveIdPass(idTextField.text!, pass: passwordTextField.text!)
-                   
+                  
                     self.requestResultBool = true
-                    callback(self.requestResultBool)
+                    callBackClass.bool = self.requestResultBool
+                    callBackClass.string = self.mLastResponseHtml
+                    callback(callBackClass)
                     /*************************************************************/
                     
                 }

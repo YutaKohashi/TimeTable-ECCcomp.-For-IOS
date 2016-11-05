@@ -106,10 +106,6 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         
         //ここは通らない
         let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
-        let realm = try! Realm()
-        let saveModel = realm.objects(TimeTableSaveModel.self)
-        // セルに値を設定
-        cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row].room)
         return cell
         
     }

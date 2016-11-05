@@ -50,13 +50,16 @@ class TableViewController: UIViewController, UITableViewDataSource {
     
     //テーブルビュー引っ張り時の呼び出しメソッド
     func refreshTable(_ refreshControl: UIRefreshControl){
+        //スクロール無効化
+        self.tableView.isScrollEnabled = false
+        
         //インターネットに接続されていないのときはアラート表示
         if !ToolsBase().CheckReachability("google.com"){
             //            ToolsBase().showToast("インターネットに接続されていません", isShortLong: true)
             GetValuesBase().showWarningForInternet()
              refreshControl.endRefreshing()
+            self.tableView.isScrollEnabled = true
             return;
-            
         }
         
         // ログイン画面へ遷移し必要な値を取得する
@@ -73,6 +76,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
             if error != nil
             {
                 print("error=\(error)")
+                self.tableView.isScrollEnabled = true
                 return;
             }
             
@@ -81,6 +85,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
             //正常に遷移できているか確認
             if !GetValuesBase("ログイン").ContainsCheck(self.mLastResponseHtml){
                  refreshControl.endRefreshing()
+                self.tableView.isScrollEnabled = true
                 return;
             }
             
@@ -119,7 +124,9 @@ class TableViewController: UIViewController, UITableViewDataSource {
                 data, response, error in
                 if error != nil
                 {
+                    refreshControl.endRefreshing()
                     print("error=\(error)")
+                    self.tableView.isScrollEnabled = true
                     return;
                 }
                 
@@ -129,6 +136,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                 if !GetValuesBase("ログオフ").ContainsCheck(self.mLastResponseHtml){
                     print("error=ログインできませんでした")
                     refreshControl.endRefreshing()
+                    self.tableView.isScrollEnabled = true
                     return;
                 }
                 
@@ -164,7 +172,9 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     data, response, error in
                     if error != nil
                     {
+                        refreshControl.endRefreshing()
                         print("error=\(error)")
+                        self.tableView.isScrollEnabled = true
                         return;
                     }
                     
@@ -172,6 +182,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     
                     //正常に遷移できているか確認
                     if !GetValuesBase("教科名").ContainsCheck(self.mLastResponseHtml){
+                        self.tableView.isScrollEnabled = true
                         refreshControl.endRefreshing()
                         return;
                     }
@@ -192,6 +203,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     self.tableView.reloadData()
                     //pullToRefresh終了
                     refreshControl.endRefreshing()
+                    self.tableView.isScrollEnabled = true
                     
                     /*************************************************************/
                 }
