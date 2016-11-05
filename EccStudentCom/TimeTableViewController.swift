@@ -72,46 +72,65 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     }
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        var subjectName:String = ""
+        var roomNumber:String = ""
+        
         switch tableView.tag {
+            
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
           
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
+            subjectName = saveModel[(indexPath as NSIndexPath).row * 5].subjectName
+            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5].room
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5].room)
+            cell.setCell(subjectName,roomN:roomNumber)
+    
             return cell
             
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TueCustomCell") as! CustomTimeTableViewCellTue
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
+            
+            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 1].subjectName
+            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 1].room
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 1].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5 + 1].room)
+            cell.setCell(subjectName,roomN:roomNumber)
             return cell
             
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WedCustomCell") as! CustomTimeTableViewCellWed
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
+            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 2].subjectName
+            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 2].room
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 2].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5 + 2].room)
+            cell.setCell(subjectName,roomN:roomNumber)
             return cell
             
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "ThurCustomCell") as! CustomTimeTableViewCellThur
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
+            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 3].subjectName
+            roomNumber = saveModel[(indexPath as NSIndexPath).row  * 5 + 3].room
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 3].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row  * 5 + 3].room)
+            cell.setCell(subjectName,roomN:roomNumber)
+            
             return cell
             
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriCustomCell") as! CustomTimeTableViewCellFri
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
+            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 4].subjectName
+            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 4].room
             // セルに値を設定
-            cell.setCell(saveModel[(indexPath as NSIndexPath).row * 5 + 4].subjectName,roomN:saveModel[(indexPath as NSIndexPath).row * 5 + 4].room)
+            cell.setCell(subjectName,roomN:roomNumber)
+            
+
             return cell
         
         default:
@@ -123,6 +142,10 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
         return cell
         
+    }
+    
+    func warningColor(){
+    
     }
     
     /// セルの個数を指定するデリゲートメソッド（必須）

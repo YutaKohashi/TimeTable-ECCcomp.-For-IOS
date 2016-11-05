@@ -250,11 +250,20 @@ class SaveManager{
         let ud = UserDefaults.standard
         return ud.object(forKey: "pass")  as! String
     }
-//
-//    func removePercent(_ str:String) -> String{
-//        return str.replacingOccurrences(of: "%", with: "")
-//    }
-//    func removeNBSP(_ str:String)->String{
-//        return str.replacingOccurrences(of: "&nbsp;", with: "0")
-//    }
+    
+    
+    // MARK:出席照会の色
+    func colorPref() -> Bool{
+        let ud = UserDefaults.standard
+        let bool : Bool = ud.bool(forKey: "colorpref")
+        
+        return bool
+    }
+    
+    // MARK://ログインしたことを保存
+    func saveColorPref(_ bool:Bool){
+        let ud = UserDefaults.standard
+        ud.set(bool, forKey: "colorpref")
+        ud.synchronize()
+    }
 }

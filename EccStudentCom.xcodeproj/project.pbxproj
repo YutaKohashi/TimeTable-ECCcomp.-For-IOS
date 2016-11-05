@@ -28,6 +28,7 @@
 		79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */; };
 		79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */; };
 		798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078D1DCD8E0B00929F17 /* CallBackClass.swift */; };
+		798C07901DCE138200929F17 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */; };
 		799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TimeTableViewController.swift */; };
 		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
 		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
@@ -78,6 +79,7 @@
 		79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellThur.swift; sourceTree = "<group>"; };
 		79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellFri.swift; sourceTree = "<group>"; };
 		798C078D1DCD8E0B00929F17 /* CallBackClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackClass.swift; sourceTree = "<group>"; };
+		798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		799F60141DC5B80100C95A68 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
 		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				79F5737D1DCCE09300E62898 /* UITabBarController.swift */,
+				798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,
 				79F5737E1DCCE09300E62898 /* UITabBarController.swift in Sources */,
+				798C07901DCE138200929F17 /* CALayer+RuntimeAttribute.swift in Sources */,
 				79F5737B1DCCDFCC00E62898 /* BaseTabViewController.swift in Sources */,
 				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,
 				794F66861D96B8C900C1D9B6 /* Regexp.swift in Sources */,
@@ -482,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -523,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -540,7 +544,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EccStudentCom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuta.kohashi.EccStudentCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -559,7 +563,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EccStudentCom/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.yuta.kohashi.EccStudentCom;
 				PRODUCT_NAME = "$(TARGET_NAME)";

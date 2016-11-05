@@ -43,6 +43,7 @@ class ToolsBase{
 
     }
     
+    
     // MARK:テキストフィールドチェック
     func checkTextFiled(idTextField:UITextField,passwordTextField:UITextField) -> Bool{
         var flg:Bool = false

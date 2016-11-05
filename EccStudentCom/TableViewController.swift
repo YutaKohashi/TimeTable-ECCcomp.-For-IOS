@@ -13,11 +13,6 @@ import KRProgressHUD
 class TableViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var mLastResponseHtml : String!
-    
-    let URL1 :String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
-    let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
-    let URL3 : String  = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +95,39 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let realm = try! Realm()
         let saveModel = realm.objects(SaveModel.self)
         
-        cell.setCell(saveModel[(indexPath as NSIndexPath).row].subjectName,unitNum: saveModel[(indexPath as NSIndexPath).row].unit,attendanceNum: saveModel[(indexPath as NSIndexPath).row].attendanceNumber,absentNum: saveModel[(indexPath as NSIndexPath).row].absentNumber,lateNum: saveModel[(indexPath as NSIndexPath).row].lateNumber,pubAbsentnum1: saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber1,pubAbsentnum2: saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber2,attendanceRateNum: saveModel[(indexPath as NSIndexPath).row].attendanceRate,shortageNum: saveModel[(indexPath as NSIndexPath).row].shortageNumber)
+        let subjectName = saveModel[(indexPath as NSIndexPath).row].subjectName
+        let unit = saveModel[(indexPath as NSIndexPath).row].unit
+        let attendanceNumber = saveModel[(indexPath as NSIndexPath).row].attendanceNumber
+        let lateNumber = saveModel[(indexPath as NSIndexPath).row].lateNumber
+        let absentNumber = saveModel[(indexPath as NSIndexPath).row].absentNumber
+        let publicAbsentNumber1 = saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber1
+        let publicAbsentNumber2 = saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber2
+        let attendanceRate = saveModel[(indexPath as NSIndexPath).row].attendanceRate
+        let shortageNumber = saveModel[(indexPath as NSIndexPath).row].shortageNumber
+        
+        cell.setCell(subjectName,
+                     unitNum: unit,
+                     attendanceNum: attendanceNumber,
+                     absentNum: absentNumber,
+                     lateNum: lateNumber,
+                     pubAbsentnum1: publicAbsentNumber1,
+                     pubAbsentnum2: publicAbsentNumber2,
+                     attendanceRateNum: attendanceRate,
+                     shortageNum: shortageNumber)
+        
+        if(Int(attendanceRate)! < 75){
+            //cell.backgroundColor = UIColor.darkGray
+            cell.attendanceRate.textColor = defaultColor()
+        }else if(Int(attendanceRate)! < 80){
+            cell.attendanceRate.textColor = UIColor.red
+            //cell.backgroundColor = nil
+        }else if(Int(attendanceRate)! < 90){
+            cell.attendanceRate.textColor = darkGreen()
+            //cell.backgroundColor = nil
+        }else{
+            //cell.backgroundColor = UIColor.darkGray
+            cell.attendanceRate.textColor = defaultColor()
+        }
         
         return cell
     }
@@ -114,6 +141,14 @@ class TableViewController: UIViewController, UITableViewDataSource {
     override var preferredStatusBarStyle : UIStatusBarStyle {
         // ステータスバーを白くする
         return UIStatusBarStyle.lightContent;
+    }
+    
+    func defaultColor() -> UIColor{
+        return UIColor(red: 63 / 255.0, green: 63 / 255.0, blue: 63 / 255.0, alpha: 1.0)
+    }
+    
+    func darkGreen() -> UIColor{
+        return UIColor(red: 0 / 255.0, green: 86 / 255.0, blue: 96 / 255.0, alpha: 1.0)
     }
     
 
