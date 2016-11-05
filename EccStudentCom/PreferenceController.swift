@@ -42,7 +42,30 @@ class PreferenceController : UITableViewController{
         
         switch indexPath.section {
         case 0:
-            
+            if(indexPath.row == 0){
+                DialogManager().showIndicator()
+                HttpRequest().updateTimetable(userId: SaveManager().getSavedId(), password: SaveManager().getSavedPass(),callback: {
+                    requestResultBool in
+                    if (requestResultBool){
+                        DialogManager().hideIndicator()
+                        let sec:Double = 0.8
+                        let delay = sec * Double(NSEC_PER_SEC)
+                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                             DialogManager().showSuccess()
+                        })
+                        
+                    }else{
+                        DialogManager().hideIndicator()
+                        let sec:Double = 0.8
+                        let delay = sec * Double(NSEC_PER_SEC)
+                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                            DialogManager().showError()
+                        })
+                    }
+                })
+            }
             break
         case 1:
             break

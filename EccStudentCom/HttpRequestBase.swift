@@ -34,7 +34,7 @@ class HttpRequestBase{
     
 
     // MARK:時間割を取得するメソッド（クロージャあり）
-    func requestTimeTable(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (CallBackClass) -> Void) -> Void {
+    func requestTimeTable(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
         //コールバックインスタンス
         var callbackClass = CallBackClass()
         
@@ -73,11 +73,11 @@ class HttpRequestBase{
             request.httpMethod = "POST"
             
             let _token = GetValuesBase().uriEncode(GetValuesBase("input name=\"_token\" type=\"hidden\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
-            let userid =  idTextField.text!
-            let password = passwordTextField.text!
+            //let userid =  idTextField.text!
+            //let password = passwordTextField.text!
          
             //
-            let postString :String = "_token=" + _token + "&userid=" + userid + "&password=" +  password
+            let postString :String = "_token=" + _token + "&userid=" + userId + "&password=" +  password
             
             request.addValue(self.URL4, forHTTPHeaderField: "Referer")
             request.addValue("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87", forHTTPHeaderField: "User-Agent")
@@ -131,7 +131,7 @@ class HttpRequestBase{
   
     // MARK:出席率関連を取得するメソッド (クロージャあり)
     // CallBackClasを返す ()
-    func reequestAttendanseRate(idTextField :UITextField,passwordTextField:UITextField,callback: @escaping (CallBackClass) -> Void) -> Void {
+    func reequestAttendanseRate(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
         
         //コールバッククラスインスタンス化
         var callBackClass = CallBackClass()
@@ -177,8 +177,8 @@ class HttpRequestBase{
             let __EVENTTARGET = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTTARGET\" id=\"__EVENTTARGET\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __EVENTARGUMENT = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
             let __EVENTVALIDATION = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"(.+?)\"").getValues(self.mLastResponseHtml))
-            let  ctl00$ContentPlaceHolder1$txtUserId  : String = idTextField.text!
-            let ctl00$ContentPlaceHolder1$txtPassword :String = passwordTextField.text!
+            let  ctl00$ContentPlaceHolder1$txtUserId  : String = userId
+            let ctl00$ContentPlaceHolder1$txtPassword :String = password
             let  ctl00$ContentPlaceHolder1$btnLogin : String = GetValuesBase().uriEncode("ログイン")
             //
             let postString :String = "__LASTFOCUS=" + __LASTFOCUS + "&__VIEWSTATE=" + __VIEWSTATE + "&__SCROLLPOSITIONX=" +  __SCROLLPOSITIONX + "&__SCROLLPOSITIONY=" +  __SCROLLPOSITIONY + "&__EVENTTARGET=" + __EVENTTARGET + "&__EVENTARGUMENT=" + __EVENTARGUMENT + "&__EVENTVALIDATION=" + __EVENTVALIDATION + "&ctl00%24ContentPlaceHolder1%24txtUserId=" + ctl00$ContentPlaceHolder1$txtUserId + "&ctl00%24ContentPlaceHolder1%24txtPassword=" + ctl00$ContentPlaceHolder1$txtPassword + "&ctl00%24ContentPlaceHolder1%24btnLogin=" + ctl00$ContentPlaceHolder1$btnLogin;

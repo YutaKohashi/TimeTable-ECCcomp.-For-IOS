@@ -33,7 +33,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         
         let realm = try! Realm()
         print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
-       tableView.dataSource = self
+        tableView.dataSource = self
         
         //リフレッシュコントロールを作成する。
         let refresh = UIRefreshControl()
@@ -192,9 +192,14 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     //Realmをインスタンス化
                     let realm = try! Realm()
                     //一度データを削除
-                    try! realm.write {
-                        realm.deleteAll()
-                    }
+                    let savemodels = realm.objects(SaveModel)
+                    savemodels.forEach({ (model) in
+                        try! realm.write() {
+                            realm.delete(model)
+                        }
+                    })
+                    
+                    
                     //出席率をデータベースへ保存
                     let saveManager = SaveManager()
                     saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)

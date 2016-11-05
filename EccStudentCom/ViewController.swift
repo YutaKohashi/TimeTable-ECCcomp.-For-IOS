@@ -69,7 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //インジゲータダイアログ表示
          DialogManager().showIndicator()
 
-        HttpRequest().reequestTimeTableAttendanseRate(idTextField: idTextField, passwordTextField: passwordTextField,callback: {
+        HttpRequest().reequestTimeTableAttendanseRate(userId: idTextField.text!, password: passwordTextField.text!,callback: {
             requestResultBool in
             
             if(requestResultBool){
@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let delay = sec * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                    //成功ダイアログ表示
+                    
                     DialogManager().showSuccess()
                 })
                 DispatchQueue.main.async(execute: {

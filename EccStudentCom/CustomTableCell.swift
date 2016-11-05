@@ -20,17 +20,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var publicAbsentNumber1: UILabel!
     @IBOutlet weak var publicAbsentNumber2: UILabel!
     @IBOutlet weak var shortageNumber : UILabel!
-    
-//    @IBOutlet weak var unit: UILabel!
-//    @IBOutlet weak var attendanceRate: UILabel!
-//    @IBOutlet weak var attendanceNumber: UILabel!
-//    @IBOutlet weak var absentNumber: UILabel!
-//    @IBOutlet weak var lateNumber: UILabel!
-//    @IBOutlet weak var publicAbsentNumber1: UILabel!
-//    @IBOutlet weak var publicAbsentNumber2: UILabel!
-//    @IBOutlet weak var shortageNumber : UILabel!
-    
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
