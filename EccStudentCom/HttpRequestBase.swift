@@ -36,7 +36,7 @@ class HttpRequestBase{
     // MARK:時間割を取得するメソッド（クロージャあり）
     func requestTimeTable(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
         //コールバックインスタンス
-        var callbackClass = CallBackClass()
+        let callbackClass = CallBackClass()
         
         var request = URLRequest(url: URL(string: URL4)!)
         request.httpMethod = "GET";
@@ -134,7 +134,7 @@ class HttpRequestBase{
     func reequestAttendanseRate(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
         
         //コールバッククラスインスタンス化
-        var callBackClass = CallBackClass()
+        let callBackClass = CallBackClass()
         
         var request = URLRequest(url: URL(string: URL1)!)
         request.httpMethod = "GET";
@@ -288,7 +288,7 @@ class HttpRequestBase{
         var index : uint = 0
         for url:String in urls{
             
-            var urlStr = GetValuesBase("<li class=\"letter\"><a href=\"(.+?)\">投書</a>").getValues(url)
+            let urlStr = GetValuesBase("<li class=\"letter\"><a href=\"(.+?)\">投書</a>").getValues(url)
             
             self.getTeacherNameRequest(url: urlStr) { (teacherName) in
                 result.append(teacherName)

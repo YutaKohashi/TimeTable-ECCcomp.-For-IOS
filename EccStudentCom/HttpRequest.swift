@@ -23,11 +23,12 @@ class HttpRequest:HttpRequestBase{
             requestResult in
             //成功時のみ
             if(requestResult.bool){
+                sleep(2)
                 //保存処理
                 //Realmをインスタンス化
                 let realmSwift = try! Realm()
                 //一度データを削除
-                let savemodels = realmSwift.objects(TimeTableSaveModel)
+                let savemodels = realmSwift.objects(TimeTableSaveModel.self)
                 savemodels.forEach({ (model) in
                     try! realmSwift.write() {
                         realmSwift.delete(model)
@@ -48,7 +49,7 @@ class HttpRequest:HttpRequestBase{
                 //Realmをインスタンス化
                 let realm = try! Realm()
                 //一度データを削除
-                let savemodels = realm.objects(SaveModel)
+                let savemodels = realm.objects(SaveModel.self)
                 savemodels.forEach({ (model) in
                     try! realm.write() {
                         realm.delete(model)

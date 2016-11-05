@@ -174,7 +174,7 @@ class SaveManager{
                 let saveModel = TimeTableSaveModel()
                 var subject:String = ""
                 var room:String = ""
-                var teacherName:String = ""
+                let teacherName:String = ""
                 
                 //
                 if GetValuesBase("<li>").ContainsCheck(td){
