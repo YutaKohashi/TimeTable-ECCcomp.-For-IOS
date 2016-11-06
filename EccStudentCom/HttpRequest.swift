@@ -58,9 +58,8 @@ class HttpRequest:HttpRequestBase{
                 
                 //出席率をデータベースへ保存
                 let saveManager = SaveManager()
-                saveManager.saveAttendanceRate(realm, mLastResponseHtml: self.mLastResponseHtml)
+                saveManager.saveAttendanceRate(realm, mLastResponseHtml: requestResult.string)
                 
-
             }
             callback(requestResult.bool)
         }
@@ -86,12 +85,12 @@ class HttpRequest:HttpRequestBase{
                     if(requestResult.bool){
                         let realm = try! Realm()
                         //出席率をデータベースへ保存
-                        let saveManager = SaveManager()
-                        saveManager.saveAttendanceRate(realm, mLastResponseHtml: requestResult.string)
+                        print(requestResult.string)
+                        SaveManager().saveAttendanceRate(realm, mLastResponseHtml: requestResult.string)
                         //ログインしたことを保存
-                        saveManager.saveLoginState(true)
+                        PreferenceManager().saveLoginState(true)
                         //passIdを保存
-                        saveManager.saveIdPass(userId, pass: password)
+                        PreferenceManager().saveIdPass(userId, pass: password)
                     }
                     
                     

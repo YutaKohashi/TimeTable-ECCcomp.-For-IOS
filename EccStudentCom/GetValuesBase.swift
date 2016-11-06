@@ -15,6 +15,7 @@ class GetValuesBase{
     let regex:NSRegularExpression
     let pattern: String
     
+    // MARK:- コンストラクタ
     init(_ pattern: String) {
         self.pattern = pattern
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpression.Options.caseInsensitive)
@@ -32,12 +33,14 @@ class GetValuesBase{
 
     }
  
-    
+    // MARK: -
+    // MARK:マッチしているか判定するメソッド
     func isMatch(_ input: String) -> Bool {
         let matches = self.regex.matches( in: input, options: [], range:NSMakeRange(0, input.characters.count) )
         return matches.count > 0
     }
     
+    // MARK:正規表現を使用して値を取得するメソッド
      func getValues(_ input: String) -> String {
         if self.isMatch(input) {
             let matches = self.regex.matches( in: input, options: [], range:NSMakeRange(0, input.characters.count) )
@@ -52,13 +55,13 @@ class GetValuesBase{
         return ""
     }
     
-    //特定の文字列が含まれているか
+    //MARK:特定の文字列が含まれているか
     func ContainsCheck(_ target:String) -> Bool{
         return target.contains(pattern)
         
     }
 
-    
+    // MARK:正規表現を複数取得
     func getGroupValues(_ input: String) -> [String] {
         var results: [String] = []
         

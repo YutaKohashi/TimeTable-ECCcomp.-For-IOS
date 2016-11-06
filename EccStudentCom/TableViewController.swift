@@ -54,7 +54,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         }
         
         //テーブル更新
-        HttpRequest().refreshAttendanseRate(userId: SaveManager().getSavedId(), password: SaveManager().getSavedPass(),callback: {
+        HttpRequest().refreshAttendanseRate(userId: PreferenceManager().getSavedId(), password: PreferenceManager().getSavedPass(),callback: {
             requestResultBool in
             if (requestResultBool){
                 //テーブルを再読み込みする。
@@ -115,19 +115,19 @@ class TableViewController: UIViewController, UITableViewDataSource {
                      attendanceRateNum: attendanceRate,
                      shortageNum: shortageNumber)
         
-        if(Int(attendanceRate)! < 75){
-            //cell.backgroundColor = UIColor.darkGray
-            cell.attendanceRate.textColor = defaultColor()
-        }else if(Int(attendanceRate)! < 80){
-            cell.attendanceRate.textColor = UIColor.red
-            //cell.backgroundColor = nil
-        }else if(Int(attendanceRate)! < 90){
-            cell.attendanceRate.textColor = darkGreen()
-            //cell.backgroundColor = nil
-        }else{
-            //cell.backgroundColor = UIColor.darkGray
-            cell.attendanceRate.textColor = defaultColor()
-        }
+//        if(Int(attendanceRate)! < 75){
+//            //cell.backgroundColor = UIColor.darkGray
+//            cell.attendanceRate.textColor = defaultColor()
+//        }else if(Int(attendanceRate)! < 80){
+//            cell.attendanceRate.textColor = UIColor.red
+//            //cell.backgroundColor = nil
+//        }else if(Int(attendanceRate)! < 90){
+//            cell.attendanceRate.textColor = darkGreen()
+//            //cell.backgroundColor = nil
+//        }else{
+//            //cell.backgroundColor = UIColor.darkGray
+//            cell.attendanceRate.textColor = defaultColor()
+//        }
         
         return cell
     }

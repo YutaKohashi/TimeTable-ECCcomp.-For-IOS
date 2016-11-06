@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79043BC51DCB692B00A7B131 /* LoginViewController.swift */; };
 		790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AA59F1D9A11A800C53C48 /* SaveManager.swift */; };
+		790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E838B1DCF117800D7D714 /* PreferenceManager.swift */; };
 		79292D541DC5F8B800F15299 /* HttpRequestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79292D531DC5F8B800F15299 /* HttpRequestBase.swift */; };
 		79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79292D551DC5FA8300F15299 /* DialogManager.swift */; };
 		794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */; };
@@ -58,6 +59,7 @@
 		610DE5722B297A8BAF78A60F /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
 		79043BC51DCB692B00A7B131 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		790AA59F1D9A11A800C53C48 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
+		790E838B1DCF117800D7D714 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		79292D531DC5F8B800F15299 /* HttpRequestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestBase.swift; sourceTree = "<group>"; };
 		79292D551DC5FA8300F15299 /* DialogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogManager.swift; sourceTree = "<group>"; };
 		794F666C1D96B7C300C1D9B6 /* EccStudentCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EccStudentCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,9 +141,9 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
-				79B9DD951DC789E4009153B6 /* API */,
+				79B9DD951DC789E4009153B6 /* Http */,
 				79F5737C1DCCE07500E62898 /* Extension */,
-				79F1FB441DCA3F4B007B7386 /* HTML */,
+				79F1FB441DCA3F4B007B7386 /* Html */,
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
 				796DE3EC1DC384D100BF5ABE /* Model */,
 				796DE3EB1DC384A600BF5ABE /* Tools */,
@@ -163,6 +165,7 @@
 				790AA59F1D9A11A800C53C48 /* SaveManager.swift */,
 				799F60161DC5B93000C95A68 /* StatusbarManager.swift */,
 				79292D551DC5FA8300F15299 /* DialogManager.swift */,
+				790E838B1DCF117800D7D714 /* PreferenceManager.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -200,24 +203,24 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
-		79B9DD951DC789E4009153B6 /* API */ = {
+		79B9DD951DC789E4009153B6 /* Http */ = {
 			isa = PBXGroup;
 			children = (
 				79292D531DC5F8B800F15299 /* HttpRequestBase.swift */,
 				79B9DD931DC78975009153B6 /* HttpRequest.swift */,
 				798C078D1DCD8E0B00929F17 /* CallBackClass.swift */,
 			);
-			name = API;
+			name = Http;
 			sourceTree = "<group>";
 		};
-		79F1FB441DCA3F4B007B7386 /* HTML */ = {
+		79F1FB441DCA3F4B007B7386 /* Html */ = {
 			isa = PBXGroup;
 			children = (
 				79F573781DCC460500E62898 /* lisence.html */,
 				79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */,
 				79F1FB401DCA3E6D007B7386 /* about_html.html */,
 			);
-			name = HTML;
+			name = Html;
 			sourceTree = "<group>";
 		};
 		79F5737C1DCCE07500E62898 /* Extension */ = {
@@ -395,6 +398,7 @@
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
 				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
 				79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */,
+				790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */,
 				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,

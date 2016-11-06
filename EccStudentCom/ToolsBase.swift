@@ -33,15 +33,15 @@ class ToolsBase{
         return (isReachable && !needsConnection)
     }
     
-    // MARK:ログインチェック
-    func loginCheck() -> Bool{
-        
-        let ud = UserDefaults.standard
-        let bool : Bool = ud.bool(forKey: "login" + "1.2.0")
-        
-        return bool
-
-    }
+//    // MARK:ログインチェック
+//    func loginCheck() -> Bool{
+//        
+//        let ud = UserDefaults.standard
+//        let bool : Bool = ud.bool(forKey: "login" + "1.2.0")
+//        
+//        return bool
+//
+//    }
     
     
     // MARK:テキストフィールドチェック

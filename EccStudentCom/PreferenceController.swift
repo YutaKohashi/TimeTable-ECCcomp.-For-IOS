@@ -45,7 +45,7 @@ class PreferenceController : UITableViewController{
                 }
                 
                 DialogManager().showIndicator()
-                HttpRequest().updateTimetable(userId: SaveManager().getSavedId(), password: SaveManager().getSavedPass(),callback: {
+                HttpRequest().updateTimetable(userId: PreferenceManager().getSavedId(), password: PreferenceManager().getSavedPass(),callback: {
                     requestResultBool in
                     if (requestResultBool){
                         DialogManager().hideIndicator()
@@ -115,12 +115,13 @@ class PreferenceController : UITableViewController{
                 realm.deleteAll()
             }
             
-            let ud = UserDefaults.standard
-            ud.set(false, forKey: "login" + "1.2.0")
-            ud.synchronize()
+//            let ud = UserDefaults.standard
+//            ud.set(false, forKey: "login" + "1.2.0")
+//            ud.synchronize()
+            PreferenceManager().saveLoginState(false)
             
             //保存されていたpassIdを削除
-            SaveManager().removeSavedIdPass()
+            PreferenceManager().removeSavedIdPass()
             
             DispatchQueue.main.async(execute: {
                 //View controller code
