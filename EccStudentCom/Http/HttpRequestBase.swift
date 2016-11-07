@@ -199,7 +199,7 @@ class HttpRequestBase{
     }
     
     // MARK: -
-    func getTeacherName(html:String) -> [String]{
+    private func getTeacherName(html:String) -> [String]{
         var result = [String]()
         
         let urls: [String] =  GetValuesBase("<li class=\"letter\"><a href=\"(.+?)\">投書</a>").getGroupValues(html)

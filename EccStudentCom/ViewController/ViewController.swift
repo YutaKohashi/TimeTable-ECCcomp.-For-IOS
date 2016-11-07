@@ -13,12 +13,6 @@ import MetalKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
-    fileprivate let userId:String = "2140257"
-    fileprivate let password:String = "455478"
-//    
-//    fileprivate var ActivityIndicator: MKActivityIndicator!
-
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -83,11 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     DialogManager().showSuccess()
                 })
                 DispatchQueue.main.async(execute: {
-                     //DialogManager().showSuccess()
-                    
                     //出席率表示画面へ遷移
                     let storyboard: UIStoryboard = self.storyboard!
-                    //let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! TableViewController
                     let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
                     self.present(nextView, animated: true, completion: nil)
                     

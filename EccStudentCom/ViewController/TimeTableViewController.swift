@@ -122,6 +122,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             return cell
             
         case 4:
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriCustomCell") as! CustomTimeTableViewCellFri
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
@@ -130,7 +131,6 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             // セルに値を設定
             cell.setCell(subjectName,roomN:roomNumber)
             
-
             return cell
         
         default:

@@ -93,7 +93,6 @@ class HttpRequest:HttpRequestBase{
                         PreferenceManager().saveIdPass(userId, pass: password)
                     }
                     
-                    
                     callback(requestResult.bool)
                  })
             }else{
