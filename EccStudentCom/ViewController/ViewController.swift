@@ -34,8 +34,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //ログインボタン設定
         loginButton.layer.cornerRadius = 10    //角の設定
         loginButton.layer.masksToBounds = true
-//        
-        
     }
     
     override func didReceiveMemoryWarning() {
