@@ -13,8 +13,6 @@ import RealmSwift
 
 class PreferenceController : UITableViewController{
     
-  
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let btn_back = UIBarButtonItem()
@@ -115,9 +113,6 @@ class PreferenceController : UITableViewController{
                 realm.deleteAll()
             }
             
-//            let ud = UserDefaults.standard
-//            ud.set(false, forKey: "login" + "1.2.0")
-//            ud.synchronize()
             PreferenceManager().saveLoginState(false)
             
             //保存されていたpassIdを削除
@@ -133,7 +128,6 @@ class PreferenceController : UITableViewController{
         
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             print("Cancel")
         })

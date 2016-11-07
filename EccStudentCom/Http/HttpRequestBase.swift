@@ -15,13 +15,13 @@ import MetalKit
 
 class HttpRequestBase{
     
-    let URL1 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
-    let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
-    let URL3 : String = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
+    private let URL1 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
+    private let URL2 : String = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
+    private let URL3 : String = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
     
     //StudentCommunication
-    let URL4:String = "http://comp2.ecc.ac.jp/sutinfo/login"        //ログインページ
-    let URL5:String = "http://comp2.ecc.ac.jp/sutinfo/auth/attempt" //実ログイン
+    private let URL4:String = "http://comp2.ecc.ac.jp/sutinfo/login"        //ログインページ
+    private let URL5:String = "http://comp2.ecc.ac.jp/sutinfo/auth/attempt" //実ログイン
     
     // MARK:時間割を取得するメソッド（クロージャあり）
     func requestTimeTable(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
@@ -219,7 +219,7 @@ class HttpRequestBase{
     }
 
     
-    func getTeacherNameRequest(url:String,callback: @escaping (String) -> Void) -> Void {
+    private func getTeacherNameRequest(url:String,callback: @escaping (String) -> Void) -> Void {
         var teacherName:String = ""
         
         var request = URLRequest(url: URL(string: url)!)
@@ -257,7 +257,7 @@ class HttpRequestBase{
     
     // MARK: -
     // MARK:リクエスト作成
-    func createURLRequest(method:String,uri:String,requestBody:String,referer:String,header:Bool) -> URLRequest{
+    private func createURLRequest(method:String,uri:String,requestBody:String,referer:String,header:Bool) -> URLRequest{
         var request:URLRequest = URLRequest(url: URL(string: uri)!)
         request.httpMethod = method
         if(header){
@@ -269,7 +269,7 @@ class HttpRequestBase{
         return request
     }
     
-    func createURLRequest2(method:String,uri:URLRequest,requestBody:String,referer:String) -> URLRequest{
+    private func createURLRequest2(method:String,uri:URLRequest,requestBody:String,referer:String) -> URLRequest{
         var request:URLRequest = uri
         request.httpMethod = method
 
@@ -280,7 +280,7 @@ class HttpRequestBase{
     
     // MARK: -
     // MARK:StudentCommunicationログイン時のリクエストボディ
-    func createPostDataForEscLogin(userId:String, passwrod:String,mLastResponseHtml:String) -> String{
+    private func createPostDataForEscLogin(userId:String, passwrod:String,mLastResponseHtml:String) -> String{
         let _token = GetValuesBase().uriEncode(GetValuesBase("input name=\"_token\" type=\"hidden\" value=\"(.+?)\"").getValues(mLastResponseHtml))
         let postString :String = "_token=" + _token + "&userid=" + userId + "&password=" +  passwrod
         
@@ -288,7 +288,7 @@ class HttpRequestBase{
     }
     
     // MARK:山口学園学生サービスログイン時のリクエストボディ
-    func createPostDataForYSLogin(userId:String, password:String,mLastResponseHtml:String) -> String{
+    private func createPostDataForYSLogin(userId:String, password:String,mLastResponseHtml:String) -> String{
         let __LASTFOCUS = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__LASTFOCUS\" id=\"__LASTFOCUS\" value=\"(.+?)\"").getValues(mLastResponseHtml))
         let __VIEWSTATE =  GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"(.*?)\"").getValues(mLastResponseHtml))
         let __SCROLLPOSITIONX = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__SCROLLPOSITIONX\" id=\"__SCROLLPOSITIONX\" value=\"(.+?)\"").getValues(mLastResponseHtml))
@@ -300,13 +300,22 @@ class HttpRequestBase{
         let ctl00$ContentPlaceHolder1$txtPassword :String = password
         let  ctl00$ContentPlaceHolder1$btnLogin : String = GetValuesBase().uriEncode("ログイン")
     
-        let postString :String = "__LASTFOCUS=" + __LASTFOCUS + "&__VIEWSTATE=" + __VIEWSTATE + "&__SCROLLPOSITIONX=" +  __SCROLLPOSITIONX + "&__SCROLLPOSITIONY=" +  __SCROLLPOSITIONY + "&__EVENTTARGET=" + __EVENTTARGET + "&__EVENTARGUMENT=" + __EVENTARGUMENT + "&__EVENTVALIDATION=" + __EVENTVALIDATION + "&ctl00%24ContentPlaceHolder1%24txtUserId=" + ctl00$ContentPlaceHolder1$txtUserId + "&ctl00%24ContentPlaceHolder1%24txtPassword=" + ctl00$ContentPlaceHolder1$txtPassword + "&ctl00%24ContentPlaceHolder1%24btnLogin=" + ctl00$ContentPlaceHolder1$btnLogin
+        let postString = "__LASTFOCUS=" + __LASTFOCUS +
+                         "&__VIEWSTATE=" + __VIEWSTATE +
+                         "&__SCROLLPOSITIONX=" +  __SCROLLPOSITIONX +
+                         "&__SCROLLPOSITIONY=" +  __SCROLLPOSITIONY +
+                         "&__EVENTTARGET=" + __EVENTTARGET +
+                         "&__EVENTARGUMENT=" + __EVENTARGUMENT +
+                         "&__EVENTVALIDATION=" + __EVENTVALIDATION +
+                         "&ctl00%24ContentPlaceHolder1%24txtUserId=" + ctl00$ContentPlaceHolder1$txtUserId +
+                         "&ctl00%24ContentPlaceHolder1%24txtPassword=" + ctl00$ContentPlaceHolder1$txtPassword +
+                         "&ctl00%24ContentPlaceHolder1%24btnLogin=" + ctl00$ContentPlaceHolder1$btnLogin
         
         return postString
     }
     
     // MARK:出席率画面遷移時のリクエストボディ
-    func createPostDataForRatePage(mLastResponseHtml:String) -> String{
+    private func createPostDataForRatePage(mLastResponseHtml:String) -> String{
         
         let  __EVENTTARGET2 = GetValuesBase().uriEncode("ctl00$btnSyuseki")
         let  __EVENTARGUMENT2 = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"(.+?)\"").getValues(mLastResponseHtml))
@@ -323,7 +332,21 @@ class HttpRequestBase{
         let ctl00$txtCssFileName = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"ctl00\\$txtCssFileName\" id=\"ctl00_txtCssFileName\" value=\"(.+?)\"").getValues(mLastResponseHtml))
         let ctl00$txtHeadTitle = "";
         
-        let postString = "__EVENTTARGET=" + __EVENTTARGET2 + "&__EVENTARGUMENT=" + __EVENTARGUMENT2 + "&__VIEWSTATE=" + __VIEWSTATE2 + "&__SCROLLPOSITIONX=" + __SCROLLPOSITIONX2 + "&__SCROLLPOSITIONY=" + __SCROLLPOSITIONY2 + "&__EVENTVALIDATION=" + __EVENTVALIDATION2 + "&ctl00%24txtWindowOpenFlg=" + ctl00$txtWindowOpenFlg + "&ctl00%24txtWindowOpenUrl=" + ctl00$txtWindowOpenUrl + "&ctl00%24txtWindowOpenName=" + ctl00$txtWindowOpenName + "&ctl00%24txtWindowOpenStyle=" + ctl00$txtWindowOpenStyle + "&ctl00%24txtSearchKey=" + ctl00$txtSearchKey + "&ctl00%24txtParamKey=" + ctl00$txtParamKey + "&ctl00%24txtCssFileName=" + ctl00$txtCssFileName + "&ctl00%24txtHeadTitle=" + ctl00$txtHeadTitle;
+        let postString = "__EVENTTARGET=" + __EVENTTARGET2 +
+                         "&__EVENTARGUMENT=" + __EVENTARGUMENT2 +
+                         "&__VIEWSTATE=" + __VIEWSTATE2 +
+                         "&__SCROLLPOSITIONX=" + __SCROLLPOSITIONX2 +
+                         "&__SCROLLPOSITIONY=" + __SCROLLPOSITIONY2 +
+                         "&__EVENTVALIDATION=" + __EVENTVALIDATION2 +
+                         "&ctl00%24txtWindowOpenFlg=" + ctl00$txtWindowOpenFlg +
+                         "&ctl00%24txtWindowOpenUrl=" + ctl00$txtWindowOpenUrl +
+                         "&ctl00%24txtWindowOpenName=" + ctl00$txtWindowOpenName +
+                         "&ctl00%24txtWindowOpenStyle=" + ctl00$txtWindowOpenStyle +
+                         "&ctl00%24txtSearchKey=" + ctl00$txtSearchKey +
+                         "&ctl00%24txtParamKey=" + ctl00$txtParamKey +
+                         "&ctl00%24txtCssFileName=" + ctl00$txtCssFileName +
+                         "&ctl00%24txtHeadTitle=" + ctl00$txtHeadTitle
+        
         return postString
     }
 
