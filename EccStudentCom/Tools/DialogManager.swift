@@ -11,10 +11,11 @@ import KRProgressHUD
 
 class DialogManager{
     
-    
-    //ログイン時に表示するダイアログ
     func showIndicator(){
-        KRProgressHUD.show(progressHUDStyle: .white, maskType: .black, activityIndicatorStyle: .color(UIColor.blue, UIColor.blue),message: "お待ち下さい")
+        KRProgressHUD.show(progressHUDStyle: .white,
+                           maskType: .black,
+                           activityIndicatorStyle: .color(UIColor.blue, UIColor.blue),
+                           message: "お待ち下さい")
     }
     
     func hideIndicator(){
@@ -23,7 +24,6 @@ class DialogManager{
     
     func showError(){
         KRProgressHUD.showError(progressHUDStyle: .whiteColor,maskType: .black)
-        
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)
         let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
@@ -33,7 +33,8 @@ class DialogManager{
     }
     
     func showSuccess(){
-        KRProgressHUD.showSuccess(progressHUDStyle: .whiteColor,maskType: .black)
+        KRProgressHUD.showSuccess(progressHUDStyle: .whiteColor,
+                                  maskType: .black)
         
         let sec:Double = 3
         let delay = sec * Double(NSEC_PER_SEC)
@@ -44,7 +45,9 @@ class DialogManager{
     }
     
     func showWarningForInternet(){
-        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType: .black,message:"インターネット未接続")
+        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,
+                                  maskType: .black,
+                                  message:"インターネット未接続")
         
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)
@@ -55,7 +58,9 @@ class DialogManager{
     }
     
     func showWarningForTextField(){
-        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType: .black,message:"未入力")
+        KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,
+                                  maskType: .black,
+                                  message:"未入力")
         
         let sec:Double = 4
         let delay = sec * Double(NSEC_PER_SEC)

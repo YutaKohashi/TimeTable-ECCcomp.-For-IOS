@@ -14,10 +14,6 @@ class LisenceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.16, blue:0.22, alpha:1.0))
-//        // ステータスバーのスタイル変更を促す
-//        self.setNeedsStatusBarAppearanceUpdate();
-        
         webView.scrollView.bounces = false
         let path : String = Bundle.main.path(forResource: "lisence", ofType:"html")!
         DispatchQueue.main.async(execute: {
@@ -28,10 +24,7 @@ class LisenceViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
     
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
@@ -42,5 +35,4 @@ class LisenceViewController: UIViewController {
         // ステータスバーを白くする
         return UIStatusBarStyle.lightContent;
     }
-    
 }

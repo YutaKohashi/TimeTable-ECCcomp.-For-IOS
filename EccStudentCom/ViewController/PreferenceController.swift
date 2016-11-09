@@ -43,25 +43,31 @@ class PreferenceController : UITableViewController{
                 }
                 
                 DialogManager().showIndicator()
-                HttpRequest().updateTimetable(userId: PreferenceManager().getSavedId(), password: PreferenceManager().getSavedPass(),callback: {
-                    requestResultBool in
-                    if (requestResultBool){
-                        DialogManager().hideIndicator()
-                        let sec:Double = 0.8
-                        let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                             DialogManager().showSuccess()
-                        })
-                    }else{
-                        DialogManager().hideIndicator()
-                        let sec:Double = 0.8
-                        let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                            DialogManager().showError()
-                        })
-                    }
+                HttpConnector().request(type: .TIME_TABLE,
+                                        userId: PreferenceManager().getSavedId(),
+                                        password: PreferenceManager().getSavedPass(),
+                                        callback:
+                    { (result) in
+                        if(result){
+                            DialogManager().hideIndicator()
+                            let sec:Double = 0.8
+                            let delay = sec * Double(NSEC_PER_SEC)
+                            let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                            DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                                DialogManager().showSuccess()
+                            })
+                        }
+                        else
+                        {
+                            DialogManager().hideIndicator()
+                            let sec:Double = 0.8
+                            let delay = sec * Double(NSEC_PER_SEC)
+                            let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+                            DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                                DialogManager().showError()
+                            })
+                        }
+                        
                 })
             }
             break
@@ -95,17 +101,11 @@ class PreferenceController : UITableViewController{
     
     // ログアウト
     func logout(){
-        // ① UIAlertControllerクラスのインスタンスを生成
-        // タイトル, メッセージ, Alertのスタイルを指定する
-        // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
-        let alert: UIAlertController = UIAlertController(title: "確認", message: "ログアウトしてもよろしいですか？", preferredStyle:   UIAlertControllerStyle.alert)
-        
-        // ② Actionの設定
-        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
-        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        let alert: UIAlertController = UIAlertController(title: "確認",
+                                                         message: "ログアウトしてもよろしいですか？",
+                                                         preferredStyle:   UIAlertControllerStyle.alert)
         // OKボタン
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
             (action: UIAlertAction!) -> Void in
             print("OK")
             let realm = try! Realm()
@@ -114,7 +114,6 @@ class PreferenceController : UITableViewController{
             }
             
             PreferenceManager().saveLoginState(false)
-            
             //保存されていたpassIdを削除
             PreferenceManager().removeSavedIdPass()
             
@@ -126,17 +125,14 @@ class PreferenceController : UITableViewController{
             })
         })
         
-        // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             (action: UIAlertAction!) -> Void in
             print("Cancel")
         })
         
-        // ③ UIAlertControllerにActionを追加
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
         
-        // ④ Alertを表示
         present(alert, animated: true, completion: nil)
     }
 }

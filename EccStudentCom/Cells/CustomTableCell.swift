@@ -9,7 +9,6 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-    
    
     @IBOutlet weak var subjectName: UILabel!
     @IBOutlet weak var unit: UILabel!
@@ -24,13 +23,11 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
     }
     
     /// 画像・タイトル・説明文を設定するメソッド
@@ -44,7 +41,5 @@ class CustomTableViewCell: UITableViewCell {
         publicAbsentNumber1.text = pubAbsentnum1
         publicAbsentNumber2.text = pubAbsentnum2
         attendanceRate.text = attendanceRateNum
-//        shortageNumber.text = shortageNum
     }
-  
 }

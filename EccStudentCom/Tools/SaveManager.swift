@@ -15,9 +15,8 @@ class SaveManager{
         
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
-        //                    print("value = \(value)")
+
         let narrowHtml :String = GetValuesBase("<table class=\"GridVeiwTable\"","</table>").narrowingValues(value)
-        
         //教科ごと
         let results: [String] =  GetValuesBase("<tr>.*?</tr>").getGroupValues(narrowHtml)
         
@@ -86,16 +85,13 @@ class SaveManager{
     }
     
     // MARK:時間割をRealmを使用して保存するメソッド
-    //第一引数 realm
-    //第二引数 html
-    //第三引数 先生名配列
-    // TODO :: teacherNameで不具合あり
     func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String, teacherNames:[String]){
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
-        
+        print(value)
         //時間割まわりを抽出
         let narrowHtml: String = GetValuesBase("<div id=\"timetable_col\" class=\"col\">","<div class=\"col\">").narrowingValues(value)
+        print(narrowHtml)
         
         //行ごと 1時限,2時限,3時限,4時限
         let rowResults:[String] = GetValuesBase("<th class=\"term\">.*?</tr>").getGroupValues(narrowHtml)
@@ -143,16 +139,14 @@ class SaveManager{
         }
     }
     
-    
     //スタブ　先生名を空文字で格納する
     // 将来的にはこのメソッドは不要
     func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String){
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
-        
         //時間割まわりを抽出
         let narrowHtml: String = GetValuesBase("<div id=\"timetable_col\" class=\"col\">","<div class=\"col\">").narrowingValues(value)
-        print("*******narrow   "  + narrowHtml)
+        
         //行ごと 1時限,2時限,3時限,4時限
         let rowResults:[String] = GetValuesBase("<th class=\"term\">.*?</tr>").getGroupValues(narrowHtml)
         
@@ -160,7 +154,6 @@ class SaveManager{
         var teacherIndex = 0
         var ignoreFlg :Bool = true
         for row:String in rowResults{
-            //print("*******row   "  + row)
             // 1列目はヘッダのため無視
             if(ignoreFlg){
                 ignoreFlg = false
@@ -170,13 +163,11 @@ class SaveManager{
             let col: [String] =  GetValuesBase("<td>.*?</td>").getGroupValues(row)
             var colNum = 0 //列カウント
             for td:String in col{
-                //print("*******td   "  + td)
                 let saveModel = TimeTableSaveModel()
                 var subject:String = ""
                 var room:String = ""
                 let teacherName:String = ""
                 
-                //
                 if GetValuesBase("<li>").ContainsCheck(td){
                     subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
                     room = GetValuesBase("<td>\\s*<ul>\\s*<li>.*?</li>\\s*<li>(.+?)</li>").getValues(td)
@@ -216,54 +207,4 @@ class SaveManager{
             rowNum+=1
         }
     }
-    
-//    // MARK://ログインしたことを保存
-//    func saveLoginState(_ bool:Bool){
-//        let ud = UserDefaults.standard
-//        ud.set(bool, forKey: "login" + "1.2.0")
-//        ud.synchronize()
-//    }
-//    
-//    // MARK:ログイン時に使用したid,passを保存
-//    func saveIdPass(_ id:String,pass:String){
-//        let ud = UserDefaults.standard
-//        ud.set(id, forKey: "id")
-//        ud.set(pass, forKey: "pass")
-//        ud.synchronize()
-//    }
-//    
-//    // MARK:id,passを削除
-//    func removeSavedIdPass(){
-//        let ud = UserDefaults.standard
-//        ud.removeObject(forKey: "id")
-//        ud.removeObject(forKey: "pass")
-//    }
-//    
-//    // MARK:saveされているIdを取得
-//    func getSavedId() -> String{
-//        let ud = UserDefaults.standard
-//        return ud.object(forKey: "id")  as! String
-//    }
-//    
-//    // MARK:saveされているpassを取得
-//    func getSavedPass() -> String{
-//        let ud = UserDefaults.standard
-//        return ud.object(forKey: "pass")  as! String
-//    }
-//    
-//    
-//    // MARK:出席照会の色
-//    func colorPref() -> Bool{
-//        let ud = UserDefaults.standard
-//        let bool : Bool = ud.bool(forKey: "colorpref")
-//        
-//        return bool
-//    }
-//    
-//    // MARK://ログインしたことを保存
-//    func saveColorPref(_ bool:Bool){
-//        let ud = UserDefaults.standard
-//        ud.set(bool, forKey: "colorpref")
-//        ud.synchronize()
-//    }
 }

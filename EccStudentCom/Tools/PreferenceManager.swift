@@ -21,7 +21,6 @@ class PreferenceManager{
         let bool : Bool = ud.bool(forKey: LOGIN_KEY)
         
         return bool
-        
     }
     
     // MARK://ログインしたことを保存
@@ -74,7 +73,4 @@ class PreferenceManager{
         
         return bool
     }
-    
-    
-    
 }

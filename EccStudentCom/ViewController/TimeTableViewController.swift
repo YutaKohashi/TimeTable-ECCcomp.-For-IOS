@@ -46,7 +46,6 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         wednesdayTableView.dataSource = self
         thursdayTableView.dataSource = self
         fridayTableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,9 +64,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     }
     
     override func didReceiveMemoryWarning() {
-        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
         
     }
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,7 +83,6 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             roomNumber = saveModel[(indexPath as NSIndexPath).row * 5].room
             // セルに値を設定
             cell.setCell(subjectName,roomN:roomNumber)
-    
             return cell
             
         case 1:
@@ -118,11 +114,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             roomNumber = saveModel[(indexPath as NSIndexPath).row  * 5 + 3].room
             // セルに値を設定
             cell.setCell(subjectName,roomN:roomNumber)
-            
             return cell
             
         case 4:
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriCustomCell") as! CustomTimeTableViewCellFri
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
@@ -135,13 +129,11 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         
         default:
             break
-
         }
         
         //ここは通らない
         let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
         return cell
-        
     }
     
     func warningColor(){
@@ -163,6 +155,4 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         // ステータスバーを白くする
         return UIStatusBarStyle.lightContent;
     }
-    
-
 }

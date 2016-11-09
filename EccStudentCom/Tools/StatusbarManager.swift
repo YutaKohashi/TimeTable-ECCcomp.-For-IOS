@@ -12,11 +12,7 @@ import UIKit
 class StatusBarManager{
     
     func setStatusBarBackgroundColor(color: UIColor) {
-        
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        
         statusBar.backgroundColor = color
     }
-    
-
 }

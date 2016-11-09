@@ -10,27 +10,23 @@
 class CallBackClass{
     
     //HTMLリソース
-    var resultHtm : String = ""
+    private var resultHtm : String = ""
     //成功判定
-    var resultBool : Bool = false
+    private var resultBool : Bool = false
     
     var string:String {
-        // 値を取得するときに呼ばれる。
         get{
             return resultHtm
         }
-        // 値がセットされるときに呼ばれる。
         set(str){
             resultHtm = str
         }
     }
     
     var bool:Bool {
-        // 値を取得するときに呼ばれる。
         get{
             return resultBool
         }
-        // 値がセットされるときに呼ばれる。
         set(boolean){
             resultBool = boolean
         }

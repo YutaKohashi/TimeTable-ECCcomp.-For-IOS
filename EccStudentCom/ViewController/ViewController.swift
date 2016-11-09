@@ -41,7 +41,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
     @IBAction func tabLoginBtn(_ sender: UIButton) {
         
         self.view.endEditing(true)
@@ -59,13 +58,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         //インジゲータダイアログ表示
-         DialogManager().showIndicator()
-
-        HttpRequest().reequestTimeTableAttendanseRate(userId: idTextField.text!, password: passwordTextField.text!,callback: {
-            requestResultBool in
-            
-            if(requestResultBool){
-                //成功
+        DialogManager().showIndicator()
+        let userId:String = idTextField.text!
+        let password:String = passwordTextField.text!
+        HttpConnector().request(type: .TIME_ATTEND,
+                                userId: userId,
+                                password: password)
+        { (result) in
+            if(result){
                 DialogManager().hideIndicator()
                 let sec:Double = 1
                 let delay = sec * Double(NSEC_PER_SEC)
@@ -75,6 +75,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     DialogManager().showSuccess()
                 })
                 DispatchQueue.main.async(execute: {
+                    //ログインしたことを保存
+                    PreferenceManager().saveLoginState(true)
+                    //passIdを保存
+                    PreferenceManager().saveIdPass(userId, pass: password)
                     //出席率表示画面へ遷移
                     let storyboard: UIStoryboard = self.storyboard!
                     let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
@@ -92,8 +96,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     DialogManager().showError()
                 })
             }
-        })
-
+        }
     }
     
     override var prefersStatusBarHidden : Bool {
@@ -111,6 +114,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
-
 }
 

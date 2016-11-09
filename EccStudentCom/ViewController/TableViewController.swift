@@ -11,12 +11,12 @@ import RealmSwift
 import KRProgressHUD
 
 class TableViewController: UIViewController, UITableViewDataSource {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //cellを選択不可に
         tableView.allowsSelection = false
         //区切り線をなくす
@@ -39,6 +39,12 @@ class TableViewController: UIViewController, UITableViewDataSource {
         self.tableView.addSubview(refresh)
     }
     
+    //    func scrollViewDidScroll(scrollView: UIScrollView) {
+    //        if scrollView.contentSize.height > self.view.frame.size.height && scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
+    //            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentSize.height - scrollView.frame.size.height), animated: false)
+    //        }
+    //    }
+    
     //テーブルビュー引っ張り時の呼び出しメソッド
     func refreshTable(_ refreshControl: UIRefreshControl){
         //スクロール無効化
@@ -46,17 +52,18 @@ class TableViewController: UIViewController, UITableViewDataSource {
         
         //インターネットに接続されていないのときはアラート表示
         if !ToolsBase().CheckReachability("google.com"){
-            //            ToolsBase().showToast("インターネットに接続されていません", isShortLong: true)
             DialogManager().showWarningForInternet()
-             refreshControl.endRefreshing()
+            refreshControl.endRefreshing()
             self.tableView.isScrollEnabled = true
             return;
         }
         
         //テーブル更新
-        HttpRequest().refreshAttendanseRate(userId: PreferenceManager().getSavedId(), password: PreferenceManager().getSavedPass(),callback: {
-            requestResultBool in
-            if (requestResultBool){
+        HttpConnector().request(type: .ATTENDANCE_RATE,
+                                userId: PreferenceManager().getSavedId(),
+                                password: PreferenceManager().getSavedPass())
+        { (result) in
+            if (result){
                 //テーブルを再読み込みする。
                 self.tableView.reloadData()
                 refreshControl.endRefreshing()
@@ -65,13 +72,11 @@ class TableViewController: UIViewController, UITableViewDataSource {
                 refreshControl.endRefreshing()
                 self.tableView.isScrollEnabled = true
             }
-        })
-
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
         // DBファイルのfileURLを取得
         if let fileURL = Realm.Configuration.defaultConfiguration.fileURL {
             try! FileManager.default.removeItem(at: fileURL)
@@ -83,7 +88,6 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let realm = try! Realm()
         print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
         return realm.objects(SaveModel.self).count
-//        return array.count
     }
     
     /// セルに値を設定するデータソースメソッド
@@ -115,23 +119,22 @@ class TableViewController: UIViewController, UITableViewDataSource {
                      attendanceRateNum: attendanceRate,
                      shortageNum: shortageNumber)
         
-//        if(Int(attendanceRate)! < 75){
-//            //cell.backgroundColor = UIColor.darkGray
-//            cell.attendanceRate.textColor = defaultColor()
-//        }else if(Int(attendanceRate)! < 80){
-//            cell.attendanceRate.textColor = UIColor.red
-//            //cell.backgroundColor = nil
-//        }else if(Int(attendanceRate)! < 90){
-//            cell.attendanceRate.textColor = darkGreen()
-//            //cell.backgroundColor = nil
-//        }else{
-//            //cell.backgroundColor = UIColor.darkGray
-//            cell.attendanceRate.textColor = defaultColor()
-//        }
+        //        if(Int(attendanceRate)! < 75){
+        //            //cell.backgroundColor = UIColor.darkGray
+        //            cell.attendanceRate.textColor = defaultColor()
+        //        }else if(Int(attendanceRate)! < 80){
+        //            cell.attendanceRate.textColor = UIColor.red
+        //            //cell.backgroundColor = nil
+        //        }else if(Int(attendanceRate)! < 90){
+        //            cell.attendanceRate.textColor = darkGreen()
+        //            //cell.backgroundColor = nil
+        //        }else{
+        //            //cell.backgroundColor = UIColor.darkGray
+        //            cell.attendanceRate.textColor = defaultColor()
+        //        }
         
         return cell
     }
-
     
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
@@ -150,6 +153,4 @@ class TableViewController: UIViewController, UITableViewDataSource {
     func darkGreen() -> UIColor{
         return UIColor(red: 0 / 255.0, green: 86 / 255.0, blue: 96 / 255.0, alpha: 1.0)
     }
-    
-
 }
