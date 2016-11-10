@@ -19,7 +19,6 @@ class GetValuesBase{
     init(_ pattern: String) {
         self.pattern = pattern
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpression.Options.caseInsensitive)
-
     }
     
     init(_ pattern1: String , _ pattern2: String) {
@@ -30,7 +29,6 @@ class GetValuesBase{
     init(){
         self.pattern = "(.+?)"
         self.regex = try! NSRegularExpression( pattern: self.pattern, options: NSRegularExpression.Options.caseInsensitive)
-
     }
  
     // MARK: -
@@ -58,7 +56,6 @@ class GetValuesBase{
     //MARK:特定の文字列が含まれているか
     func ContainsCheck(_ target:String) -> Bool{
         return target.contains(pattern)
-        
     }
 
     // MARK:正規表現を複数取得
@@ -83,7 +80,6 @@ class GetValuesBase{
             matches.forEach { match in
                 results.append( (input as NSString).substring(with: match.rangeAt(1)))
             }
-            
             return results[0]
         }
         //一致しないときは空文字を返す
@@ -118,10 +114,6 @@ class GetValuesBase{
     func removeTabCode(_ str:String) -> String{
         return str.replacingOccurrences(of: "\t", with: "")
     }
-    
- 
-    
- 
     
 }
 

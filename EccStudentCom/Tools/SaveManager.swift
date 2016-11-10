@@ -15,8 +15,26 @@ class SaveManager{
         
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
+        
+        //合計データを保存
+        var narrowHtml :String = GetValuesBase(">合計<","</tr>").narrowingValues(value)
+        narrowHtml = GetValuesBase().removeNBSP(narrowHtml)
+        narrowHtml = GetValuesBase().removePercent(narrowHtml)
+        let saveModel = SaveModel()
+        saveModel.subjectName = "合計"
+        saveModel.unit = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalTani\">(.+?)<").getValues(narrowHtml)
+        saveModel.attendanceNumber = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalShuseki\">(.+?)<").getValues(narrowHtml)
+        saveModel.absentNumber = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalKesski\">(.+?)<").getValues(narrowHtml)
+        saveModel.lateNumber = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalChikoku\">(.+?)<").getValues(narrowHtml)
+        saveModel.publicAbsentNumber1 = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalKouketsu1\">(.+?)<").getValues(narrowHtml)
+        saveModel.publicAbsentNumber2 = GetValuesBase(" id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalKouketsu2\">(.+?)<").getValues(narrowHtml)
+        saveModel.attendanceRate = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalShutsuritsu\">(.+?)<").getValues(narrowHtml)
+        //データを保存
+        try! realm.write {
+            realm.add(saveModel)
+        }
 
-        let narrowHtml :String = GetValuesBase("<table class=\"GridVeiwTable\"","</table>").narrowingValues(value)
+        narrowHtml = GetValuesBase("<table class=\"GridVeiwTable\"","</table>").narrowingValues(value)
         //教科ごと
         let results: [String] =  GetValuesBase("<tr>.*?</tr>").getGroupValues(narrowHtml)
         
@@ -82,6 +100,9 @@ class SaveManager{
             print("------------------- \("")")
             print(" \("")")
         }
+        
+     
+        
     }
     
     // MARK:時間割をRealmを使用して保存するメソッド
