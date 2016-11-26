@@ -21,4 +21,5 @@ class SaveModel: Object {
     dynamic var publicAbsentNumber2 :String = ""
     dynamic var attendanceRate :String = ""
     dynamic var shortageNumber :String = ""
+    
 }

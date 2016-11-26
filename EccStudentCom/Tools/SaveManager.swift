@@ -29,10 +29,12 @@ class SaveManager{
         saveModel.publicAbsentNumber1 = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalKouketsu1\">(.+?)<").getValues(narrowHtml)
         saveModel.publicAbsentNumber2 = GetValuesBase(" id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalKouketsu2\">(.+?)<").getValues(narrowHtml)
         saveModel.attendanceRate = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalShutsuritsu\">(.+?)<").getValues(narrowHtml)
+        saveModel.shortageNumber = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalFusoku\">(.+?)<").getValues(narrowHtml)
         //データを保存
         try! realm.write {
             realm.add(saveModel)
         }
+        
 
         narrowHtml = GetValuesBase("<table class=\"GridVeiwTable\"","</table>").narrowingValues(value)
         //教科ごと

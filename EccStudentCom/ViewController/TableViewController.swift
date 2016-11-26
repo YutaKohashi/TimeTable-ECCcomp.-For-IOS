@@ -12,7 +12,16 @@ import KRProgressHUD
 
 class TableViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var totalDataIndicatorView: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var totalUnitLabel: UILabel!
+    @IBOutlet weak var attedanceRateLabel: UILabel!
+    @IBOutlet weak var lostUnitLabel: UILabel!
+    @IBOutlet weak var attendanceNumLabel: UILabel!
+    @IBOutlet weak var abcentNumLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +35,9 @@ class TableViewController: UIViewController, UITableViewDataSource {
         print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
         tableView.dataSource = self
         
+        //トータルデータ
+        self.setTotalData()
+        
         //リフレッシュコントロールを作成する。
         let refresh = UIRefreshControl()
         
@@ -37,13 +49,9 @@ class TableViewController: UIViewController, UITableViewDataSource {
         refresh.addTarget(self, action: #selector(TableViewController.refreshTable(_:)), for: .valueChanged)
         //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
         self.tableView.addSubview(refresh)
+        
+        self.indicator.isHidden = true
     }
-    
-    //    func scrollViewDidScroll(scrollView: UIScrollView) {
-    //        if scrollView.contentSize.height > self.view.frame.size.height && scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
-    //            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentSize.height - scrollView.frame.size.height), animated: false)
-    //        }
-    //    }
     
     //テーブルビュー引っ張り時の呼び出しメソッド
     func refreshTable(_ refreshControl: UIRefreshControl){
@@ -58,22 +66,55 @@ class TableViewController: UIViewController, UITableViewDataSource {
             return;
         }
         
+        removeTotalData()
+        self.indicator.isHidden = false
+        self.indicator.startAnimating()
         //テーブル更新
         HttpConnector().request(type: .ATTENDANCE_RATE,
                                 userId: PreferenceManager().getSavedId(),
                                 password: PreferenceManager().getSavedPass())
         { (result) in
-            if (result){
-                //テーブルを再読み込みする。
-                self.tableView.reloadData()
-                refreshControl.endRefreshing()
-                self.tableView.isScrollEnabled = true
-            }else{
-                refreshControl.endRefreshing()
-                self.tableView.isScrollEnabled = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.indicator.isHidden = true
+                self.indicator.stopAnimating()
+                
+                //トータルデータをセット
+                self.setTotalData()
+                
+                if (result){
+                    //テーブルを再読み込みする。
+                    self.tableView.reloadData()
+                    refreshControl.endRefreshing()
+                    self.tableView.isScrollEnabled = true
+                    
+                }else{
+                    refreshControl.endRefreshing()
+                    self.tableView.isScrollEnabled = true
+                    
+                }
             }
         }
     }
+    
+    func setTotalData(){
+        let realm = try! Realm()
+        let saveModel = realm.objects(SaveModel.self)
+        
+        self.totalUnitLabel.text = saveModel[0].unit
+        self.attedanceRateLabel.text = saveModel[0].attendanceRate
+        self.lostUnitLabel.text = saveModel[0].shortageNumber
+        self.attendanceNumLabel.text = saveModel[0].attendanceNumber
+        self.abcentNumLabel.text = saveModel[0].absentNumber
+    }
+    
+    func removeTotalData(){
+        self.totalUnitLabel.text = ""
+        self.attedanceRateLabel.text = ""
+        self.lostUnitLabel.text = ""
+        self.attendanceNumLabel.text = ""
+        self.abcentNumLabel.text = ""
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -99,15 +140,20 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let realm = try! Realm()
         let saveModel = realm.objects(SaveModel.self)
         
-        let subjectName = saveModel[(indexPath as NSIndexPath).row].subjectName
-        let unit = saveModel[(indexPath as NSIndexPath).row].unit
-        let attendanceNumber = saveModel[(indexPath as NSIndexPath).row].attendanceNumber
-        let lateNumber = saveModel[(indexPath as NSIndexPath).row].lateNumber
-        let absentNumber = saveModel[(indexPath as NSIndexPath).row].absentNumber
-        let publicAbsentNumber1 = saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber1
-        let publicAbsentNumber2 = saveModel[(indexPath as NSIndexPath).row].publicAbsentNumber2
-        let attendanceRate = saveModel[(indexPath as NSIndexPath).row].attendanceRate
-        let shortageNumber = saveModel[(indexPath as NSIndexPath).row].shortageNumber
+        var index:NSInteger = (indexPath as NSIndexPath).row
+        if index == 0 {
+            index = 1
+        }
+        
+        let subjectName = saveModel[index].subjectName
+        let unit = saveModel[index].unit
+        let attendanceNumber = saveModel[index].attendanceNumber
+        let lateNumber = saveModel[index].lateNumber
+        let absentNumber = saveModel[index].absentNumber
+        let publicAbsentNumber1 = saveModel[index].publicAbsentNumber1
+        let publicAbsentNumber2 = saveModel[index].publicAbsentNumber2
+        let attendanceRate = saveModel[index].attendanceRate
+        let shortageNumber = saveModel[index].shortageNumber
         
         cell.setCell(subjectName,
                      unitNum: unit,
