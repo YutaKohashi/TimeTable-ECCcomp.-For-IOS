@@ -20,6 +20,14 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     @IBOutlet weak var thursdayTableView: UITableView!
     @IBOutlet weak var fridayTableView: UITableView!
     
+    @IBOutlet weak var bottomSheetView: UIView!
+    @IBOutlet weak var bottomCloseButton: UIButton!
+    
+    //Labels in BottomSheetView
+    @IBOutlet weak var subjectLabel: UILabel!
+    @IBOutlet weak var teacherLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,25 +35,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
         
-        //各tableViewのスクロールを無効化
-        mondayTableView.isScrollEnabled = false
-        tuesdayTableView.isScrollEnabled = false
-        wednesdayTableView.isScrollEnabled = false
-        thursdayTableView.isScrollEnabled = false
-        fridayTableView.isScrollEnabled = false
-        
-        //選択不可に
-        mondayTableView.allowsSelection = false
-        tuesdayTableView.allowsSelection = false
-        wednesdayTableView.allowsSelection = false
-        thursdayTableView.allowsSelection = false
-        fridayTableView.allowsSelection = false
-
-        mondayTableView.dataSource = self
-        tuesdayTableView.dataSource = self
-        wednesdayTableView.dataSource = self
-        thursdayTableView.dataSource = self
-        fridayTableView.dataSource = self
+        initTableView()
+        bottomSheetView.isHidden = true
+        bottomCloseButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,12 +59,87 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         super.didReceiveMemoryWarning()
         
     }
+    
+    //closeButton
+    @IBAction func bottomCloseButton(_ sender: AnyObject) {
+        bottomSheetView.isHidden = true
+        bottomCloseButton.isHidden = true
+        subjectLabel.text = ""
+        teacherLabel.text = ""
+        timeLabel.text = ""
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        switch tableView.tag {
+        case 0:
+            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellMon
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
+                return
+            }
+            bottomSheetView.isHidden = false
+            bottomCloseButton.isHidden = false
+            subjectLabel.text = cell.getSubjectName().text
+            teacherLabel.text = cell.getTeacherName().text
+            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            break
+        case 1:
+            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellTue
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
+                return
+            }
+            bottomSheetView.isHidden = false
+            bottomCloseButton.isHidden = false
+            subjectLabel.text = cell.getSubjectName().text
+            teacherLabel.text = cell.getTeacherName().text
+            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            break
+        case 2:
+            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellWed
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
+                return
+            }
+            bottomSheetView.isHidden = false
+            bottomCloseButton.isHidden = false
+            subjectLabel.text = cell.getSubjectName().text
+            teacherLabel.text = cell.getTeacherName().text
+            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            break
+        case 3:
+            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellThur
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
+                return
+            }
+            bottomSheetView.isHidden = false
+            bottomCloseButton.isHidden = false
+            subjectLabel.text = cell.getSubjectName().text
+            teacherLabel.text = cell.getTeacherName().text
+            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            break
+        case 4:
+            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellFri
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
+                return
+            }
+            bottomSheetView.isHidden = false
+            bottomCloseButton.isHidden = false
+            subjectLabel.text = cell.getSubjectName().text
+            teacherLabel.text = cell.getTeacherName().text
+            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            break
+        default:
+            break
+        }
+
+    }
+    
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var subjectName:String = ""
         var roomNumber:String = ""
-        
+        var teacherName:String = ""
         switch tableView.tag {
+        
             
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
@@ -81,8 +148,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             let saveModel = realm.objects(TimeTableSaveModel.self)
             subjectName = saveModel[(indexPath as NSIndexPath).row * 5].subjectName
             roomNumber = saveModel[(indexPath as NSIndexPath).row * 5].room
+            teacherName = saveModel[(indexPath as NSIndexPath).row * 5].teacherName
             // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber)
+            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
             return cell
             
         case 1:
@@ -92,8 +160,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             
             subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 1].subjectName
             roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 1].room
+            teacherName = saveModel[(indexPath as NSIndexPath).row * 5 + 1].teacherName
             // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber)
+            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
             return cell
             
         case 2:
@@ -102,8 +171,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             let saveModel = realm.objects(TimeTableSaveModel.self)
             subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 2].subjectName
             roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 2].room
+            teacherName = saveModel[(indexPath as NSIndexPath).row * 5 + 2].teacherName
             // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber)
+            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
             return cell
             
         case 3:
@@ -112,8 +182,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             let saveModel = realm.objects(TimeTableSaveModel.self)
             subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 3].subjectName
             roomNumber = saveModel[(indexPath as NSIndexPath).row  * 5 + 3].room
+            teacherName = saveModel[(indexPath as NSIndexPath).row  * 5 + 3].teacherName
             // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber)
+            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
             return cell
             
         case 4:
@@ -122,8 +193,9 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             let saveModel = realm.objects(TimeTableSaveModel.self)
             subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 4].subjectName
             roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 4].room
+            teacherName = saveModel[(indexPath as NSIndexPath).row * 5 + 4].teacherName
             // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber)
+            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
             
             return cell
         
@@ -136,6 +208,10 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         return cell
     }
     
+    func cerateCell(){
+        
+    }
+    
     func warningColor(){
     
     }
@@ -145,7 +221,6 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         return 4
     }
 
-    
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
         return false;
@@ -154,5 +229,43 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     override var preferredStatusBarStyle : UIStatusBarStyle {
         // ステータスバーを白くする
         return UIStatusBarStyle.lightContent;
+    }
+    
+    // TableViewを初期化
+    func initTableView(){
+        //各tableViewのスクロールを無効化
+        mondayTableView.isScrollEnabled = false
+        tuesdayTableView.isScrollEnabled = false
+        wednesdayTableView.isScrollEnabled = false
+        thursdayTableView.isScrollEnabled = false
+        fridayTableView.isScrollEnabled = false
+        
+        mondayTableView.dataSource = self
+        tuesdayTableView.dataSource = self
+        wednesdayTableView.dataSource = self
+        thursdayTableView.dataSource = self
+        fridayTableView.dataSource = self
+        
+        //タップ時にセルの位置を取得するのに必要
+        mondayTableView.delegate = self
+        tuesdayTableView.delegate = self
+        wednesdayTableView.delegate = self
+        thursdayTableView.delegate = self
+        fridayTableView.delegate = self
+    }
+
+    func getTime(index:Int) -> String{
+        switch index {
+        case 0:
+            return "09:15 ~ 10:45"
+        case 1:
+            return "11:00 ~ 12:30"
+        case 2:
+            return "13:30 ~ 15:00"
+        case 3:
+            return "15:15 ~ 16:45"
+        default:
+            return ""
+        }
     }
 }

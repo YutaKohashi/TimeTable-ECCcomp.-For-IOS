@@ -14,14 +14,16 @@ class HttpHelper:HttpBase{
     let URL = RequestURL()
     let BODY = RequestBody()
     
-    // MARK:時間割を更新
+    // MARK:時間割を取得
     func getTimeTable(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
         // 時間割
         self.requestTimeTable(userId: userId, password: password,callback: {
             requestResult in
             
             if(requestResult.bool){
-                sleep(2)
+                
+                let names = self.getTeacherNames(html: requestResult.string)
+                
                 //保存処理
                 let realmSwift = try! Realm()
                 //データを削除
@@ -31,7 +33,7 @@ class HttpHelper:HttpBase{
                         realmSwift.delete(model)
                     }
                 })
-                SaveManager().saveTimeTable(realmSwift,mLastResponseHtml: requestResult.string)
+                SaveManager().saveTimeTable(realmSwift,mLastResponseHtml: requestResult.string,names:names)
             }
             callback(requestResult.bool)
         })
@@ -67,6 +69,44 @@ class HttpHelper:HttpBase{
                 })
             }else{callback(cb1)}
         }
+    }
+    
+    //先生名を取得するメソッド
+    func getTeacherNames(html:String) -> [String]{
+        var names:[String] = []
+        
+        let urls:[String] = getTeacherURLs(html: html)
+        let htmls = self.continuousRequest(urls: urls, method: "GET")
+        for html in htmls{
+            names.append(getTeacherName(html: html))
+        }
+        
+        return names
+    }
+    
+    func getTeacherURLs(html:String) -> [String]{
+        let urls:[String] = GetValuesBase("<a href=\"(.+?)\">投書<").getGroupValues(html)
+        var result:[String] = []
+        for url in urls{
+            result.append(GetValuesBase("<a href=\"(.+?)\">投書<").getValues(url))
+        }
+        return result
+    }
+    
+    func getTeacherName(html:String) -> String{
+        var name = GetValuesBase("<h3>受信者</h3>\n*\\s*<p>(.+?)</p>").getValues(html)
+        name = fixName(name:name)
+        return name
+    }
+    
+    func fixName(name:String) -> String{
+        var fixedname = name.replacingOccurrences(of:"      ", with: " ")
+        fixedname = fixedname.replacingOccurrences(of:"      ", with: " ")
+        fixedname = fixedname.replacingOccurrences(of:"     ", with: " ")
+        fixedname = fixedname.replacingOccurrences(of:"    ", with: " ")
+        fixedname = fixedname.replacingOccurrences(of:"   ", with: " ")
+        fixedname = fixedname.replacingOccurrences(of:"  ", with: " ")
+        return fixedname
     }
     
     // MARK: -

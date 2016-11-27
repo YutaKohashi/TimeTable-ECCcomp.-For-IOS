@@ -164,7 +164,7 @@ class SaveManager{
     
     //スタブ　先生名を空文字で格納する
     // 将来的にはこのメソッドは不要
-    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String){
+    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String,names:[String]){
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
         //時間割まわりを抽出
@@ -189,7 +189,7 @@ class SaveManager{
                 let saveModel = TimeTableSaveModel()
                 var subject:String = ""
                 var room:String = ""
-                let teacherName:String = ""
+                let teacherName:String = names[teacherIndex]
                 
                 if GetValuesBase("<li>").ContainsCheck(td){
                     subject = GetValuesBase("<li>(.+?)</li>").getValues(td)

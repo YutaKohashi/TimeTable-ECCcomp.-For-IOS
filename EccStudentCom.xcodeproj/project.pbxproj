@@ -12,6 +12,8 @@
 		790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E838B1DCF117800D7D714 /* PreferenceManager.swift */; };
 		791DE0551DD169DD00FEB18A /* HttpBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DE0541DD169DD00FEB18A /* HttpBase.swift */; };
 		791DE0591DD172E200FEB18A /* RequestURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DE0581DD172E200FEB18A /* RequestURL.swift */; };
+		7924B03B1DEB211F00D43894 /* DetailTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7924B03A1DEB211F00D43894 /* DetailTimeViewController.swift */; };
+		7924B03D1DEB380300D43894 /* SelectColor+UItableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7924B03C1DEB380300D43894 /* SelectColor+UItableViewCell.swift */; };
 		79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79292D551DC5FA8300F15299 /* DialogManager.swift */; };
 		794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */; };
 		794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794F66711D96B7C300C1D9B6 /* ViewController.swift */; };
@@ -63,6 +65,8 @@
 		790E838B1DCF117800D7D714 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		791DE0541DD169DD00FEB18A /* HttpBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpBase.swift; sourceTree = "<group>"; };
 		791DE0581DD172E200FEB18A /* RequestURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestURL.swift; sourceTree = "<group>"; };
+		7924B03A1DEB211F00D43894 /* DetailTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTimeViewController.swift; sourceTree = "<group>"; };
+		7924B03C1DEB380300D43894 /* SelectColor+UItableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SelectColor+UItableViewCell.swift"; sourceTree = "<group>"; };
 		79292D551DC5FA8300F15299 /* DialogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogManager.swift; sourceTree = "<group>"; };
 		794F666C1D96B7C300C1D9B6 /* EccStudentCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EccStudentCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */,
 				79043BC51DCB692B00A7B131 /* LoginViewController.swift */,
 				79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */,
+				7924B03A1DEB211F00D43894 /* DetailTimeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */,
+				7924B03C1DEB380300D43894 /* SelectColor+UItableViewCell.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
+				7924B03D1DEB380300D43894 /* SelectColor+UItableViewCell.swift in Sources */,
 				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
 				79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */,
 				791DE0551DD169DD00FEB18A /* HttpBase.swift in Sources */,
@@ -431,6 +438,7 @@
 				798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */,
 				7951A65E1DD3426C0075ACC8 /* HttpConnector.swift in Sources */,
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
+				7924B03B1DEB211F00D43894 /* DetailTimeViewController.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,

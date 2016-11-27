@@ -128,7 +128,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let realm = try! Realm()
         print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
-        return realm.objects(SaveModel.self).count
+        return realm.objects(SaveModel.self).count - 1
     }
     
     /// セルに値を設定するデータソースメソッド
@@ -141,9 +141,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let saveModel = realm.objects(SaveModel.self)
         
         var index:NSInteger = (indexPath as NSIndexPath).row
-        if index == 0 {
-            index = 1
-        }
+        index += 1
         
         let subjectName = saveModel[index].subjectName
         let unit = saveModel[index].unit
