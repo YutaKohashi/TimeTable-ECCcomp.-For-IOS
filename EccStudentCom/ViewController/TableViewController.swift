@@ -42,7 +42,10 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let refresh = UIRefreshControl()
         
         //インジケーターの下に表示する文字列を設定する。
-        refresh.attributedTitle = NSAttributedString(string: "更新中")
+        refresh.attributedTitle =
+            NSAttributedString(string:"最終更新日時 : " +
+                PreferenceManager.getLatestUpdateAttendanceRate());
+        
         //インジケーターの色を設定する。
         refresh.tintColor = UIColor.gray
         //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
@@ -71,8 +74,8 @@ class TableViewController: UIViewController, UITableViewDataSource {
         self.indicator.startAnimating()
         //テーブル更新
         HttpConnector().request(type: .ATTENDANCE_RATE,
-                                userId: PreferenceManager().getSavedId(),
-                                password: PreferenceManager().getSavedPass())
+                                userId: PreferenceManager.getSavedId(),
+                                password: PreferenceManager.getSavedPass())
         { (result) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.indicator.isHidden = true
@@ -86,6 +89,11 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     self.tableView.reloadData()
                     refreshControl.endRefreshing()
                     self.tableView.isScrollEnabled = true
+                    
+                    refreshControl.attributedTitle =
+                        NSAttributedString(string:"最終更新日時 : " +
+                             ToolsBase().getNow());
+                    PreferenceManager.saveLatestUpdateAttendanceRate(now: ToolsBase().getNow())
                     
                 }else{
                     refreshControl.endRefreshing()

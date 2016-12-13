@@ -72,11 +72,11 @@ class HttpHelper:HttpBase{
     }
     
     //先生名を取得するメソッド
+    //連続GET
     func getTeacherNames(html:String) -> [String]{
         var names:[String] = []
-        
         let urls:[String] = getTeacherURLs(html: html)
-        let htmls = self.continuousRequest(urls: urls, method: "GET")
+        let htmls:[String] = self.continuousRequest(urls: urls, method: "GET")
         for html in htmls{
             names.append(getTeacherName(html: html))
         }
@@ -99,6 +99,7 @@ class HttpHelper:HttpBase{
         return name
     }
     
+    //replace two more \s to one
     func fixName(name:String) -> String{
         var fixedname = name.replacingOccurrences(of:"      ", with: " ")
         fixedname = fixedname.replacingOccurrences(of:"      ", with: " ")

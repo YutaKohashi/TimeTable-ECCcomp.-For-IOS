@@ -34,6 +34,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //ログインボタン設定
         loginButton.layer.cornerRadius = 10    //角の設定
         loginButton.layer.masksToBounds = true
+        
+        PreferenceManager.saveLatestUpdateAttendanceRate(now: "-/-/- -:-")
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 以前ログインしていたかをチェック
+        // ログインしていた場合に何か行いたい時
+        if PreferenceManager.loginedCheck() {
+            let alert: UIAlertController = UIAlertController(title: "お詫び",
+                                                             message: "新機能実装のため ログアウト させていただきました。\n再度ログインをお願いします。",
+                                                             preferredStyle:   UIAlertControllerStyle.alert)
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+                //全データを削除
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.deleteAll()
+                }
+                
+                PreferenceManager.saveLoginState(false)
+                //保存されていたpassIdを削除
+                PreferenceManager.removeSavedIdPass()
+                
+            })
+            
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,9 +109,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 })
                 DispatchQueue.main.async(execute: {
                     //ログインしたことを保存
-                    PreferenceManager().saveLoginState(true)
+                    PreferenceManager.saveLoginState(true)
                     //passIdを保存
-                    PreferenceManager().saveIdPass(userId, pass: password)
+                    PreferenceManager.saveIdPass(userId, pass: password)
                     //出席率表示画面へ遷移
                     let storyboard: UIStoryboard = self.storyboard!
                     let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController

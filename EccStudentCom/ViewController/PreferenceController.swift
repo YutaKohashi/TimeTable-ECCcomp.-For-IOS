@@ -44,8 +44,8 @@ class PreferenceController : UITableViewController{
                 
                 DialogManager().showIndicator()
                 HttpConnector().request(type: .TIME_TABLE,
-                                        userId: PreferenceManager().getSavedId(),
-                                        password: PreferenceManager().getSavedPass(),
+                                        userId: PreferenceManager.getSavedId(),
+                                        password: PreferenceManager.getSavedPass(),
                                         callback:
                     { (result) in
                         if(result){
@@ -67,7 +67,6 @@ class PreferenceController : UITableViewController{
                                 DialogManager().showError()
                             })
                         }
-                        
                 })
             }
             break
@@ -113,9 +112,9 @@ class PreferenceController : UITableViewController{
                 realm.deleteAll()
             }
             
-            PreferenceManager().saveLoginState(false)
+            PreferenceManager.saveLoginState(false)
             //保存されていたpassIdを削除
-            PreferenceManager().removeSavedIdPass()
+            PreferenceManager.removeSavedIdPass()
             
             DispatchQueue.main.async(execute: {
                 //View controller code

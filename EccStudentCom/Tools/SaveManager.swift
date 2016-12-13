@@ -108,63 +108,63 @@ class SaveManager{
     }
     
     // MARK:時間割をRealmを使用して保存するメソッド
-    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String, teacherNames:[String]){
-        var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
-        value = value.replacingOccurrences(of: "\n", with: "")
-        print(value)
-        //時間割まわりを抽出
-        let narrowHtml: String = GetValuesBase("<div id=\"timetable_col\" class=\"col\">","<div class=\"col\">").narrowingValues(value)
-        print(narrowHtml)
-        
-        //行ごと 1時限,2時限,3時限,4時限
-        let rowResults:[String] = GetValuesBase("<th class=\"term\">.*?</tr>").getGroupValues(narrowHtml)
-        
-        var rowNum = 0//行カウント
-        var teacherIndex = 0
-        for row:String in rowResults{
-            
-            
-            //列ごと mon,tue,wed,thur,fri
-            let col: [String] =  GetValuesBase("<td>.*?</td>").getGroupValues(row)
-            var colNum = 0 //列カウント
-            for td:String in col{
-                let saveModel = TimeTableSaveModel()
-                var subject:String = ""
-                var room:String = ""
-                var teacherName:String = ""
-                
-                if GetValuesBase("<li>").ContainsCheck(td){
-                    subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
-                    room = GetValuesBase("<li>(.+?)</li>").getValues(td)
-                    teacherName = teacherNames[teacherIndex]
-                    teacherIndex += 1
-                    
-                    saveModel.subjectName = subject
-                    saveModel.teacherName = teacherName
-                    saveModel.room = room
-                    saveModel.rowNum = rowNum
-                    saveModel.colNum = colNum
-                    
-                }else{
-                    //空のとき
-                    saveModel.rowNum = rowNum
-                    saveModel.colNum = colNum
-                }
-                
-                //データを保存
-                try! realm.write {
-                    realm.add(saveModel)
-                }
-                colNum+=1
-            }
-            //行カウントをインクリメント
-           rowNum+=1
-        }
-    }
+//    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String, teacherNames:[String]){
+//        var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
+//        value = value.replacingOccurrences(of: "\n", with: "")
+//        print(value)
+//        //時間割まわりを抽出
+//        let narrowHtml: String = GetValuesBase("<div id=\"timetable_col\" class=\"col\">","<div class=\"col\">").narrowingValues(value)
+//        print(narrowHtml)
+//        
+//        //行ごと 1時限,2時限,3時限,4時限
+//        let rowResults:[String] = GetValuesBase("<th class=\"term\">.*?</tr>").getGroupValues(narrowHtml)
+//        
+//        var rowNum = 0//行カウント
+//        var teacherIndex = 0
+//        for row:String in rowResults{
+//            
+//            
+//            //列ごと mon,tue,wed,thur,fri
+//            let col: [String] =  GetValuesBase("<td>.*?</td>").getGroupValues(row)
+//            var colNum = 0 //列カウント
+//            for td:String in col{
+//                let saveModel = TimeTableSaveModel()
+//                var subject:String = ""
+//                var room:String = ""
+//                var teacherName:String = ""
+//                
+//                if GetValuesBase("<li>").ContainsCheck(td){
+//                    subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
+//                    room = GetValuesBase("<li>(.+?)</li>").getValues(td)
+//                    teacherName = teacherNames[teacherIndex]
+//                    teacherIndex += 1
+//                    
+//                    saveModel.subjectName = subject
+//                    saveModel.teacherName = teacherName
+//                    saveModel.room = room
+//                    saveModel.rowNum = rowNum
+//                    saveModel.colNum = colNum
+//                    
+//                }else{
+//                    //空のとき
+//                    saveModel.rowNum = rowNum
+//                    saveModel.colNum = colNum
+//                }
+//                
+//                //データを保存
+//                try! realm.write {
+//                    realm.add(saveModel)
+//                }
+//                colNum+=1
+//            }
+//            //行カウントをインクリメント
+//           rowNum+=1
+//        }
+//    }
     
     //スタブ　先生名を空文字で格納する
-    // 将来的にはこのメソッドは不要
-    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String,names:[String]){
+   
+    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String, names:[String]){
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
         //時間割まわりを抽出
@@ -191,7 +191,7 @@ class SaveManager{
                 var room:String = ""
                 let teacherName:String = names[teacherIndex]
                 
-                if GetValuesBase("<li>").ContainsCheck(td){
+                if GetValuesBase("<li>").ContainsCheck(td){ 
                     subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
                     room = GetValuesBase("<td>\\s*<ul>\\s*<li>.*?</li>\\s*<li>(.+?)</li>").getValues(td)
                     //teacherName = teacherNames[teacherIndex]

@@ -28,6 +28,8 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet var masterView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         initTableView()
         bottomSheetView.isHidden = true
         bottomCloseButton.isHidden = true
+        bottomCloseButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +53,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             fridayTableView.reloadData()
             refreshFlg = false
         }
-     
+        
         super.viewWillAppear(animated)
         
     }
@@ -62,67 +65,65 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     
     //closeButton
     @IBAction func bottomCloseButton(_ sender: AnyObject) {
-        bottomSheetView.isHidden = true
-        bottomCloseButton.isHidden = true
+        
+        bottomCloseButton.isEnabled = false
+        
+        fadeOutAnimation()
+        closeAnimation()
         subjectLabel.text = ""
         teacherLabel.text = ""
         timeLabel.text = ""
+    
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         switch tableView.tag {
         case 0:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellMon
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
-                return
-            }
-            bottomSheetView.isHidden = false
-            bottomCloseButton.isHidden = false
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil{return}
+            
+            setBottomSheet()
+            
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
             timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
             break
         case 1:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellTue
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
-                return
-            }
-            bottomSheetView.isHidden = false
-            bottomCloseButton.isHidden = false
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
+            
+             setBottomSheet()
+            
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
             timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
             break
         case 2:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellWed
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
-                return
-            }
-            bottomSheetView.isHidden = false
-            bottomCloseButton.isHidden = false
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
+            
+             setBottomSheet()
+            
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
             timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
             break
         case 3:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellThur
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
-                return
-            }
-            bottomSheetView.isHidden = false
-            bottomCloseButton.isHidden = false
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
+            
+            setBottomSheet()
+            
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
             timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
             break
         case 4:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellFri
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {
-                return
-            }
-            bottomSheetView.isHidden = false
-            bottomCloseButton.isHidden = false
+            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
+            
+            setBottomSheet()
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
             timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
@@ -130,20 +131,55 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         default:
             break
         }
-
     }
     
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+    func setBottomSheet(){
+        bottomSheetView.isHidden = false
+        bottomCloseButton.isHidden = false
+        openAnimation()
+        fadeInAnimation()
+    }
+    
+    private let ANIM_SPEED = 0.3
+    
+    func openAnimation(){
+        UIView.animate(withDuration: ANIM_SPEED, animations: {
+            self.bottomSheetView.frame.origin.y = 150
+            self.bottomCloseButton.isEnabled = true
+        })
+    }
+    
+    func closeAnimation(){
+        UIView.transition(with: bottomSheetView,
+                          duration: 0.1,
+                          options: .transitionCrossDissolve,
+                          animations: {() -> Void in
+            self.bottomSheetView.isHidden = true
+            }, completion: { _ in })
+    }
+    
+    func fadeInAnimation(){
+        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
+            self.bottomCloseButton.alpha = 1.0
+        }
+    }
+    func fadeOutAnimation(){
+        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
+            self.bottomCloseButton.alpha = 0.0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         var subjectName:String = ""
         var roomNumber:String = ""
         var teacherName:String = ""
         switch tableView.tag {
-        
+            
             
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
-          
+            
             let realm = try! Realm()
             let saveModel = realm.objects(TimeTableSaveModel.self)
             subjectName = saveModel[(indexPath as NSIndexPath).row * 5].subjectName
@@ -198,7 +234,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
             
             return cell
-        
+            
         default:
             break
         }
@@ -208,19 +244,11 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         return cell
     }
     
-    func cerateCell(){
-        
-    }
-    
-    func warningColor(){
-    
-    }
-    
     /// セルの個数を指定するデリゲートメソッド（必須）
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-
+    
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
         return false;
@@ -253,7 +281,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         thursdayTableView.delegate = self
         fridayTableView.delegate = self
     }
-
+    
     func getTime(index:Int) -> String{
         switch index {
         case 0:
@@ -264,6 +292,8 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             return "13:30 ~ 15:00"
         case 3:
             return "15:15 ~ 16:45"
+        case 3:
+            return "17:00 ~ 18:30"
         default:
             return ""
         }

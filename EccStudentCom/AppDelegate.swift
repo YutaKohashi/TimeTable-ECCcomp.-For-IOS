@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         //表示するビューコントローラーを指定
-        if  PreferenceManager().loginCheck() {
+        if  PreferenceManager.loginCheck() {
             //ログイン処理が完了しているとき(withIdentifier: "MainView") as! UITabBarController
             viewController = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
         } else {
@@ -64,15 +64,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            try! NSFileManager.defaultManager().removeItemAtURL(fileURL)
 //        }
         
+        let alertController = UIAlertController(title: "Hello!", message: "This is Alert sample.", preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        
+        
         if ToolsBase().CheckReachability("google.com") {
             print("インターネットへの接続が確認されています")
         } else {
             //未接続
             //ダイアログ表示
-            KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType:.black,message:"インターネット未接続")
+            //KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType:.black,message:"インターネット未接続")
             print("インターネットに接続してください")
-        
-            
         }
     }
 

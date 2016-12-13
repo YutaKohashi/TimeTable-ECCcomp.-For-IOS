@@ -57,15 +57,13 @@ class HttpBase{
         }
         task.resume()
     }
-    
-    
   
     //連続GETメソッド
     func continuousRequest(urls:[String],method:String) -> [String]{
         var htmls:[String] = []
         
         for i in 0  ..< urls.count {
-            self.sendSynchronize(method:"GET",
+            self.sendSynchronize(method:method,
                                  url: urls[i],
                                  requestBody:"",
                                  completion:{ data, res, error in
@@ -80,11 +78,6 @@ class HttpBase{
     private func sendSynchronize(method:String,url:String,requestBody:String, completion: @escaping (NSData?, URLResponse?, NSError?) -> Void) {
         let semaphore = DispatchSemaphore(value: 0)
         
-//        let request = self.createURLRequest(method: method,
-//                                            uri:  url,
-//                                            requestBody: requestBody,
-//                                            referer: "",
-//                                            header:true)
         let url = URL(string: url)!
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: url) { data, response, error in
@@ -92,18 +85,7 @@ class HttpBase{
                 completion(data as NSData?, response, error as NSError?)
                 semaphore.signal()
             }
-            
-            // update some critical resources
         }
-//        let task = URLSession.shared.dataTask(with: request) {
-//            data, response, error in
-//            
-//            completion(data as NSData?, response, error as NSError?)
-//            semaphore.signal()
-//            return
-//            
-//        }
-        
         task.resume()
         semaphore.wait()
     }

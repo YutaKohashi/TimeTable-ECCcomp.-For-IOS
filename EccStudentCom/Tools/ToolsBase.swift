@@ -39,5 +39,14 @@ class ToolsBase{
         }
         return flg
     }
+    
+    func getNow() -> String {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let string = formatter.string(from: now)
+        
+        return string
+    }
 }
 

@@ -11,11 +11,17 @@ import Foundation
 //設定関連の処理
 class PreferenceManager{
     
-    fileprivate let LOGIN_KEY:String = "login" + "1.2.0"
+    static fileprivate let LOGIN_KEY:String = "login" + "1.2.5"
+    static fileprivate let LOGINED_KEY:String = "login" + "1.2.0" //一つ前のバージョンのログインキー
+    
+    static fileprivate let ID:String = "id"
+    static fileprivate let PASS:String = "pass"
+    static fileprivate let COLOR_PREF:String = "colorpref"
+    static fileprivate let LATEST_UPDATE = "latest_upate"
     
     // MARK: -
     // MARK:ログインチェック
-    func loginCheck() -> Bool{
+    static func loginCheck() -> Bool{
         
         let ud = UserDefaults.standard
         let bool : Bool = ud.bool(forKey: LOGIN_KEY)
@@ -23,54 +29,74 @@ class PreferenceManager{
         return bool
     }
     
+    static func loginedCheck() -> Bool{
+        let ud = UserDefaults.standard
+        let bool : Bool = ud.bool(forKey: LOGINED_KEY)
+        
+        return bool
+    }
+    
     // MARK://ログインしたことを保存
-    func saveLoginState(_ bool:Bool){
+    static func saveLoginState(_ bool:Bool){
         let ud = UserDefaults.standard
         ud.set(bool, forKey: LOGIN_KEY)
         ud.synchronize()
     }
     
     // MARK:ログイン時に使用したid,passを保存
-    func saveIdPass(_ id:String,pass:String){
+    static func saveIdPass(_ id:String,pass:String){
         let ud = UserDefaults.standard
-        ud.set(id, forKey: "id")
-        ud.set(pass, forKey: "pass")
+        ud.set(id, forKey: ID)
+        ud.set(pass, forKey: PASS)
         ud.synchronize()
     }
     
     // MARK: -
     // MARK:id,passを削除
-    func removeSavedIdPass(){
+    static func removeSavedIdPass(){
         let ud = UserDefaults.standard
-        ud.removeObject(forKey: "id")
-        ud.removeObject(forKey: "pass")
+        ud.removeObject(forKey: ID)
+        ud.removeObject(forKey: PASS)
     }
     
     // MARK:saveされているIdを取得
-    func getSavedId() -> String{
+    static func getSavedId() -> String{
         let ud = UserDefaults.standard
-        return ud.object(forKey: "id")  as! String
+        return ud.object(forKey: ID)  as! String
     }
     
     // MARK:saveされているpassを取得
-    func getSavedPass() -> String{
+    static func getSavedPass() -> String{
         let ud = UserDefaults.standard
-        return ud.object(forKey: "pass")  as! String
+        return ud.object(forKey: PASS)  as! String
     }
     
     // MARK:ログインしたことを保存
-    func saveColorPref(_ bool:Bool){
+    static func saveColorPref(_ bool:Bool){
         let ud = UserDefaults.standard
-        ud.set(bool, forKey: "colorpref")
+        ud.set(bool, forKey: COLOR_PREF)
         ud.synchronize()
     }
     
     // MARK: -
     // MARK:出席照会の色
-    func colorStatePref() -> Bool{
+    static func colorStatePref() -> Bool{
         let ud = UserDefaults.standard
-        let bool : Bool = ud.bool(forKey: "colorpref")
+        let bool : Bool = ud.bool(forKey: COLOR_PREF)
         
         return bool
+    }
+    
+    // MARK: - 出席照会のアップデート情報
+    static func saveLatestUpdateAttendanceRate(now : String){
+        let ud = UserDefaults.standard
+        ud.set(now, forKey: LATEST_UPDATE)
+        ud.synchronize()
+    }
+    
+    // get information with latest update
+    static func getLatestUpdateAttendanceRate() -> String{
+        let ud = UserDefaults.standard
+        return ud.object(forKey: LATEST_UPDATE)  as! String
     }
 }
