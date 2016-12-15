@@ -10,33 +10,33 @@ import Foundation
 
 class HttpConnector{
     
-    private let HELPER = HttpHelper()
+    fileprivate let HELPER = HttpHelper()
    
     // リクエストタイプ
     enum `RequestType`: Int {
-        case TIME_TABLE
-        case ATTENDANCE_RATE
-        case TIME_ATTEND
+        case time_TABLE
+        case attendance_RATE
+        case time_ATTEND
     }
     
     //時間割　出席率を取得するメソッド
-    func request(type:RequestType,userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void{
+    func request(_ type:RequestType,userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void{
         
         switch type{
-        case .TIME_TABLE:
-            HELPER.getTimeTable(userId: userId, password: password, callback: { (bool) in
+        case .time_TABLE:
+            HELPER.getTimeTable(userId, password: password, callback: { (bool) in
                 callback(bool)
             })
             break
             
-        case .ATTENDANCE_RATE:
-            HELPER.getAttendanceRate(userId: userId, password: password, callback: { (bool) in
+        case .attendance_RATE:
+            HELPER.getAttendanceRate(userId, password: password, callback: { (bool) in
                 callback(bool)
             })
             break
             
-        case .TIME_ATTEND:
-            HELPER.getTimeTableAttendanceRate(userId: userId, password: password, callback: { (bool) in
+        case .time_ATTEND:
+            HELPER.getTimeTableAttendanceRate(userId, password: password, callback: { (bool) in
                 callback(bool)
             })
         }

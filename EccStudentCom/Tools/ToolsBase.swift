@@ -27,7 +27,7 @@ class ToolsBase{
     }
     
     // MARK:テキストフィールドチェック
-    func checkTextFiled(idTextField:UITextField,passwordTextField:UITextField) -> Bool{
+    func checkTextFiled(_ idTextField:UITextField,passwordTextField:UITextField) -> Bool{
         var flg:Bool = false
         let num = idTextField.text?.characters.count
         if num == 0{

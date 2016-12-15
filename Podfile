@@ -5,6 +5,7 @@ pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => 
 pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => true
 
 pod 'KRProgressHUD'
+pod 'XLPagerTabStrip', '~> 5.0'
 
 end
 

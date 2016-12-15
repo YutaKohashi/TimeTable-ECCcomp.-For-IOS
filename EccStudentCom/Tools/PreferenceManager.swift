@@ -88,7 +88,7 @@ class PreferenceManager{
     }
     
     // MARK: - 出席照会のアップデート情報
-    static func saveLatestUpdateAttendanceRate(now : String){
+    static func saveLatestUpdateAttendanceRate(_ now : String){
         let ud = UserDefaults.standard
         ud.set(now, forKey: LATEST_UPDATE)
         ud.synchronize()

@@ -36,6 +36,8 @@
 		79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */; };
 		798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078D1DCD8E0B00929F17 /* CallBackClass.swift */; };
 		798C07901DCE138200929F17 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */; };
+		798C1D9D1DFFCC5E00FEF1ED /* calendar-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 798C1D9C1DFFCC5E00FEF1ED /* calendar-7.png */; };
+		798C1D9F1DFFDC4A00FEF1ED /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C1D9E1DFFDC4A00FEF1ED /* ScheduleViewController.swift */; };
 		799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TimeTableViewController.swift */; };
 		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
 		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
@@ -92,6 +94,8 @@
 		79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellFri.swift; sourceTree = "<group>"; };
 		798C078D1DCD8E0B00929F17 /* CallBackClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackClass.swift; sourceTree = "<group>"; };
 		798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
+		798C1D9C1DFFCC5E00FEF1ED /* calendar-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-7.png"; sourceTree = "<group>"; };
+		798C1D9E1DFFDC4A00FEF1ED /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		799F60141DC5B80100C95A68 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
 		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				79043BC51DCB692B00A7B131 /* LoginViewController.swift */,
 				79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */,
 				7924B03A1DEB211F00D43894 /* DetailTimeViewController.swift */,
+				798C1D9E1DFFDC4A00FEF1ED /* ScheduleViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 		79F573811DCD092800E62898 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				798C1D9C1DFFCC5E00FEF1ED /* calendar-7.png */,
 				795D41CB1DC9840900F9407E /* Settings-50.png */,
 				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
 				799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */,
@@ -326,7 +332,7 @@
 					794F666B1D96B7C300C1D9B6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 3L9NAZMKF3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -364,6 +370,7 @@
 				799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */,
 				794F667A1D96B7C300C1D9B6 /* Assets.xcassets in Resources */,
 				79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */,
+				798C1D9D1DFFCC5E00FEF1ED /* calendar-7.png in Resources */,
 				794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */,
 				79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */,
 			);
@@ -429,6 +436,7 @@
 				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
 				79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */,
 				791DE0551DD169DD00FEB18A /* HttpBase.swift in Sources */,
+				798C1D9F1DFFDC4A00FEF1ED /* ScheduleViewController.swift in Sources */,
 				790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */,
 				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,

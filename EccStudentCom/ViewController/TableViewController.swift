@@ -73,7 +73,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         self.indicator.isHidden = false
         self.indicator.startAnimating()
         //テーブル更新
-        HttpConnector().request(type: .ATTENDANCE_RATE,
+        HttpConnector().request(.attendance_RATE,
                                 userId: PreferenceManager.getSavedId(),
                                 password: PreferenceManager.getSavedPass())
         { (result) in
@@ -93,7 +93,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     refreshControl.attributedTitle =
                         NSAttributedString(string:"最終更新日時 : " +
                              ToolsBase().getNow());
-                    PreferenceManager.saveLatestUpdateAttendanceRate(now: ToolsBase().getNow())
+                    PreferenceManager.saveLatestUpdateAttendanceRate(ToolsBase().getNow())
                     
                 }else{
                     refreshControl.endRefreshing()

@@ -18,7 +18,7 @@ class LisenceViewController: UIViewController {
         let path : String = Bundle.main.path(forResource: "lisence", ofType:"html")!
         DispatchQueue.main.async(execute: {
             //View controller code
-            self.webView.loadRequest(NSURLRequest(url: NSURL(string: path)! as URL) as URLRequest)
+            self.webView.loadRequest(URLRequest(url: URL(string: path)! as URL) as URLRequest)
         })
     }
 

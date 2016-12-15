@@ -15,14 +15,14 @@ class HttpHelper:HttpBase{
     let BODY = RequestBody()
     
     // MARK:時間割を取得
-    func getTimeTable(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
+    func getTimeTable(_ userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
         // 時間割
-        self.requestTimeTable(userId: userId, password: password,callback: {
+        self.requestTimeTable(userId, password: password,callback: {
             requestResult in
             
             if(requestResult.bool){
                 
-                let names = self.getTeacherNames(html: requestResult.string)
+                let names = self.getTeacherNames(requestResult.string)
                 
                 //保存処理
                 let realmSwift = try! Realm()
@@ -40,8 +40,8 @@ class HttpHelper:HttpBase{
     }
     
     // MARK:出席照会リスト
-    func getAttendanceRate(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
-        self.reequestAttendanseRate(userId: userId, password: password) { (requestResult) in
+    func getAttendanceRate(_ userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
+        self.reequestAttendanseRate(userId, password: password) { (requestResult) in
             
             if(requestResult.bool){
                 //Realmをインスタンス化
@@ -60,10 +60,10 @@ class HttpHelper:HttpBase{
     }
     
     // MARK:時間割と出席照会を取得し保存するメソッド
-    func getTimeTableAttendanceRate(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
-        getTimeTable(userId: userId, password: password) { (cb1) in
+    func getTimeTableAttendanceRate(_ userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
+        getTimeTable(userId, password: password) { (cb1) in
             if(cb1){
-                self.getAttendanceRate(userId: userId, password: password, callback:
+                self.getAttendanceRate(userId, password: password, callback:
                     { (cb2) in
                         callback(cb2)
                 })
@@ -73,18 +73,18 @@ class HttpHelper:HttpBase{
     
     //先生名を取得するメソッド
     //連続GET
-    func getTeacherNames(html:String) -> [String]{
+    func getTeacherNames(_ html:String) -> [String]{
         var names:[String] = []
-        let urls:[String] = getTeacherURLs(html: html)
-        let htmls:[String] = self.continuousRequest(urls: urls, method: "GET")
+        let urls:[String] = getTeacherURLs(html)
+        let htmls:[String] = self.continuousRequest(urls, method: "GET")
         for html in htmls{
-            names.append(getTeacherName(html: html))
+            names.append(getTeacherName(html))
         }
         
         return names
     }
     
-    func getTeacherURLs(html:String) -> [String]{
+    func getTeacherURLs(_ html:String) -> [String]{
         let urls:[String] = GetValuesBase("<a href=\"(.+?)\">投書<").getGroupValues(html)
         var result:[String] = []
         for url in urls{
@@ -93,14 +93,14 @@ class HttpHelper:HttpBase{
         return result
     }
     
-    func getTeacherName(html:String) -> String{
+    func getTeacherName(_ html:String) -> String{
         var name = GetValuesBase("<h3>受信者</h3>\n*\\s*<p>(.+?)</p>").getValues(html)
-        name = fixName(name:name)
+        name = fixName(name)
         return name
     }
     
     //replace two more \s to one
-    func fixName(name:String) -> String{
+    func fixName(_ name:String) -> String{
         var fixedname = name.replacingOccurrences(of:"      ", with: " ")
         fixedname = fixedname.replacingOccurrences(of:"      ", with: " ")
         fixedname = fixedname.replacingOccurrences(of:"     ", with: " ")
@@ -112,15 +112,15 @@ class HttpHelper:HttpBase{
     
     // MARK: -
     // MARK:時間割を取得
-    private func requestTimeTable(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
-        httpGet(url: URL.ESC_TO_PAGE,
+    fileprivate func requestTimeTable(_ userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
+        httpGet(URL.ESC_TO_PAGE,
                 requestBody:"" ,
                 referer: URL.DEFAULT_REFERER,
                 header: true)
         { (cb1) in
             if(cb1.bool){
-                self.httpPost(url: self.URL.ESC_LOGIN,
-                              requestBody: self.BODY.createPostDataForEscLogin(userId: userId,
+                self.httpPost(self.URL.ESC_LOGIN,
+                              requestBody: self.BODY.createPostDataForEscLogin(userId,
                                                                                passwrod: password,
                                                                                mLastResponseHtml: cb1.string),
                               referer: self.URL.ESC_TO_PAGE,
@@ -133,23 +133,23 @@ class HttpHelper:HttpBase{
     }
     
     // MARK:出席率を取得
-    private func reequestAttendanseRate(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
-        httpGet(url: URL.YS_TO_PAGE,
+    fileprivate func reequestAttendanseRate(_ userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
+        httpGet(URL.YS_TO_PAGE,
                 requestBody:"" ,
                 referer: URL.DEFAULT_REFERER,
                 header: true)
         { (cb1) in
             if(cb1.bool){
-                self.httpPost(url: self.URL.YS_LOGIN,
-                              requestBody: self.BODY.createPostDataForYSLogin(userId:userId,
+                self.httpPost(self.URL.YS_LOGIN,
+                              requestBody: self.BODY.createPostDataForYSLogin(userId,
                                                                               password:password,
                                                                               mLastResponseHtml: cb1.string),
                               referer: self.URL.YS_TO_PAGE,
                               header: true)
                 { (cb2) in
                     if(cb2.bool){
-                        self.httpPost(url: self.URL.YS_TO_RATE_PAGE,
-                                      requestBody: self.BODY.createPostDataForRatePage(mLastResponseHtml: cb2.string),
+                        self.httpPost(self.URL.YS_TO_RATE_PAGE,
+                                      requestBody: self.BODY.createPostDataForRatePage(cb2.string),
                                       referer: self.URL.YS_LOGIN,
                                       header: false)
                         { (cb3) in

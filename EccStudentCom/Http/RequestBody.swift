@@ -11,7 +11,7 @@ import Foundation
 class RequestBody{
     // MARK: -
     // MARK:StudentCommunicationログイン時のリクエストボディ
-    func createPostDataForEscLogin(userId:String, passwrod:String,mLastResponseHtml:String) -> String{
+    func createPostDataForEscLogin(_ userId:String, passwrod:String,mLastResponseHtml:String) -> String{
         let _token = GetValuesBase().uriEncode(GetValuesBase("input name=\"_token\" type=\"hidden\" value=\"(.+?)\"").getValues(mLastResponseHtml))
         let postString :String = "_token=" + _token +
                                  "&userid=" + userId +
@@ -20,7 +20,7 @@ class RequestBody{
     }
     
     // MARK:山口学園学生サービスログイン時のリクエストボディ
-    func createPostDataForYSLogin(userId:String, password:String,mLastResponseHtml:String) -> String{
+    func createPostDataForYSLogin(_ userId:String, password:String,mLastResponseHtml:String) -> String{
         let __LASTFOCUS = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__LASTFOCUS\" id=\"__LASTFOCUS\" value=\"(.+?)\"").getValues(mLastResponseHtml))
         let __VIEWSTATE =  GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"(.*?)\"").getValues(mLastResponseHtml))
         let __SCROLLPOSITIONX = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__SCROLLPOSITIONX\" id=\"__SCROLLPOSITIONX\" value=\"(.+?)\"").getValues(mLastResponseHtml))
@@ -48,7 +48,7 @@ class RequestBody{
     }
     
     // MARK:出席率画面遷移時のリクエストボディ
-    func createPostDataForRatePage(mLastResponseHtml:String) -> String{
+    func createPostDataForRatePage(_ mLastResponseHtml:String) -> String{
         
         let  __EVENTTARGET2 = GetValuesBase().uriEncode("ctl00$btnSyuseki")
         let  __EVENTARGUMENT2 = GetValuesBase().uriEncode(GetValuesBase("input type=\"hidden\" name=\"__EVENTARGUMENT\" id=\"__EVENTARGUMENT\" value=\"(.+?)\"").getValues(mLastResponseHtml))

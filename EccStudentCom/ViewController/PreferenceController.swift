@@ -43,7 +43,7 @@ class PreferenceController : UITableViewController{
                 }
                 
                 DialogManager().showIndicator()
-                HttpConnector().request(type: .TIME_TABLE,
+                HttpConnector().request(.time_TABLE,
                                         userId: PreferenceManager.getSavedId(),
                                         password: PreferenceManager.getSavedPass(),
                                         callback:

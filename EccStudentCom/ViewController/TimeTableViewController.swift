@@ -33,7 +33,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
+        StatusBarManager().setStatusBarBackgroundColor(UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
         // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
         
@@ -87,7 +87,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            timeLabel.text = getTime((indexPath as NSIndexPath).row)
             break
         case 1:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellTue
@@ -97,7 +97,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            timeLabel.text = getTime((indexPath as NSIndexPath).row)
             break
         case 2:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellWed
@@ -107,7 +107,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            timeLabel.text = getTime((indexPath as NSIndexPath).row)
             break
         case 3:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellThur
@@ -117,7 +117,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            timeLabel.text = getTime((indexPath as NSIndexPath).row)
             break
         case 4:
             let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellFri
@@ -126,7 +126,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             setBottomSheet()
             subjectLabel.text = cell.getSubjectName().text
             teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
+            timeLabel.text = getTime((indexPath as NSIndexPath).row)
             break
         default:
             break
@@ -140,7 +140,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         fadeInAnimation()
     }
     
-    private let ANIM_SPEED = 0.3
+    fileprivate let ANIM_SPEED = 0.3
     
     func openAnimation(){
         UIView.animate(withDuration: ANIM_SPEED, animations: {
@@ -282,7 +282,7 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         fridayTableView.delegate = self
     }
     
-    func getTime(index:Int) -> String{
+    func getTime(_ index:Int) -> String{
         switch index {
         case 0:
             return "09:15 ~ 10:45"

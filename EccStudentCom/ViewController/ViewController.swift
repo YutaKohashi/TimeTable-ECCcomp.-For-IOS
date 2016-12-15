@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
+        StatusBarManager().setStatusBarBackgroundColor(UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
         // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
         
@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginButton.layer.cornerRadius = 10    //角の設定
         loginButton.layer.masksToBounds = true
         
-        PreferenceManager.saveLatestUpdateAttendanceRate(now: "-/-/- -:-")
+        PreferenceManager.saveLatestUpdateAttendanceRate("-/-/- -:-")
         
     }
     
@@ -85,7 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
         //テキストフィールドチェック
-        if ToolsBase().checkTextFiled(idTextField: idTextField,passwordTextField: passwordTextField){
+        if ToolsBase().checkTextFiled(idTextField,passwordTextField: passwordTextField){
             DialogManager().showWarningForTextField()
             return;
         }
@@ -94,7 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         DialogManager().showIndicator()
         let userId:String = idTextField.text!
         let password:String = passwordTextField.text!
-        HttpConnector().request(type: .TIME_ATTEND,
+        HttpConnector().request(.time_ATTEND,
                                 userId: userId,
                                 password: password)
         { (result) in

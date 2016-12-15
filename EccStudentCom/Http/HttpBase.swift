@@ -11,8 +11,8 @@ import Foundation
 class HttpBase{
     
     // MARK:GET通信
-    func httpGet(url:String,requestBody:String,referer:String,header:Bool,callback: @escaping (CallBackClass) -> Void) -> Void {
-        self.httpRequest(type: "GET",
+    func httpGet(_ url:String,requestBody:String,referer:String,header:Bool,callback: @escaping (CallBackClass) -> Void) -> Void {
+        self.httpRequest("GET",
                          url: url,
                          requestBody: requestBody,
                          referer: referer,
@@ -22,8 +22,8 @@ class HttpBase{
     }
     
     // MARK:POST通信
-    func httpPost(url:String,requestBody:String,referer:String,header:Bool,callback: @escaping (CallBackClass) -> Void) -> Void {
-        self.httpRequest(type: "POST",
+    func httpPost(_ url:String,requestBody:String,referer:String,header:Bool,callback: @escaping (CallBackClass) -> Void) -> Void {
+        self.httpRequest("POST",
                          url: url,
                          requestBody: requestBody,
                          referer: referer,
@@ -33,10 +33,10 @@ class HttpBase{
     }
     
     // MARK:リクエストベースメソッド
-    private func httpRequest(type:String,url:String,requestBody:String,referer:String,header:Bool,callback: @escaping (CallBackClass) -> Void) -> Void {
+    fileprivate func httpRequest(_ type:String,url:String,requestBody:String,referer:String,header:Bool,callback: @escaping (CallBackClass) -> Void) -> Void {
         let cb:CallBackClass = CallBackClass()
         
-        let request = self.createURLRequest(method: type,
+        let request = self.createURLRequest(type,
                                             uri:  url,
                                             requestBody: requestBody,
                                             referer: referer,
@@ -59,11 +59,11 @@ class HttpBase{
     }
   
     //連続GETメソッド
-    func continuousRequest(urls:[String],method:String) -> [String]{
+    func continuousRequest(_ urls:[String],method:String) -> [String]{
         var htmls:[String] = []
         
         for i in 0  ..< urls.count {
-            self.sendSynchronize(method:method,
+            self.sendSynchronize(method,
                                  url: urls[i],
                                  requestBody:"",
                                  completion:{ data, res, error in
@@ -75,14 +75,14 @@ class HttpBase{
     }
     
     //TODO:
-    private func sendSynchronize(method:String,url:String,requestBody:String, completion: @escaping (NSData?, URLResponse?, NSError?) -> Void) {
+    fileprivate func sendSynchronize(_ method:String,url:String,requestBody:String, completion: @escaping (Data?, URLResponse?, NSError?) -> Void) {
         let semaphore = DispatchSemaphore(value: 0)
         
         let url = URL(string: url)!
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let task = session.dataTask(with: url) { data, response, error in
             defer {
-                completion(data as NSData?, response, error as NSError?)
+                completion(data as Data?,response, error as NSError?)
                 semaphore.signal()
             }
         }
@@ -92,7 +92,7 @@ class HttpBase{
     
     
     // MARK:リクエスト作成
-    private func createURLRequest(method:String,uri:String,requestBody:String,referer:String,header:Bool) -> URLRequest{
+    fileprivate func createURLRequest(_ method:String,uri:String,requestBody:String,referer:String,header:Bool) -> URLRequest{
         var request:URLRequest = URLRequest(url: URL(string: uri)!)
         request.httpMethod = method
         if(header){

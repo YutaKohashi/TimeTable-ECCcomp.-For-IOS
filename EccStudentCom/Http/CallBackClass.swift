@@ -10,9 +10,9 @@
 class CallBackClass{
     
     //HTMLリソース
-    private var resultHtm : String = ""
+    fileprivate var resultHtm : String = ""
     //成功判定
-    private var resultBool : Bool = false
+    fileprivate var resultBool : Bool = false
     
     var string:String {
         get{

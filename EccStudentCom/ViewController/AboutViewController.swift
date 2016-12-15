@@ -20,7 +20,7 @@ class AboutViewController: UIViewController {
         webView.scrollView.bounces = false
           let path : String = Bundle.main.path(forResource: "about_html", ofType:"html")!
         DispatchQueue.main.async(execute: {
-            self.webView.loadRequest(NSURLRequest(url: NSURL(string: path)! as URL) as URLRequest)
+            self.webView.loadRequest(URLRequest(url: URL(string: path)! as URL) as URLRequest)
         })
     }
     

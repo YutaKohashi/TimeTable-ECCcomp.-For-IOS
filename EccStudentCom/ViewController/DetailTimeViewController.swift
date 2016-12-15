@@ -24,6 +24,6 @@ class DetailTimeViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func returnMainView(segue: UIStoryboardSegue) {}
+    @IBAction func returnMainView(_ segue: UIStoryboardSegue) {}
 
 }

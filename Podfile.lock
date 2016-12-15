@@ -5,11 +5,13 @@ PODS:
   - Realm/Headers (2.0.3)
   - RealmSwift (2.0.3):
     - Realm (= 2.0.3)
+  - XLPagerTabStrip (5.1.0)
 
 DEPENDENCIES:
   - KRProgressHUD
   - Realm (from `https://github.com/realm/realm-cocoa.git`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`)
+  - XLPagerTabStrip (~> 5.0)
 
 EXTERNAL SOURCES:
   Realm:
@@ -33,7 +35,8 @@ SPEC CHECKSUMS:
   KRProgressHUD: eb23a52e98069190660e33167e870cf2d80a435f
   Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
   RealmSwift: 79a9bc83e7ef4fbde17e0f303c5fadb99264a6be
+  XLPagerTabStrip: 9191deaa2336735b7c47beb21e42be537fa4242a
 
-PODFILE CHECKSUM: 98b8869dfd9f00123aad3d01c3618051bc1b0000
+PODFILE CHECKSUM: 178cfc3f5fbf06e54a33196343defcb9189ddf1b
 
 COCOAPODS: 1.1.1

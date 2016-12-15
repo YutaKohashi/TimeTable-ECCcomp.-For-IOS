@@ -10,7 +10,7 @@ import UIKit
 
 extension CALayer {
     
-    func setBorderIBColor(color: UIColor!) -> Void{
+    func setBorderIBColor(_ color: UIColor!) -> Void{
         self.borderColor = color.cgColor
     }
 }
