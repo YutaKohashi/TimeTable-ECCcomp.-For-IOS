@@ -61,6 +61,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 PreferenceManager.saveLoginState(false)
                 //保存されていたpassIdを削除
                 PreferenceManager.removeSavedIdPass()
+                PreferenceManager.saveLoginedState(false)
                 
             })
             

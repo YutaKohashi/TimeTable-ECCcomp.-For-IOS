@@ -11,8 +11,8 @@ import Foundation
 //設定関連の処理
 class PreferenceManager{
     
-    static fileprivate let LOGIN_KEY:String = "login" + "1.2.5"
-    static fileprivate let LOGINED_KEY:String = "login" + "1.2.0" //一つ前のバージョンのログインキー
+    static fileprivate let LOGIN_KEY:String = "login" + "1.4.2"
+    static fileprivate let LOGINED_KEY:String = "login" + "1.4.1" //一つ前のバージョンのログインキー
     
     static fileprivate let ID:String = "id"
     static fileprivate let PASS:String = "pass"
@@ -40,6 +40,12 @@ class PreferenceManager{
     static func saveLoginState(_ bool:Bool){
         let ud = UserDefaults.standard
         ud.set(bool, forKey: LOGIN_KEY)
+        ud.synchronize()
+    }
+    
+    static func saveLoginedState(_ bool:Bool){
+        let ud = UserDefaults.standard
+        ud.set(bool, forKey: LOGINED_KEY)
         ud.synchronize()
     }
     

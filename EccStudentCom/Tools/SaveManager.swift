@@ -102,68 +102,10 @@ class SaveManager{
             print("------------------- \("")")
             print(" \("")")
         }
-        
-     
-        
     }
     
-    // MARK:時間割をRealmを使用して保存するメソッド
-//    func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String, teacherNames:[String]){
-//        var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
-//        value = value.replacingOccurrences(of: "\n", with: "")
-//        print(value)
-//        //時間割まわりを抽出
-//        let narrowHtml: String = GetValuesBase("<div id=\"timetable_col\" class=\"col\">","<div class=\"col\">").narrowingValues(value)
-//        print(narrowHtml)
-//        
-//        //行ごと 1時限,2時限,3時限,4時限
-//        let rowResults:[String] = GetValuesBase("<th class=\"term\">.*?</tr>").getGroupValues(narrowHtml)
-//        
-//        var rowNum = 0//行カウント
-//        var teacherIndex = 0
-//        for row:String in rowResults{
-//            
-//            
-//            //列ごと mon,tue,wed,thur,fri
-//            let col: [String] =  GetValuesBase("<td>.*?</td>").getGroupValues(row)
-//            var colNum = 0 //列カウント
-//            for td:String in col{
-//                let saveModel = TimeTableSaveModel()
-//                var subject:String = ""
-//                var room:String = ""
-//                var teacherName:String = ""
-//                
-//                if GetValuesBase("<li>").ContainsCheck(td){
-//                    subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
-//                    room = GetValuesBase("<li>(.+?)</li>").getValues(td)
-//                    teacherName = teacherNames[teacherIndex]
-//                    teacherIndex += 1
-//                    
-//                    saveModel.subjectName = subject
-//                    saveModel.teacherName = teacherName
-//                    saveModel.room = room
-//                    saveModel.rowNum = rowNum
-//                    saveModel.colNum = colNum
-//                    
-//                }else{
-//                    //空のとき
-//                    saveModel.rowNum = rowNum
-//                    saveModel.colNum = colNum
-//                }
-//                
-//                //データを保存
-//                try! realm.write {
-//                    realm.add(saveModel)
-//                }
-//                colNum+=1
-//            }
-//            //行カウントをインクリメント
-//           rowNum+=1
-//        }
-//    }
+
     
-    //スタブ　先生名を空文字で格納する
-   
     func saveTimeTable(_ realm:Realm ,mLastResponseHtml:String, names:[String]){
         var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
         value = value.replacingOccurrences(of: "\n", with: "")
@@ -189,19 +131,19 @@ class SaveManager{
                 let saveModel = TimeTableSaveModel()
                 var subject:String = ""
                 var room:String = ""
-                let teacherName:String = names[teacherIndex]
+                let teacherName:String = ""
                 
                 if GetValuesBase("<li>").ContainsCheck(td){ 
                     subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
                     room = GetValuesBase("<td>\\s*<ul>\\s*<li>.*?</li>\\s*<li>(.+?)</li>").getValues(td)
                     //teacherName = teacherNames[teacherIndex]
-                    teacherIndex += 1
                     
                     saveModel.subjectName = subject
-                    saveModel.teacherName = teacherName //teacherNameは空文字
+                    saveModel.teacherName =   names[teacherIndex] //teacherNameは空文字
                     saveModel.room = room
                     saveModel.rowNum = rowNum
                     saveModel.colNum = colNum
+                    teacherIndex += 1
                     
                 }else{
                     //空のとき
@@ -209,16 +151,7 @@ class SaveManager{
                     saveModel.colNum = colNum
                 }
                 
-                //*********************************************
-                print("******************************")
-                print("subject = " + subject)
-                print("room = " + room)
-                print("teacherName = " + teacherName)
-                print("rowNum = " + String(rowNum))
-                print("colNum = " + String(colNum))
-                print("")
-                print("")
-                //*********************************************
+//                log(subject: subject,room: room, teacherName: teacherName,rowNum: rowNum,colNum: colNum)
                 
                 //データを保存
                 try! realm.write {
@@ -229,5 +162,19 @@ class SaveManager{
             //行カウントをインクリメント
             rowNum+=1
         }
+    }
+    
+    
+    private func log(subject:String,room:String,teacherName:String,rowNum:String,colNum:String){
+    //*********************************************
+    print("******************************")
+    print("subject = " + subject)
+    print("room = " + room)
+    print("teacherName = " + teacherName)
+    print("rowNum = " + String(rowNum))
+    print("colNum = " + String(colNum))
+    print("")
+    print("")
+    //*********************************************
     }
 }

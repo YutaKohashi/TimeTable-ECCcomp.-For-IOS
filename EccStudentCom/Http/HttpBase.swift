@@ -51,8 +51,16 @@ class HttpBase{
                 callback(cb)
                 return
             }
-            cb.bool = true
+            
+            if (response as? HTTPURLResponse) == nil {
+                print("error=\(error)")
+                cb.bool = false
+                callback(cb)
+                return
+            }
+            
             cb.string = String(data: data!, encoding: String.Encoding.utf8)!
+            cb.bool = true
             callback(cb)
         }
         task.resume()
@@ -72,6 +80,13 @@ class HttpBase{
         }
         
         return htmls
+    }
+    
+    private func statusCheck(code:Int) -> Bool{
+        if code == 200{
+            return true
+        }
+        return false
     }
     
     //TODO:

@@ -100,6 +100,8 @@
 		79B074001D98B55600F62F15 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableSaveModel.swift; sourceTree = "<group>"; };
 		79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellMon.swift; sourceTree = "<group>"; };
+		79CA52901E32140700118AB5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		79CA52911E32140700118AB5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		79E095F31D984AC200A5248D /* iocn ver1.6.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iocn ver1.6.0.png"; sourceTree = "<group>"; };
 		79F1FB361DC985C9007B7386 /* gear-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7.png"; sourceTree = "<group>"; };
 		79F1FB381DC99400007B7386 /* PreferenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceController.swift; sourceTree = "<group>"; };
@@ -320,7 +322,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = YutaKohashi;
 				TargetAttributes = {
 					794F666B1D96B7C300C1D9B6 = {
@@ -468,6 +470,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				794F66741D96B7C300C1D9B6 /* Base */,
+				79CA52901E32140700118AB5 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				794F667C1D96B7C300C1D9B6 /* Base */,
+				79CA52911E32140700118AB5 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -487,6 +491,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -535,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

@@ -31,4 +31,5 @@ class CallBackClass{
             resultBool = boolean
         }
     }
+
 }
