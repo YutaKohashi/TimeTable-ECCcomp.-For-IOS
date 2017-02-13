@@ -30,6 +30,7 @@
 		7951A6601DD344F10075ACC8 /* HttpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951A65F1DD344F10075ACC8 /* HttpHelper.swift */; };
 		795D41CC1DC9840900F9407E /* Settings-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D41CB1DC9840900F9407E /* Settings-50.png */; };
 		796729441DFE3F5100F8E491 /* default512.png in Resources */ = {isa = PBXBuildFile; fileRef = 796729431DFE3F5100F8E491 /* default512.png */; };
+		7970A8931E3AFD2200F6706D /* email-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7970A8921E3AFD2200F6706D /* email-7.png */; };
 		79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */; };
 		79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */; };
 		79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */; };
@@ -86,6 +87,7 @@
 		7951A65F1DD344F10075ACC8 /* HttpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHelper.swift; sourceTree = "<group>"; };
 		795D41CB1DC9840900F9407E /* Settings-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-50.png"; sourceTree = "<group>"; };
 		796729431DFE3F5100F8E491 /* default512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default512.png; sourceTree = "<group>"; };
+		7970A8921E3AFD2200F6706D /* email-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-7.png"; sourceTree = "<group>"; };
 		79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellTue.swift; sourceTree = "<group>"; };
 		79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellWed.swift; sourceTree = "<group>"; };
 		79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellThur.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 		79F573811DCD092800E62898 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7970A8921E3AFD2200F6706D /* email-7.png */,
 				795D41CB1DC9840900F9407E /* Settings-50.png */,
 				79E095F31D984AC200A5248D /* iocn ver1.6.0.png */,
 				799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */,
@@ -363,6 +366,7 @@
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
 				79F573791DCC460500E62898 /* lisence.html in Resources */,
 				796729441DFE3F5100F8E491 /* default512.png in Resources */,
+				7970A8931E3AFD2200F6706D /* email-7.png in Resources */,
 				799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */,
 				794F667A1D96B7C300C1D9B6 /* Assets.xcassets in Resources */,
 				79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */,

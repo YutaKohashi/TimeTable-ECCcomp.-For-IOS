@@ -114,7 +114,6 @@ class GetValuesBase{
     func removeTabCode(_ str:String) -> String{
         return str.replacingOccurrences(of: "\t", with: "")
     }
-    
 }
 
 
