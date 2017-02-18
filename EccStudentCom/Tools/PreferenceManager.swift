@@ -18,6 +18,8 @@ class PreferenceManager{
     static fileprivate let PASS:String = "pass"
     static fileprivate let COLOR_PREF:String = "colorpref"
     static fileprivate let LATEST_UPDATE = "latest_upate"
+    static fileprivate let TANIN_NEWS_LATEST_UPDATE = "tanin_news_latest_upate"
+    static fileprivate let SCHOOL_NEWS_LATEST_UPDATE = "shool_news_latest_upate"
     
     // MARK: -
     // MARK:ログインチェック
@@ -104,5 +106,37 @@ class PreferenceManager{
     static func getLatestUpdateAttendanceRate() -> String{
         let ud = UserDefaults.standard
         return ud.object(forKey: LATEST_UPDATE)  as! String
+    }
+    
+    // MARK: - 学校からのお知らせのアップデート情報
+    static func saveLatestUpdateASchoolNews(now : String){
+        let ud = UserDefaults.standard
+        ud.set(now, forKey: SCHOOL_NEWS_LATEST_UPDATE)
+        ud.synchronize()
+    }
+    
+    // get information with latest update
+    static func getLatestUpdateSchoolNews() -> String{
+        let ud = UserDefaults.standard
+        return ud.object(forKey: SCHOOL_NEWS_LATEST_UPDATE) as! String
+    }
+    
+    // MARK: - 担任からのお知らせのアップデート情報
+    static func saveLatestUpdateTaninNews(now : String){
+        let ud = UserDefaults.standard
+        ud.set(now, forKey: TANIN_NEWS_LATEST_UPDATE)
+        ud.synchronize()
+    }
+    
+    // get information with latest update
+    static func getLatestUpdateTaninNews() -> String{
+        let ud = UserDefaults.standard
+       return ud.object(forKey: TANIN_NEWS_LATEST_UPDATE)  as! String
+    }
+    
+    static func setTaninSchoolDefaultUpdate(){
+        let ud = UserDefaults.standard
+        ud.register(defaults: [SCHOOL_NEWS_LATEST_UPDATE: "-/-/- -:-"])
+        ud.register(defaults: [TANIN_NEWS_LATEST_UPDATE: "-/-/- -:-"])
     }
 }

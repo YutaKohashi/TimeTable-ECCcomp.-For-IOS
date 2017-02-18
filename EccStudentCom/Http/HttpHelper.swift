@@ -79,7 +79,7 @@ class HttpHelper:HttpBase{
         self.requestNews(userId: userId, passoword: password) { (cb1) in
             if(cb1.bool){
                 let realm = try! Realm()
-                let saveModels = realm.objects(NewsItem.self)
+                let saveModels = realm.objects(SchoolNewsItem.self)
                 saveModels.forEach({ (model) in
                     try! realm.write() {
                         realm.delete(model)
@@ -97,7 +97,7 @@ class HttpHelper:HttpBase{
         self.requestNews(userId: userId, passoword: password) { (cb1) in
             if(cb1.bool){
                 let realm = try! Realm()
-                let saveModels = realm.objects(NewsItem.self)
+                let saveModels = realm.objects(TaninNewsItem.self)
                 saveModels.forEach({ (model) in
                     try! realm.write() {
                         realm.delete(model)

@@ -44,10 +44,19 @@ class HttpConnector{
             })
             break
         case .NEWS_SCHOOL:
+            HELPER.getSchoolNews(userId: userId, password: password, callback: { (bool) in
+                callback(bool)
+            })
             break
         case .NEWS_TEACHER:
+            HELPER.getTaninNews(userId:userId,password:password, callback: {(bool) in
+                callback(bool)
+            })
             break
         case .NEWS_SCHOOL_TEACHER:
+            HELPER.getSchoolTaninNews(userId:userId,password:password, callback: {(bool) in
+                callback(bool)
+            })
             break
         }
     }

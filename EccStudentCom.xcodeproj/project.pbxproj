@@ -59,7 +59,9 @@
 		B89F627E1EACE9B0F0F0928B /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */; };
 		D632069A1E54BDA00004E359 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63206991E54BDA00004E359 /* NewsItem.swift */; };
 		D632069C1E56597A0004E359 /* NewsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632069B1E56597A0004E359 /* NewsParentViewController.swift */; };
-		D632069E1E565A440004E359 /* NewsChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632069D1E565A440004E359 /* NewsChildViewController.swift */; };
+		D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601271E5885D80034323F /* TaninNewsItem.swift */; };
+		D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601291E589BCF0034323F /* NewsTitleCell.swift */; };
+		D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012B1E589BD90034323F /* NewsItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,7 +122,9 @@
 		79F5737F1DCCFDB700E62898 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = EccStudentCom/Settings.bundle; sourceTree = "<group>"; };
 		D63206991E54BDA00004E359 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		D632069B1E56597A0004E359 /* NewsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsParentViewController.swift; sourceTree = "<group>"; };
-		D632069D1E565A440004E359 /* NewsChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsChildViewController.swift; sourceTree = "<group>"; };
+		D64601271E5885D80034323F /* TaninNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaninNewsItem.swift; sourceTree = "<group>"; };
+		D64601291E589BCF0034323F /* NewsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTitleCell.swift; sourceTree = "<group>"; };
+		D646012B1E589BD90034323F /* NewsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -195,6 +199,7 @@
 				794F66881D96BB8B00C1D9B6 /* AttendanceRate.swift */,
 				79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */,
 				D63206991E54BDA00004E359 /* NewsItem.swift */,
+				D64601271E5885D80034323F /* TaninNewsItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,7 +218,6 @@
 				79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */,
 				7924B03A1DEB211F00D43894 /* DetailTimeViewController.swift */,
 				D632069B1E56597A0004E359 /* NewsParentViewController.swift */,
-				D632069D1E565A440004E359 /* NewsChildViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -227,6 +231,8 @@
 				79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */,
 				79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */,
 				79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */,
+				D64601291E589BCF0034323F /* NewsTitleCell.swift */,
+				D646012B1E589BD90034323F /* NewsItemCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -448,17 +454,20 @@
 				790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */,
 				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
+				D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,
 				79F1FB3D1DCA3AF6007B7386 /* AboutViewController.swift in Sources */,
 				799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */,
 				7951A6601DD344F10075ACC8 /* HttpHelper.swift in Sources */,
 				79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */,
+				D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */,
 				791DE0591DD172E200FEB18A /* RequestURL.swift in Sources */,
 				D632069C1E56597A0004E359 /* NewsParentViewController.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
 				798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */,
 				7951A65E1DD3426C0075ACC8 /* HttpConnector.swift in Sources */,
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
+				D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */,
 				7924B03B1DEB211F00D43894 /* DetailTimeViewController.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
@@ -472,7 +481,6 @@
 				79F5737B1DCCDFCC00E62898 /* BaseTabViewController.swift in Sources */,
 				7951A6581DD2FA560075ACC8 /* RequestBody.swift in Sources */,
 				79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */,
-				D632069E1E565A440004E359 /* NewsChildViewController.swift in Sources */,
 				79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */,
 				79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */,
 				794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */,

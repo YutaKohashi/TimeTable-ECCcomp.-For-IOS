@@ -131,7 +131,6 @@ class SaveManager{
                 let saveModel = TimeTableSaveModel()
                 var subject:String = ""
                 var room:String = ""
-                let teacherName:String = ""
                 
                 if GetValuesBase("<li>").ContainsCheck(td){ 
                     subject = GetValuesBase("<li>(.+?)</li>").getValues(td)
@@ -167,19 +166,57 @@ class SaveManager{
     
     
     func saveSchoolNews(_ realm:Realm ,mLastResponseHtml:String){
+        var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
+        value = value.replacingOccurrences(of: "\n", with: "")
         
+        let narrowHtml:String = GetValuesBase("<div id=\"school_news_col\"","<div id=\"shcool_event_col\"").narrowingValues(value)
+        let rows:[String] = GetValuesBase("(<li>|<h3>).*?(</li>|</h3>)").getGroupValues(narrowHtml)
+        
+        for row:String in rows{
+            let saveModel:SchoolNewsItem = SchoolNewsItem()
+            
+            if(GetValuesBase("<p class=\"date\">").ContainsCheck(row)){
+                saveModel.title = GetValuesBase("<p class=\"title\"><a href=\"[^\"]*\">(.+?)<").getValues(row)
+                saveModel.date = GetValuesBase("<p class=\"date\">(.+?)</p>").getValues(row)
+                saveModel.uri = GetValuesBase("<a href=\"(.+?)\">").getValues(row)
+            } else {
+                saveModel.groupTitle = GetValuesBase("<h3>(.+?)</h3>").getValues(row)
+            }
+            
+            //データを保存
+            try! realm.write {
+                realm.add(saveModel)
+            }
+        }
     }
     
     
     
     func saveTaninNews(_ realm:Realm ,mLastResponseHtml:String){
+        var value:String = mLastResponseHtml.replacingOccurrences(of: "\r", with: "")
+        value = value.replacingOccurrences(of: "\n", with: "")
         
+        let narrowHtml:String = GetValuesBase("<h2>担任からのお知らせ</h2>","</ul>").narrowingValues(value)
+        let rows:[String] = GetValuesBase("<li>.*?</li>").getGroupValues(narrowHtml)
+        
+        for row:String in rows{
+            let saveModel = TaninNewsItem()
+            saveModel.title = GetValuesBase("<span class=\"title\"><a href=\"[^\"]*\">(.+?)<").getValues(row)
+            saveModel.date = GetValuesBase("<span class=\"date\">(.+?)</span>").getValues(row)
+            saveModel.uri = GetValuesBase("<a href=\"(.+?)\">").getValues(row)
+            
+            //データを保存
+            try! realm.write {
+                realm.add(saveModel)
+            }
+        }
     }
     
     
     
     private func saveNews(_ realm:Realm ,mLastResponseHtml:String){
-        
+        saveTaninNews(realm,mLastResponseHtml:mLastResponseHtml)
+        saveSchoolNews(realm,mLastResponseHtml: mLastResponseHtml)
     }
     
     private func log(subject:String,room:String,teacherName:String,rowNum:String,colNum:String){
