@@ -11,7 +11,7 @@ import RealmSwift
 
 
 //保存するデータのモデルクラス
-class SaveModel: Object {
+class AttendanceRate: Object {
     dynamic var subjectName :String = ""
     dynamic var unit :String = ""
     dynamic var attendanceNumber :String = ""

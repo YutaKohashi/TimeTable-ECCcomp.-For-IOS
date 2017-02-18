@@ -32,7 +32,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         tableView.separatorColor = UIColor.clear
         
         let realm = try! Realm()
-        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
+        print("realm.objects(SaveModel).count =\(realm.objects(AttendanceRate.self).count)")
         tableView.dataSource = self
         
         //トータルデータ
@@ -106,7 +106,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
     
     func setTotalData(){
         let realm = try! Realm()
-        let saveModel = realm.objects(SaveModel.self)
+        let saveModel = realm.objects(AttendanceRate.self)
         
         self.totalUnitLabel.text = saveModel[0].unit
         self.attedanceRateLabel.text = saveModel[0].attendanceRate
@@ -135,8 +135,8 @@ class TableViewController: UIViewController, UITableViewDataSource {
     /// セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let realm = try! Realm()
-        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
-        return realm.objects(SaveModel.self).count - 1
+        print("realm.objects(SaveModel).count =\(realm.objects(AttendanceRate.self).count)")
+        return realm.objects(AttendanceRate.self).count - 1
     }
     
     /// セルに値を設定するデータソースメソッド
@@ -146,7 +146,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomTableViewCell
         
         let realm = try! Realm()
-        let saveModel = realm.objects(SaveModel.self)
+        let saveModel = realm.objects(AttendanceRate.self)
         
         var index:NSInteger = (indexPath as NSIndexPath).row
         index += 1

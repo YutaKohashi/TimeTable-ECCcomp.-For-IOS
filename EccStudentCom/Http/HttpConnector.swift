@@ -17,6 +17,9 @@ class HttpConnector{
         case TIME_TABLE
         case ATTENDANCE_RATE
         case TIME_ATTEND
+        case NEWS_SCHOOL
+        case NEWS_TEACHER
+        case NEWS_SCHOOL_TEACHER
     }
     
     //時間割　出席率を取得するメソッド
@@ -39,6 +42,13 @@ class HttpConnector{
             HELPER.getTimeTableAttendanceRate(userId: userId, password: password, callback: { (bool) in
                 callback(bool)
             })
+            break
+        case .NEWS_SCHOOL:
+            break
+        case .NEWS_TEACHER:
+            break
+        case .NEWS_SCHOOL_TEACHER:
+            break
         }
     }
 }
