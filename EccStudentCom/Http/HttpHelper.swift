@@ -124,6 +124,13 @@ class HttpHelper:HttpBase{
         }
     }
     
+    // MARK:お知らせ詳細  
+    func getNewsDetail(userId:String, password:String, uri:String,callback:@escaping(CallBackClass) -> Void) -> Void {
+        self.requestNewsDetail(userId:userId,password:password, uri:uri, callback:{(cb1) in
+            callback(cb1)
+        })
+    }
+    
     /******************************************  private  ***********************************************************/
     
     //先生名を取得するメソッド
@@ -213,6 +220,21 @@ class HttpHelper:HttpBase{
     private func requestNews(userId:String,passoword:String, callback: @escaping (CallBackClass) -> Void) -> Void {
         self.loginToESCuserId(userId: userId, password: passoword, callback: {(requestResult) in
             callback(requestResult)
+        })
+    }
+    
+    private func requestNewsDetail(userId:String,password:String,uri:String, callback: @escaping (CallBackClass) -> Void) -> Void {
+        self.loginToESCuserId(userId: userId, password: password, callback: {(requestResult) in
+            if requestResult.bool{
+                self.httpGet(url:uri,
+                        requestBody: "",
+                        referer: self.URL.ESC_LOGIN,
+                        header:true){(cb1) in
+                            callback(cb1)
+                }
+            } else {
+                callback(requestResult)
+            }
         })
     }
     

@@ -62,6 +62,7 @@
 		D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601271E5885D80034323F /* TaninNewsItem.swift */; };
 		D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601291E589BCF0034323F /* NewsTitleCell.swift */; };
 		D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012B1E589BD90034323F /* NewsItemCell.swift */; };
+		D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012D1E5915A70034323F /* NewsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,7 @@
 		D64601271E5885D80034323F /* TaninNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaninNewsItem.swift; sourceTree = "<group>"; };
 		D64601291E589BCF0034323F /* NewsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTitleCell.swift; sourceTree = "<group>"; };
 		D646012B1E589BD90034323F /* NewsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
+		D646012D1E5915A70034323F /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -218,6 +220,7 @@
 				79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */,
 				7924B03A1DEB211F00D43894 /* DetailTimeViewController.swift */,
 				D632069B1E56597A0004E359 /* NewsParentViewController.swift */,
+				D646012D1E5915A70034323F /* NewsDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */,
 				7924B03B1DEB211F00D43894 /* DetailTimeViewController.swift in Sources */,
+				D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */,
 				794F668B1D96D5BA00C1D9B6 /* TableViewController.swift in Sources */,
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,

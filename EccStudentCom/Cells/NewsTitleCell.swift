@@ -10,6 +10,7 @@ import UIKit
 
 class NewsTitleCell: UITableViewCell {
     
+ 
     @IBOutlet weak var groupTitle: UILabel!
     
     func setCell(_ groupTitle:String){

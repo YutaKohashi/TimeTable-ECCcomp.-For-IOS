@@ -60,4 +60,10 @@ class HttpConnector{
             break
         }
     }
+    
+    func requestNewsDetail(userId :String,password:String,uri:String,callback: @escaping (CallBackClass) -> Void) -> Void{
+        HELPER.getNewsDetail(userId: userId, password: password,uri:uri) { (cb1) in
+            callback(cb1)
+        }
+    }
 }
