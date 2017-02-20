@@ -69,8 +69,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     if result {
                         //テーブルを再読み込みする。
-                        let realm = try! Realm()
-                        self.cellCount = realm.objects(SchoolNewsItem.self).count - 1
+                        self.cellCount = self.realm.objects(SchoolNewsItem.self).count - 1
                         
                         self.tableView.reloadData()
                         refreshControl.endRefreshing()
@@ -93,8 +92,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     if result {
                         //テーブルを再読み込みする。
-                        let realm = try! Realm()
-                        self.cellCount = realm.objects(TaninNewsItem.self).count - 1
+                        self.cellCount = self.realm.objects(TaninNewsItem.self).count - 1
                         
                         self.tableView.reloadData()
                         refreshControl.endRefreshing()
@@ -158,9 +156,9 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedId(), uri:uri,callback: { (cb) in
             if(cb.bool){
                 self.html = cb.string
-                DialogManager().hideIndicator()
 //                self.performSegue(withIdentifier: "toNewsDetailViewController",sender: nil)
                 DispatchQueue.main.async(execute: {
+                     DialogManager().hideIndicator()
                     let storyboard: UIStoryboard = self.storyboard!
                     let newsDetailVC: NewsDetailViewController = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
                     newsDetailVC.setTitle(str: self.newsTitle)
@@ -174,16 +172,6 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         })
      
     }
-    
-    // Segue 準備
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-//        if (segue.identifier == "toNewsDetailViewController") {
-//            let newsDetailVC: NewsDetailViewController = (segue.destination as? NewsDetailViewController)!
-//            newsDetailVC.setTitle(str: newsTitle)
-//            newsDetailVC.setDate(str: date)
-//            newsDetailVC.setHtml(str: html)
-//        }
-//    }
 
     /// セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -238,20 +226,31 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func selectedSegmentChanged(_ sender: UISegmentedControl, forEvent event: UIEvent) {
-        let realm = try! Realm()
-        if sender.selectedSegmentIndex  == 0{
-            cellCount = realm.objects(SchoolNewsItem.self).count - 1
-            self.tableView.reloadData()
-            refreshControl.attributedTitle =
-                NSAttributedString(string:"最終更新日時 : " +
-                    PreferenceManager.getLatestUpdateSchoolNews());
-        } else {
-            cellCount = realm.objects(TaninNewsItem.self).count - 1
-            self.tableView.reloadData()
-            refreshControl.attributedTitle =
-                NSAttributedString(string:"最終更新日時 : " +
-                     PreferenceManager.getLatestUpdateTaninNews());
+    // セグメントchanged
+    @objc func selectedSegmentChanged(_ sender: UISegmentedControl, forEvent event: UIEvent){
+//
+        let myQueue = DispatchQueue(label: "com.example.serial-queue", attributes: [.serial, .qosUtility])
+        
+        let offset: CGPoint = CGPoint(x: self.tableView.contentOffset.x, y: -self.tableView.contentInset.top)
+        self.tableView.setContentOffset(offset, animated: false )
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            if sender.selectedSegmentIndex  == 0{
+                self.cellCount = self.realm.objects(SchoolNewsItem.self).count - 1
+                self.tableView.reloadData()
+                self.refreshControl.attributedTitle =
+                    NSAttributedString(string:"最終更新日時 : " +
+                        PreferenceManager.getLatestUpdateSchoolNews());
+            } else {
+                self.cellCount = self.realm.objects(TaninNewsItem.self).count - 1
+                self.tableView.reloadData()
+                self.refreshControl.attributedTitle =
+                    NSAttributedString(string:"最終更新日時 : " +
+                        PreferenceManager.getLatestUpdateTaninNews());
+            }
+            self.tableView.bounces = true
+            self.tableView.isScrollEnabled = true
         }
     }
+
 }

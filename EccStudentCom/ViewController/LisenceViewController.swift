@@ -15,9 +15,10 @@ class LisenceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.scrollView.bounces = false
-        let path : String = Bundle.main.path(forResource: "lisence", ofType:"html")!
+        
         DispatchQueue.main.async(execute: {
             //View controller code
+            let path : String = Bundle.main.path(forResource: "lisence", ofType:"html")!
             self.webView.loadRequest(NSURLRequest(url: NSURL(string: path)! as URL) as URLRequest)
         })
     }

@@ -18,8 +18,8 @@ class AboutViewController: UIViewController {
         self.setNeedsStatusBarAppearanceUpdate();
         
         webView.scrollView.bounces = false
-          let path : String = Bundle.main.path(forResource: "about_html", ofType:"html")!
         DispatchQueue.main.async(execute: {
+               let path : String = Bundle.main.path(forResource: "about_html", ofType:"html")!
             self.webView.loadRequest(NSURLRequest(url: NSURL(string: path)! as URL) as URLRequest)
         })
     }

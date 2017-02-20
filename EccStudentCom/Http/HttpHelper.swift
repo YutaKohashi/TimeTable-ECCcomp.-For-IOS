@@ -49,7 +49,7 @@ class HttpHelper:HttpBase{
                 //Realmをインスタンス化
                 let realm = try! Realm()
                 //一度データを削除
-                let savemodels = realm.objects(AttendanceRate.self)
+                let savemodels = realm.objects(SaveModel.self)
                 savemodels.forEach({ (model) in
                     try! realm.write() {
                         realm.delete(model)

@@ -20,7 +20,7 @@ class SaveManager{
         var narrowHtml :String = GetValuesBase(">合計<","</tr>").narrowingValues(value)
         narrowHtml = GetValuesBase().removeNBSP(narrowHtml)
         narrowHtml = GetValuesBase().removePercent(narrowHtml)
-        let saveModel = AttendanceRate()
+        let saveModel = SaveModel()
         saveModel.subjectName = "合計"
         saveModel.unit = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalTani\">(.+?)<").getValues(narrowHtml)
         saveModel.attendanceNumber = GetValuesBase("id=\"ctl00_ContentPlaceHolder1_fmvSyuseki_lblTotalShuseki\">(.+?)<").getValues(narrowHtml)
@@ -47,7 +47,7 @@ class SaveManager{
         for row:String in results{
             let col: [String] =  GetValuesBase("<td.*?</td>").getGroupValues(row)
             
-            let saveModel = AttendanceRate()
+            let saveModel = SaveModel()
             
             firstRowFlg = true
             rowCount = 0

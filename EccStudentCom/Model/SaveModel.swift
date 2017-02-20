@@ -11,7 +11,8 @@ import RealmSwift
 
 
 //保存するデータのモデルクラス
-class AttendanceRate: Object {
+// 出席照会のデータを扱うオブジェクト
+class SaveModel: Object {
     dynamic var subjectName :String = ""
     dynamic var unit :String = ""
     dynamic var attendanceNumber :String = ""
