@@ -10,7 +10,7 @@ import Foundation
 
 //設定関連の処理
 class PreferenceManager{
-    
+    static let NOW_VERSION:String = "1.5.0"
     static fileprivate let LOGIN_KEY:String = "login" + "1.4.2"
     static fileprivate let LOGINED_KEY:String = "login" + "1.4.1" //一つ前のバージョンのログインキー
     

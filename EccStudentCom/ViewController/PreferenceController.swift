@@ -13,11 +13,28 @@ import RealmSwift
 
 class PreferenceController : UITableViewController{
     
+    @IBOutlet weak var versionLabel: UILabel!
+    let sections:[String] = ["　時間割","　その他"]
+    
+    @IBOutlet weak var updateTimeTableLabel: UITableViewCell!
+    @IBOutlet weak var logoutTimeTableViewCell: UITableViewCell!
+    @IBOutlet weak var aboutTimteTableViewCell: UITableViewCell!
+    @IBOutlet weak var lisenseTimeTableViewCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let btn_back = UIBarButtonItem()
         btn_back.title = ""
         self.navigationItem.backBarButtonItem = btn_back
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        versionLabel.text = PreferenceManager.NOW_VERSION
+        
+        let color:UIColor = UIColor(red:0.00, green:0.55, blue:0.76, alpha:1.0)
+        updateTimeTableLabel.selectedBackgroundColor = color
+        logoutTimeTableViewCell.selectedBackgroundColor = color
+        aboutTimteTableViewCell.selectedBackgroundColor = color
+        lisenseTimeTableViewCell.selectedBackgroundColor = color
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,7 +45,20 @@ class PreferenceController : UITableViewController{
     @IBAction func doneButtonClick(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
+
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label : UILabel = UILabel()
+
+       label.font = UIFont(name: label.font.fontName, size: 13)
+        label.textColor = UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
+        if(section == 0){
+            label.text = sections[section]
+        } else if (section == 1){
+            label.text = sections[section]
+        }
+        return label
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
         
