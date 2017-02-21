@@ -18,5 +18,4 @@ class SchoolNewsItem: Object {
     
     dynamic var groupTitle:String = ""
     
-    dynamic var dummyFlg:Bool = false
 }

@@ -16,5 +16,4 @@ class TaninNewsItem: Object {
     dynamic var date :String = ""
     dynamic var uri :String = ""
     
-    dynamic var dummyFlg:Bool = false
 }
