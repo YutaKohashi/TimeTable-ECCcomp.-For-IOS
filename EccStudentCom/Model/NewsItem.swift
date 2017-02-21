@@ -17,4 +17,6 @@ class SchoolNewsItem: Object {
     dynamic var uri :String = ""
     
     dynamic var groupTitle:String = ""
+    
+    dynamic var dummyFlg:Bool = false
 }
