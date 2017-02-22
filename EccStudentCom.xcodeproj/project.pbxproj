@@ -64,7 +64,6 @@
 		D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601291E589BCF0034323F /* NewsTitleCell.swift */; };
 		D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012B1E589BD90034323F /* NewsItemCell.swift */; };
 		D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012D1E5915A70034323F /* NewsDetailViewController.swift */; };
-		D6D9BC901E5B1FE100090BD9 /* DummyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D9BC8F1E5B1FE100090BD9 /* DummyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,7 +129,6 @@
 		D64601291E589BCF0034323F /* NewsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTitleCell.swift; sourceTree = "<group>"; };
 		D646012B1E589BD90034323F /* NewsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
 		D646012D1E5915A70034323F /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
-		D6D9BC8F1E5B1FE100090BD9 /* DummyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyCell.swift; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -240,7 +238,6 @@
 				79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */,
 				D64601291E589BCF0034323F /* NewsTitleCell.swift */,
 				D646012B1E589BD90034323F /* NewsItemCell.swift */,
-				D6D9BC8F1E5B1FE100090BD9 /* DummyCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -495,7 +492,6 @@
 				79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */,
 				79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */,
 				794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */,
-				D6D9BC901E5B1FE100090BD9 /* DummyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
