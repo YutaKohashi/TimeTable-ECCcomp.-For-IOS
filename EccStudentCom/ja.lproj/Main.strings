@@ -1,0 +1,201 @@
+
+/* Class = "UITableViewSection"; headerTitle = "時間割"; ObjectID = "2V3-fH-XvE"; */
+"2V3-fH-XvE.headerTitle" = "時間割";
+
+/* Class = "UILabel"; text = "水"; ObjectID = "2fw-HK-R20"; */
+"2fw-HK-R20.text" = "水";
+
+/* Class = "UITextField"; placeholder = "学籍番号"; ObjectID = "3tt-Y5-Kh0"; */
+"3tt-Y5-Kh0.placeholder" = "学籍番号";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "45D-yn-g4f"; */
+"45D-yn-g4f.text" = "Label";
+
+/* Class = "UILabel"; text = "木"; ObjectID = "46h-vl-2lU"; */
+"46h-vl-2lU.text" = "木";
+
+/* Class = "UILabel"; text = "教科名"; ObjectID = "4GD-YL-m6u"; */
+"4GD-YL-m6u.text" = "教科名";
+
+/* Class = "UILabel"; text = "出席"; ObjectID = "5pL-79-W5V"; */
+"5pL-79-W5V.text" = "出席";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6Fc-b0-ym2"; */
+"6Fc-b0-ym2.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7Z1-eN-LsO"; */
+"7Z1-eN-LsO.text" = "Label";
+
+/* Class = "UILabel"; text = "ライセンス"; ObjectID = "8bc-uc-DrA"; */
+"8bc-uc-DrA.text" = "ライセンス";
+
+/* Class = "UILabel"; text = "火"; ObjectID = "9Uy-w6-uLy"; */
+"9Uy-w6-uLy.text" = "火";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "B4R-3u-fPs"; */
+"B4R-3u-fPs.text" = "Label";
+
+/* Class = "UILabel"; text = "ログアウト"; ObjectID = "B7Z-WK-Jhi"; */
+"B7Z-WK-Jhi.text" = "ログアウト";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BD3-si-6Mq"; */
+"BD3-si-6Mq.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "時間割"; ObjectID = "BGK-hz-I5t"; */
+"BGK-hz-I5t.title" = "時間割";
+
+/* Class = "UINavigationItem"; title = "出席照会"; ObjectID = "BcV-ud-UV9"; */
+"BcV-ud-UV9.title" = "出席照会";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Cg1-fa-gXV"; */
+"Cg1-fa-gXV.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "完了"; ObjectID = "DfL-zM-KO5"; */
+"DfL-zM-KO5.title" = "完了";
+
+/* Class = "UILabel"; text = "ECCコンピュータ\n専門学校"; ObjectID = "GLU-Kk-cUw"; */
+"GLU-Kk-cUw.text" = "ECCコンピュータ\n専門学校";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GMO-kk-fxp"; */
+"GMO-kk-fxp.text" = "Label";
+
+/* Class = "UIViewController"; title = "このアプリについて"; ObjectID = "IeV-Jt-fVY"; */
+"IeV-Jt-fVY.title" = "このアプリについて";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ij8-cW-cMg"; */
+"Ij8-cW-cMg.text" = "Label";
+
+/* Class = "UILabel"; text = "予定単位数"; ObjectID = "Jq6-1z-Xnf"; */
+"Jq6-1z-Xnf.text" = "予定単位数";
+
+/* Class = "UILabel"; text = "時間"; ObjectID = "KFU-bv-liB"; */
+"KFU-bv-liB.text" = "時間";
+
+/* Class = "UIButton"; normalTitle = "ログイン"; ObjectID = "N27-ui-XNr"; */
+"N27-ui-XNr.normalTitle" = "ログイン";
+
+/* Class = "UILabel"; text = "出席率"; ObjectID = "O81-si-WdA"; */
+"O81-si-WdA.text" = "出席率";
+
+/* Class = "UILabel"; text = "98"; ObjectID = "O8t-bh-MUI"; */
+"O8t-bh-MUI.text" = "98";
+
+/* Class = "UILabel"; text = "遅刻"; ObjectID = "R62-lJ-QiR"; */
+"R62-lJ-QiR.text" = "遅刻";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RUm-hJ-VnW"; */
+"RUm-hJ-VnW.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RzQ-JI-UJW"; */
+"RzQ-JI-UJW.text" = "Label";
+
+/* Class = "UILabel"; text = "欠席"; ObjectID = "Sfc-7N-Z8C"; */
+"Sfc-7N-Z8C.text" = "欠席";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UZV-nv-nA0"; */
+"UZV-nv-nA0.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "V36-Sh-hns"; */
+"V36-Sh-hns.text" = "Label";
+
+/* Class = "UILabel"; text = "担当教師"; ObjectID = "WZf-64-OqV"; */
+"WZf-64-OqV.text" = "担当教師";
+
+/* Class = "UILabel"; text = "月"; ObjectID = "XBj-Tr-1Xv"; */
+"XBj-Tr-1Xv.text" = "月";
+
+/* Class = "UINavigationItem"; title = "設定"; ObjectID = "ZhB-Ty-eQi"; */
+"ZhB-Ty-eQi.title" = "設定";
+
+/* Class = "UITableViewSection"; headerTitle = "その他"; ObjectID = "an6-49-Pvj"; */
+"an6-49-Pvj.headerTitle" = "その他";
+
+/* Class = "UILabel"; text = "金"; ObjectID = "bVA-E5-3Ny"; */
+"bVA-E5-3Ny.text" = "金";
+
+/* Class = "UITextField"; placeholder = "パスワード"; ObjectID = "buj-PH-2nT"; */
+"buj-PH-2nT.placeholder" = "パスワード";
+
+/* Class = "UILabel"; text = "123"; ObjectID = "csX-jb-Xv2"; */
+"csX-jb-Xv2.text" = "123";
+
+/* Class = "UILabel"; text = "公欠2"; ObjectID = "dTb-bP-TJn"; */
+"dTb-bP-TJn.text" = "公欠2";
+
+/* Class = "UILabel"; text = "詳細情報"; ObjectID = "dy6-jh-fcH"; */
+"dy6-jh-fcH.text" = "詳細情報";
+
+/* Class = "UILabel"; text = "出席数"; ObjectID = "fBu-H6-cAh"; */
+"fBu-H6-cAh.text" = "出席数";
+
+/* Class = "UILabel"; text = "アプリバージョン"; ObjectID = "fEh-IF-X0y"; */
+"fEh-IF-X0y.text" = "アプリバージョン";
+
+/* Class = "UILabel"; text = "出席率"; ObjectID = "fXf-Wm-mXe"; */
+"fXf-Wm-mXe.text" = "出席率";
+
+/* Class = "UILabel"; text = "公欠1"; ObjectID = "fq2-2F-yJ1"; */
+"fq2-2F-yJ1.text" = "公欠1";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kEw-fw-8yc"; */
+"kEw-fw-8yc.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kVY-JN-RS3"; */
+"kVY-JN-RS3.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m3n-we-GKb"; */
+"m3n-we-GKb.text" = "Label";
+
+/* Class = "UILabel"; text = "%"; ObjectID = "mRD-rt-UAk"; */
+"mRD-rt-UAk.text" = "%";
+
+/* Class = "UITabBarItem"; title = "出席照会"; ObjectID = "p1o-pa-Arn"; */
+"p1o-pa-Arn.title" = "出席照会";
+
+/* Class = "UIViewController"; title = "ライセンス"; ObjectID = "pD9-lO-0zf"; */
+"pD9-lO-0zf.title" = "ライセンス";
+
+/* Class = "UILabel"; text = "ver1.4.1"; ObjectID = "qXk-fP-stc"; */
+"qXk-fP-stc.text" = "ver1.4.1";
+
+/* Class = "UINavigationItem"; title = "時間割"; ObjectID = "qml-ND-c65"; */
+"qml-ND-c65.title" = "時間割";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rJf-5l-TlC"; */
+"rJf-5l-TlC.text" = "Label";
+
+/* Class = "UILabel"; text = "このアプリについて"; ObjectID = "sic-qB-Kso"; */
+"sic-qB-Kso.text" = "このアプリについて";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "svf-zF-MUh"; */
+"svf-zF-MUh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "出席不足単位"; ObjectID = "tG7-r4-f1a"; */
+"tG7-r4-f1a.text" = "出席不足単位";
+
+/* Class = "UILabel"; text = "時間割を更新"; ObjectID = "tZV-Cx-RLJ"; */
+"tZV-Cx-RLJ.text" = "時間割を更新";
+
+/* Class = "UILabel"; text = "単位数"; ObjectID = "udl-eE-HkI"; */
+"udl-eE-HkI.text" = "単位数";
+
+/* Class = "UILabel"; text = "欠席数"; ObjectID = "vcS-cO-JXd"; */
+"vcS-cO-JXd.text" = "欠席数";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wYy-9U-9ag"; */
+"wYy-9U-9ag.text" = "Label";
+
+/* Class = "UIViewController"; title = "時間割を変更"; ObjectID = "xy9-xR-D64"; */
+"xy9-xR-D64.title" = "時間割を変更";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zF5-H9-MxB"; */
+"zF5-H9-MxB.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zON-2N-Kym"; */
+"zON-2N-Kym.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zao-bo-YYn"; */
+"zao-bo-YYn.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zh0-J5-Ip8"; */
+"zh0-J5-Ip8.text" = "Label";
