@@ -11,6 +11,7 @@ import RealmSwift
 import KRProgressHUD
 
 class NewsParentViewController:UIViewController, UITableViewDataSource , UITableViewDelegate{
+    
     let realm = try! Realm()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taninTableView: UITableView!
@@ -30,39 +31,13 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         //　デフォルト値を設定
         PreferenceManager.setTaninSchoolDefaultUpdate()
         
-        tableView.dataSource = self
-         tableView.delegate = self
+        //　デリゲートデータ・ソースを設定
+        // tableviewにrefreshcontrolを設定
+        initRefreshContorol()
+        initTableView()
         
-        taninTableView.dataSource = self
-        taninTableView.delegate = self
-        
-        //リフレッシュコントロールを作成する。
-        //インジケーターの色を設定する。
-        refreshControl.tintColor = UIColor.gray
-        //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
-        refreshControl.addTarget(self, action: #selector(NewsParentViewController.refreshTable(_:)), for: .valueChanged)
-        
-        
-        refreshControl.attributedTitle =
-            NSAttributedString(string:"最終更新日時 : " +
-                PreferenceManager.getLatestUpdateSchoolNews());
-    
-        self.tableView.addSubview(refreshControl)
-        
-        taninRefreshControl.tintColor = UIColor.gray
-        taninRefreshControl.addTarget(self, action: #selector(NewsParentViewController.refreshTable(_:)), for: .valueChanged)
-        
-        taninRefreshControl.attributedTitle =
-            NSAttributedString(string:"最終更新日時 : " +
-                PreferenceManager.getLatestUpdateTaninNews());
-        
-        self.taninTableView.addSubview(taninRefreshControl)
-    
-        tableView.estimatedRowHeight = 74
-        tableView.rowHeight = UITableViewAutomaticDimension
-        taninTableView.estimatedRowHeight = 74
-        taninTableView.rowHeight = UITableViewAutomaticDimension
-        
+     
+        // 初期値
         taninTableView.isHidden = true
         segmentedControl.selectedSegmentIndex = 0
         
@@ -78,7 +53,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             refreshControl.endRefreshing()
             self.tableView.isScrollEnabled = true
             self.taninTableView.isScrollEnabled = true
-            return;
+            return
         }
         
         if segmentedControl.selectedSegmentIndex == 0 {
@@ -262,13 +237,6 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         }
     }
     
-    private func tableViewScrollTop(){
-        let offset: CGPoint = CGPoint(x: self.tableView.contentOffset.x, y: -self.tableView.contentInset.top)
-        self.tableView.setContentOffset(offset, animated: false )
-        index = 0
-        
-    }
-    
     private func loadSchoolItems() -> Array<SchoolNewsItem>{
         let results: Results<SchoolNewsItem>! =  realm.objects(SchoolNewsItem.self)
         var items:Array<SchoolNewsItem> = Array(results)
@@ -292,10 +260,47 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         return items
     }
     
-    func scrollToTop() {
-        if (self.tableView.numberOfSections > 0 ) {
-            let top = NSIndexPath(row: Foundation.NSNotFound, section: 0)
-            self.tableView.scrollToRow(at: top as IndexPath, at: .top, animated: true);
-        }
+    // MARK:tableviewを設定
+    private func initTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        taninTableView.dataSource = self
+        taninTableView.delegate = self
+        
+         self.tableView.addSubview(refreshControl)
+        self.taninTableView.addSubview(taninRefreshControl)
+        
+        tableView.estimatedRowHeight = 74
+        tableView.rowHeight = UITableViewAutomaticDimension
+        taninTableView.estimatedRowHeight = 74
+        taninTableView.rowHeight = UITableViewAutomaticDimension
+        
     }
+    
+    // MARK:refreshcontrolを設定
+    private func initRefreshContorol() {
+        //リフレッシュコントロールを作成する。
+        //インジケーターの色を設定する。
+        refreshControl.tintColor = UIColor.gray
+        //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
+        refreshControl.addTarget(self, action: #selector(NewsParentViewController.refreshTable(_:)), for: .valueChanged)
+        
+        
+        refreshControl.attributedTitle =
+            NSAttributedString(string:"最終更新日時 : " +
+                PreferenceManager.getLatestUpdateSchoolNews());
+        
+        
+        
+        taninRefreshControl.tintColor = UIColor.gray
+        taninRefreshControl.addTarget(self, action: #selector(NewsParentViewController.refreshTable(_:)), for: .valueChanged)
+        
+        taninRefreshControl.attributedTitle =
+            NSAttributedString(string:"最終更新日時 : " +
+                PreferenceManager.getLatestUpdateTaninNews());
+        
+    }
+    
+
 }
