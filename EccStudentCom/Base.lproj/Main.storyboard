@@ -2276,7 +2276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1u-CV-Dfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429.5999999999999" y="653.52323838080963"/>
+            <point key="canvasLocation" x="2542" y="630"/>
         </scene>
         <!--お知らせ詳細-->
         <scene sceneID="bGf-Zh-WU4">
@@ -2439,7 +2439,7 @@
         <!--カレンダー-->
         <scene sceneID="0zO-dl-RrN">
             <objects>
-                <viewController id="mAE-f1-IuU" sceneMemberID="viewController">
+                <viewController id="mAE-f1-IuU" customClass="CalendarViewController" customModule="EccStudentCom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t1g-uK-RmC"/>
                         <viewControllerLayoutGuide type="bottom" id="PjN-gj-GBk"/>
@@ -2458,6 +2458,11 @@
                                     <navigationItem title="カレンダー" id="l7c-Wj-4op"/>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R1d-mq-9yS" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="64" width="375" height="261"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -2470,7 +2475,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0R3-27-VMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3298" y="654"/>
+            <point key="canvasLocation" x="3417" y="654"/>
         </scene>
         <!--設定-->
         <scene sceneID="8GD-WK-Wj9">
