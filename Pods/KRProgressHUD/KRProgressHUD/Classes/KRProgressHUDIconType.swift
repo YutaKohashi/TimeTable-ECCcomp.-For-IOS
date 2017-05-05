@@ -8,23 +8,23 @@
 import UIKit
 
 enum KRProgressHUDIconType {
-    case Success, Info, Warning, Error
+    case success, info, warning, error
 
     func getPath() -> CGPath {
         switch self {
-        case .Success:  return self.success
-        case .Info:  return self.info
-        case .Warning:  return self.warning
-        case .Error:  return self.error
+        case .success:  return self.success
+        case .info:  return self.info
+        case .warning:  return self.warning
+        case .error:  return self.error
         }
     }
 
     func getColor() -> CGColor {
         switch self {
-        case .Success:  return UIColor(red: 0.353, green: 0.620, blue: 0.431, alpha: 1).cgColor
-        case .Info:  return UIColor(red: 0.361, green: 0.522, blue: 0.800, alpha: 1).cgColor
-        case .Warning:  return UIColor(red: 0.918, green: 0.855, blue: 0.110, alpha: 1).cgColor
-        case .Error:  return UIColor(red: 0.718, green: 0.255, blue: 0.255, alpha: 1).cgColor
+        case .success:  return UIColor(red: 0.353, green: 0.620, blue: 0.431, alpha: 1).cgColor
+        case .info:  return UIColor(red: 0.361, green: 0.522, blue: 0.800, alpha: 1).cgColor
+        case .warning:  return UIColor(red: 0.918, green: 0.855, blue: 0.110, alpha: 1).cgColor
+        case .error:  return UIColor(red: 0.718, green: 0.255, blue: 0.255, alpha: 1).cgColor
         }
     }
 }

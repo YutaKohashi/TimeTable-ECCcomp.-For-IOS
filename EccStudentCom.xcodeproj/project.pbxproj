@@ -44,6 +44,11 @@
 		799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */; };
 		79B073FF1D98B2FA00F62F15 /* ToolsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */; };
 		79B074011D98B55600F62F15 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B074001D98B55600F62F15 /* SystemConfiguration.framework */; };
+		79B5855A1EBBEA62005B4E1A /* EscRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B585591EBBEA62005B4E1A /* EscRequest.swift */; };
+		79B5855C1EBBEA75005B4E1A /* TimeTableRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5855B1EBBEA75005B4E1A /* TimeTableRequest.swift */; };
+		79B5855E1EBBECEC005B4E1A /* NewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5855D1EBBECEC005B4E1A /* NewsRequest.swift */; };
+		79B585601EBBECFD005B4E1A /* ScheduleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B5855F1EBBECFD005B4E1A /* ScheduleRequest.swift */; };
+		79B585621EBCD771005B4E1A /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B585611EBCD771005B4E1A /* TokenRequest.swift */; };
 		79B9DD921DC62600009153B6 /* TimeTableSaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */; };
 		79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */; };
 		79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E095F31D984AC200A5248D /* iocn ver1.6.0.png */; };
@@ -64,7 +69,6 @@
 		D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601291E589BCF0034323F /* NewsTitleCell.swift */; };
 		D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012B1E589BD90034323F /* NewsItemCell.swift */; };
 		D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012D1E5915A70034323F /* NewsDetailViewController.swift */; };
-		D6D9BC901E5B1FE100090BD9 /* DummyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D9BC8F1E5B1FE100090BD9 /* DummyCell.swift */; };
 		D6E8885D1E7FF6730089FE5E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +114,11 @@
 		799F601A1DC5BF8200C95A68 /* text-align-justify-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-align-justify-7.png"; sourceTree = "<group>"; };
 		79B073FE1D98B2FA00F62F15 /* ToolsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolsBase.swift; sourceTree = "<group>"; };
 		79B074001D98B55600F62F15 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		79B585591EBBEA62005B4E1A /* EscRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscRequest.swift; sourceTree = "<group>"; };
+		79B5855B1EBBEA75005B4E1A /* TimeTableRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableRequest.swift; sourceTree = "<group>"; };
+		79B5855D1EBBECEC005B4E1A /* NewsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsRequest.swift; sourceTree = "<group>"; };
+		79B5855F1EBBECFD005B4E1A /* ScheduleRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRequest.swift; sourceTree = "<group>"; };
+		79B585611EBCD771005B4E1A /* TokenRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
 		79B9DD911DC62600009153B6 /* TimeTableSaveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableSaveModel.swift; sourceTree = "<group>"; };
 		79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellMon.swift; sourceTree = "<group>"; };
 		79CA52901E32140700118AB5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
@@ -131,9 +140,7 @@
 		D64601291E589BCF0034323F /* NewsTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTitleCell.swift; sourceTree = "<group>"; };
 		D646012B1E589BD90034323F /* NewsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
 		D646012D1E5915A70034323F /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
-		D6D9BC8F1E5B1FE100090BD9 /* DummyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyCell.swift; sourceTree = "<group>"; };
 		D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		D6E8885E1E7FF9AA0089FE5E /* EccStudentCom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EccStudentCom-Bridging-Header.h"; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,7 +165,6 @@
 				794F666D1D96B7C300C1D9B6 /* Products */,
 				8B655494E76771243EACB99F /* Frameworks */,
 				AC544450CC24B7CF6203BE75 /* Pods */,
-				D6E8885E1E7FF9AA0089FE5E /* EccStudentCom-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,15 +179,11 @@
 		794F666E1D96B7C300C1D9B6 /* EccStudentCom */ = {
 			isa = PBXGroup;
 			children = (
+				79B585571EBBE9D1005B4E1A /* Ui */,
 				79F573811DCD092800E62898 /* Assets */,
-				798679DF1DD01B2B00CA7A88 /* Cells */,
-				79F5737C1DCCE07500E62898 /* Extension */,
-				79F1FB441DCA3F4B007B7386 /* Html */,
 				79B9DD951DC789E4009153B6 /* Http */,
 				796DE3EC1DC384D100BF5ABE /* Model */,
-				798679E01DD01E6000CA7A88 /* StoryBoard */,
 				796DE3EB1DC384A600BF5ABE /* Tools */,
-				796DE3EE1DC3855000BF5ABE /* ViewController */,
 				794F667E1D96B7C300C1D9B6 /* Info.plist */,
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
@@ -231,7 +233,8 @@
 				D646012D1E5915A70034323F /* NewsDetailViewController.swift */,
 				D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */,
 			);
-			path = ViewController;
+			name = ViewController;
+			path = ../ViewController;
 			sourceTree = "<group>";
 		};
 		798679DF1DD01B2B00CA7A88 /* Cells */ = {
@@ -245,9 +248,9 @@
 				79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */,
 				D64601291E589BCF0034323F /* NewsTitleCell.swift */,
 				D646012B1E589BD90034323F /* NewsItemCell.swift */,
-				D6D9BC8F1E5B1FE100090BD9 /* DummyCell.swift */,
 			);
-			path = Cells;
+			name = Cells;
+			path = ../Cells;
 			sourceTree = "<group>";
 		};
 		798679E01DD01E6000CA7A88 /* StoryBoard */ = {
@@ -257,11 +260,36 @@
 				794F667B1D96B7C300C1D9B6 /* LaunchScreen.storyboard */,
 			);
 			name = StoryBoard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		79B585571EBBE9D1005B4E1A /* Ui */ = {
+			isa = PBXGroup;
+			children = (
+				79F5737C1DCCE07500E62898 /* Extension */,
+				796DE3EE1DC3855000BF5ABE /* ViewController */,
+				798679E01DD01E6000CA7A88 /* StoryBoard */,
+				798679DF1DD01B2B00CA7A88 /* Cells */,
+			);
+			path = Ui;
+			sourceTree = "<group>";
+		};
+		79B585581EBBEA31005B4E1A /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				79B585591EBBEA62005B4E1A /* EscRequest.swift */,
+				79B5855B1EBBEA75005B4E1A /* TimeTableRequest.swift */,
+				79B5855D1EBBECEC005B4E1A /* NewsRequest.swift */,
+				79B5855F1EBBECFD005B4E1A /* ScheduleRequest.swift */,
+				79B585611EBCD771005B4E1A /* TokenRequest.swift */,
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 		79B9DD951DC789E4009153B6 /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				79B585581EBBEA31005B4E1A /* Api */,
 				798C078D1DCD8E0B00929F17 /* CallBackClass.swift */,
 				791DE0541DD169DD00FEB18A /* HttpBase.swift */,
 				7951A65D1DD3426C0075ACC8 /* HttpConnector.swift */,
@@ -280,7 +308,8 @@
 				79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */,
 				79F1FB401DCA3E6D007B7386 /* about_html.html */,
 			);
-			path = Html;
+			name = Html;
+			path = ../Html;
 			sourceTree = "<group>";
 		};
 		79F5737C1DCCE07500E62898 /* Extension */ = {
@@ -289,12 +318,14 @@
 				798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */,
 				7924B03C1DEB380300D43894 /* SelectColor+UItableViewCell.swift */,
 			);
-			path = Extension;
+			name = Extension;
+			path = ../Extension;
 			sourceTree = "<group>";
 		};
 		79F573811DCD092800E62898 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				79F1FB441DCA3F4B007B7386 /* Html */,
 				797FC4781E5D171E0065B89E /* calendar-7.png */,
 				7970A8921E3AFD2200F6706D /* email-7.png */,
 				795D41CB1DC9840900F9407E /* Settings-50.png */,
@@ -435,7 +466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C46DD9A42CCA2B5E40595165 /* [CP] Copy Pods Resources */ = {
@@ -466,6 +497,7 @@
 				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
 				79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */,
 				791DE0551DD169DD00FEB18A /* HttpBase.swift in Sources */,
+				79B5855E1EBBECEC005B4E1A /* NewsRequest.swift in Sources */,
 				790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */,
 				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
@@ -474,13 +506,17 @@
 				79F1FB3D1DCA3AF6007B7386 /* AboutViewController.swift in Sources */,
 				D6E8885D1E7FF6730089FE5E /* CalendarViewController.swift in Sources */,
 				799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */,
+				79B585601EBBECFD005B4E1A /* ScheduleRequest.swift in Sources */,
 				7951A6601DD344F10075ACC8 /* HttpHelper.swift in Sources */,
+				79B585621EBCD771005B4E1A /* TokenRequest.swift in Sources */,
 				79292D561DC5FA8300F15299 /* DialogManager.swift in Sources */,
 				D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */,
 				791DE0591DD172E200FEB18A /* RequestURL.swift in Sources */,
+				79B5855C1EBBEA75005B4E1A /* TimeTableRequest.swift in Sources */,
 				D632069C1E56597A0004E359 /* NewsParentViewController.swift in Sources */,
 				794F66721D96B7C300C1D9B6 /* ViewController.swift in Sources */,
 				798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */,
+				79B5855A1EBBEA62005B4E1A /* EscRequest.swift in Sources */,
 				7951A65E1DD3426C0075ACC8 /* HttpConnector.swift in Sources */,
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */,
@@ -501,7 +537,6 @@
 				79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */,
 				79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */,
 				794F66701D96B7C300C1D9B6 /* AppDelegate.swift in Sources */,
-				D6D9BC901E5B1FE100090BD9 /* DummyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

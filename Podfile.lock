@@ -1,14 +1,20 @@
 PODS:
-  - FSCalendar (2.7.1)
-  - KRProgressHUD (1.7.0)
-  - Realm (2.0.3):
-    - Realm/Headers (= 2.0.3)
-  - Realm/Headers (2.0.3)
-  - RealmSwift (2.0.3):
-    - Realm (= 2.0.3)
+  - APIKit (3.1.1):
+    - Result (~> 3.0)
+  - FSCalendar (2.7.4)
+  - Himotoki (3.0.1)
+  - KRProgressHUD (2.2.2)
+  - Realm (2.6.2):
+    - Realm/Headers (= 2.6.2)
+  - Realm/Headers (2.6.2)
+  - RealmSwift (2.6.2):
+    - Realm (= 2.6.2)
+  - Result (3.2.1)
 
 DEPENDENCIES:
+  - APIKit
   - FSCalendar
+  - Himotoki
   - KRProgressHUD
   - Realm (from `https://github.com/realm/realm-cocoa.git`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`)
@@ -23,20 +29,23 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Realm:
-    :commit: eb4c36f2b7e287f82bb1ca67602fff20ac030a1a
+    :commit: 542756531981ffe74ea837bece1d359e4d3267fc
     :git: https://github.com/realm/realm-cocoa.git
     :submodules: true
   RealmSwift:
-    :commit: eb4c36f2b7e287f82bb1ca67602fff20ac030a1a
+    :commit: 542756531981ffe74ea837bece1d359e4d3267fc
     :git: https://github.com/realm/realm-cocoa.git
     :submodules: true
 
 SPEC CHECKSUMS:
-  FSCalendar: cfc95384cb0d648ad7c1957649ea74d6c26bb0de
-  KRProgressHUD: eb23a52e98069190660e33167e870cf2d80a435f
-  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
-  RealmSwift: 79a9bc83e7ef4fbde17e0f303c5fadb99264a6be
+  APIKit: 7460983f490d3bde6aaaaa4164d18c9865a6f91d
+  FSCalendar: e95995a746acae531c4a7dd636b8393233125ec5
+  Himotoki: 85fda41d4d0e14f7228317a3b474175cdfb8f515
+  KRProgressHUD: ee25f70e274d1933b2ad0c8583a8552a349ce85d
+  Realm: 85b8729618fb76270efcf8c94218c1cbe94ba4ea
+  RealmSwift: 467233dd8beb90eab2cde75ff4703860adee294b
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
 
-PODFILE CHECKSUM: f20ba55bb9d0f82651ea446294e195fcbdf8b44d
+PODFILE CHECKSUM: 984d00ab13c2d0157d59cbe57ce2047c06e97006
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

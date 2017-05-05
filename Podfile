@@ -5,7 +5,9 @@ pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => 
 pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => true
 
 pod 'KRProgressHUD'
-
+pod 'FSCalendar'
+pod 'Himotoki'
+pod 'APIKit'
 end
 
 post_install do |installer|

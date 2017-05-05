@@ -20,11 +20,13 @@
 
 #import "RLMSyncConfiguration_Private.h"
 
-#import "sync_manager.hpp"
+#import "sync/sync_manager.hpp"
 
 namespace realm {
 
 SyncSessionStopPolicy translateStopPolicy(RLMSyncStopPolicy stopPolicy);
 RLMSyncStopPolicy translateStopPolicy(SyncSessionStopPolicy stop_policy);
+
+std::shared_ptr<SyncSession> sync_session_for_realm(RLMRealm *realm);
 
 }

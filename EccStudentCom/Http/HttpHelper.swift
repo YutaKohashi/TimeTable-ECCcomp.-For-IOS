@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class HttpHelper:HttpBase{
+internal class HttpHelper:HttpBase{
     
     let URL = RequestURL()
     let BODY = RequestBody()
@@ -17,7 +17,7 @@ class HttpHelper:HttpBase{
     /******************************************  public  ***********************************************************/
     
     // MARK:時間割を取得
-    func getTimeTable(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
+    internal func getTimeTable(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
         // 時間割
         self.requestTimeTable(userId: userId, password: password,callback: {
             requestResult in

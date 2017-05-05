@@ -11,15 +11,15 @@ import UIKit
   KRActivityIndicatorView's style
 
   - Normal size(20x20)
-    - **Black:**           the color is a gradation to `.lightGrayColor()` from `.blackColor()`.
-    - **White:**           the color is a gradation to `UIColor(white: 0.7, alpha:1)` from `.whiteColor()`.
-    - **Color(startColor, endColor):**   the color is a gradation to `endColor` from `startColor`.
+    - **black:**           the color is a gradation to `.lightGray` from `.black`.
+    - **white:**           the color is a gradation to `UIColor(white: 0.7, alpha:1)` from `.white`.
+    - **color(startColor, endColor):**   the color is a gradation to `endColor` from `startColor`.
 
 
   - Large size(50x50)
-    - **LargeBlack:**   the color is same `.Black`.
-    - **LargeWhite:**   the color is same `.White`.
-    - **LargeColor(startColor, endColor):**   the color is same `.Color()`.
+    - **largeBlack:**   the color is same `.black`.
+    - **largeWhite:**   the color is same `.white`.
+    - **largeColor(startColor, endColor):**   the color is same `.color()`.
 */
 public enum KRActivityIndicatorViewStyle {
     case black, white, color(UIColor, UIColor?)
@@ -79,7 +79,7 @@ extension KRActivityIndicatorViewStyle {
         colors.append( // 中間色
             contentsOf: (1..<7).map {
                 let point = CGPoint(x: 0, y: 10*CGFloat($0))
-                return gradient.colorOfPoint(point).cgColor
+                return gradient.color(point: point).cgColor
             }
         )
         colors.append(endColor.cgColor)
@@ -130,13 +130,13 @@ private struct KRActivityIndicatorPath {
 *   CAGradientLayer Extension ------------------------------
 */
 private extension CAGradientLayer {
-    func colorOfPoint(_ point: CGPoint) -> UIColor {
+    func color(point: CGPoint) -> UIColor {
         var pixel: [CUnsignedChar] = [0, 0, 0, 0]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let bitmap = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
         let context = CGContext(data: &pixel, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmap.rawValue)
 
-        context!.translateBy(x: -point.x, y: -point.y)
+        context?.translateBy(x: -point.x, y: -point.y)
         render(in: context!)
 
         let red: CGFloat = CGFloat(pixel[0])/255.0

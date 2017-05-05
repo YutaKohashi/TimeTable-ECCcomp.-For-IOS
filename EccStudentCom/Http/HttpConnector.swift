@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HttpConnector{
+public class HttpConnector{
     
     private let HELPER = HttpHelper()
    
