@@ -18,13 +18,28 @@ internal class HttpHelper:HttpBase{
     
     // MARK:時間割を取得
     internal func getTimeTable(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
-        EscApiManager.timeTableRequest(code: userId) { (callback) in
-            if(callback.bool){
+        EscApiManager.timeTableRequest(code: userId) { (callback1) in
+            if(callback1.bool){
                 
             }else {
                 //トークン再取得
+                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
+                    if(callback2.bool){
+                        EscApiManager.timeTableRequest(code: userId, callback: { (callback3) in
+                            if(callback3.bool){
+                                // 時間割保存処理
+                                
+                            } else {
+                                callback(false)
+                            }
+                        })
+                    } else {
+                        callback(false)
+                    }
+                })
             }
         }
+        
 //        // 時間割
 //        self.requestTimeTable(userId: userId, password: password,callback: {
 //            requestResult in

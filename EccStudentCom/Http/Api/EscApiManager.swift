@@ -17,8 +17,9 @@ class EscApiManager{
         let request = TokenRequest(username: userId, pass: password)
         Session.send(request) { result in
             switch(result){
-            case .success(let token):
-                callback(EscApiCallback<Token>(response:token, bool:true))
+            case .success(let response):
+                self.token = response.token
+                callback(EscApiCallback<Token>(response:response, bool:true))
             case .failure( _):
                 callback(EscApiCallback<Token>(bool: false))
             }
@@ -35,6 +36,58 @@ class EscApiManager{
                 callback(EscApiCallback<RootTimeTable>(response: rootTimeTable,bool: true))
             case .failure( _):
                 callback(EscApiCallback<RootTimeTable>(bool: false))
+            }
+        }
+    }
+    
+    // MARK:学校からのお知らせ
+    static func schoolNewsRequest(callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
+        let request = NewsRequest(token: self.token, type: NewsRequest.NewsType.school , limit: 100)
+        Session.send(request) { result in
+            switch result{
+                case .success(let newsArray):
+                    callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                case .failure( _):
+                   callback(EscApiCallback<NewsArray>(bool: false))
+            }
+        }
+    }
+    
+    // MARK:担任からのお知らせ
+    static func taninNewsRequest(callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
+        let request = NewsRequest(token: self.token, type: NewsRequest.NewsType.tanin , limit: 100)
+        Session.send(request) { result in
+            switch result{
+            case .success(let newsArray):
+                callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+            case .failure( _):
+                callback(EscApiCallback<NewsArray>(bool: false))
+            }
+        }
+    }
+    
+    // MARK: お知らせ詳細
+    static func newsDetailRequest(newsId:Int, callback: @escaping (EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
+        let request = NewsDetailRequest(token: self.token, newsId: newsId)
+        Session.send(request) { result in
+            switch result{
+            case .success(let newsDetailRoot):
+                callback(EscApiCallback<NewsDetailRoot>(response: newsDetailRoot, bool: true))
+            case .failure( _):
+                callback(EscApiCallback<NewsDetailRoot>(bool: false))
+            }
+        }
+    }
+    
+    // MARK: スケジュール
+    static func scheduleRequest(year:Int, month:Int, callback: @escaping (EscApiCallback<ScheduleRoot>) -> Void) -> Void {
+        let request = ScheduleRequest(token: self.token, year:year, month: month)
+        Session.send(request) { result in
+            switch result{
+            case .success(let scheduleRoot):
+                callback(EscApiCallback<ScheduleRoot>(response: scheduleRoot, bool: true))
+            case .failure( _):
+                callback(EscApiCallback<ScheduleRoot>(bool: false))
             }
         }
     }
