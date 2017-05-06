@@ -26,8 +26,7 @@ class NewsDetailViewController: UIViewController {
        webView.scrollView.bounces = false
         DispatchQueue.main.async(execute: {
             self.html = self.getNews(html: self.html)
-            self.webView.loadHTMLString(self.html,
-                                   baseURL: URL(string:"http://comp2.ecc.ac.jp/")!)
+            self.webView.loadHTMLString(self.html, baseURL: URL(string:"http://comp2.ecc.ac.jp/")!)
         })
     }
 
