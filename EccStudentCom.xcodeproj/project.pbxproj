@@ -261,8 +261,7 @@
 				D646012D1E5915A70034323F /* NewsDetailViewController.swift */,
 				D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */,
 			);
-			name = ViewController;
-			path = ../ViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		798679DF1DD01B2B00CA7A88 /* Cells */ = {
@@ -277,8 +276,7 @@
 				D64601291E589BCF0034323F /* NewsTitleCell.swift */,
 				D646012B1E589BD90034323F /* NewsItemCell.swift */,
 			);
-			name = Cells;
-			path = ../Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		798679E01DD01E6000CA7A88 /* StoryBoard */ = {
@@ -383,8 +381,7 @@
 				79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */,
 				79F1FB401DCA3E6D007B7386 /* about_html.html */,
 			);
-			name = Html;
-			path = ../Html;
+			path = Html;
 			sourceTree = "<group>";
 		};
 		79F5737C1DCCE07500E62898 /* Extension */ = {
@@ -393,8 +390,7 @@
 				798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */,
 				7924B03C1DEB380300D43894 /* SelectColor+UItableViewCell.swift */,
 			);
-			name = Extension;
-			path = ../Extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		79F573811DCD092800E62898 /* Assets */ = {
