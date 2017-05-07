@@ -10,25 +10,29 @@ import UIKit
 import RealmSwift
 import KRProgressHUD
 
-class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
-    
+class TimeTableViewController: UIViewController ,UICollectionViewDataSource, UICollectionViewDelegate  , UICollectionViewDelegateFlowLayout {
     var refreshFlg:Bool = false
     
-    @IBOutlet weak var mondayTableView: UITableView!
-    @IBOutlet weak var tuesdayTableView: UITableView!
-    @IBOutlet weak var wednesdayTableView: UITableView!
-    @IBOutlet weak var thursdayTableView: UITableView!
-    @IBOutlet weak var fridayTableView: UITableView!
+    // 時間割CollectionView
+    @IBOutlet weak var timeTableCollectionView: UICollectionView!
     
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var bottomCloseButton: UIButton!
     
-    //Labels in BottomSheetView
+    //Labels on BottomSheetView
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var teacherLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet var masterView: UIView!
+    
+    //　アイテムマージンを0にしてセルマージンを2.0にする
+    private let cellMargin : CGFloat = 0.0
+    private var itemCount:Int = 0
+    private var colCount:Int = 5
+    
+    // セルの幅に対するセルの高さの割合
+    private var cellHeightProportion :CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,23 +41,17 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
         
-        initTableView()
+        
+        
+        
+//        
+//        initTableView()
         bottomSheetView.isHidden = true
         bottomCloseButton.isHidden = true
         bottomCloseButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //TODO
-        if(refreshFlg){
-            mondayTableView.reloadData()
-            tuesdayTableView.reloadData()
-            wednesdayTableView.reloadData()
-            thursdayTableView.reloadData()
-            fridayTableView.reloadData()
-            refreshFlg = false
-        }
-        
         super.viewWillAppear(animated)
         
     }
@@ -63,192 +61,111 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         
     }
     
-    //closeButton
-    @IBAction func bottomCloseButton(_ sender: AnyObject) {
+    //セルサイズの指定（UICollectionViewDelegateFlowLayoutで必須）　横幅いっぱいにセルが広がるようにしたい
+    // Screenサイズに応じたセルサイズを返す
+    // UICollectionViewDelegateFlowLayoutの設定が必要
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let numberOfMargin:CGFloat = 8.0
+        let widths:CGFloat = collectionView.frame.size.width/CGFloat(colCount)
+        let heights:CGFloat = widths * cellHeightProportion
         
-        bottomCloseButton.isEnabled = false
+        return CGSize(width:widths,height:heights)
         
-        fadeOutAnimation()
-        closeAnimation()
+        //        let cellSize:CGFloat = self.view.frame.size.width/5-2
+        //        // 正方形で返すためにwidth,heightを同じにする
+        //        return CGSize(width: cellSize, height: cellSize)
+        //
+        //        let padding: CGFloat = 25
+        //        let collectionCellSize = collectionView.frame.size.width - padding
+        //
+        //        return CGSize(width: collectionCellSize/5, height: collectionCellSize/5)
+    }
+    
+    
+    // セル表示設定　---------------------------------------------------------------------------------
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        
+        // Cell はストーリーボードで設定したセルのID
+        let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath)
+        let subjectLabel = cell.contentView.viewWithTag(1) as! UILabel
+        let roomLabel = cell.contentView.viewWithTag(2) as! UILabel
+        //        // Tag番号を使ってImageViewのインスタンス生成
+        //        let imageView = testCell.contentView.viewWithTag(1) as! UIImageView
+        //        // 画像配列の番号で指定された要素の名前の画像をUIImageとする
+        //        let cellImage = UIImage(named: photos[(indexPath as NSIndexPath).row])
+        //        // UIImageをUIImageViewのimageとして設定
+        //        imageView.image = cellImage
+        //
+//        testCell.backgroundColor = UIColor.green
+        
         subjectLabel.text = ""
-        teacherLabel.text = ""
-        timeLabel.text = ""
-    
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        switch tableView.tag {
-        case 0:
-            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellMon
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil{return}
-            
-            setBottomSheet()
-            
-            subjectLabel.text = cell.getSubjectName().text
-            teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
-            break
-        case 1:
-            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellTue
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
-            
-             setBottomSheet()
-            
-            subjectLabel.text = cell.getSubjectName().text
-            teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
-            break
-        case 2:
-            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellWed
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
-            
-             setBottomSheet()
-            
-            subjectLabel.text = cell.getSubjectName().text
-            teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
-            break
-        case 3:
-            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellThur
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
-            
-            setBottomSheet()
-            
-            subjectLabel.text = cell.getSubjectName().text
-            teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
-            break
-        case 4:
-            let cell = tableView.cellForRow(at: indexPath)as! CustomTimeTableViewCellFri
-            if cell.getSubjectName().text == "" || cell.getSubjectName().text == nil {return}
-            
-            setBottomSheet()
-            subjectLabel.text = cell.getSubjectName().text
-            teacherLabel.text = cell.getTeacherName().text
-            timeLabel.text = getTime(index: (indexPath as NSIndexPath).row)
-            break
-        default:
-            break
-        }
-    }
-    
-    func setBottomSheet(){
-        bottomSheetView.isHidden = false
-        bottomCloseButton.isHidden = false
-        openAnimation()
-        fadeInAnimation()
-    }
-    
-    private let ANIM_SPEED = 0.3
-    
-    func openAnimation(){
-        UIView.animate(withDuration: ANIM_SPEED, animations: {
-            self.bottomSheetView.frame.origin.y = 150
-            self.bottomCloseButton.isEnabled = true
-        })
-    }
-    
-    func closeAnimation(){
-        UIView.transition(with: bottomSheetView,
-                          duration: 0.1,
-                          options: .transitionCrossDissolve,
-                          animations: {() -> Void in
-            self.bottomSheetView.isHidden = true
-            }, completion: { _ in })
-    }
-    
-    func fadeInAnimation(){
-        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
-            self.bottomCloseButton.alpha = 1.0
-        }
-    }
-    func fadeOutAnimation(){
-        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
-            self.bottomCloseButton.alpha = 0.0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        roomLabel.text = ""
         
-        var subjectName:String = ""
-        var roomNumber:String = ""
-        var teacherName:String = ""
-        switch tableView.tag {
-            
-            
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
-            
-            let realm = try! Realm()
-            let saveModel = realm.objects(TimeTableSaveModel.self)
-            subjectName = saveModel[(indexPath as NSIndexPath).row * 5].subjectName
-            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5].room
-            teacherName = saveModel[(indexPath as NSIndexPath).row * 5].teacherName
-            // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
-            return cell
-            
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TueCustomCell") as! CustomTimeTableViewCellTue
-            let realm = try! Realm()
-            let saveModel = realm.objects(TimeTableSaveModel.self)
-            
-            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 1].subjectName
-            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 1].room
-            teacherName = saveModel[(indexPath as NSIndexPath).row * 5 + 1].teacherName
-            // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
-            return cell
-            
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WedCustomCell") as! CustomTimeTableViewCellWed
-            let realm = try! Realm()
-            let saveModel = realm.objects(TimeTableSaveModel.self)
-            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 2].subjectName
-            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 2].room
-            teacherName = saveModel[(indexPath as NSIndexPath).row * 5 + 2].teacherName
-            // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
-            return cell
-            
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ThurCustomCell") as! CustomTimeTableViewCellThur
-            let realm = try! Realm()
-            let saveModel = realm.objects(TimeTableSaveModel.self)
-            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 3].subjectName
-            roomNumber = saveModel[(indexPath as NSIndexPath).row  * 5 + 3].room
-            teacherName = saveModel[(indexPath as NSIndexPath).row  * 5 + 3].teacherName
-            // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
-            return cell
-            
-        case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FriCustomCell") as! CustomTimeTableViewCellFri
-            let realm = try! Realm()
-            let saveModel = realm.objects(TimeTableSaveModel.self)
-            subjectName = saveModel[(indexPath as NSIndexPath).row * 5 + 4].subjectName
-            roomNumber = saveModel[(indexPath as NSIndexPath).row * 5 + 4].room
-            teacherName = saveModel[(indexPath as NSIndexPath).row * 5 + 4].teacherName
-            // セルに値を設定
-            cell.setCell(subjectName,roomN:roomNumber,name: teacherName)
-            
-            return cell
-            
-        default:
-            break
-        }
-        
-        //ここは通らない
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MonCustomCell") as! CustomTimeTableViewCellMon
         return cell
     }
+
     
-    /// セルの個数を指定するデリゲートメソッド（必須）
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+    
+    // コレクションビュー　---------------------------------------------------------------------------------
+    
+    //　セルに表示する要素数
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        itemCount = 20
+        return itemCount
+    }
+
+    // セクション数設定
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
+    
+    // レイアウト設定
+    
+    //セルのアイテムのマージンを設定　
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0 , 0.0 , 0.0 , 0.0 )  //マージン(top , left , bottom , right)
+    }
+    
+    //セルの水平方向のマージンを設定
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellMargin
+    }
+    //セルの垂直方向のマージンを設定
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellMargin
+    }
+    
+    
+
+    
+    
+    
+    // MARK: 画面回転時にセルの幅を再設定
+    // 画面回転時にセルの幅を再設定 ------------------------------------------------------------------------
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let flowLayout = timeTableCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
+            //here you can do the logic for the cell size if phone is in landscape
+            cellHeightProportion = 0.6
+        } else {
+            //logic if not landscape
+            cellHeightProportion = 1.2
+        }
+        
+        flowLayout.invalidateLayout()
+    }
+    
+    
+    
+    // MARK:　ステータスバー
+    // ステータスバー ------------------------------------------------------------------------
     override var prefersStatusBarHidden : Bool {
         // trueの場合はステータスバー非表示
         return false;
@@ -259,30 +176,30 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
         return UIStatusBarStyle.lightContent;
     }
     
-    // TableViewを初期化
-    func initTableView(){
-        //各tableViewのスクロールを無効化
-        mondayTableView.isScrollEnabled = false
-        tuesdayTableView.isScrollEnabled = false
-        wednesdayTableView.isScrollEnabled = false
-        thursdayTableView.isScrollEnabled = false
-        fridayTableView.isScrollEnabled = false
+
+    
+    // ボトムシート ------------------------------------------------------------------------
+    //closeButton
+    @IBAction func bottomCloseButton(_ sender: AnyObject) {
         
-        mondayTableView.dataSource = self
-        tuesdayTableView.dataSource = self
-        wednesdayTableView.dataSource = self
-        thursdayTableView.dataSource = self
-        fridayTableView.dataSource = self
+        bottomCloseButton.isEnabled = false
         
-        //タップ時にセルの位置を取得するのに必要
-        mondayTableView.delegate = self
-        tuesdayTableView.delegate = self
-        wednesdayTableView.delegate = self
-        thursdayTableView.delegate = self
-        fridayTableView.delegate = self
+        fadeOutAnimation()
+        closeAnimation()
+        subjectLabel.text = ""
+        teacherLabel.text = ""
+        timeLabel.text = ""
+        
     }
     
-    func getTime(index:Int) -> String{
+    func setBottomSheet(){
+        bottomSheetView.isHidden = false
+        bottomCloseButton.isHidden = false
+        openAnimation()
+        fadeInAnimation()
+    }
+    
+    private func getTime(index:Int) -> String{
         switch index {
         case 0:
             return "09:15 ~ 10:45"
@@ -298,4 +215,36 @@ class TimeTableViewController: UIViewController ,UITableViewDataSource, UITableV
             return ""
         }
     }
+    
+    // アニメーション ------------------------------------------------------------------------
+    
+    private let ANIM_SPEED = 0.3
+    
+    private func openAnimation(){
+        UIView.animate(withDuration: ANIM_SPEED, animations: {
+            self.bottomSheetView.frame.origin.y = 150
+            self.bottomCloseButton.isEnabled = true
+        })
+    }
+    
+    private func closeAnimation(){
+        UIView.transition(with: bottomSheetView,
+                          duration: 0.1,
+                          options: .transitionCrossDissolve,
+                          animations: {() -> Void in
+                            self.bottomSheetView.isHidden = true
+        }, completion: { _ in })
+    }
+    
+    private  func fadeInAnimation(){
+        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
+            self.bottomCloseButton.alpha = 1.0
+        }
+    }
+    private func fadeOutAnimation(){
+        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
+            self.bottomCloseButton.alpha = 0.0
+        }
+    }
+    
 }

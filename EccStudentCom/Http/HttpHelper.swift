@@ -29,6 +29,7 @@ internal class HttpHelper:HttpBase{
                             if(callback3.bool){
                                 // 時間割保存処理
                                 
+                                callback(true)
                             } else {
                                 callback(false)
                             }
@@ -39,28 +40,6 @@ internal class HttpHelper:HttpBase{
                 })
             }
         }
-        
-//        // 時間割
-//        self.requestTimeTable(userId: userId, password: password,callback: {
-//            requestResult in
-//            
-//            if(requestResult.bool){
-//                
-//                let names = self.getTeacherNames(html: requestResult.string)
-//                
-//                //保存処理
-//                let realmSwift = try! Realm()
-//                //データを削除
-//                let savemodels = realmSwift.objects(TimeTableSaveModel.self)
-//                savemodels.forEach({ (model) in
-//                    try! realmSwift.write() {
-//                        realmSwift.delete(model)
-//                    }
-//                })
-//                SaveManager().saveTimeTable(realmSwift,mLastResponseHtml: requestResult.string,names:names)
-//            }
-//            callback(requestResult.bool)
-//        })
     }
     
     // MARK:出席照会リスト
@@ -98,110 +77,92 @@ internal class HttpHelper:HttpBase{
     
     // MARK:学校からのお知らせ
     func getSchoolNews(userId:String, password:String, callback:@escaping(Bool) -> Void) -> Void{
-//        self.requestNews(userId: userId, passoword: password) { (cb1) in
-//            if(cb1.bool){
-//                let realm = try! Realm()
-//                let saveModels = realm.objects(SchoolNewsItem.self)
-//                saveModels.forEach({ (model) in
-//                    try! realm.write() {
-//                        realm.delete(model)
-//                    }
-//                })
-//                
-//                SaveManager().saveSchoolNews(realm, mLastResponseHtml: cb1.string)
-//            }
-//            callback(cb1.bool)
-//        }
+        EscApiManager.schoolNewsRequest { (callback1) in
+            if callback1.bool {
+                // 学校からのお知らせを保存
+                 callback(true)
+            } else {
+                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
+                    if callback2.bool {
+                        EscApiManager.schoolNewsRequest(callback: { (callback3) in
+                            if callback3.bool {
+                                // 学校からのおしらせを保存
+                                 callback(true)
+                            } else {
+                                callback(false)
+                            }
+                        })
+                    } else {
+                        callback(false)
+                    }
+                })
+            }
+        }
     }
     
     // MARK:担任からのお知らせ
     func getTaninNews(userId:String,password:String,callback:@escaping(Bool) -> Void) -> Void{
-//        self.requestNews(userId: userId, passoword: password) { (cb1) in
-//            if(cb1.bool){
-//                let realm = try! Realm()
-//                let saveModels = realm.objects(TaninNewsItem.self)
-//                saveModels.forEach({ (model) in
-//                    try! realm.write() {
-//                        realm.delete(model)
-//                    }
-//                })
-//                
-//                SaveManager().saveTaninNews(realm, mLastResponseHtml: cb1.string)
-//            }
-//            callback(cb1.bool)
-//        }
-
+        EscApiManager.taninNewsRequest { (callback1) in
+            if callback1.bool {
+                // 学校からのお知らせを保存
+                callback(true)
+            } else {
+                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
+                    if callback2.bool {
+                        EscApiManager.taninNewsRequest(callback: { (callback3) in
+                            if callback3.bool {
+                                // 学校からのおしらせを保存
+                                callback(true)
+                            } else {
+                                callback(false)
+                            }
+                        })
+                    } else {
+                        callback(false)
+                    }
+                })
+            }
+        }
     }
     
     // MARK:学校、担任からのお知らせ
     func getSchoolTaninNews(userId:String,password:String, callback:@escaping(Bool) -> Void) -> Void {
-//        getSchoolNews(userId: userId, password: password) { (cb1) in
-//            if(cb1){
-//                self.getTaninNews(userId: userId, password: password, callback: { (cb2) in
-//                    callback(cb2)
-//                })
-//            }else{
-//                callback(cb1)
-//            }
-//        }
+        getSchoolNews(userId: userId, password: password) { (cb1) in
+            if(cb1){
+                self.getTaninNews(userId: userId, password: password, callback: { (cb2) in
+                    callback(cb2)
+                })
+            }else{
+                callback(cb1)
+            }
+        }
     }
     
     // MARK:お知らせ詳細  
-    func getNewsDetail(userId:String, password:String, uri:String,callback:@escaping(CallBackClass) -> Void) -> Void {
-//        self.requestNewsDetail(userId:userId,password:password, uri:uri, callback:{(cb1) in
-//            callback(cb1)
-//        })
+    func getNewsDetail(userId:String, password:String, newsId:Int,callback:@escaping(EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
+        EscApiManager.newsDetailRequest(newsId: newsId) { (callback1) in
+            if callback1.bool {
+                
+            } else {
+                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
+                    if callback2.bool {
+                        EscApiManager.newsDetailRequest(newsId: newsId) { (callback3) in
+                            if(callback3.bool){
+                                callback(EscApiCallback<NewsDetailRoot>(response: callback3.response!, bool: true))
+                            } else {
+                                callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                            }
+                        }
+                    } else {
+                        callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                    }
+                })
+            }
+        }
     }
     
     /******************************************  private  ***********************************************************/
     
-    //先生名を取得するメソッド
-    //連続GET
-//    private func getTeacherNames(html:String) -> [String]{
-//        var names:[String] = []
-//        let urls:[String] = getTeacherURLs(html: html)
-//        let htmls:[String] = self.continuousRequest(urls: urls, method: "GET")
-//        for html in htmls{
-//            names.append(getTeacherName(html: html))
-//        }
-//        
-//        return names
-//    }
-//    
-//    private func getTeacherURLs(html:String) -> [String]{
-//        let urls:[String] = GetValuesBase("<a href=\"(.+?)\">投書<").getGroupValues(html)
-//        var result:[String] = []
-//        for url in urls{
-//            result.append(GetValuesBase("<a href=\"(.+?)\">投書<").getValues(url))
-//        }
-//        return result
-//    }
-//    
-//    private func getTeacherName(html:String) -> String{
-//        var name = GetValuesBase("<h3>受信者</h3>\n*\\s*<p>(.+?)</p>").getValues(html)
-//        name = fixName(name:name)
-//        return name
-//    }
-//    
-//    //replace two more \s to one
-//    private func fixName(name:String) -> String{
-//        var fixedname = name.replacingOccurrences(of:"      ", with: " ")
-//        fixedname = fixedname.replacingOccurrences(of:"      ", with: " ")
-//        fixedname = fixedname.replacingOccurrences(of:"     ", with: " ")
-//        fixedname = fixedname.replacingOccurrences(of:"    ", with: " ")
-//        fixedname = fixedname.replacingOccurrences(of:"   ", with: " ")
-//        fixedname = fixedname.replacingOccurrences(of:"  ", with: " ")
-//        return fixedname
-//    }
-//    
-//    // MARK: -
-//    // MARK:時間割を取得
-//    private func requestTimeTable(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
-//        self.loginToESCuserId(userId: userId, password: password, callback: {(requestResult) in
-//            callback(requestResult)
-//        })
-//    }
-//    
     // MARK:出席率を取得
     private func reequestAttendanseRate(userId :String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
         httpGet(url: URL.YS_TO_PAGE,
@@ -237,48 +198,4 @@ internal class HttpHelper:HttpBase{
             }else{callback(cb1)} //false
         }
     }
-    
-//    // MARK:NEWSページへ遷移するメソッド
-//    private func requestNews(userId:String,passoword:String, callback: @escaping (CallBackClass) -> Void) -> Void {
-//        self.loginToESCuserId(userId: userId, password: passoword, callback: {(requestResult) in
-//            callback(requestResult)
-//        })
-//    }
-    
-//    private func requestNewsDetail(userId:String,password:String,uri:String, callback: @escaping (CallBackClass) -> Void) -> Void {
-//        self.loginToESCuserId(userId: userId, password: password, callback: {(requestResult) in
-//            if requestResult.bool{
-//                self.httpGet(url:uri,
-//                        requestBody: "",
-//                        referer: self.URL.ESC_LOGIN,
-//                        header:true){(cb1) in
-//                            callback(cb1)
-//                }
-//            } else {
-//                callback(requestResult)
-//            }
-//        })
-//    }
-    
-    
-//    // MARK:EccStudentCommunicationにログインするメソッド
-//    private func loginToESCuserId(userId:String,password:String,callback: @escaping (CallBackClass) -> Void) -> Void {
-//        httpGet(url: URL.ESC_TO_PAGE,
-//                requestBody:"" ,
-//                referer: URL.DEFAULT_REFERER,
-//                header: true)
-//        { (cb1) in
-//            if(cb1.bool){
-//                self.httpPost(url: self.URL.ESC_LOGIN,
-//                              requestBody: self.BODY.createPostDataForEscLogin(userId: userId,
-//                                                                               passwrod: password,
-//                                                                               mLastResponseHtml: cb1.string),
-//                              referer: self.URL.ESC_TO_PAGE,
-//                              header: true)
-//                { (cb2) in
-//                    callback(cb2)
-//                }
-//            }else{callback(cb1)} //false
-//        }
-//    }
 }

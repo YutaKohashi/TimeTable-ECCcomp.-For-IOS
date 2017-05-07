@@ -85,6 +85,7 @@
 		D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012B1E589BD90034323F /* NewsItemCell.swift */; };
 		D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012D1E5915A70034323F /* NewsDetailViewController.swift */; };
 		D6E8885D1E7FF6730089FE5E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */; };
+		D6FDCCAB1EBEF3C000E2DAE1 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FDCCAA1EBEF3C000E2DAE1 /* View.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +172,7 @@
 		D646012B1E589BD90034323F /* NewsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
 		D646012D1E5915A70034323F /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D6FDCCAA1EBEF3C000E2DAE1 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -298,6 +300,7 @@
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
 				798679E01DD01E6000CA7A88 /* StoryBoard */,
 				798679DF1DD01B2B00CA7A88 /* Cells */,
+				D6FDCCAA1EBEF3C000E2DAE1 /* View.xib */,
 			);
 			name = UI;
 			path = Ui;
@@ -496,6 +499,7 @@
 				795D41CC1DC9840900F9407E /* Settings-50.png in Resources */,
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
 				799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */,
+				D6FDCCAB1EBEF3C000E2DAE1 /* View.xib in Resources */,
 				79F573801DCCFDB700E62898 /* Settings.bundle in Resources */,
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
 				79F573791DCC460500E62898 /* lisence.html in Resources */,
