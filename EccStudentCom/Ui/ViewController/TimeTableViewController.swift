@@ -10,11 +10,11 @@ import UIKit
 import RealmSwift
 import KRProgressHUD
 
-class TimeTableViewController: UIViewController ,UICollectionViewDataSource, UICollectionViewDelegate  , UICollectionViewDelegateFlowLayout {
+class TimeTableViewController: UIViewController{
     var refreshFlg:Bool = false
     
     // 時間割CollectionView
-    @IBOutlet weak var timeTableCollectionView: UICollectionView!
+//    @IBOutlet weak var timeTableCollectionView: UICollectionView!
     
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var bottomCloseButton: UIButton!
@@ -26,10 +26,12 @@ class TimeTableViewController: UIViewController ,UICollectionViewDataSource, UIC
     
     @IBOutlet var masterView: UIView!
     
+    @IBOutlet weak var timeTable: TimeTableView1!
+    
     //　アイテムマージンを0にしてセルマージンを2.0にする
-    private let cellMargin : CGFloat = 0.0
-    private var itemCount:Int = 0
-    private var colCount:Int = 5
+//    private let cellMargin : CGFloat = 0.0
+//    private var itemCount:Int = 0
+//    private var colCount:Int = 5
     
     // セルの幅に対するセルの高さの割合
     private var cellHeightProportion :CGFloat = 0.0
@@ -63,80 +65,80 @@ class TimeTableViewController: UIViewController ,UICollectionViewDataSource, UIC
     
     //セルサイズの指定（UICollectionViewDelegateFlowLayoutで必須）　横幅いっぱいにセルが広がるようにしたい
     // Screenサイズに応じたセルサイズを返す
-    // UICollectionViewDelegateFlowLayoutの設定が必要
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let numberOfMargin:CGFloat = 8.0
-        let widths:CGFloat = collectionView.frame.size.width/CGFloat(colCount)
-        let heights:CGFloat = widths * cellHeightProportion
-        
-        return CGSize(width:widths,height:heights)
-        
-        //        let cellSize:CGFloat = self.view.frame.size.width/5-2
-        //        // 正方形で返すためにwidth,heightを同じにする
-        //        return CGSize(width: cellSize, height: cellSize)
-        //
-        //        let padding: CGFloat = 25
-        //        let collectionCellSize = collectionView.frame.size.width - padding
-        //
-        //        return CGSize(width: collectionCellSize/5, height: collectionCellSize/5)
-    }
+//    // UICollectionViewDelegateFlowLayoutの設定が必要
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+////        let numberOfMargin:CGFloat = 8.0
+//        let widths:CGFloat = collectionView.frame.size.width/CGFloat(colCount)
+//        let heights:CGFloat = widths * cellHeightProportion
+//        
+//        return CGSize(width:widths,height:heights)
+//        
+//        //        let cellSize:CGFloat = self.view.frame.size.width/5-2
+//        //        // 正方形で返すためにwidth,heightを同じにする
+//        //        return CGSize(width: cellSize, height: cellSize)
+//        //
+//        //        let padding: CGFloat = 25
+//        //        let collectionCellSize = collectionView.frame.size.width - padding
+//        //
+//        //        return CGSize(width: collectionCellSize/5, height: collectionCellSize/5)
+//    }
     
     
     // セル表示設定　---------------------------------------------------------------------------------
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        
-        // Cell はストーリーボードで設定したセルのID
-        let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath)
-        let subjectLabel = cell.contentView.viewWithTag(1) as! UILabel
-        let roomLabel = cell.contentView.viewWithTag(2) as! UILabel
-        //        // Tag番号を使ってImageViewのインスタンス生成
-        //        let imageView = testCell.contentView.viewWithTag(1) as! UIImageView
-        //        // 画像配列の番号で指定された要素の名前の画像をUIImageとする
-        //        let cellImage = UIImage(named: photos[(indexPath as NSIndexPath).row])
-        //        // UIImageをUIImageViewのimageとして設定
-        //        imageView.image = cellImage
-        //
-//        testCell.backgroundColor = UIColor.green
-        
-        subjectLabel.text = ""
-        roomLabel.text = ""
-        
-        return cell
-    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+//        
+//        // Cell はストーリーボードで設定したセルのID
+//        let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath)
+//        let subjectLabel = cell.contentView.viewWithTag(1) as! UILabel
+//        let roomLabel = cell.contentView.viewWithTag(2) as! UILabel
+//        //        // Tag番号を使ってImageViewのインスタンス生成
+//        //        let imageView = testCell.contentView.viewWithTag(1) as! UIImageView
+//        //        // 画像配列の番号で指定された要素の名前の画像をUIImageとする
+//        //        let cellImage = UIImage(named: photos[(indexPath as NSIndexPath).row])
+//        //        // UIImageをUIImageViewのimageとして設定
+//        //        imageView.image = cellImage
+//        //
+////        testCell.backgroundColor = UIColor.green
+//        
+//        subjectLabel.text = ""
+//        roomLabel.text = ""
+//        
+//        return cell
+//    }
 
     
     
     // コレクションビュー　---------------------------------------------------------------------------------
-    
-    //　セルに表示する要素数
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        itemCount = 20
-        return itemCount
-    }
-
-    // セクション数設定
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    
-    // レイアウト設定
-    
-    //セルのアイテムのマージンを設定　
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0 , 0.0 , 0.0 , 0.0 )  //マージン(top , left , bottom , right)
-    }
-    
-    //セルの水平方向のマージンを設定
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return cellMargin
-    }
-    //セルの垂直方向のマージンを設定
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return cellMargin
-    }
-    
+//    
+//    //　セルに表示する要素数
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        itemCount = 20
+//        return itemCount
+//    }
+//
+//    // セクション数設定
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    
+//    
+//    // レイアウト設定
+//    
+//    //セルのアイテムのマージンを設定　
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsetsMake(0.0 , 0.0 , 0.0 , 0.0 )  //マージン(top , left , bottom , right)
+//    }
+//    
+//    //セルの水平方向のマージンを設定
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return cellMargin
+//    }
+//    //セルの垂直方向のマージンを設定
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return cellMargin
+//    }
+//    
     
 
     
@@ -144,24 +146,24 @@ class TimeTableViewController: UIViewController ,UICollectionViewDataSource, UIC
     
     // MARK: 画面回転時にセルの幅を再設定
     // 画面回転時にセルの幅を再設定 ------------------------------------------------------------------------
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        guard let flowLayout = timeTableCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        
-        if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
-            //here you can do the logic for the cell size if phone is in landscape
-            cellHeightProportion = 0.6
-        } else {
-            //logic if not landscape
-            cellHeightProportion = 1.2
-        }
-        
-        flowLayout.invalidateLayout()
-    }
-    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        
+//        guard let flowLayout = timeTableCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+//            return
+//        }
+//        
+//        if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
+//            //here you can do the logic for the cell size if phone is in landscape
+//            cellHeightProportion = 0.6
+//        } else {
+//            //logic if not landscape
+//            cellHeightProportion = 1.2
+//        }
+//        
+//        flowLayout.invalidateLayout()
+//    }
+//    
     
     
     // MARK:　ステータスバー

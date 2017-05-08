@@ -39,6 +39,9 @@
 		798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078D1DCD8E0B00929F17 /* CallBackClass.swift */; };
 		798C07901DCE138200929F17 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */; };
 		798FF07D1EBE0D5800FF1F11 /* EscApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */; };
+		798FF0801EC0006F00FF1F11 /* TImeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FF07F1EC0006F00FF1F11 /* TImeTableView.swift */; };
+		798FF0831EC002BE00FF1F11 /* TimeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798FF0821EC002BE00FF1F11 /* TimeTableCell.xib */; };
+		798FF0871EC0095900FF1F11 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FF0861EC0095900FF1F11 /* TimeTableViewCell.swift */; };
 		799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TimeTableViewController.swift */; };
 		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
 		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
@@ -77,6 +80,8 @@
 		79F573791DCC460500E62898 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F573781DCC460500E62898 /* lisence.html */; };
 		79F5737B1DCCDFCC00E62898 /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */; };
 		79F573801DCCFDB700E62898 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79F5737F1DCCFDB700E62898 /* Settings.bundle */; };
+		79F93E9F1EC0C486009247AE /* TimeTableView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F93E9E1EC0C486009247AE /* TimeTableView1.xib */; };
+		79F93EA11EC0C525009247AE /* TimeTableView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F93EA01EC0C525009247AE /* TimeTableView1.swift */; };
 		B89F627E1EACE9B0F0F0928B /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */; };
 		D632069A1E54BDA00004E359 /* SchoolNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63206991E54BDA00004E359 /* SchoolNewsItem.swift */; };
 		D632069C1E56597A0004E359 /* NewsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632069B1E56597A0004E359 /* NewsParentViewController.swift */; };
@@ -85,7 +90,7 @@
 		D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012B1E589BD90034323F /* NewsItemCell.swift */; };
 		D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646012D1E5915A70034323F /* NewsDetailViewController.swift */; };
 		D6E8885D1E7FF6730089FE5E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */; };
-		D6FDCCAB1EBEF3C000E2DAE1 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FDCCAA1EBEF3C000E2DAE1 /* View.xib */; };
+		D6FDCCAB1EBEF3C000E2DAE1 /* TimeTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6FDCCAA1EBEF3C000E2DAE1 /* TimeTable.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +130,9 @@
 		798C078D1DCD8E0B00929F17 /* CallBackClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackClass.swift; sourceTree = "<group>"; };
 		798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscApiManager.swift; sourceTree = "<group>"; };
+		798FF07F1EC0006F00FF1F11 /* TImeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TImeTableView.swift; sourceTree = "<group>"; };
+		798FF0821EC002BE00FF1F11 /* TimeTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimeTableCell.xib; path = EccStudentCom/UI/TimeTableCell.xib; sourceTree = SOURCE_ROOT; };
+		798FF0861EC0095900FF1F11 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
 		799F60141DC5B80100C95A68 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
 		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
@@ -165,6 +173,8 @@
 		79F573781DCC460500E62898 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = lisence.html; sourceTree = "<group>"; };
 		79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
 		79F5737F1DCCFDB700E62898 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = EccStudentCom/Settings.bundle; sourceTree = "<group>"; };
+		79F93E9E1EC0C486009247AE /* TimeTableView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeTableView1.xib; sourceTree = "<group>"; };
+		79F93EA01EC0C525009247AE /* TimeTableView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableView1.swift; sourceTree = "<group>"; };
 		D63206991E54BDA00004E359 /* SchoolNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolNewsItem.swift; sourceTree = "<group>"; };
 		D632069B1E56597A0004E359 /* NewsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsParentViewController.swift; sourceTree = "<group>"; };
 		D64601271E5885D80034323F /* TaninNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaninNewsItem.swift; sourceTree = "<group>"; };
@@ -172,7 +182,7 @@
 		D646012B1E589BD90034323F /* NewsItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
 		D646012D1E5915A70034323F /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		D6E8885C1E7FF6730089FE5E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		D6FDCCAA1EBEF3C000E2DAE1 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		D6FDCCAA1EBEF3C000E2DAE1 /* TimeTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeTable.xib; sourceTree = "<group>"; };
 		D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EccStudentCom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -293,17 +303,37 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		798FF07E1EBFFFF400FF1F11 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				D6FDCCAA1EBEF3C000E2DAE1 /* TimeTable.xib */,
+				798FF0821EC002BE00FF1F11 /* TimeTableCell.xib */,
+				79F93E9E1EC0C486009247AE /* TimeTableView1.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		798FF0811EC0008700FF1F11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				798FF07F1EC0006F00FF1F11 /* TImeTableView.swift */,
+				798FF0861EC0095900FF1F11 /* TimeTableViewCell.swift */,
+				79F93EA01EC0C525009247AE /* TimeTableView1.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		79B585571EBBE9D1005B4E1A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				798FF0811EC0008700FF1F11 /* View */,
+				798FF07E1EBFFFF400FF1F11 /* Xib */,
 				79F5737C1DCCE07500E62898 /* Extension */,
 				796DE3EE1DC3855000BF5ABE /* ViewController */,
 				798679E01DD01E6000CA7A88 /* StoryBoard */,
 				798679DF1DD01B2B00CA7A88 /* Cells */,
-				D6FDCCAA1EBEF3C000E2DAE1 /* View.xib */,
 			);
-			name = UI;
-			path = Ui;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		79B585581EBBEA31005B4E1A /* Api */ = {
@@ -499,7 +529,8 @@
 				795D41CC1DC9840900F9407E /* Settings-50.png in Resources */,
 				794F667D1D96B7C300C1D9B6 /* LaunchScreen.storyboard in Resources */,
 				799F601B1DC5BF8200C95A68 /* text-align-justify-7.png in Resources */,
-				D6FDCCAB1EBEF3C000E2DAE1 /* View.xib in Resources */,
+				79F93E9F1EC0C486009247AE /* TimeTableView1.xib in Resources */,
+				D6FDCCAB1EBEF3C000E2DAE1 /* TimeTable.xib in Resources */,
 				79F573801DCCFDB700E62898 /* Settings.bundle in Resources */,
 				79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */,
 				79F573791DCC460500E62898 /* lisence.html in Resources */,
@@ -511,6 +542,7 @@
 				79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */,
 				794F66751D96B7C300C1D9B6 /* Main.storyboard in Resources */,
 				79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */,
+				798FF0831EC002BE00FF1F11 /* TimeTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +615,7 @@
 				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79B585801EBDF195005B4E1A /* ScheduleRoot.swift in Sources */,
 				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
+				798FF0871EC0095900FF1F11 /* TimeTableViewCell.swift in Sources */,
 				D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,
 				79F1FB3D1DCA3AF6007B7386 /* AboutViewController.swift in Sources */,
@@ -608,6 +641,7 @@
 				798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */,
 				79B585841EBDF1C6005B4E1A /* ScheduleCategory.swift in Sources */,
 				79B5855A1EBBEA62005B4E1A /* EscRequest.swift in Sources */,
+				798FF0801EC0006F00FF1F11 /* TImeTableView.swift in Sources */,
 				7951A65E1DD3426C0075ACC8 /* HttpConnector.swift in Sources */,
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */,
@@ -617,6 +651,7 @@
 				794F66871D96B8C900C1D9B6 /* GetValuesBase.swift in Sources */,
 				794F668D1D96D8BA00C1D9B6 /* CustomTableCell.swift in Sources */,
 				79F1FB391DC99400007B7386 /* PreferenceController.swift in Sources */,
+				79F93EA11EC0C525009247AE /* TimeTableView1.swift in Sources */,
 				79B9DD921DC62600009153B6 /* TimeTableSaveModel.swift in Sources */,
 				79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* SaveModel.swift in Sources */,
