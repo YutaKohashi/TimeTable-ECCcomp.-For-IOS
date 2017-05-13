@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import RealmSwift
 import KRProgressHUD
+import RealmSwift
+import Realm
 
 class TableViewController: UIViewController, UITableViewDataSource {
     
@@ -22,7 +23,10 @@ class TableViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var lostUnitLabel: UILabel!
     @IBOutlet weak var attendanceNumLabel: UILabel!
     @IBOutlet weak var abcentNumLabel: UILabel!
-    let realm = try! Realm()
+    
+    var items:Results<AttendanceRateItem>? = nil
+    
+//    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +36,10 @@ class TableViewController: UIViewController, UITableViewDataSource {
         //区切り線をなくす 背景と同色
         tableView.separatorColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:1.0)
         
-        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
+//        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
         tableView.dataSource = self
         
+        items = AttedanceRateAccessor.sharedInstance.getAll()
         //トータルデータ
         self.setTotalData()
         
@@ -73,49 +78,83 @@ class TableViewController: UIViewController, UITableViewDataSource {
         self.indicator.isHidden = false
         self.indicator.startAnimating()
         //テーブル更新
+        
+        
         HttpConnector().request(type: .ATTENDANCE_RATE,
                                 userId: PreferenceManager.getSavedId(),
                                 password: PreferenceManager.getSavedPass())
         { (result) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.indicator.isHidden = true
-                self.indicator.stopAnimating()
+            self.indicator.isHidden = true
+            self.indicator.stopAnimating()
+            self.items = AttedanceRateAccessor.sharedInstance.getAll()!
+            //トータルデータをセット
+            self.setTotalData()
+            
+            if (result){
+                //テーブルを再読み込みする。
+                self.tableView.reloadData()
+                refreshControl.endRefreshing()
+                self.tableView.isScrollEnabled = true
                 
-                //トータルデータをセット
-                self.setTotalData()
+                refreshControl.attributedTitle =
+                    NSAttributedString(string:"最終更新日時 : " +
+                        ToolsBase().getNow());
+                PreferenceManager.saveLatestUpdateAttendanceRate(now: ToolsBase().getNow())
                 
-                if (result){
-                    //テーブルを再読み込みする。
-                    self.tableView.reloadData()
-                    refreshControl.endRefreshing()
-                    self.tableView.isScrollEnabled = true
-                    
-                    refreshControl.attributedTitle =
-                        NSAttributedString(string:"最終更新日時 : " +
-                             ToolsBase().getNow());
-                    PreferenceManager.saveLatestUpdateAttendanceRate(now: ToolsBase().getNow())
-                    
-                }else{
-                    refreshControl.endRefreshing()
-                    self.tableView.isScrollEnabled = true
-                    
-                }
+            }else{
+                refreshControl.endRefreshing()
+                self.tableView.isScrollEnabled = true
+                
             }
         }
     }
     
+    
+    
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                    self.indicator.isHidden = true
+//                self.indicator.stopAnimating()
+//                self.items = AttedanceRateAccessor.sharedInstance.getAll()!
+//                //トータルデータをセット
+//                self.setTotalData()
+//                
+//                if (result){
+//                    //テーブルを再読み込みする。
+//                    self.tableView.reloadData()
+//                    refreshControl.endRefreshing()
+//                    self.tableView.isScrollEnabled = true
+//                    
+//                    refreshControl.attributedTitle =
+//                        NSAttributedString(string:"最終更新日時 : " +
+//                             ToolsBase().getNow());
+//                    PreferenceManager.saveLatestUpdateAttendanceRate(now: ToolsBase().getNow())
+//                    
+//                }else{
+//                    refreshControl.endRefreshing()
+//                    self.tableView.isScrollEnabled = true
+//                    
+//                }
+//            }
+//        }
+//    }
+    
     func setTotalData(){
-        let saveModel = realm.objects(SaveModel.self)
-        let num:Int = saveModel.count
-        if num == 0 {
-            removeTotalData()
+//        let saveModel = realm.objects(SaveModel.self)
+//        let num:Int = saveModel.count
+//        if num == 0 {
+//            removeTotalData()
+//            return
+//        }
+        guard items != nil && items!.count != 0 else {
             return
         }
-        self.totalUnitLabel.text = saveModel[0].unit
-        self.attedanceRateLabel.text = saveModel[0].attendanceRate
-        self.lostUnitLabel.text = saveModel[0].shortageNumber
-        self.attendanceNumLabel.text = saveModel[0].attendanceNumber
-        self.abcentNumLabel.text = saveModel[0].absentNumber
+        print(items!.count)
+        self.totalUnitLabel.text = items?[0].unit
+        self.attedanceRateLabel.text = items?[0].attendanceRate
+        self.lostUnitLabel.text = items?[0].shortageNumber
+        self.attendanceNumLabel.text = items?[0].attendanceNumber
+        self.abcentNumLabel.text = items?[0].absentNumber
     }
     
     func removeTotalData(){
@@ -130,16 +169,20 @@ class TableViewController: UIViewController, UITableViewDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // DBファイルのfileURLを取得
-        if let fileURL = Realm.Configuration.defaultConfiguration.fileURL {
-            try! FileManager.default.removeItem(at: fileURL)
-        }
+//        if let fileURL = Realm.Configuration.defaultConfiguration.fileURL {
+//            try! FileManager.default.removeItem(at: fileURL)
+//        }
     }
     
     /// セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let realm = try! Realm()
-        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
-        return realm.objects(SaveModel.self).count - 1
+//        let realm = try! Realm()
+//        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
+//        return realm.objects(SaveModel.self).count - 1
+        guard items != nil else {
+            return 0
+        }
+        return items!.count - 1
     }
     
     /// セルに値を設定するデータソースメソッド
@@ -148,31 +191,31 @@ class TableViewController: UIViewController, UITableViewDataSource {
         // セルを取得
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomTableViewCell
         
-        let realm = try! Realm()
-        let saveModel = realm.objects(SaveModel.self)
+//        let realm = try! Realm()
+//        let saveModel = realm.objects(SaveModel.self)
         
         var index:NSInteger = (indexPath as NSIndexPath).row
         index += 1
         
-        let subjectName = saveModel[index].subjectName
-        let unit = saveModel[index].unit
-        let attendanceNumber = saveModel[index].attendanceNumber
-        let lateNumber = saveModel[index].lateNumber
-        let absentNumber = saveModel[index].absentNumber
-        let publicAbsentNumber1 = saveModel[index].publicAbsentNumber1
-        let publicAbsentNumber2 = saveModel[index].publicAbsentNumber2
-        let attendanceRate = saveModel[index].attendanceRate
-        let shortageNumber = saveModel[index].shortageNumber
+        let subjectName = items?[index].subjectName
+        let unit = items?[index].unit
+        let attendanceNumber = items?[index].attendanceNumber
+        let lateNumber = items?[index].lateNumber
+        let absentNumber = items?[index].absentNumber
+        let publicAbsentNumber1 = items?[index].publicAbsentNumber1
+        let publicAbsentNumber2 = items?[index].publicAbsentNumber2
+        let attendanceRate = items?[index].attendanceRate
+        let shortageNumber = items?[index].shortageNumber
         
-        cell.setCell(subjectName,
-                     unitNum: unit,
-                     attendanceNum: attendanceNumber,
-                     absentNum: absentNumber,
-                     lateNum: lateNumber,
-                     pubAbsentnum1: publicAbsentNumber1,
-                     pubAbsentnum2: publicAbsentNumber2,
-                     attendanceRateNum: attendanceRate,
-                     shortageNum: shortageNumber)
+        cell.setCell(subjectName!,
+                     unitNum: unit!,
+                     attendanceNum: attendanceNumber!,
+                     absentNum: absentNumber!,
+                     lateNum: lateNumber!,
+                     pubAbsentnum1: publicAbsentNumber1!,
+                     pubAbsentnum2: publicAbsentNumber2!,
+                     attendanceRateNum: attendanceRate!,
+                     shortageNum: shortageNumber!)
         
         //        if(Int(attendanceRate)! < 75){
         //            //cell.backgroundColor = UIColor.darkGray

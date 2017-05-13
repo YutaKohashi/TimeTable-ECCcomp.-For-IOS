@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import KRProgressHUD
 
-class TimeTableViewController: UIViewController{
+class TimeTableViewController: UIViewController, TimeTableDelegate{
     var refreshFlg:Bool = false
     
     // 時間割CollectionView
@@ -42,128 +42,36 @@ class TimeTableViewController: UIViewController{
         StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
         // ステータスバーのスタイル変更を促す
         self.setNeedsStatusBarAppearanceUpdate();
-        
-        
-        
-        
-//        
-//        initTableView()
+
         bottomSheetView.isHidden = true
         bottomCloseButton.isHidden = true
         bottomCloseButton.isEnabled = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        timeTable.delegate = self
         
-    }
-    
-    //セルサイズの指定（UICollectionViewDelegateFlowLayoutで必須）　横幅いっぱいにセルが広がるようにしたい
-    // Screenサイズに応じたセルサイズを返す
-//    // UICollectionViewDelegateFlowLayoutの設定が必要
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-////        let numberOfMargin:CGFloat = 8.0
-//        let widths:CGFloat = collectionView.frame.size.width/CGFloat(colCount)
-//        let heights:CGFloat = widths * cellHeightProportion
-//        
-//        return CGSize(width:widths,height:heights)
-//        
-//        //        let cellSize:CGFloat = self.view.frame.size.width/5-2
-//        //        // 正方形で返すためにwidth,heightを同じにする
-//        //        return CGSize(width: cellSize, height: cellSize)
-//        //
-//        //        let padding: CGFloat = 25
-//        //        let collectionCellSize = collectionView.frame.size.width - padding
-//        //
-//        //        return CGSize(width: collectionCellSize/5, height: collectionCellSize/5)
-//    }
-    
-    
-    // セル表示設定　---------------------------------------------------------------------------------
-    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-//        
-//        // Cell はストーリーボードで設定したセルのID
-//        let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeTableCell", for: indexPath)
-//        let subjectLabel = cell.contentView.viewWithTag(1) as! UILabel
-//        let roomLabel = cell.contentView.viewWithTag(2) as! UILabel
-//        //        // Tag番号を使ってImageViewのインスタンス生成
-//        //        let imageView = testCell.contentView.viewWithTag(1) as! UIImageView
-//        //        // 画像配列の番号で指定された要素の名前の画像をUIImageとする
-//        //        let cellImage = UIImage(named: photos[(indexPath as NSIndexPath).row])
-//        //        // UIImageをUIImageViewのimageとして設定
-//        //        imageView.image = cellImage
-//        //
-////        testCell.backgroundColor = UIColor.green
-//        
-//        subjectLabel.text = ""
-//        roomLabel.text = ""
-//        
-//        return cell
-//    }
-
-    
-    
-    // コレクションビュー　---------------------------------------------------------------------------------
-//    
-//    //　セルに表示する要素数
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        itemCount = 20
-//        return itemCount
-//    }
-//
-//    // セクション数設定
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//    
-//    
-//    // レイアウト設定
-//    
-//    //セルのアイテムのマージンを設定　
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsetsMake(0.0 , 0.0 , 0.0 , 0.0 )  //マージン(top , left , bottom , right)
-//    }
-//    
-//    //セルの水平方向のマージンを設定
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return cellMargin
-//    }
-//    //セルの垂直方向のマージンを設定
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return cellMargin
-//    }
-//    
-    
-
-    
-    
-    
-    // MARK: 画面回転時にセルの幅を再設定
-    // 画面回転時にセルの幅を再設定 ------------------------------------------------------------------------
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        
-//        guard let flowLayout = timeTableCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-//            return
+        
+        // dummy　-----------------------------------------------------------------------
+//        var timeTables:[TimeTable] = []
+//        for i in 0 ..< 20 {
+//            let timeTable:TimeTable = TimeTable(id: i, week: i, term: i, lessonCode: String(i), lessonName: String(i), room: String(i), course: String(i), teachers: [])
+//            timeTables.append(timeTable)
 //        }
 //        
-//        if UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation) {
-//            //here you can do the logic for the cell size if phone is in landscape
-//            cellHeightProportion = 0.6
-//        } else {
-//            //logic if not landscape
-//            cellHeightProportion = 1.2
-//        }
-//        
-//        flowLayout.invalidateLayout()
-//    }
-//    
+//        let rootTimeTable:RootTimeTable = RootTimeTable(code: "",timeTables: timeTables)
+        
+        let timeTables:Results<TimeTableItem> = TimeTableAccessor.sharedInstance.getAll()!
+        timeTable.setData(timeTableItems: timeTables)
+
+         timeTable.setType(isEnable0gen: false, isEnable5gen: false, isEnableSun: true, isEnableSat: true)
+         // dummy　-----------------------------------------------------------------------
+    }
+    
+    
+    // timeTableViewのセルをタップしたときのイベント
+    func onCellTap(timeTable: TimeTable) {
+        print(timeTable.id)
+        setBottomSheet()
+    }
     
     
     // MARK:　ステータスバー
@@ -181,40 +89,52 @@ class TimeTableViewController: UIViewController{
 
     
     // ボトムシート ------------------------------------------------------------------------
-    //closeButton
-    @IBAction func bottomCloseButton(_ sender: AnyObject) {
-        
-        bottomCloseButton.isEnabled = false
-        
-        fadeOutAnimation()
-        closeAnimation()
+    @IBAction func colseButtonTouch(_ sender: UIButton) {
+        bottomSheetView.isHidden = true
+        bottomCloseButton.isHidden = true
+        bottomCloseButton.isEnabled = true
+         fadeOutAnimation()
         subjectLabel.text = ""
         teacherLabel.text = ""
         timeLabel.text = ""
-        
     }
-    
+//    //closeButton
+//    @IBAction func bottomCloseButton(_ sender: AnyObject) {
+//        
+////        bottomCloseButton.isEnabled = false
+//        bottomCloseButton.isHidden = true
+////        fadeOutAnimation()
+////        closeAnimation()
+//        subjectLabel.text = ""
+//        teacherLabel.text = ""
+//        timeLabel.text = ""
+//        
+////    }
+//    
     func setBottomSheet(){
         bottomSheetView.isHidden = false
         bottomCloseButton.isHidden = false
-        openAnimation()
+        bottomCloseButton.isEnabled = true
+//        openAnimation()
         fadeInAnimation()
     }
     
     private func getTime(index:Int) -> String{
         switch index {
-        case 0:
-            return "09:15 ~ 10:45"
-        case 1:
-            return "11:00 ~ 12:30"
-        case 2:
-            return "13:30 ~ 15:00"
-        case 3:
-            return "15:15 ~ 16:45"
-        case 3:
-            return "17:00 ~ 18:30"
-        default:
-            return ""
+            case 0:
+                return "07:30 ~ 09:00"
+            case 1:
+                return "09:15 ~ 10:45"
+            case 2:
+                return "11:00 ~ 12:30"
+            case 3:
+                return "13:30 ~ 15:00"
+            case 4:
+                return "15:15 ~ 16:45"
+            case 5:
+                return "17:00 ~ 18:30"
+            default:
+                return ""
         }
     }
     

@@ -9,9 +9,9 @@
 import Foundation
 
 class RequestURL{
-    let YS_TO_PAGE :String       = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
-    let YS_LOGIN : String        = "http://school4.ecc.ac.jp/eccstdweb/st0100/st0100_01.aspx";
-    let YS_TO_RATE_PAGE : String = "http://school4.ecc.ac.jp/EccStdWeb/ST0100/ST0100_02.aspx";
+    let YS_TO_PAGE :String       = "http://falcon.ecc.ac.jp/eccstd/st0100/st0100_01.aspx";
+    let YS_LOGIN : String        = "http://falcon.ecc.ac.jp/eccstd/st0100/st0100_01.aspx";
+    let YS_TO_RATE_PAGE : String = "http://falcon.ecc.ac.jp/ECCSTD/ST0100/ST0100_02.aspx";
     
     //StudentCommunication
     let ESC_TO_PAGE:String       = "http://comp2.ecc.ac.jp/sutinfo/login"        //ログインページ

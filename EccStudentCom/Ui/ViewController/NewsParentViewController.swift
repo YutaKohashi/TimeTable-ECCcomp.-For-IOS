@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import RealmSwift
+//import RealmSwift
 import KRProgressHUD
 
 class NewsParentViewController:UIViewController, UITableViewDataSource , UITableViewDelegate{
     
-    let realm = try! Realm()
+//    let realm = try! Realm()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taninTableView: UITableView!
     @IBOutlet weak var containerView: UIView!
@@ -121,22 +121,25 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         let index:NSInteger = (indexPath as NSIndexPath).row
         var uri:String? = ""
         
-        if tableView.tag == 0 {
-            // 学校から
-            if schoolNewsItems?[index].groupTitle != "" {return}
-            uri = schoolNewsItems?[index].uri
-            newsTitle = schoolNewsItems?[index].title
-            date = schoolNewsItems?[index].date
-            
-
-        }
-        else
-        {   // 担任から
-            uri = taninNewsItems?[index].uri
-            newsTitle = taninNewsItems?[index].title
-            date = taninNewsItems?[index].date
-            
-        }
+//        if tableView.tag == 0 {
+//            // 学校から
+////            if schoolNewsItems?[index].groupTitle != "" {return}
+////            uri = schoolNewsItems?[index].uri
+//            newsTitle = schoolNewsItems?[index].title
+//            date = schoolNewsItems?[index].date
+//            
+//
+//        }
+//        else
+//        {   // 担任から
+//            uri = taninNewsItems?[index].uri
+//            newsTitle = taninNewsItems?[index].title
+//            date = taninNewsItems?[index].date
+//            
+//        }
+        newsTitle = taninNewsItems?[index].title
+        date = taninNewsItems?[index].date
+        
         //インターネットに接続されていないのときはアラート表示
         if !ToolsBase().CheckReachability("google.com"){
             DialogManager().showWarningForInternet()
@@ -152,23 +155,23 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         }
         
         DialogManager().showIndicator()
-        HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedId(), uri:uri!,callback: { (cb) in
-            if(cb.bool){
-                self.html = cb.string
-//                self.performSegue(withIdentifier: "toNewsDetailViewController",sender: nil)
-                DispatchQueue.main.async(execute: {
-                     DialogManager().hideIndicator()
-                    let storyboard: UIStoryboard = self.storyboard!
-                    let newsDetailVC: NewsDetailViewController = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
-                    newsDetailVC.setTitle(str: self.newsTitle!)
-                    newsDetailVC.setDate(str: self.date!)
-                    newsDetailVC.setHtml(str: self.html!)
-                    self.present(newsDetailVC, animated: true, completion: nil)
-                })
-            } else {
-                DialogManager().showError()
-            }
-        })
+//        HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedId(), newsId:uri!,callback: { (cb) in
+//            if(cb.bool){
+//                self.html = cb.string
+////                self.performSegue(withIdentifier: "toNewsDetailViewController",sender: nil)
+//                DispatchQueue.main.async(execute: {
+//                     DialogManager().hideIndicator()
+//                    let storyboard: UIStoryboard = self.storyboard!
+//                    let newsDetailVC: NewsDetailViewController = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
+//                    newsDetailVC.setTitle(str: self.newsTitle!)
+//                    newsDetailVC.setDate(str: self.date!)
+//                    newsDetailVC.setHtml(str: self.html!)
+//                    self.present(newsDetailVC, animated: true, completion: nil)
+//                })
+//            } else {
+//                DialogManager().showError()
+//            }
+//        })
      
     }
 
@@ -190,21 +193,26 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             
             let title = schoolNewsItems?[index].title
             let date = schoolNewsItems?[index].date
-            let uri = schoolNewsItems?[index].uri
-            let groupTitle = schoolNewsItems?[index].groupTitle
-            if title ==  "" {
-                // タイトル
-                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTitleCell") as! NewsTitleCell
-                cell.setCell(groupTitle!)
-                cell.selectionStyle = .none
-                return cell
-            } else {
-                // 記事
-                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
-                cell.setCell(title!, date: date!, uri: uri!)
-                
-                return cell
-            }
+//            let uri = schoolNewsItems?[index].uri
+//            let groupTitle = schoolNewsItems?[index].groupTitle
+//            if title ==  "" {
+//                // タイトル
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTitleCell") as! NewsTitleCell
+//                cell.setCell(groupTitle!)
+//                cell.selectionStyle = .none
+//                return cell
+//            } else {
+//                // 記事
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
+//                cell.setCell(title!, date: date!, uri: uri!)
+//                
+//                return cell
+//            }
+            // 記事
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
+//            cell.setCell(title!, date: date!, uri: uri!)
+            
+            return cell
         }
         else
         {
@@ -212,9 +220,9 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             
             let title = taninNewsItems?[index].title
             let date = taninNewsItems?[index].date
-            let uri = taninNewsItems?[index].uri
+//            let uri = taninNewsItems?[index].uri
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
-            cell.setCell(title!, date: date!, uri: uri!)
+//            cell.setCell(title!, date: date!, uri: uri!)
             return cell
         }
     }
@@ -238,25 +246,29 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
     }
     
     private func loadSchoolItems() -> Array<SchoolNewsItem>{
-        let results: Results<SchoolNewsItem>! =  realm.objects(SchoolNewsItem.self)
-        var items:Array<SchoolNewsItem> = Array(results)
-        if items.count == 0 {
-            let item = SchoolNewsItem()
-            item.title = "データがありません。スワイプして更新してください。"
-            items.append(item)
-        }
+//        let results: Results<SchoolNewsItem>! =  realm.objects(SchoolNewsItem.self)
+//        let results: Results<SchoolNewsItem>
+//        var items:Array<SchoolNewsItem> = Array(results)
+        var items:Array<SchoolNewsItem> = []
+//        if items.count == 0 {
+//            let item = SchoolNewsItem()
+//            item.title = "データがありません。スワイプして更新してください。"
+//            items.append(item)
+//        }
        return items
     }
     
     private func loadTaninItems() -> Array<TaninNewsItem>{
-        let results: Results<TaninNewsItem>! =  realm.objects(TaninNewsItem.self)
-        var items:Array<TaninNewsItem> = Array(results)
+//        let results: Results<TaninNewsItem>! =  realm.objects(TaninNewsItem.self)
+//        let results: Results<TaninNewsItem>
+//        var items:Array<TaninNewsItem> = Array(results)
+        var items:Array<TaninNewsItem> =  []
+//        if items.count == 0 {
+//            let item = TaninNewsItem()
+//            item.title = "データがありません。スワイプして更新してください。"
+//            items.append(item)
+//        }
         
-        if items.count == 0 {
-            let item = TaninNewsItem()
-            item.title = "データがありません。スワイプして更新してください。"
-            items.append(item)
-        }
         return items
     }
     

@@ -11,11 +11,5 @@ import RealmSwift
 
 
 //保存するデータのモデルクラス
-class SchoolNewsItem: Object {
-    dynamic var title :String = ""
-    dynamic var date :String = ""
-    dynamic var uri :String = ""
-    
-    dynamic var groupTitle:String = ""
-    
+class SchoolNewsItem: CommonNewsItem {
 }

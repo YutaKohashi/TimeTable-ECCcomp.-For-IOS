@@ -12,7 +12,9 @@ import RealmSwift
 
 //保存するデータのモデルクラス
 // 出席照会のデータを扱うオブジェクト
-class SaveModel: Object {
+class AttendanceRateItem: Object {
+    dynamic var id:Int = 0
+    
     dynamic var subjectName :String = ""
     dynamic var unit :String = ""
     dynamic var attendanceNumber :String = ""
@@ -23,4 +25,8 @@ class SaveModel: Object {
     dynamic var attendanceRate :String = ""
     dynamic var shortageNumber :String = ""
     
+    // プライマリキーを設定
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

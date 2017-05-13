@@ -13,12 +13,12 @@ struct RootTimeTable:Decodable {
     
     let code:String
     let timeTables:[TimeTable]
+
     
     init(code:String, timeTables:[TimeTable]) {
         self.code = code
         self.timeTables = timeTables
     }
-    
     
     static func decode(_ e: Extractor) throws -> RootTimeTable {
         return try RootTimeTable(

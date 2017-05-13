@@ -11,13 +11,13 @@ import Foundation
 class RequestBody{
     // MARK: -
     // MARK:StudentCommunicationログイン時のリクエストボディ
-    func createPostDataForEscLogin(userId:String, passwrod:String,mLastResponseHtml:String) -> String{
-        let _token = GetValuesBase().uriEncode(GetValuesBase("input name=\"_token\" type=\"hidden\" value=\"(.+?)\"").getValues(mLastResponseHtml))
-        let postString :String = "_token=" + _token +
-                                 "&userid=" + userId +
-                                 "&password=" + passwrod
-        return postString
-    }
+//    func createPostDataForEscLogin(userId:String, passwrod:String,mLastResponseHtml:String) -> String{
+//        let _token = GetValuesBase().uriEncode(GetValuesBase("input name=\"_token\" type=\"hidden\" value=\"(.+?)\"").getValues(mLastResponseHtml))
+//        let postString :String = "_token=" + _token +
+//                                 "&userid=" + userId +
+//                                 "&password=" + passwrod
+//        return postString
+//    }
     
     // MARK:山口学園学生サービスログイン時のリクエストボディ
     func createPostDataForYSLogin(userId:String, password:String,mLastResponseHtml:String) -> String{
