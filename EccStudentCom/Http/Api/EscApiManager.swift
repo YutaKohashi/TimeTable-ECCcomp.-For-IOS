@@ -18,8 +18,17 @@ class EscApiManager{
         Session.send(request) { result in
             switch(result){
             case .success(let response):
-                self.token = response.token
-                callback(EscApiCallback<Token>(response:response, bool:true))
+                let tkn:String? = response.token
+                if tkn == nil {
+                    callback(EscApiCallback<Token>(bool: false))
+                } else {
+                    if response.code == EscApiConst.ERROR_AUTH {
+                        callback(EscApiCallback<Token>(bool: false))
+                    } else {
+                        self.token = tkn!
+                        callback(EscApiCallback<Token>(response:response, bool:true))
+                    }
+                }
             case .failure( _):
                 callback(EscApiCallback<Token>(bool: false))
             }
@@ -28,12 +37,35 @@ class EscApiManager{
     
     
     // MARK:時間割を取得するメソッド
-    static func timeTableRequest(code:String, callback: @escaping (EscApiCallback<RootTimeTable>) -> Void) -> Void {
-        let request = TimeTableRequest(token: self.token, code:code)
+    static func timeTableRequest(userId:String, password:String , callback: @escaping (EscApiCallback<RootTimeTable>) -> Void) -> Void {
+        let request = TimeTableRequest(token: self.token, code:userId)
         Session.send(request) { result in
             switch result {
             case .success(let rootTimeTable):
-                callback(EscApiCallback<RootTimeTable>(response: rootTimeTable,bool: true))
+                if rootTimeTable.code == EscApiConst.SUCCESS_AUTH {
+                    callback(EscApiCallback<RootTimeTable>(response: rootTimeTable,bool: true))
+                }  else if rootTimeTable.code == EscApiConst.ERROR_EXPIRED_TOKEN || rootTimeTable.code == EscApiConst.ERROR_INVALID_TOKEN {
+                    self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                        if callback1.bool {
+                            Session.send(request) { result in
+                                switch result{
+                                case .success(let newsArray):
+                                    if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                                        callback(EscApiCallback<RootTimeTable>(response: rootTimeTable,bool: true))
+                                    } else {
+                                        callback(EscApiCallback<RootTimeTable>(bool: false))
+                                    }
+                                case .failure( _):
+                                    callback(EscApiCallback<RootTimeTable>(bool: false))
+                                }
+                            }
+                        } else {
+                            callback(EscApiCallback<RootTimeTable>(bool: false))
+                        }
+                    })
+                } else {
+                    callback(EscApiCallback<RootTimeTable>(bool: false))
+                }
             case .failure( _):
                 callback(EscApiCallback<RootTimeTable>(bool: false))
             }
@@ -41,25 +73,75 @@ class EscApiManager{
     }
     
     // MARK:学校からのお知らせ
-    static func schoolNewsRequest(callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
+    static func schoolNewsRequest(userId:String, password:String , callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
         let request = NewsRequest(token: self.token, type: NewsRequest.NewsType.school , limit: 100)
         Session.send(request) { result in
             switch result{
-                case .success(let newsArray):
+            case .success(let newsArray):
+                if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                    //　成功
                     callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
-                case .failure( _):
-                   callback(EscApiCallback<NewsArray>(bool: false))
+                }  else if newsArray.code == EscApiConst.ERROR_EXPIRED_TOKEN || newsArray.code == EscApiConst.ERROR_INVALID_TOKEN {
+                    self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                        if callback1.bool {
+                            Session.send(request) { result in
+                                switch result{
+                                case .success(let newsArray):
+                                    if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                                        //　成功
+                                        callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                                    } else {
+                                        callback(EscApiCallback<NewsArray>(bool: false))
+                                    }
+                                case .failure( _):
+                                    callback(EscApiCallback<NewsArray>(bool: false))
+                                }
+                            }
+                        } else {
+                            callback(EscApiCallback<NewsArray>(bool: false))
+                        }
+                    })
+                } else {
+                    callback(EscApiCallback<NewsArray>(bool: false))
+                }
+            case .failure( _):
+                callback(EscApiCallback<NewsArray>(bool: false))
             }
         }
     }
     
     // MARK:担任からのお知らせ
-    static func taninNewsRequest(callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
+    static func taninNewsRequest(userId:String, password:String ,callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
         let request = NewsRequest(token: self.token, type: NewsRequest.NewsType.tanin , limit: 100)
         Session.send(request) { result in
             switch result{
             case .success(let newsArray):
-                callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                    // 成功
+                    callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                } else if newsArray.code == EscApiConst.ERROR_EXPIRED_TOKEN || newsArray.code == EscApiConst.ERROR_INVALID_TOKEN {
+                    self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                        if callback1.bool {
+                            Session.send(request) { result in
+                                switch result{
+                                case .success(let newsArray):
+                                    if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                                        //　成功
+                                        callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                                    } else {
+                                        callback(EscApiCallback<NewsArray>(bool: false))
+                                    }
+                                case .failure( _):
+                                    callback(EscApiCallback<NewsArray>(bool: false))
+                                }
+                            }
+                        } else {
+                            callback(EscApiCallback<NewsArray>(bool: false))
+                        }
+                    })
+                } else {
+                    callback(EscApiCallback<NewsArray>(bool: false))
+                }
             case .failure( _):
                 callback(EscApiCallback<NewsArray>(bool: false))
             }
@@ -67,12 +149,37 @@ class EscApiManager{
     }
     
     // MARK: お知らせ詳細
-    static func newsDetailRequest(newsId:Int, callback: @escaping (EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
+    static func newsDetailRequest(userId:String, password:String ,newsId:Int, callback: @escaping (EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
         let request = NewsDetailRequest(token: self.token, newsId: newsId)
         Session.send(request) { result in
             switch result{
             case .success(let newsDetailRoot):
-                callback(EscApiCallback<NewsDetailRoot>(response: newsDetailRoot, bool: true))
+                if newsDetailRoot.code != EscApiConst.SUCCESS_AUTH  {
+                    self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                        if callback1.bool {
+                            Session.send(request){ result in
+                                
+                                switch result {
+                                case .success(let newsDetailRoot):
+                                    if newsDetailRoot.code == EscApiConst.SUCCESS_AUTH {
+                                        callback(EscApiCallback<NewsDetailRoot>(response: newsDetailRoot, bool: true))
+                                    } else {
+                                        callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                                    }
+                                    
+                                case .failure( _):
+                                    callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                                }
+                            }
+                        } else {
+                            callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                        }
+                    })
+                    
+                } else {
+                    // success
+                    callback(EscApiCallback<NewsDetailRoot>(response: newsDetailRoot, bool: true))
+                }
             case .failure( _):
                 callback(EscApiCallback<NewsDetailRoot>(bool: false))
             }

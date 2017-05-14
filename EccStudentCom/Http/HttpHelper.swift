@@ -18,38 +18,22 @@ internal class HttpHelper:HttpBase{
     
     // MARK:時間割を取得
     internal func getTimeTable(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
-        EscApiManager.timeTableRequest(code: userId) { (callback1) in
+        EscApiManager.timeTableRequest(userId:userId,password: password) { (callback1) in
             if(callback1.bool){
-                
-            }else {
-                //トークン再取得
-                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
-                    if(callback2.bool){
-                        EscApiManager.timeTableRequest(code: userId, callback: { (callback3) in
-                            if(callback3.bool){
-                                // 時間割保存処理
-                                // 成形
-                                // "Realm accessed from incorrect thread."対策
-                                DispatchQueue.main.async {
-                                    TimeTableAccessor.sharedInstance.deleteAll()
-                                    let timeTableItems :[TimeTableItem] = self.rootTimeTableToTimeTableItemCollection(rootTimeTable: callback3.response)
-                                    for item in timeTableItems {
-                                        let result:Bool =  TimeTableAccessor.sharedInstance.set(data: item)
-                                        if(!result) {
-                                            callback(false)
-                                            return
-                                        }
-                                    }
-                                    callback(true)
-                                }
-                            } else {
-                                callback(false)
-                            }
-                        })
-                    } else {
-                        callback(false)
+                DispatchQueue.main.async {
+                    TimeTableAccessor.sharedInstance.deleteAll()
+                    let timeTableItems :[TimeTableItem] = self.rootTimeTableToTimeTableItemCollection(rootTimeTable: callback1.response)
+                    for item in timeTableItems {
+                        let result:Bool =  TimeTableAccessor.sharedInstance.set(data: item)
+                        if(!result) {
+                            callback(false)
+                            return
+                        }
                     }
-                })
+                    callback(true)
+                }
+            }else {
+                callback(false)
             }
         }
     }
@@ -58,8 +42,8 @@ internal class HttpHelper:HttpBase{
     func getAttendanceRate(userId :String,password:String,callback: @escaping (Bool) -> Void) -> Void {
         self.reequestAttendanseRate(userId: userId, password: password) { (requestResult) in
             // "Realm accessed from incorrect thread."対策
-            DispatchQueue.main.async {
-                if(requestResult.bool){
+            if(requestResult.bool){
+                DispatchQueue.main.async {
                     AttedanceRateAccessor.sharedInstance.deleteAll()
                     let items:[AttendanceRateItem] = self.attendanceResponseToAttendanceRateItemCollection(html: requestResult.string)
                     for item in items {
@@ -68,10 +52,13 @@ internal class HttpHelper:HttpBase{
                             return
                         }
                     }
+                    
+                    callback(true)
                 }
-                callback(requestResult.bool)
+            } else {
+                callback(false)
             }
-
+            
         }
     }
     
@@ -90,36 +77,23 @@ internal class HttpHelper:HttpBase{
     
     // MARK:学校からのお知らせ
     func getSchoolNews(userId:String, password:String, callback:@escaping(Bool) -> Void) -> Void{
-        EscApiManager.schoolNewsRequest { (callback1) in
+        EscApiManager.schoolNewsRequest(userId: userId, password: password) { (callback1) in
             if callback1.bool {
                 // 学校からのお知らせを保存
-                 callback(true)
-            } else {
-                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
-                    if callback2.bool {
-                        EscApiManager.schoolNewsRequest(callback: { (callback3) in
-                            if callback3.bool {
-                                // 学校からのおしらせを保存
-                                // "Realm accessed from incorrect thread."対策
-                                DispatchQueue.main.async {
-                                    SchoolNewsAccessor.sharedInstance.deleteAll()
-                                    let items:[SchoolNewsItem] = self.responceToSchoolNewsItems(newsArray: callback3.response!)
-                                    for item in items {
-                                        guard SchoolNewsAccessor.sharedInstance.set(data: item) else {
-                                            callback(false)
-                                            return
-                                        }
-                                    }
-                                    callback(true)
-                                }
-                            } else {
-                                callback(false)
-                            }
-                        })
-                    } else {
-                        callback(false)
+                DispatchQueue.main.async {
+                    SchoolNewsAccessor.sharedInstance.deleteAll()
+                    let items:[SchoolNewsItem] = self.responceToSchoolNewsItems(newsArray: callback1.response!)
+                    for item in items {
+                        guard SchoolNewsAccessor.sharedInstance.set(data: item) else {
+                            callback(false)
+                            return
+                        }
                     }
-                })
+                    callback(true)
+                }
+                
+            } else {
+                callback(false)
             }
         }
     }
@@ -129,33 +103,19 @@ internal class HttpHelper:HttpBase{
         EscApiManager.taninNewsRequest { (callback1) in
             if callback1.bool {
                 // 担任からのお知らせを保存
-                callback(true)
-            } else {
-                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
-                    if callback2.bool {
-                        EscApiManager.taninNewsRequest(callback: { (callback3) in
-                            if callback3.bool {
-                                // 担任からのおしらせを保存
-                                // "Realm accessed from incorrect thread."対策
-                                DispatchQueue.main.async {
-                                    TaninNewsAccessor.sharedInstance.deleteAll()
-                                    let items:[TaninNewsItem] = self.responceToTaninNewsItems(newsArray: callback3.response!)
-                                    for item in items {
-                                        guard TaninNewsAccessor.sharedInstance.set(data: item) else {
-                                            callback(false)
-                                            return
-                                        }
-                                    }
-                                    callback(true)
-                                }
-                            } else {
-                                callback(false)
-                            }
-                        })
-                    } else {
-                        callback(false)
+                DispatchQueue.main.async {
+                    TaninNewsAccessor.sharedInstance.deleteAll()
+                    let items:[TaninNewsItem] = self.responceToTaninNewsItems(newsArray: callback1.response!)
+                    for item in items {
+                        guard TaninNewsAccessor.sharedInstance.set(data: item) else {
+                            callback(false)
+                            return
+                        }
                     }
-                })
+                    callback(true)
+                }
+            } else {
+                callback(false)
             }
         }
     }
@@ -173,7 +133,7 @@ internal class HttpHelper:HttpBase{
         }
     }
     
-    // MARK:お知らせ詳細  
+    // MARK:お知らせ詳細
     func getNewsDetail(userId:String, password:String, newsId:Int,callback:@escaping(EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
         EscApiManager.newsDetailRequest(newsId: newsId) { (callback1) in
             if callback1.bool {
@@ -249,9 +209,9 @@ internal class HttpHelper:HttpBase{
             let row = i / 7
             let col = i % 7
             
-////            let item:TimeTableItem = TimeTableItem()
+            ////            let item:TimeTableItem = TimeTableItem()
             let timeTable:TimeTable? = getTimeTable(col: col, row: row, timeTables: rootTimeTable.timeTables)
-//
+            //
             let timeTableItem:TimeTableItem = TimeTableItem()
             timeTableItem.colNum = col
             timeTableItem.rowNum = row
@@ -378,10 +338,10 @@ internal class HttpHelper:HttpBase{
                 rowCount+=1
             }
             
-//            //データを保存
-//            try! realm.write {
-//                realm.add(saveModel)
-//            }
+            //            //データを保存
+            //            try! realm.write {
+            //                realm.add(saveModel)
+            //            }
             items.append(saveModel)
             print(" \("")")
             print("------------------- \("")")

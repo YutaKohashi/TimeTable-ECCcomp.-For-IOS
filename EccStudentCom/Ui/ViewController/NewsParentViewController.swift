@@ -7,7 +7,8 @@
 //
 
 import UIKit
-//import RealmSwift
+import RealmSwift
+import Realm
 import KRProgressHUD
 
 class NewsParentViewController:UIViewController, UITableViewDataSource , UITableViewDelegate{
@@ -17,13 +18,16 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
     @IBOutlet weak var taninTableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     
+//    @IBOutlet weak var taninEmptyView: UIView!
+//    @IBOutlet weak var schoolEmptyView: UIView!
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     let refreshControl = UIRefreshControl()
     let taninRefreshControl = UIRefreshControl()
     
-    var taninNewsItems: Array<TaninNewsItem>!
-    var schoolNewsItems:Array<SchoolNewsItem>!
+    var taninNewsItems: Results<TaninNewsItem>!
+    var schoolNewsItems:Results<SchoolNewsItem>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +39,16 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         // tableviewにrefreshcontrolを設定
         initRefreshContorol()
         initTableView()
-        
+//        taninEmptyView.isHidden = true
+//        schoolEmptyView.isHidden = true
      
         // 初期値
         taninTableView.isHidden = true
         segmentedControl.selectedSegmentIndex = 0
         
-        schoolNewsItems = loadSchoolItems()
-        taninNewsItems = loadTaninItems()
+        schoolNewsItems = SchoolNewsAccessor.sharedInstance.getAll()
+        print(schoolNewsItems.count)
+        taninNewsItems = TaninNewsAccessor.sharedInstance.getAll()
     }
     
     //テーブルビュー引っ張り時の呼び出しメソッド
@@ -64,7 +70,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     if result {
                         //テーブルを再読み込みする。
-                        self.schoolNewsItems = self.loadSchoolItems()
+                        self.schoolNewsItems = SchoolNewsAccessor.sharedInstance.getAll()
                         self.tableView.reloadData()
                         refreshControl.endRefreshing()
                         self.tableView.isScrollEnabled = true
@@ -90,7 +96,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     if result {
                         //テーブルを再読み込みする。
-                        self.taninNewsItems = self.loadTaninItems()
+                        self.taninNewsItems = TaninNewsAccessor.sharedInstance.getAll()
                         self.taninTableView.reloadData()
                         refreshControl.endRefreshing()
                         self.taninTableView.isScrollEnabled = true
@@ -111,34 +117,26 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         }
     }
     
-    var newsTitle:String? = ""
-    var html: String? = ""
-    var date:String? = ""
+   
     //　セルタップ時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //タップしたあとハイライトを消す
         tableView.deselectRow(at: indexPath, animated: false)
         let index:NSInteger = (indexPath as NSIndexPath).row
-        var uri:String? = ""
         
-//        if tableView.tag == 0 {
-//            // 学校から
-////            if schoolNewsItems?[index].groupTitle != "" {return}
-////            uri = schoolNewsItems?[index].uri
-//            newsTitle = schoolNewsItems?[index].title
-//            date = schoolNewsItems?[index].date
-//            
-//
-//        }
-//        else
-//        {   // 担任から
-//            uri = taninNewsItems?[index].uri
-//            newsTitle = taninNewsItems?[index].title
-//            date = taninNewsItems?[index].date
-//            
-//        }
-        newsTitle = taninNewsItems?[index].title
-        date = taninNewsItems?[index].date
+        var newsTitle:String! = ""
+        var date:String! = ""
+        var newsId:Int! = -1
+        
+        if tableView.tag == 0 {
+            newsTitle = schoolNewsItems?[index].title
+            date = schoolNewsItems?[index].date
+            newsId = schoolNewsItems?[index].newsId
+        } else {
+            newsTitle = taninNewsItems?[index].title
+            date = taninNewsItems?[index].date
+            newsId = taninNewsItems?[index].newsId
+        }
         
         //インターネットに接続されていないのときはアラート表示
         if !ToolsBase().CheckReachability("google.com"){
@@ -149,12 +147,23 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             return;
         }
       
-        if(uri == nil || uri == ""){
+        if(newsId == nil){
             DialogManager().showError()
             return
         }
         
-        DialogManager().showIndicator()
+//        self.html = cb.string
+        //                self.performSegue(withIdentifier: "toNewsDetailViewController",sender: nil)
+        let storyboard: UIStoryboard = self.storyboard!
+        let newsDetailVC: NewsDetailViewController = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
+        newsDetailVC.setTitle(str: newsTitle!)
+        newsDetailVC.setDate(str: date!)
+//        newsDetailVC.setHtml(str: self.html!)
+        newsDetailVC.setNewsId(int: newsId)
+        self.present(newsDetailVC, animated: true, completion: nil)
+
+
+//        DialogManager().showIndicator()
 //        HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedId(), newsId:uri!,callback: { (cb) in
 //            if(cb.bool){
 //                self.html = cb.string
@@ -187,44 +196,19 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
     var index:NSInteger = 0
     /// セルに値を設定するデータソースメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView.tag == 0 {
-            // セルを取得
-            index = (indexPath as NSIndexPath).row
-            
-            let title = schoolNewsItems?[index].title
-            let date = schoolNewsItems?[index].date
-//            let uri = schoolNewsItems?[index].uri
-//            let groupTitle = schoolNewsItems?[index].groupTitle
-//            if title ==  "" {
-//                // タイトル
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTitleCell") as! NewsTitleCell
-//                cell.setCell(groupTitle!)
-//                cell.selectionStyle = .none
-//                return cell
-//            } else {
-//                // 記事
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
-//                cell.setCell(title!, date: date!, uri: uri!)
-//                
-//                return cell
-//            }
-            // 記事
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
-//            cell.setCell(title!, date: date!, uri: uri!)
-            
-            return cell
-        }
-        else
-        {
-            index = (indexPath as NSIndexPath).row
-            
-            let title = taninNewsItems?[index].title
-            let date = taninNewsItems?[index].date
-//            let uri = taninNewsItems?[index].uri
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
-//            cell.setCell(title!, date: date!, uri: uri!)
-            return cell
-        }
+        // セルを取得
+        index = (indexPath as NSIndexPath).row
+        
+        let title :String = schoolNewsItems![index].title
+        let date :String = schoolNewsItems![index].date
+        let newsId :String  = String(schoolNewsItems![index].newsId)
+        let from:String = schoolNewsItems![index].from
+        
+        // 記事
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
+        cell.setCell(title, date: date, newsId: newsId, from:from)
+        
+        return cell
     }
     
     
@@ -244,33 +228,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             tableView.isHidden = true
         }
     }
-    
-    private func loadSchoolItems() -> Array<SchoolNewsItem>{
-//        let results: Results<SchoolNewsItem>! =  realm.objects(SchoolNewsItem.self)
-//        let results: Results<SchoolNewsItem>
-//        var items:Array<SchoolNewsItem> = Array(results)
-        var items:Array<SchoolNewsItem> = []
-//        if items.count == 0 {
-//            let item = SchoolNewsItem()
-//            item.title = "データがありません。スワイプして更新してください。"
-//            items.append(item)
-//        }
-       return items
-    }
-    
-    private func loadTaninItems() -> Array<TaninNewsItem>{
-//        let results: Results<TaninNewsItem>! =  realm.objects(TaninNewsItem.self)
-//        let results: Results<TaninNewsItem>
-//        var items:Array<TaninNewsItem> = Array(results)
-        var items:Array<TaninNewsItem> =  []
-//        if items.count == 0 {
-//            let item = TaninNewsItem()
-//            item.title = "データがありません。スワイプして更新してください。"
-//            items.append(item)
-//        }
-        
-        return items
-    }
+
     
     // MARK:tableviewを設定
     private func initTableView() {

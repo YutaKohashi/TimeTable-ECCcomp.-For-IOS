@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import SpringIndicator
 
 class NewsDetailViewController: UIViewController {
     
     private var newTitle: String!
     private var date: String!
-    private var html:String!
+//    private var html:String!
+    private var newsId:Int!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var indicator: SpringIndicator!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +25,15 @@ class NewsDetailViewController: UIViewController {
         titleLabel.text = newTitle
         dateLabel.text = date
         
-       webView.scrollView.bounces = false
-        DispatchQueue.main.async(execute: {
-            self.html = self.getNews(html: self.html)
-            self.webView.loadHTMLString(self.html, baseURL: URL(string:"http://comp2.ecc.ac.jp/")!)
-        })
+        startIndicator()
+        
+        
+//        
+//       webView.scrollView.bounces = false
+//        DispatchQueue.main.async(execute: {
+//            self.html = self.getNews(html: self.html)
+//            self.webView.loadHTMLString(self.html, baseURL: URL(string:"http://comp2.ecc.ac.jp/")!)
+//        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +53,8 @@ class NewsDetailViewController: UIViewController {
         self.date = str
     }
     
-    func setHtml(str:String){
-        self.html = str
+    func setNewsId(int:Int){
+        self.newsId = int
     }
     
     private func getNews(html:String) -> String{
@@ -75,5 +81,16 @@ class NewsDetailViewController: UIViewController {
             "</html>"
         
         return value
+    }
+    
+    private func startIndicator(){
+        indicator.isHidden = false
+        indicator.startAnimation()
+    }
+    
+    private func stopIndicator(){
+        indicator.stopAnimation(false)
+        indicator.isHidden = false
+        
     }
 }

@@ -10,6 +10,7 @@ PODS:
   - RealmSwift (2.6.2):
     - Realm (= 2.6.2)
   - Result (3.2.1)
+  - SpringIndicator (1.4.1)
 
 DEPENDENCIES:
   - APIKit
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - KRProgressHUD
   - Realm (from `https://github.com/realm/realm-cocoa.git`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`)
+  - SpringIndicator
 
 EXTERNAL SOURCES:
   Realm:
@@ -45,7 +47,8 @@ SPEC CHECKSUMS:
   Realm: 85b8729618fb76270efcf8c94218c1cbe94ba4ea
   RealmSwift: 467233dd8beb90eab2cde75ff4703860adee294b
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  SpringIndicator: d2be83cf7dbab52d91d378a5d3a267187b4959e5
 
-PODFILE CHECKSUM: 984d00ab13c2d0157d59cbe57ce2047c06e97006
+PODFILE CHECKSUM: 886804bc65a915f0645cea9b9678e1c42f69714d
 
 COCOAPODS: 1.2.1

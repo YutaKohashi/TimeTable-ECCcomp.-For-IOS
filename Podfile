@@ -8,6 +8,7 @@ pod 'KRProgressHUD'
 pod 'FSCalendar'
 pod 'Himotoki'
 pod 'APIKit'
+pod 'SpringIndicator'
 end
 
 post_install do |installer|

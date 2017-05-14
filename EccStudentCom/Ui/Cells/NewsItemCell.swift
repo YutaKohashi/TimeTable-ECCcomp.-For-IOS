@@ -12,12 +12,14 @@ class NewsItemCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var uri: UILabel!
+    @IBOutlet weak var newsId: UILabel!
+    @IBOutlet weak var from: UILabel!
     
-    func setCell(_ title:String, date:String,uri:String){
+    func setCell(_ title:String, date:String,newsId:String, from:String){
         self.title.text = title
         self.date.text = date
-        self.uri.text = uri
+        self.newsId.text = newsId
+        self.from.text = from
     }
     
     func getTitle() ->String {
@@ -28,7 +30,7 @@ class NewsItemCell: UITableViewCell {
         return date.text!
     }
     
-    func getUri() -> String{
-        return uri.text!
+    func getNewsId() -> String{
+        return newsId.text!
     }
 }

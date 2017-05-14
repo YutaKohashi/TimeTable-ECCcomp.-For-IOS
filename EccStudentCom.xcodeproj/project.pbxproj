@@ -41,6 +41,7 @@
 		798FF07D1EBE0D5800FF1F11 /* EscApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */; };
 		798FF0831EC002BE00FF1F11 /* TimeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 798FF0821EC002BE00FF1F11 /* TimeTableCell.xib */; };
 		798FF0871EC0095900FF1F11 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FF0861EC0095900FF1F11 /* TimeTableViewCell.swift */; };
+		7997BED31EC83BEC00AFBD91 /* EscApiConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7997BED21EC83BEC00AFBD91 /* EscApiConst.swift */; };
 		799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60141DC5B80100C95A68 /* TimeTableViewController.swift */; };
 		799F60171DC5B93000C95A68 /* StatusbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799F60161DC5B93000C95A68 /* StatusbarManager.swift */; };
 		799F60191DC5BF7700C95A68 /* square-individual-nine-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */; };
@@ -136,8 +137,9 @@
 		798C078D1DCD8E0B00929F17 /* CallBackClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackClass.swift; sourceTree = "<group>"; };
 		798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscApiManager.swift; sourceTree = "<group>"; };
-		798FF0821EC002BE00FF1F11 /* TimeTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimeTableCell.xib; path = EccStudentCom/UI/TimeTableCell.xib; sourceTree = SOURCE_ROOT; };
+		798FF0821EC002BE00FF1F11 /* TimeTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimeTableCell.xib; path = EccStudentCom/UI/Xib/TimeTableCell.xib; sourceTree = SOURCE_ROOT; };
 		798FF0861EC0095900FF1F11 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
+		7997BED21EC83BEC00AFBD91 /* EscApiConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscApiConst.swift; sourceTree = "<group>"; };
 		799F60141DC5B80100C95A68 /* TimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
 		799F60161DC5B93000C95A68 /* StatusbarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusbarManager.swift; sourceTree = "<group>"; };
 		799F60181DC5BF7700C95A68 /* square-individual-nine-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "square-individual-nine-7.png"; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				79B5855F1EBBECFD005B4E1A /* ScheduleRequest.swift */,
 				79B5857D1EBDF078005B4E1A /* NewsDetailRequest.swift */,
 				798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */,
+				7997BED21EC83BEC00AFBD91 /* EscApiConst.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7997BED31EC83BEC00AFBD91 /* EscApiConst.swift in Sources */,
 				79B5856C1EBCE02D005B4E1A /* TeacherTimeTable.swift in Sources */,
 				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
 				79C447D91EC62AB0007DF16F /* TaninNewsAccessor.swift in Sources */,
