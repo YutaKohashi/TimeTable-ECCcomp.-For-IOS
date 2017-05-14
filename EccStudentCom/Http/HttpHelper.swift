@@ -347,7 +347,7 @@ internal class HttpHelper:HttpBase{
         let array:[NewsItem] = newsArray.newsArray
         
         array.forEach { (newsItem) in
-            var item:SchoolNewsItem = SchoolNewsItem()
+            let item:SchoolNewsItem = SchoolNewsItem()
             item.newsId = newsItem.id
             item.title = newsItem.title
             item.from = newsItem.category
@@ -365,7 +365,7 @@ internal class HttpHelper:HttpBase{
         let array:[NewsItem] = newsArray.newsArray
         
         array.forEach { (newsItem) in
-            var item:TaninNewsItem = TaninNewsItem()
+            let item:TaninNewsItem = TaninNewsItem()
             item.newsId = newsItem.id
             item.title = newsItem.title
             item.from = newsItem.category

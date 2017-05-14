@@ -11,7 +11,7 @@ import RealmSwift
 
 
 protocol TimeTableDelegate: class {
-    func onCellTap(timeTable:TimeTable)
+    func onCellTap(timeTableItem:TimeTableItem)
 }
 
 //@IBDesignable
@@ -35,7 +35,6 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
     private var cellHeightProportion :CGFloat = 1.2
     
     // データ
-    private var rootTimeTable: RootTimeTable? = nil
     private var timeTableItems:Results<TimeTableItem>? = nil
     
     // ヘッダタイプ
@@ -46,35 +45,11 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
     
     // public methods  -------------------------------------------------------
     
-    // RootTimeTableViewをセットする
-//    public func setData(rootTimeTable:RootTimeTable){
-//        self.rootTimeTable = rootTimeTable
-//    }
+    
     public func setData(timeTableItems:Results<TimeTableItem>){
         self.timeTableItems = timeTableItems
     }
     
-    
-//    // ヘッダタイプを設定する
-//    public func setHeaderType(type:HeaderType){
-//        headerType = type
-//        
-//        // ヘッダタイプを適用
-//        switch headerType {
-//        case .ALL: break
-//        case .HIDE_SAT:
-//            isEnableSat = false
-//            colCount -= 1
-//        case .HIDE_SUN:
-//            isEnableSun = false
-//            colCount -= 1
-//        case .HIDE_SAT_SUN:
-//            isEnableSun = false
-//            isEnableSat = false
-//            colCount -= 2
-//        }
-//    }
-
     public func setType(isEnable0gen:Bool, isEnable5gen :Bool, isEnableSun:Bool, isEnableSat:Bool){
         self.isEnable0gen = isEnable0gen
         self.isEnable5gen = isEnable5gen
@@ -299,10 +274,11 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
             case .iPhone5:
                 proportion *= 1.5
                 if(colCount == 7){
-                    proportion *= 1.2
-                }
-                if(colCount == 6){
+                    proportion *= 1.3
+                } else if(colCount == 6){
                     proportion *= 1.1
+                }  else {
+                    
                 }
                 
             case .iPhone7:
@@ -352,8 +328,13 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
 //            // SubViewController へ遷移するために Segue を呼び出す
 //            performSegue(withIdentifier: "toSubViewController",sender: nil)
 //        }
-        self.onCellTap(timeTable: (rootTimeTable?.timeTables[indexPath.row])!)
+//        self.onCellTap(timeTable: (rootTimeTable?.timeTables[indexPath.row])!)
+        // TODO: indexを変換する必要あり
         
+        let cell:TimeTableViewCell = collectionView.cellForItem(at: indexPath) as! TimeTableViewCell
+        let timeTableItem : TimeTableItem =  (timeTableItems?[Int(cell.index.text!)!])!
+        
+        onCellTap(timeTableItem: timeTableItem)
     }
     
     
@@ -373,10 +354,13 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell:TimeTableViewCell = getCellLayout(indexPath: indexPath) as! TimeTableViewCell
 //        cell.subject.text = String(describing: rootTimeTable?.timeTables[(indexPath as NSIndexPath).row].id)
-        let timeTableItem = getTimeTableItem(index: (indexPath as NSIndexPath).row)
+        let fixIndex = getFixIndex(index: indexPath.row)
+        let timeTableItem = timeTableItems![fixIndex]
 //        let timeTableItem:TimeTableItem = timeTableItems![indexPath.row]
         cell.subject.text = timeTableItem.subjectName
         cell.room.text = timeTableItem.room
+        cell.setIndex(index: fixIndex)
+        
         return cell
     }
     
@@ -393,7 +377,7 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     
-    private func getTimeTableItem(index: Int) -> TimeTableItem {
+    private func getFixIndex(index:Int) -> Int{
         var i = index
         // 実際に表示されるとき何行目か---
         //割る数
@@ -427,10 +411,9 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
         if(!isEnableSat){
             i += row
         }
-        
-        return timeTableItems![i]
+
+        return i
     }
-    
     
     //　セルに表示する要素数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -460,8 +443,8 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
     
     // MARK: - delegate
     weak var delegate: TimeTableDelegate?
-    func onCellTap(timeTable:TimeTable) {
-        delegate?.onCellTap(timeTable: timeTable)
+    func onCellTap(timeTableItem:TimeTableItem) {
+        delegate?.onCellTap(timeTableItem: timeTableItem)
     }
 
 }

@@ -47,6 +47,7 @@ class EscApiManager{
                 }  else if rootTimeTable.code == EscApiConst.ERROR_EXPIRED_TOKEN || rootTimeTable.code == EscApiConst.ERROR_INVALID_TOKEN {
                     self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
                         if callback1.bool {
+                            request = TimeTableRequest(token: self.token, code:userId)
                             Session.send(request) { result in
                                 switch result{
                                 case .success(let rootTimeTable1):
@@ -103,6 +104,7 @@ class EscApiManager{
                 }  else if newsArray.code == EscApiConst.ERROR_EXPIRED_TOKEN || newsArray.code == EscApiConst.ERROR_INVALID_TOKEN {
                     self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
                         if callback1.bool {
+                            request = NewsRequest(token: self.token, type: NewsRequest.NewsType.school , limit: 100)
                             Session.send(request) { result in
                                 switch result{
                                 case .success(let newsArray):
@@ -182,7 +184,26 @@ class EscApiManager{
                     callback(EscApiCallback<NewsArray>(bool: false))
                 }
             case .failure( _):
-                callback(EscApiCallback<NewsArray>(bool: false))
+                self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                    if callback1.bool {
+                        request = NewsRequest(token: self.token, type: NewsRequest.NewsType.tanin , limit: 100)
+                        Session.send(request) { result in
+                            switch result{
+                            case .success(let newsArray):
+                                if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                                    //　成功
+                                    callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                                } else {
+                                    callback(EscApiCallback<NewsArray>(bool: false))
+                                }
+                            case .failure( _):
+                                callback(EscApiCallback<NewsArray>(bool: false))
+                            }
+                        }
+                    } else {
+                        callback(EscApiCallback<NewsArray>(bool: false))
+                    }
+                })
             }
         }
     }
@@ -196,8 +217,8 @@ class EscApiManager{
                 if newsDetailRoot.code != EscApiConst.SUCCESS_AUTH  {
                     self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
                         if callback1.bool {
+                            request = NewsDetailRequest(token: self.token, newsId: newsId)
                             Session.send(request){ result in
-                                
                                 switch result {
                                 case .success(let newsDetailRoot):
                                     if newsDetailRoot.code == EscApiConst.SUCCESS_AUTH {

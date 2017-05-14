@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import Realm
 import KRProgressHUD
+import SpringIndicator
 
 class NewsParentViewController:UIViewController, UITableViewDataSource , UITableViewDelegate{
     
@@ -23,8 +24,8 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    let refreshControl = UIRefreshControl()
-    let taninRefreshControl = UIRefreshControl()
+    let refreshControl:SpringIndicator.Refresher = SpringIndicator.Refresher()
+    let taninRefreshControl :SpringIndicator.Refresher = SpringIndicator.Refresher()
     
     var taninNewsItems: Results<TaninNewsItem>!
     var schoolNewsItems:Results<SchoolNewsItem>!
@@ -75,9 +76,9 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                         refreshControl.endRefreshing()
                         self.tableView.isScrollEnabled = true
                         
-                        refreshControl.attributedTitle =
-                            NSAttributedString(string:"最終更新日時 : " +
-                                ToolsBase().getNow());
+//                        refreshControl.attributedTitle =
+//                            NSAttributedString(string:"最終更新日時 : " +
+//                                ToolsBase().getNow());
                         PreferenceManager.saveLatestUpdateASchoolNews(now: ToolsBase().getNow())
                         //                        DialogManager().showSuccess()
                     } else {
@@ -101,9 +102,9 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                         refreshControl.endRefreshing()
                         self.taninTableView.isScrollEnabled = true
                         
-                        refreshControl.attributedTitle =
-                            NSAttributedString(string:"最終更新日時 : " +
-                                ToolsBase().getNow());
+//                        refreshControl.attributedTitle =
+//                            NSAttributedString(string:"最終更新日時 : " +
+//                                ToolsBase().getNow());
                         PreferenceManager.saveLatestUpdateTaninNews(now: ToolsBase().getNow())
                         //                        DialogManager().showSuccess()
                     } else {
@@ -252,23 +253,23 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
     private func initRefreshContorol() {
         //リフレッシュコントロールを作成する。
         //インジケーターの色を設定する。
-        refreshControl.tintColor = UIColor.gray
+        refreshControl.tintColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:1.0)
         //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
         refreshControl.addTarget(self, action: #selector(NewsParentViewController.refreshTable(_:)), for: .valueChanged)
         
         
-        refreshControl.attributedTitle =
-            NSAttributedString(string:"最終更新日時 : " +
-                PreferenceManager.getLatestUpdateSchoolNews());
+//        refreshControl.attributedTitle =
+//            NSAttributedString(string:"最終更新日時 : " +
+//                PreferenceManager.getLatestUpdateSchoolNews());
+//        
+//        
         
-        
-        
-        taninRefreshControl.tintColor = UIColor.gray
+        taninRefreshControl.tintColor = UIColor(red:0.86, green:0.86, blue:0.86, alpha:1.0)
         taninRefreshControl.addTarget(self, action: #selector(NewsParentViewController.refreshTable(_:)), for: .valueChanged)
         
-        taninRefreshControl.attributedTitle =
-            NSAttributedString(string:"最終更新日時 : " +
-                PreferenceManager.getLatestUpdateTaninNews());
+//        taninRefreshControl.attributedTitle =
+//            NSAttributedString(string:"最終更新日時 : " +
+//                PreferenceManager.getLatestUpdateTaninNews());
         
     }
     

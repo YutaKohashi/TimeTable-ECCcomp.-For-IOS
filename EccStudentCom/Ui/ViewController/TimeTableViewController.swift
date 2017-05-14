@@ -55,14 +55,17 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
         let timeTables:Results<TimeTableItem> = TimeTableAccessor.sharedInstance.getAll()!
         timeTable.setData(timeTableItems: timeTables)
 
-         timeTable.setType(isEnable0gen: false, isEnable5gen: false, isEnableSun: false, isEnableSat: false)
+         timeTable.setType(isEnable0gen: false  , isEnable5gen: false, isEnableSun: false, isEnableSat: false)
          // dummy　-----------------------------------------------------------------------
     }
     
     
     // timeTableViewのセルをタップしたときのイベント
-    func onCellTap(timeTable: TimeTable) {
-        print(timeTable.id)
+    func onCellTap(timeTableItem: TimeTableItem) {
+//        print(timeTable.id)
+        subjectLabel.text = timeTableItem.subjectName
+        teacherLabel.text = timeTableItem.teacherName
+        timeLabel.text = getTime(index: timeTableItem.rowNum)
         setBottomSheet()
     }
     
