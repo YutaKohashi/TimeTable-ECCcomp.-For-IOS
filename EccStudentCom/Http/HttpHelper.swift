@@ -100,7 +100,7 @@ internal class HttpHelper:HttpBase{
     
     // MARK:担任からのお知らせ
     func getTaninNews(userId:String,password:String,callback:@escaping(Bool) -> Void) -> Void{
-        EscApiManager.taninNewsRequest { (callback1) in
+        EscApiManager.taninNewsRequest (userId: userId, password: password){ (callback1) in
             if callback1.bool {
                 // 担任からのお知らせを保存
                 DispatchQueue.main.async {
@@ -118,6 +118,8 @@ internal class HttpHelper:HttpBase{
                 callback(false)
             }
         }
+        
+        
     }
     
     // MARK:学校、担任からのお知らせ
@@ -135,23 +137,11 @@ internal class HttpHelper:HttpBase{
     
     // MARK:お知らせ詳細
     func getNewsDetail(userId:String, password:String, newsId:Int,callback:@escaping(EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
-        EscApiManager.newsDetailRequest(newsId: newsId) { (callback1) in
+        EscApiManager.newsDetailRequest(userId:userId, password:password ,newsId: newsId) { (callback1) in
             if callback1.bool {
-                
+                callback(EscApiCallback<NewsDetailRoot>(response: callback1.response!, bool: true))
             } else {
-                EscApiManager.tokenRequest(userId: userId, password: password, callback: { (callback2) in
-                    if callback2.bool {
-                        EscApiManager.newsDetailRequest(newsId: newsId) { (callback3) in
-                            if(callback3.bool){
-                                callback(EscApiCallback<NewsDetailRoot>(response: callback3.response!, bool: true))
-                            } else {
-                                callback(EscApiCallback<NewsDetailRoot>(bool: false))
-                            }
-                        }
-                    } else {
-                        callback(EscApiCallback<NewsDetailRoot>(bool: false))
-                    }
-                })
+                callback(EscApiCallback<NewsDetailRoot>(bool: false))
             }
         }
     }
