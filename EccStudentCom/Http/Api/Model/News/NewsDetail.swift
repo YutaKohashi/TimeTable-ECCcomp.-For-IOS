@@ -11,7 +11,7 @@ import Himotoki
 
 struct NewsDetail:Decodable{
     //　お知らせID
-    let id:String
+    let id:Int
     
     // お知らせのカテゴリ名
     let category:String
@@ -23,7 +23,7 @@ struct NewsDetail:Decodable{
     let body:String
     
     // 最終更新日
-    let updatedAt:String?
+    let updatedAt:String
     
     // お知らせの作者名
     let author:String
@@ -34,7 +34,7 @@ struct NewsDetail:Decodable{
     //　お知らせ配信先コースリスト
     let courses:[NewsCourse]
     
-    init(id:String,
+    init(id:Int,
          category:String,
          title:String,
          body:String,
@@ -61,7 +61,7 @@ struct NewsDetail:Decodable{
             updatedAt: e<|"updated_at",
             author: e<|"author",
             files: e<||"files",
-            courses: e<||"newsCourses"
+            courses: e<||"courses"
         )
     }
     

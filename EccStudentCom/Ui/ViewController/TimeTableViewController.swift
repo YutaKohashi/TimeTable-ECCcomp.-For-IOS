@@ -51,18 +51,11 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
         
         
         // dummy　-----------------------------------------------------------------------
-//        var timeTables:[TimeTable] = []
-//        for i in 0 ..< 20 {
-//            let timeTable:TimeTable = TimeTable(id: i, week: i, term: i, lessonCode: String(i), lessonName: String(i), room: String(i), course: String(i), teachers: [])
-//            timeTables.append(timeTable)
-//        }
-//        
-//        let rootTimeTable:RootTimeTable = RootTimeTable(code: "",timeTables: timeTables)
-        
+
         let timeTables:Results<TimeTableItem> = TimeTableAccessor.sharedInstance.getAll()!
         timeTable.setData(timeTableItems: timeTables)
 
-         timeTable.setType(isEnable0gen: false, isEnable5gen: false, isEnableSun: true, isEnableSat: true)
+         timeTable.setType(isEnable0gen: false, isEnable5gen: false, isEnableSun: false, isEnableSat: false)
          // dummy　-----------------------------------------------------------------------
     }
     

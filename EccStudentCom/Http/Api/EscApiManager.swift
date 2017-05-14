@@ -38,7 +38,7 @@ class EscApiManager{
     
     // MARK:時間割を取得するメソッド
     static func timeTableRequest(userId:String, password:String , callback: @escaping (EscApiCallback<RootTimeTable>) -> Void) -> Void {
-        let request = TimeTableRequest(token: self.token, code:userId)
+        var request = TimeTableRequest(token: self.token, code:userId)
         Session.send(request) { result in
             switch result {
             case .success(let rootTimeTable):
@@ -49,9 +49,9 @@ class EscApiManager{
                         if callback1.bool {
                             Session.send(request) { result in
                                 switch result{
-                                case .success(let newsArray):
-                                    if newsArray.code == EscApiConst.SUCCESS_AUTH {
-                                        callback(EscApiCallback<RootTimeTable>(response: rootTimeTable,bool: true))
+                                case .success(let rootTimeTable1):
+                                    if rootTimeTable1.code == EscApiConst.SUCCESS_AUTH {
+                                        callback(EscApiCallback<RootTimeTable>(response: rootTimeTable1,bool: true))
                                     } else {
                                         callback(EscApiCallback<RootTimeTable>(bool: false))
                                     }
@@ -67,14 +67,33 @@ class EscApiManager{
                     callback(EscApiCallback<RootTimeTable>(bool: false))
                 }
             case .failure( _):
-                callback(EscApiCallback<RootTimeTable>(bool: false))
+                self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                    if callback1.bool {
+                        request = TimeTableRequest(token: self.token, code:userId)
+                        Session.send(request) { result in
+                            switch result{
+                            case .success(let rootTimeTable2):
+                                if rootTimeTable2.code == EscApiConst.SUCCESS_AUTH {
+                                    callback(EscApiCallback<RootTimeTable>(response: rootTimeTable2,bool: true))
+                                } else {
+                                    callback(EscApiCallback<RootTimeTable>(bool: false))
+                                }
+                            case .failure( _):
+                                callback(EscApiCallback<RootTimeTable>(bool: false))
+                            }
+                        }
+                    } else {
+                        callback(EscApiCallback<RootTimeTable>(bool: false))
+                    }
+                })
+
             }
         }
     }
     
     // MARK:学校からのお知らせ
     static func schoolNewsRequest(userId:String, password:String , callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
-        let request = NewsRequest(token: self.token, type: NewsRequest.NewsType.school , limit: 100)
+        var request = NewsRequest(token: self.token, type: NewsRequest.NewsType.school , limit: 100)
         Session.send(request) { result in
             switch result{
             case .success(let newsArray):
@@ -105,14 +124,33 @@ class EscApiManager{
                     callback(EscApiCallback<NewsArray>(bool: false))
                 }
             case .failure( _):
-                callback(EscApiCallback<NewsArray>(bool: false))
+                self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                    if callback1.bool {
+                        request = NewsRequest(token: self.token, type: NewsRequest.NewsType.school , limit: 100)
+                        Session.send(request) { result in
+                            switch result{
+                            case .success(let newsArray):
+                                if newsArray.code == EscApiConst.SUCCESS_AUTH {
+                                    //　成功
+                                    callback(EscApiCallback<NewsArray>(response: newsArray, bool: true))
+                                } else {
+                                    callback(EscApiCallback<NewsArray>(bool: false))
+                                }
+                            case .failure( _):
+                                callback(EscApiCallback<NewsArray>(bool: false))
+                            }
+                        }
+                    } else {
+                        callback(EscApiCallback<NewsArray>(bool: false))
+                    }
+                })
             }
         }
     }
     
     // MARK:担任からのお知らせ
     static func taninNewsRequest(userId:String, password:String ,callback: @escaping (EscApiCallback<NewsArray>) -> Void) -> Void {
-        let request = NewsRequest(token: self.token, type: NewsRequest.NewsType.tanin , limit: 100)
+        var request = NewsRequest(token: self.token, type: NewsRequest.NewsType.tanin , limit: 100)
         Session.send(request) { result in
             switch result{
             case .success(let newsArray):
@@ -122,6 +160,7 @@ class EscApiManager{
                 } else if newsArray.code == EscApiConst.ERROR_EXPIRED_TOKEN || newsArray.code == EscApiConst.ERROR_INVALID_TOKEN {
                     self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
                         if callback1.bool {
+                            request = NewsRequest(token: self.token, type: NewsRequest.NewsType.tanin , limit: 100)
                             Session.send(request) { result in
                                 switch result{
                                 case .success(let newsArray):
@@ -150,7 +189,7 @@ class EscApiManager{
     
     // MARK: お知らせ詳細
     static func newsDetailRequest(userId:String, password:String ,newsId:Int, callback: @escaping (EscApiCallback<NewsDetailRoot>) -> Void) -> Void {
-        let request = NewsDetailRequest(token: self.token, newsId: newsId)
+        var request = NewsDetailRequest(token: self.token, newsId: newsId)
         Session.send(request) { result in
             switch result{
             case .success(let newsDetailRoot):
@@ -181,7 +220,27 @@ class EscApiManager{
                     callback(EscApiCallback<NewsDetailRoot>(response: newsDetailRoot, bool: true))
                 }
             case .failure( _):
-                callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                self.tokenRequest(userId: userId, password: password, callback: { (callback1) in
+                    if callback1.bool {
+                        request = NewsDetailRequest(token: self.token, newsId: newsId)
+                        Session.send(request){ result in
+                            print(result.error)
+                            switch result {
+                            case .success(let newsDetailRoot):
+                                if newsDetailRoot.code == EscApiConst.SUCCESS_AUTH {
+                                    callback(EscApiCallback<NewsDetailRoot>(response: newsDetailRoot, bool: true))
+                                } else {
+                                    callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                                }
+                                
+                            case .failure( _):
+                                callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                            }
+                        }
+                    } else {
+                        callback(EscApiCallback<NewsDetailRoot>(bool: false))
+                    }
+                })
             }
         }
     }

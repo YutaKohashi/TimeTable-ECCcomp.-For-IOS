@@ -18,7 +18,8 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var indicator: SpringIndicator!
-
+    @IBOutlet weak var bodyLabel: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,13 +28,17 @@ class NewsDetailViewController: UIViewController {
         
         startIndicator()
         
-        
-//        
-//       webView.scrollView.bounces = false
-//        DispatchQueue.main.async(execute: {
-//            self.html = self.getNews(html: self.html)
-//            self.webView.loadHTMLString(self.html, baseURL: URL(string:"http://comp2.ecc.ac.jp/")!)
-//        })
+        HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedPass(), newsId: newsId) { (callback) in
+            self.stopIndicator()
+            if callback.bool {
+                let detail : NewsDetailRoot = callback.response!
+                self.bodyLabel.text = detail.newsDetail.body
+                
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,32 +60,6 @@ class NewsDetailViewController: UIViewController {
     
     func setNewsId(int:Int){
         self.newsId = int
-    }
-    
-    private func getNews(html:String) -> String{
-        var value:String = html.replacingOccurrences(of: "\r", with: "")
-        value = value.replacingOccurrences(of: "\n", with: "")
-        value = GetValuesBase("<p class=\"body clear\">","</p>").narrowingValues(value)
-        
-        value =
-            "<html>" +
-            "<head>" +
-            "<style type='text/css'>" +
-            "body{ font-family: 'SourceSansPro-Regular';\t " +
-            "padding: 10px;\t" +
-            "font-size: 11pt;\t" +
-            "overflow-x : hidden;\t" +
-            "overflow-y : auto\t}" +
-            "html{ overflow-x : hidden;\t" +
-            "overflow-y : auto\t}" +
-            "</style>" +
-            "</head>" +
-            "<body>" +
-             value +
-            "</body>" +
-            "</html>"
-        
-        return value
     }
     
     private func startIndicator(){
