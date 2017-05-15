@@ -81,6 +81,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
 //                                ToolsBase().getNow());
                         PreferenceManager.saveLatestUpdateASchoolNews(now: ToolsBase().getNow())
                         //                        DialogManager().showSuccess()
+                        ToastView.showText(text: "更新しました")
                     } else {
                         refreshControl.endRefreshing()
                         self.tableView.isScrollEnabled = true
@@ -140,7 +141,8 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         }
         
         //インターネットに接続されていないのときはアラート表示
-        if !ToolsBase().CheckReachability("google.com"){
+        
+        guard ToolsBase().CheckReachability("google.com") else {
             DialogManager().showWarningForInternet()
             refreshControl.endRefreshing()
             self.tableView.isScrollEnabled = true
@@ -153,35 +155,13 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             return
         }
         
-//        self.html = cb.string
-        //                self.performSegue(withIdentifier: "toNewsDetailViewController",sender: nil)
         let storyboard: UIStoryboard = self.storyboard!
         let newsDetailVC: NewsDetailViewController = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
         newsDetailVC.setTitle(str: newsTitle!)
         newsDetailVC.setDate(str: date!)
-//        newsDetailVC.setHtml(str: self.html!)
         newsDetailVC.setNewsId(int: newsId)
         self.present(newsDetailVC, animated: true, completion: nil)
 
-
-//        DialogManager().showIndicator()
-//        HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedId(), newsId:uri!,callback: { (cb) in
-//            if(cb.bool){
-//                self.html = cb.string
-////                self.performSegue(withIdentifier: "toNewsDetailViewController",sender: nil)
-//                DispatchQueue.main.async(execute: {
-//                     DialogManager().hideIndicator()
-//                    let storyboard: UIStoryboard = self.storyboard!
-//                    let newsDetailVC: NewsDetailViewController = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
-//                    newsDetailVC.setTitle(str: self.newsTitle!)
-//                    newsDetailVC.setDate(str: self.date!)
-//                    newsDetailVC.setHtml(str: self.html!)
-//                    self.present(newsDetailVC, animated: true, completion: nil)
-//                })
-//            } else {
-//                DialogManager().showError()
-//            }
-//        })
      
     }
 
@@ -198,7 +178,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
     /// セルに値を設定するデータソースメソッド
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを取得
-        index = (indexPath as NSIndexPath).row
+        index = indexPath.row
         
         let title :String = schoolNewsItems![index].title
         let date :String = schoolNewsItems![index].date

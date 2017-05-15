@@ -245,7 +245,7 @@ class EscApiManager{
                     if callback1.bool {
                         request = NewsDetailRequest(token: self.token, newsId: newsId)
                         Session.send(request){ result in
-                            print(result.error)
+                            print(result.error!)
                             switch result {
                             case .success(let newsDetailRoot):
                                 if newsDetailRoot.code == EscApiConst.SUCCESS_AUTH {

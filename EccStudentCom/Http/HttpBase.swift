@@ -46,14 +46,14 @@ class HttpBase{
             data, response, error in
             if error != nil
             {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 cb.bool = false
                 callback(cb)
                 return
             }
             
             if (response as? HTTPURLResponse) == nil {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 cb.bool = false
                 callback(cb)
                 return

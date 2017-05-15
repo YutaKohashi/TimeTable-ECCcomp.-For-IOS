@@ -1,6 +1,0 @@
-framework module SpringIndicator {
-  umbrella header "SpringIndicator-umbrella.h"
-
-  export *
-  module * { export * }
-}

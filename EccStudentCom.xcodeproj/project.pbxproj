@@ -91,6 +91,7 @@
 		79F93E9F1EC0C486009247AE /* TimeTableView1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F93E9E1EC0C486009247AE /* TimeTableView1.xib */; };
 		79F93EA11EC0C525009247AE /* TimeTableView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F93EA01EC0C525009247AE /* TimeTableView1.swift */; };
 		B89F627E1EACE9B0F0F0928B /* Pods_EccStudentCom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7FB22523774E900B1499140 /* Pods_EccStudentCom.framework */; };
+		D605986A1EC9EE3400BBB22E /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60598691EC9EE3400BBB22E /* ToastView.swift */; };
 		D632069A1E54BDA00004E359 /* SchoolNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63206991E54BDA00004E359 /* SchoolNewsItem.swift */; };
 		D632069C1E56597A0004E359 /* NewsParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632069B1E56597A0004E359 /* NewsParentViewController.swift */; };
 		D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64601271E5885D80034323F /* TaninNewsItem.swift */; };
@@ -190,6 +191,7 @@
 		79F5737F1DCCFDB700E62898 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = EccStudentCom/Settings.bundle; sourceTree = "<group>"; };
 		79F93E9E1EC0C486009247AE /* TimeTableView1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeTableView1.xib; sourceTree = "<group>"; };
 		79F93EA01EC0C525009247AE /* TimeTableView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableView1.swift; sourceTree = "<group>"; };
+		D60598691EC9EE3400BBB22E /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D63206991E54BDA00004E359 /* SchoolNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolNewsItem.swift; sourceTree = "<group>"; };
 		D632069B1E56597A0004E359 /* NewsParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsParentViewController.swift; sourceTree = "<group>"; };
 		D64601271E5885D80034323F /* TaninNewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaninNewsItem.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		79B585571EBBE9D1005B4E1A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D60598681EC9EE1500BBB22E /* Toast */,
 				798FF0811EC0008700FF1F11 /* View */,
 				798FF07E1EBFFFF400FF1F11 /* Xib */,
 				79F5737C1DCCE07500E62898 /* Extension */,
@@ -489,6 +492,15 @@
 				2A3CB32D41BD487A1C83DE20 /* Pods-EccStudentCom.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D60598681EC9EE1500BBB22E /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				D60598691EC9EE3400BBB22E /* ToastView.swift */,
+			);
+			name = Toast;
+			path = ../Ui/Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -648,6 +660,7 @@
 				798FF0871EC0095900FF1F11 /* TimeTableViewCell.swift in Sources */,
 				D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,
+				D605986A1EC9EE3400BBB22E /* ToastView.swift in Sources */,
 				79C447D31EC61C88007DF16F /* AttendanceRateAccessor.swift in Sources */,
 				79F1FB3D1DCA3AF6007B7386 /* AboutViewController.swift in Sources */,
 				D6E8885D1E7FF6730089FE5E /* CalendarViewController.swift in Sources */,
