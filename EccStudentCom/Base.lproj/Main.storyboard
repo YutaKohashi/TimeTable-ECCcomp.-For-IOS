@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IZb-BX-ahb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IZb-BX-ahb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1243,14 +1243,10 @@
                                                                     <constraint firstAttribute="bottom" secondItem="wYy-9U-9ag" secondAttribute="bottom" id="du3-iF-Sj5"/>
                                                                 </constraints>
                                                             </view>
-                                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uvs-eX-cHR">
-                                                                <rect key="frame" x="178" y="13" width="20" height="20"/>
-                                                            </activityIndicatorView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="mPG-V0-Qnx" secondAttribute="trailing" id="07b-Jj-3pe"/>
-                                                            <constraint firstItem="uvs-eX-cHR" firstAttribute="centerX" secondItem="jhJ-V1-Ams" secondAttribute="centerX" id="0Wq-Or-wbB"/>
                                                             <constraint firstItem="U62-jI-mUN" firstAttribute="leading" secondItem="vG5-TQ-FEF" secondAttribute="trailing" id="4cm-Yr-mBV"/>
                                                             <constraint firstItem="u2P-cU-ebr" firstAttribute="width" secondItem="FIH-bc-TXz" secondAttribute="width" multiplier="0.2" id="4d6-bG-qD7"/>
                                                             <constraint firstAttribute="bottom" secondItem="PFR-ol-AKk" secondAttribute="bottom" id="7SN-2t-ZZP"/>
@@ -1271,7 +1267,6 @@
                                                             <constraint firstAttribute="bottom" secondItem="vG5-TQ-FEF" secondAttribute="bottom" id="cpo-Pt-KX9"/>
                                                             <constraint firstItem="vG5-TQ-FEF" firstAttribute="leading" secondItem="PFR-ol-AKk" secondAttribute="trailing" id="oAY-7d-ork"/>
                                                             <constraint firstAttribute="trailing" secondItem="FIH-bc-TXz" secondAttribute="trailing" id="qcV-4E-x9P"/>
-                                                            <constraint firstItem="uvs-eX-cHR" firstAttribute="centerY" secondItem="jhJ-V1-Ams" secondAttribute="centerY" id="sKA-GA-4b2"/>
                                                             <constraint firstItem="U62-jI-mUN" firstAttribute="width" secondItem="FIH-bc-TXz" secondAttribute="width" multiplier="0.2" id="uX6-ey-y1e"/>
                                                             <constraint firstItem="mPG-V0-Qnx" firstAttribute="top" secondItem="jhJ-V1-Ams" secondAttribute="top" id="y3a-E3-AYi"/>
                                                         </constraints>
@@ -1332,10 +1327,8 @@
                         <outlet property="abcentNumLabel" destination="wYy-9U-9ag" id="jbh-KC-jrg"/>
                         <outlet property="attedanceRateLabel" destination="O8t-bh-MUI" id="mTv-Q7-rs1"/>
                         <outlet property="attendanceNumLabel" destination="rJf-5l-TlC" id="41T-yN-NJN"/>
-                        <outlet property="indicator" destination="uvs-eX-cHR" id="L4y-yT-9T4"/>
                         <outlet property="lostUnitLabel" destination="zh0-J5-Ip8" id="1vw-Zf-QEG"/>
                         <outlet property="tableView" destination="xaq-Yt-8lz" id="frv-hR-Det"/>
-                        <outlet property="totalDataIndicatorView" destination="sKA-GA-4b2" id="bW6-PW-zK8"/>
                         <outlet property="totalUnitLabel" destination="csX-jb-Xv2" id="oC9-Uh-j8c"/>
                     </connections>
                 </viewController>
@@ -2144,6 +2137,6 @@
         <image name="text-align-justify-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OuR-D5-PBA"/>
+        <segue reference="mvF-On-AWz"/>
     </inferredMetricsTieBreakers>
 </document>

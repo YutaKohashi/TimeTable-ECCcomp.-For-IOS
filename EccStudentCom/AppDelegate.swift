@@ -97,14 +97,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        if ToolsBase().CheckReachability("google.com") {
-            print("インターネットへの接続が確認されています")
-        } else {
-            //未接続
-            //ダイアログ表示
-            //KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType:.black,message:"インターネット未接続")
-            print("インターネットに接続してください")
-        }
+//        if ToolsBase().CheckReachability("google.com") {
+//            print("インターネットへの接続が確認されています")
+//        } else {
+//            //未接続
+//            //ダイアログ表示
+//            //KRProgressHUD.showWarning(progressHUDStyle: .whiteColor,maskType:.black,message:"インターネット未接続")
+//            print("インターネットに接続してください")
+//        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

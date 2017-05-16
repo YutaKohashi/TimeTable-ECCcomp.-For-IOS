@@ -9,6 +9,7 @@ pod 'FSCalendar'
 pod 'Himotoki'
 pod 'APIKit'
 pod 'SpringIndicator'
+pod 'SVProgressHUD'
 end
 
 post_install do |installer|
