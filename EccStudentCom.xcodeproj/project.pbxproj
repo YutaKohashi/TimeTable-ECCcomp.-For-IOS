@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		79043BC61DCB692B00A7B131 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79043BC51DCB692B00A7B131 /* LoginViewController.swift */; };
-		790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790AA59F1D9A11A800C53C48 /* SaveManager.swift */; };
 		790E838C1DCF117800D7D714 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E838B1DCF117800D7D714 /* PreferenceManager.swift */; };
 		791DE0551DD169DD00FEB18A /* HttpBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DE0541DD169DD00FEB18A /* HttpBase.swift */; };
 		791DE0591DD172E200FEB18A /* RequestURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DE0581DD172E200FEB18A /* RequestURL.swift */; };
@@ -84,7 +83,6 @@
 		79F1FB3F1DCA3B14007B7386 /* LisenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */; };
 		79F1FB411DCA3E6D007B7386 /* about_html.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB401DCA3E6D007B7386 /* about_html.html */; };
 		79F1FB431DCA3E75007B7386 /* ecclogo-dark2.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */; };
-		79F4458A1ECACDF7008D9920 /* dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F445891ECACDF7008D9920 /* dummy.m */; };
 		79F573791DCC460500E62898 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 79F573781DCC460500E62898 /* lisence.html */; };
 		79F5737B1DCCDFCC00E62898 /* BaseTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */; };
 		79F573801DCCFDB700E62898 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79F5737F1DCCFDB700E62898 /* Settings.bundle */; };
@@ -105,7 +103,6 @@
 		2A3CB32D41BD487A1C83DE20 /* Pods-EccStudentCom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.release.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.release.xcconfig"; sourceTree = "<group>"; };
 		610DE5722B297A8BAF78A60F /* Pods-EccStudentCom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EccStudentCom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EccStudentCom/Pods-EccStudentCom.debug.xcconfig"; sourceTree = "<group>"; };
 		79043BC51DCB692B00A7B131 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		790AA59F1D9A11A800C53C48 /* SaveManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveManager.swift; sourceTree = "<group>"; };
 		790E838B1DCF117800D7D714 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		791DE0541DD169DD00FEB18A /* HttpBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpBase.swift; sourceTree = "<group>"; };
 		791DE0581DD172E200FEB18A /* RequestURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestURL.swift; sourceTree = "<group>"; };
@@ -185,7 +182,6 @@
 		79F1FB3E1DCA3B14007B7386 /* LisenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LisenceViewController.swift; sourceTree = "<group>"; };
 		79F1FB401DCA3E6D007B7386 /* about_html.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_html.html; sourceTree = "<group>"; };
 		79F1FB421DCA3E75007B7386 /* ecclogo-dark2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ecclogo-dark2.png"; sourceTree = "<group>"; };
-		79F445891ECACDF7008D9920 /* dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dummy.m; sourceTree = "<group>"; };
 		79F4458B1ECAE484008D9920 /* EccStudentCom-Bridging-Header..h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EccStudentCom-Bridging-Header..h"; sourceTree = "<group>"; };
 		79F573781DCC460500E62898 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = lisence.html; sourceTree = "<group>"; };
 		79F5737A1DCCDFCC00E62898 /* BaseTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabViewController.swift; sourceTree = "<group>"; };
@@ -247,7 +243,6 @@
 				794F66761D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld */,
 				794F66791D96B7C300C1D9B6 /* Assets.xcassets */,
 				794F666F1D96B7C300C1D9B6 /* AppDelegate.swift */,
-				79F445891ECACDF7008D9920 /* dummy.m */,
 				79F4458B1ECAE484008D9920 /* EccStudentCom-Bridging-Header..h */,
 			);
 			path = EccStudentCom;
@@ -258,7 +253,6 @@
 			children = (
 				79C447C91EC317B2007DF16F /* Realm */,
 				794F66851D96B8C900C1D9B6 /* GetValuesBase.swift */,
-				790AA59F1D9A11A800C53C48 /* SaveManager.swift */,
 				799F60161DC5B93000C95A68 /* StatusbarManager.swift */,
 				79292D551DC5FA8300F15299 /* DiagUtil.swift */,
 				790E838B1DCF117800D7D714 /* PreferenceManager.swift */,
@@ -645,7 +639,6 @@
 			files = (
 				7997BED31EC83BEC00AFBD91 /* EscApiConst.swift in Sources */,
 				79B5856C1EBCE02D005B4E1A /* TeacherTimeTable.swift in Sources */,
-				790AA5A01D9A11A800C53C48 /* SaveManager.swift in Sources */,
 				79C447D91EC62AB0007DF16F /* TaninNewsAccessor.swift in Sources */,
 				D632069A1E54BDA00004E359 /* SchoolNewsItem.swift in Sources */,
 				7924B03D1DEB380300D43894 /* SelectColor+UItableViewCell.swift in Sources */,
@@ -675,7 +668,6 @@
 				7951A6601DD344F10075ACC8 /* HttpHelper.swift in Sources */,
 				79B585621EBCD771005B4E1A /* TokenRequest.swift in Sources */,
 				79292D561DC5FA8300F15299 /* DiagUtil.swift in Sources */,
-				79F4458A1ECACDF7008D9920 /* dummy.m in Sources */,
 				79B585821EBDF1A6005B4E1A /* ScheduleItem.swift in Sources */,
 				D646012A1E589BCF0034323F /* NewsTitleCell.swift in Sources */,
 				791DE0591DD172E200FEB18A /* RequestURL.swift in Sources */,
