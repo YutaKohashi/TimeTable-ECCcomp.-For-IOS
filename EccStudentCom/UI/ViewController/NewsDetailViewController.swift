@@ -25,6 +25,7 @@ class NewsDetailViewController: UIViewController {
         
         titleLabel.text = newTitle
         dateLabel.text = date
+        bodyLabel.dataDetectorTypes = .link
         
         startIndicator()
         

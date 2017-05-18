@@ -147,7 +147,37 @@ internal class HttpHelper:HttpBase{
     }
     
     
-    
+    // MARK:スケジュール
+    func getSchedule(userId:String, password:String, callback:@escaping(Bool) -> Void) -> Void{
+
+        EscApiManager.scheduleRequestAll(userId: userId, password: password) { (callback1 ) in
+            if callback1.bool {
+                // 保存処理
+                DispatchQueue.main.async {
+                    ScheduleAccessor.sharedInstance.deleteAll()
+                    let scheduleRootList:[ScheduleRoot] = callback1.response!
+                    scheduleRootList.forEach({ (scheduleRoot) in
+                        guard let items:[ScheduleContainsItem] = self.scheduleRootToScheduleContainsItemList(scheduleRoot: scheduleRoot) else {
+                            callback(false)
+                            return
+                        }
+                        
+                        items.forEach({ (item) in
+                            guard ScheduleAccessor.sharedInstance.set(data: item) else {
+                                callback(false)
+                                return
+                            }
+                        })
+                    })
+                    callback(true)
+                }
+                
+                
+            } else {
+                callback(false)
+            }
+        }
+    }
     
     
     
@@ -372,6 +402,27 @@ internal class HttpHelper:HttpBase{
             item.date = newsItem.updatedDate
             
             items.append(item)
+        }
+        
+        return items
+    }
+    
+    private func scheduleRootToScheduleContainsItemList(scheduleRoot:ScheduleRoot?) -> [ScheduleContainsItem]? {
+        let categories:[ScheduleCategory]? = scheduleRoot?.schedules
+        guard (categories != nil) && categories!.count != 0 else {
+            return nil
+        }
+        
+        var items:[ScheduleContainsItem] = []
+        for scheduleItem:ScheduleItem in categories![0].details {
+            let scheduleContainsItem = ScheduleContainsItem()
+            scheduleContainsItem.year = scheduleItem.year
+            scheduleContainsItem.month = scheduleItem.month
+            scheduleContainsItem.day = scheduleItem.day
+            scheduleContainsItem.text = scheduleItem.body
+            scheduleContainsItem.yearMonthDay = scheduleItem.date
+            
+            items.append(scheduleContainsItem)
         }
         
         return items

@@ -20,6 +20,7 @@ public class HttpConnector{
         case NEWS_SCHOOL
         case NEWS_TEACHER
         case NEWS_SCHOOL_TEACHER
+        case SCHEDULE
     }
     
     //時間割　出席率を取得するメソッド
@@ -58,6 +59,10 @@ public class HttpConnector{
                 callback(bool)
             })
             break
+        case .SCHEDULE:
+            HELPER.getSchedule(userId:userId, password: password, callback: {(bool) in
+                callback(bool)
+            })
         }
     }
     

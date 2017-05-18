@@ -79,7 +79,6 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                         refreshControl.endRefreshing()
                         self.tableView.isScrollEnabled = true
                         
-
                         PreferenceManager.saveLatestUpdateASchoolNews(now: Util.getNow())
                     
                         if self.schoolNewsItems.count == 0 {

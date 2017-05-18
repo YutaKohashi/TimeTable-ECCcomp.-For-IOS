@@ -24,6 +24,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var lostUnitLabel: UILabel!
     @IBOutlet weak var attendanceNumLabel: UILabel!
     @IBOutlet weak var abcentNumLabel: UILabel!
+    @IBOutlet weak var emptyLabel: UILabel!
     
     let refreshControl :SpringIndicator.Refresher = SpringIndicator.Refresher()
     
@@ -43,27 +44,18 @@ class TableViewController: UIViewController, UITableViewDataSource {
         tableView.dataSource = self
         
         items = AttedanceRateAccessor.sharedInstance.getAll()
+        self.updateEmptyLabelStatus()
+        
         //トータルデータ
         self.setTotalData()
         
-        //リフレッシュコントロールを作成する。
-        
-        
-        //インジケーターの下に表示する文字列を設定する。
-        //        refresh.attributedTitle =
-        //            NSAttributedString(string:"最終更新日時 : " +
-        //                PreferenceManager.getLatestUpdateAttendanceRate());
-        
-        //インジケーターの色を設定する。
-        //        refresh.tintColor = UIColor.gray
         //テーブルビューを引っ張ったときの呼び出しメソッドを登録する。
         refreshControl.addTarget(self, action: #selector(TableViewController.refreshTable(_:)), for: .valueChanged)
         refreshControl.indicator.lineColor = Util.getPrimaryColor()
 
         //テーブルビューコントローラーのプロパティにリフレッシュコントロールを設定する。
         self.tableView.addSubview(refreshControl)
-        
-//        self.indicator.isHidden = true
+
     }
     
     //テーブルビュー引っ張り時の呼び出しメソッド
@@ -82,19 +74,17 @@ class TableViewController: UIViewController, UITableViewDataSource {
         }
         
         removeTotalData()
-//        self.indicator.isHidden = false
-//        self.indicator.startAnimating()
+        
         //テーブル更新
-        
-        
         HttpConnector().request(type: .ATTENDANCE_RATE,
                                 userId: PreferenceManager.getSavedId(),
                                 password: PreferenceManager.getSavedPass())
         { (result) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-//                self.indicator.isHidden = true
-//                self.indicator.stopAnimating()
-                self.items = AttedanceRateAccessor.sharedInstance.getAll()!
+
+                self.items = AttedanceRateAccessor.sharedInstance.getAll()
+                self.updateEmptyLabelStatus()
+                
                 //トータルデータをセット
                 self.setTotalData()
                 
@@ -105,7 +95,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     self.tableView.isScrollEnabled = true
                     PreferenceManager.saveLatestUpdateAttendanceRate(now: Util.getNow())
                     
-                    if self.items?.count == 0 {
+                    if self.items == nil || self.items!.count == 0 {
                         DiagUtil.showSuccess(string: "更新しましたが\nデータがありませんでした")
                     } else {
                         DiagUtil.showSuccess(string: "更新しました")
@@ -121,43 +111,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    
-    
-    //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-    //                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-    //                    self.indicator.isHidden = true
-    //                self.indicator.stopAnimating()
-    //                self.items = AttedanceRateAccessor.sharedInstance.getAll()!
-    //                //トータルデータをセット
-    //                self.setTotalData()
-    //
-    //                if (result){
-    //                    //テーブルを再読み込みする。
-    //                    self.tableView.reloadData()
-    //                    refreshControl.endRefreshing()
-    //                    self.tableView.isScrollEnabled = true
-    //
-    //                    refreshControl.attributedTitle =
-    //                        NSAttributedString(string:"最終更新日時 : " +
-    //                             ToolsBase().getNow());
-    //                    PreferenceManager.saveLatestUpdateAttendanceRate(now: ToolsBase().getNow())
-    //
-    //                }else{
-    //                    refreshControl.endRefreshing()
-    //                    self.tableView.isScrollEnabled = true
-    //
-    //                }
-    //            }
-    //        }
-    //    }
-    
     func setTotalData(){
-        //        let saveModel = realm.objects(SaveModel.self)
-        //        let num:Int = saveModel.count
-        //        if num == 0 {
-        //            removeTotalData()
-        //            return
-        //        }
         guard items != nil && items!.count != 0 else {
             return
         }
@@ -180,17 +134,11 @@ class TableViewController: UIViewController, UITableViewDataSource {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // DBファイルのfileURLを取得
-        //        if let fileURL = Realm.Configuration.defaultConfiguration.fileURL {
-        //            try! FileManager.default.removeItem(at: fileURL)
-        //        }
     }
     
     /// セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        let realm = try! Realm()
-        //        print("realm.objects(SaveModel).count =\(realm.objects(SaveModel.self).count)")
-        //        return realm.objects(SaveModel.self).count - 1
+
         guard items != nil else {
             return 0
         }
@@ -203,10 +151,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
         // セルを取得
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! CustomTableViewCell
         
-        //        let realm = try! Realm()
-        //        let saveModel = realm.objects(SaveModel.self)
-        
-        var index:NSInteger = (indexPath as NSIndexPath).row
+        var index:Int = indexPath.row
         index += 1
         
         let subjectName = items?[index].subjectName
@@ -228,22 +173,17 @@ class TableViewController: UIViewController, UITableViewDataSource {
                      pubAbsentnum2: publicAbsentNumber2!,
                      attendanceRateNum: attendanceRate!,
                      shortageNum: shortageNumber!)
-        
-        //        if(Int(attendanceRate)! < 75){
-        //            //cell.backgroundColor = UIColor.darkGray
-        //            cell.attendanceRate.textColor = defaultColor()
-        //        }else if(Int(attendanceRate)! < 80){
-        //            cell.attendanceRate.textColor = UIColor.red
-        //            //cell.backgroundColor = nil
-        //        }else if(Int(attendanceRate)! < 90){
-        //            cell.attendanceRate.textColor = darkGreen()
-        //            //cell.backgroundColor = nil
-        //        }else{
-        //            //cell.backgroundColor = UIColor.darkGray
-        //            cell.attendanceRate.textColor = defaultColor()
-        //        }
-        
+  
         return cell
+    }
+    
+    private func updateEmptyLabelStatus(){
+        if items != nil && items!.count >  0 {
+            emptyLabel.isHidden = true
+        } else {
+            //　データなし
+            emptyLabel.isHidden = false
+        }
     }
     
     override var prefersStatusBarHidden : Bool {

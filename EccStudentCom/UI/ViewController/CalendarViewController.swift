@@ -12,7 +12,10 @@ class CalendarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        Util.setStatusBarBackgroundColor(color: Util.getPrimaryColor())
+        // ステータスバーのスタイル変更を促す
+        self.setNeedsStatusBarAppearanceUpdate();
         // Do any additional setup after loading the view.
     }
 

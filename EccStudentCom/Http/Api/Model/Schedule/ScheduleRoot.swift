@@ -11,13 +11,13 @@ import Himotoki
 
 struct ScheduleRoot :Decodable{
     
-    let schedules:[ScheduleCategory]
+    let schedules:[ScheduleCategory]?
     
-    let code:String
+    let code:String?
     
-    let message:String
+    let message:String?
     
-    init(schedules:[ScheduleCategory], code:String, message:String) {
+    init(schedules:[ScheduleCategory]?, code:String?, message:String?) {
         self.schedules = schedules
         self.code = code
         self.message = message
@@ -25,9 +25,9 @@ struct ScheduleRoot :Decodable{
     
     static func decode(_ e: Extractor) throws -> ScheduleRoot {
         return try ScheduleRoot(
-            schedules:e<||"schedules",
-            code: e<|"code",
-            message: e<|"message"
+            schedules:e<||?"schedules",
+            code: e<|?"code",
+            message: e<|?"message"
         )
     }
 

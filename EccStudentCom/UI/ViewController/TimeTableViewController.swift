@@ -39,8 +39,8 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        StatusBarManager().setStatusBarBackgroundColor(color: UIColor(red:0.00, green:0.29, blue:0.39, alpha:1.0))
         // ステータスバーのスタイル変更を促す
+        Util.setStatusBarBackgroundColor(color: Util.getPrimaryColor())
         self.setNeedsStatusBarAppearanceUpdate();
 
         bottomSheetView.isHidden = true

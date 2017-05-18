@@ -106,4 +106,9 @@ class Util {
         return UIColor(hue: 0.5444, saturation: 0.99, brightness: 0.39, alpha: 1.0)
     }
     
+    public static func setStatusBarBackgroundColor(color: UIColor) {
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        statusBar.backgroundColor = color
+    }
+
 }

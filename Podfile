@@ -10,6 +10,7 @@ pod 'Himotoki'
 pod 'APIKit'
 pod 'SpringIndicator'
 pod 'SVProgressHUD'
+pod ‘CRNetworkButton’
 end
 
 post_install do |installer|

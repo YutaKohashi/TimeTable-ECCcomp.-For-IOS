@@ -11,31 +11,35 @@ import Himotoki
 
 struct ScheduleItem:Decodable{
     
-    let date:String
+    let date:String // Stringだとprimarykeyになれる
     let year:Int
     let month:Int
     let day:Int
     let week:Int
+    let body:String
     
     init(date:String,
          year:Int,
          month:Int,
          day:Int,
-         week:Int) {
+         week:Int,
+         body:String) {
         self.date = date
         self.year = year
         self.month = month
         self.day = day
         self.week = week
+        self.body = body
     }
     
-    static func decode(_ e: Extractor) throws -> ScheduleItem {
+    static func decode(_ e: Extractor) throws -> ScheduleItem {        
         return try ScheduleItem(
             date: e<|"date",
             year: e<|"year",
             month: e<|"month",
             day: e<|"day",
-            week: e<|"week"
+            week: e<|"week",
+            body: e<|"body"
         )
     }
 }
