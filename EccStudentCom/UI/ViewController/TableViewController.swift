@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KRProgressHUD
 import RealmSwift
 import Realm
 import SpringIndicator
@@ -77,10 +76,10 @@ class TableViewController: UIViewController, UITableViewDataSource {
         
         //テーブル更新
         HttpConnector().request(type: .ATTENDANCE_RATE,
-                                userId: PreferenceManager.getSavedId(),
-                                password: PreferenceManager.getSavedPass())
+                                userId: PrefUtil.getSavedId(),
+                                password: PrefUtil.getSavedPass())
         { (result) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 
                 self.items = AttedanceRateAccessor.sharedInstance.getAll()
                 self.updateEmptyLabelStatus()
@@ -93,7 +92,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                     self.tableView.reloadData()
                     refreshControl.endRefreshing()
                     self.tableView.isScrollEnabled = true
-                    PreferenceManager.saveLatestUpdateAttendanceRate(now: Util.getNow())
+                    PrefUtil.saveLatestUpdateAttendanceRate(now: Util.getNow())
                     
                     if self.items == nil || self.items!.count == 0 {
                         DiagUtil.showSuccess(string: "更新しましたが\nデータがありませんでした")

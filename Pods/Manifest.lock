@@ -1,10 +1,8 @@
 PODS:
   - APIKit (3.1.1):
     - Result (~> 3.0)
-  - CRNetworkButton (1.0.2)
   - FSCalendar (2.7.6)
   - Himotoki (3.0.1)
-  - KRProgressHUD (2.2.2)
   - Realm (2.7.0):
     - Realm/Headers (= 2.7.0)
   - Realm/Headers (2.7.0)
@@ -16,10 +14,8 @@ PODS:
 
 DEPENDENCIES:
   - APIKit
-  - CRNetworkButton
   - FSCalendar
   - Himotoki
-  - KRProgressHUD
   - Realm (from `https://github.com/realm/realm-cocoa.git`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`)
   - SpringIndicator
@@ -45,16 +41,14 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   APIKit: 7460983f490d3bde6aaaaa4164d18c9865a6f91d
-  CRNetworkButton: 2bfe150c64a46506ade962745a3364f21bef3115
   FSCalendar: feef792968ca0166bafc93e02fcd840b07d256e5
   Himotoki: 85fda41d4d0e14f7228317a3b474175cdfb8f515
-  KRProgressHUD: ee25f70e274d1933b2ad0c8583a8552a349ce85d
   Realm: 7c40ec576cb8c7766215eb8c81459400b956b2b0
   RealmSwift: d4d638b24d2d3fa5168966a223d6af7324c4d60a
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SpringIndicator: 5ce3e1d8d52124fd4310f7bf32b4106e112b91e2
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 2683940735725b42df32ebfe135fcf1d06387326
+PODFILE CHECKSUM: a228bcece318181590620158695f92c6e6e95171
 
 COCOAPODS: 1.2.1

@@ -29,7 +29,7 @@ class NewsDetailViewController: UIViewController {
         
         startIndicator()
         
-        HttpConnector().requestNewsDetail(userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedPass(), newsId: newsId) { (callback) in
+        HttpConnector().requestNewsDetail(userId: PrefUtil.getSavedId(), password: PrefUtil.getSavedPass(), newsId: newsId) { (callback) in
             self.stopIndicator()
             if callback.bool {
                 let detail : NewsDetailRoot = callback.response!

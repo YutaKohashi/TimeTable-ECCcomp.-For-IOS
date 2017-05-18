@@ -102,11 +102,11 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N27-ui-XNr" customClass="CRNetworkButton" customModule="CRNetworkButton">
-                                        <rect key="frame" x="144.5" y="282" width="86" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N27-ui-XNr">
+                                        <rect key="frame" x="144" y="282" width="86" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" id="f9G-Gw-oio"/>
+                                            <constraint firstAttribute="width" constant="100" id="f9G-Gw-oio"/>
                                             <constraint firstAttribute="height" constant="32" id="xxX-6e-raj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -145,7 +145,7 @@
                     </view>
                     <connections>
                         <outlet property="idTextField" destination="3tt-Y5-Kh0" id="FlC-Ft-DVv"/>
-                        <outlet property="loginButton" destination="N27-ui-XNr" id="m3e-Oi-j50"/>
+                        <outlet property="loginButton" destination="N27-ui-XNr" id="QfA-O3-7MC"/>
                         <outlet property="passwordTextField" destination="buj-PH-2nT" id="lWb-WV-WdM"/>
                     </connections>
                 </viewController>
@@ -2151,6 +2151,6 @@
         <image name="text-align-justify-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mvF-On-AWz"/>
+        <segue reference="CLB-nW-261"/>
     </inferredMetricsTieBreakers>
 </document>

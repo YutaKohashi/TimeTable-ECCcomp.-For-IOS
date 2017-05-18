@@ -315,12 +315,10 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
     
     
     
-    
-    
-    
-    
     // Cell が選択された場合
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
 //
 //        // [indexPath.row] から画像名を探し、UImage を設定
 //        selectedImage = UIImage(named: photos[(indexPath as NSIndexPath).row])
@@ -448,11 +446,3 @@ class TimeTableView1: UIView ,UICollectionViewDataSource, UICollectionViewDelega
     }
 
 }
-
-//// ヘッダタイプを定義
-//enum HeaderType {
-//    case ALL
-//    case HIDE_SAT
-//    case HIDE_SUN
-//    case HIDE_SAT_SUN
-//}

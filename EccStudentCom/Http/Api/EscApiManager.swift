@@ -12,6 +12,10 @@ import APIKit
 class EscApiManager{
     fileprivate static var token:String = ""
     
+    public static func resetToken(){
+        self.token = ""
+    }
+    
     // トークンリクエスト
     static func tokenRequest(userId:String, password:String, callback: @escaping (EscApiCallback<Token>) -> Void) -> Void {
         let request = TokenRequest(username: userId, pass: password)
@@ -300,6 +304,7 @@ class EscApiManager{
                     callback(EscApiCallback<[ScheduleRoot]>(response:list,bool:true))
                     resetYearMonth()
                 } else {
+                    Thread.sleep(forTimeInterval: 0.1)
                     scheduleRequestAll(userId: userId, password: password, callback: callback)
                 }
                 

@@ -38,7 +38,7 @@ class DiagUtil{
         self.initSVProgressHUD()
         SVProgressHUD.showError(withStatus: string)
         
-        let sec:Double = 2
+        let sec:Double = 1.4
         let delay = sec * Double(NSEC_PER_SEC)
         let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: time, execute: {
@@ -58,7 +58,7 @@ class DiagUtil{
         self.initSVProgressHUD()
         SVProgressHUD.showSuccess(withStatus: string)
         
-        let sec:Double = 2
+        let sec:Double = 1.3
         let delay = sec * Double(NSEC_PER_SEC)
         let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: time, execute: {

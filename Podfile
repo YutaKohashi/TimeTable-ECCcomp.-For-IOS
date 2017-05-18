@@ -4,13 +4,11 @@ target 'EccStudentCom' do
 pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => true
 pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :submodules => true
 
-pod 'KRProgressHUD'
 pod 'FSCalendar'
 pod 'Himotoki'
 pod 'APIKit'
 pod 'SpringIndicator'
 pod 'SVProgressHUD'
-pod ‘CRNetworkButton’
 end
 
 post_install do |installer|

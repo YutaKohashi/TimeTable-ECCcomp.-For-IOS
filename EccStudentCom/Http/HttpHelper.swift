@@ -240,15 +240,15 @@ internal class HttpHelper:HttpBase{
             if(timeTable == nil){
                 
             } else {
-                timeTableItem.room = (timeTable?.room)!
-                timeTableItem.subjectName = (timeTable?.lessonName)!
-                
+                timeTableItem.room = timeTable!.room
+                timeTableItem.roomOrigin = timeTable!.room
+                timeTableItem.subjectName = timeTable!.lessonName
+                timeTableItem.subjectNameOrigin = timeTable!.lessonName
                 
                 // TODO:先生名を作成するメソッドを作成
-                timeTableItem.teacherName = (timeTable?.teachers[0].familyName)!
-                
-                
-                
+                let name = createTeacherName(list: timeTable!.teachers)
+                timeTableItem.teacherName = name
+                timeTableItem.teacherNameOrigin = name
                 
                 timeTableItem.id = i
             }
@@ -266,6 +266,25 @@ internal class HttpHelper:HttpBase{
         }
         return nil
     }
+    
+    private func createTeacherName(list:[TeacherTimeTable]?) -> String {
+        var name:String = ""
+        
+        guard list != nil && list!.count > 0 else {
+            return name
+        }
+        
+        list!.forEach { (teacherTimeTable) in
+            name += teacherTimeTable.familyName + " " + teacherTimeTable.firstName + " , "
+        }
+        if name.characters.count > 1 {
+            return String(name.characters.dropLast(1))
+        } else {
+            return name
+        }
+    }
+    
+    
     
     
     private func attendanceResponseToAttendanceRateItemCollection(html:String) -> [AttendanceRateItem]{

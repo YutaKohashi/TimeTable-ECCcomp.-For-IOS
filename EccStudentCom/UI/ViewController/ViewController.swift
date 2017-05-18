@@ -9,7 +9,6 @@
 
 import UIKit
 import RealmSwift
-import KRProgressHUD
 import MetalKit
 
 
@@ -17,8 +16,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var loginButton: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginButton.layer.cornerRadius = 10    //角の設定
         loginButton.layer.masksToBounds = true
         
-        PreferenceManager.saveLatestUpdateAttendanceRate(now: "-/-/- -:-")
-        PreferenceManager.saveLatestUpdateTaninNews(now: "-/-/- -:-")
-        PreferenceManager.saveLatestUpdateASchoolNews(now: "-/-/- -:-")
+        PrefUtil.saveLatestUpdateAttendanceRate(now: "-/-/- -:-")
+        PrefUtil.saveLatestUpdateTaninNews(now: "-/-/- -:-")
+        PrefUtil.saveLatestUpdateASchoolNews(now: "-/-/- -:-")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // 以前ログインしていたかをチェック
         // ログインしていた場合に何か行いたい時
-        if PreferenceManager.loginedCheck() {
+        if PrefUtil.loginedCheck() {
             //            let alert: UIAlertController = UIAlertController(title: "お詫び",
             //                                                             message: "新機能実装のため ログアウト させていただきました。\n再度ログインをお願いします。",
             //                                                             preferredStyle:   UIAlertControllerStyle.alert)
@@ -82,15 +82,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         
         //インターネットに接続されていないのときはアラート表示
-        if !Util.isConnectedToNetwork(){
+        guard Util.isConnectedToNetwork() else {
             DiagUtil.showWarningForInternet()
-            return;
+            return
         }
         
         //テキストフィールドチェック
-        if Util.checkTextFiled(idTextField: idTextField,passwordTextField: passwordTextField){
+        guard !Util.checkTextFiled(idTextField: idTextField,passwordTextField: passwordTextField) else{
             DiagUtil.showWarningForTextField()
-            return;
+            return
         }
         
         //インジゲータダイアログ表示
@@ -108,66 +108,51 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             if result2 {
                                 HttpConnector().request(type: .ATTENDANCE_RATE, userId: userId, password: password, callback: { (result3) in
                                     DiagUtil.hideIndicator()
-                                    let sec:Double = 1
-                                    let delay = sec * Double(NSEC_PER_SEC)
-                                    let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                                    DispatchQueue.main.asyncAfter(deadline: time, execute: {
+
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                         if result3 {
                                             DiagUtil.showSuccess(string:"ログインに\n成功しました")
                                         } else {
                                             DiagUtil.showError(string: "出席情報の取得に\n失敗しました")
                                         }
-                                        
-                                    })
+                                    }
                                     
-                                    DispatchQueue.main.async(execute: {
+                                    DispatchQueue.main.async {
                                         //ログインしたことを保存
-                                        PreferenceManager.saveLoginState(true)
+                                        PrefUtil.saveLoginState(true)
                                         //passIdを保存
-                                        PreferenceManager.saveIdPass(userId, pass: password)
+                                        PrefUtil.saveIdPass(userId, pass: password)
                                         // 時間割画面へ
                                         let storyboard: UIStoryboard = self.storyboard!
                                         let nextView = storyboard.instantiateViewController(withIdentifier: "MainView") as! UITabBarController
                                         self.present(nextView, animated: true, completion: nil)
                                         
-                                    })
+                                    }
                                     
                                 })
                             } else {
                                 //失敗
                                 DiagUtil.hideIndicator()
-                                let sec:Double = 1
-                                let delay = sec * Double(NSEC_PER_SEC)
-                                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                                DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                                    //エラーダイアログ表示
+                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                     DiagUtil.showError(string: "失敗しました")
-                                })
+                                }
                             }
                         })
                         
                     } else {
                         //失敗
                         DiagUtil.hideIndicator()
-                        let sec:Double = 1
-                        let delay = sec * Double(NSEC_PER_SEC)
-                        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                            //エラーダイアログ表示
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                             DiagUtil.showError(string: "失敗しました")
-                        })
+                        }
                     }
                 })
             }else{
-                //失敗
                 DiagUtil.hideIndicator()
-                let sec:Double = 1
-                let delay = sec * Double(NSEC_PER_SEC)
-                let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                    //エラーダイアログ表示
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     DiagUtil.showError(string: "失敗しました")
-                })
+                }
             }
         }
     }

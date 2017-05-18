@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         //表示するビューコントローラーを指定
-        if  PreferenceManager.loginCheck() {
+        if  PrefUtil.loginCheck() {
             //ログイン処理が完了しているとき(withIdentifier: "MainView") as! UITabBarController
             viewController = storyboard.instantiateViewController(withIdentifier: "MainView") as UIViewController
         } else {

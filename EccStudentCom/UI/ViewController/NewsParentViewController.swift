@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 import Realm
-import KRProgressHUD
 import SpringIndicator
 import SVProgressHUD
 
@@ -35,7 +34,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         super.viewDidLoad()
         
         //　デフォルト値を設定
-        PreferenceManager.setTaninSchoolDefaultUpdate()
+        PrefUtil.setTaninSchoolDefaultUpdate()
         
         //　デリゲートデータ・ソースを設定
         // tableviewにrefreshcontrolを設定
@@ -71,15 +70,15 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
             //学校から
             //スクロール無効化
             self.tableView.isScrollEnabled = false
-            HttpConnector().request(type: .NEWS_SCHOOL, userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedPass()) { (result) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            HttpConnector().request(type: .NEWS_SCHOOL, userId: PrefUtil.getSavedId(), password: PrefUtil.getSavedPass()) { (result) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     if result {
                         self.schoolNewsItems = SchoolNewsAccessor.sharedInstance.getAll()
                         self.tableView.reloadData()
                         refreshControl.endRefreshing()
                         self.tableView.isScrollEnabled = true
                         
-                        PreferenceManager.saveLatestUpdateASchoolNews(now: Util.getNow())
+                        PrefUtil.saveLatestUpdateASchoolNews(now: Util.getNow())
                     
                         if self.schoolNewsItems.count == 0 {
                             DiagUtil.showSuccess(string: "更新しましたが\nお知らせは0件です")
@@ -100,8 +99,8 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         {   //担任から
             //スクロール無効化
             self.taninTableView.isScrollEnabled = false
-            HttpConnector().request(type: .NEWS_TEACHER, userId: PreferenceManager.getSavedId(), password: PreferenceManager.getSavedPass()) { (result) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            HttpConnector().request(type: .NEWS_TEACHER, userId: PrefUtil.getSavedId(), password: PrefUtil.getSavedPass()) { (result) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     if result {
                         //テーブルを再読み込みする。
                         
@@ -111,7 +110,7 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
                         self.taninTableView.isScrollEnabled = true
                         
                         
-                        PreferenceManager.saveLatestUpdateTaninNews(now: Util.getNow())
+                        PrefUtil.saveLatestUpdateTaninNews(now: Util.getNow())
                         if self.taninNewsItems.count == 0 {
                             DiagUtil.showSuccess(string: "更新しましたが\nお知らせは0件です")
                         } else {

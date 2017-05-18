@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import KRProgressHUD
 
 
 class GetValuesBase{

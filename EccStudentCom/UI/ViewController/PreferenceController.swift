@@ -28,7 +28,7 @@ class PreferenceController : UITableViewController{
         self.navigationItem.backBarButtonItem = btn_back
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        versionLabel.text = PreferenceManager.NOW_VERSION
+        versionLabel.text = PrefUtil.NOW_VERSION
         
         let color:UIColor = UIColor(red:0.00, green:0.55, blue:0.76, alpha:1.0)
         updateTimeTableLabel.selectedBackgroundColor = color
@@ -74,28 +74,27 @@ class PreferenceController : UITableViewController{
                 
                 DiagUtil.showIndicator()
                 HttpConnector().request(type: .TIME_TABLE,
-                                        userId: PreferenceManager.getSavedId(),
-                                        password: PreferenceManager.getSavedPass(),
+                                        userId: PrefUtil.getSavedId(),
+                                        password: PrefUtil.getSavedPass(),
                                         callback:
                     { (result) in
                         if(result){
-                            DiagUtil.hideIndicator()
-                            let sec:Double = 0.8
-                            let delay = sec * Double(NSEC_PER_SEC)
-                            let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                            DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                            
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+                                DiagUtil.hideIndicator()
+//                                sleep(1)
                                 DiagUtil.showSuccess(string: "更新しました")
-                            })
+                            }
+                         
                         }
                         else
                         {
-                            DiagUtil.hideIndicator()
-                            let sec:Double = 0.8
-                            let delay = sec * Double(NSEC_PER_SEC)
-                            let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                            DispatchQueue.main.asyncAfter(deadline: time, execute: {
-                                DiagUtil.showError(string:"エラー")
-                            })
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                                DiagUtil.hideIndicator()
+                                
+                                 DiagUtil.showError(string:"エラー")
+                            }
                         }
                 })
             }
@@ -142,9 +141,11 @@ class PreferenceController : UITableViewController{
                 realm.deleteAll()
             }
             
-            PreferenceManager.saveLoginState(false)
+            EscApiManager.resetToken()
+            
+            PrefUtil.saveLoginState(false)
             //保存されていたpassIdを削除
-            PreferenceManager.removeSavedIdPass()
+            PrefUtil.removeSavedIdPass()
             
             DispatchQueue.main.async(execute: {
                 //View controller code

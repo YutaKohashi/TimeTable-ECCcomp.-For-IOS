@@ -8,13 +8,9 @@
 
 import UIKit
 import RealmSwift
-import KRProgressHUD
 
 class TimeTableViewController: UIViewController, TimeTableDelegate{
     var refreshFlg:Bool = false
-    
-    // 時間割CollectionView
-//    @IBOutlet weak var timeTableCollectionView: UICollectionView!
     
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var bottomCloseButton: UIButton!
@@ -27,12 +23,7 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
     @IBOutlet var masterView: UIView!
     
     @IBOutlet weak var timeTable: TimeTableView1!
-    
-    //　アイテムマージンを0にしてセルマージンを2.0にする
-//    private let cellMargin : CGFloat = 0.0
-//    private var itemCount:Int = 0
-//    private var colCount:Int = 5
-    
+
     // セルの幅に対するセルの高さの割合
     private var cellHeightProportion :CGFloat = 0.0
     
@@ -48,7 +39,7 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
         bottomCloseButton.isEnabled = false
         
         timeTable.delegate = self
-        
+        self.bottomSheetView.frame.origin.y -= 150
         
         // dummy　-----------------------------------------------------------------------
 
@@ -63,9 +54,11 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
     // timeTableViewのセルをタップしたときのイベント
     func onCellTap(timeTableItem: TimeTableItem) {
 //        print(timeTable.id)
+        BottomSheetViewBuilder().setContainer(view: timeTable).build().show()
         subjectLabel.text = timeTableItem.subjectName
         teacherLabel.text = timeTableItem.teacherName
         timeLabel.text = getTime(index: timeTableItem.rowNum)
+//        setBottomSheet()
         setBottomSheet()
     }
     
@@ -107,13 +100,13 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
 //        
 ////    }
 //    
-    func setBottomSheet(){
-        bottomSheetView.isHidden = false
-        bottomCloseButton.isHidden = false
-        bottomCloseButton.isEnabled = true
+//    func setBottomSheet(){
+//        bottomSheetView.isHidden = false
+//        bottomCloseButton.isHidden = false
+//        bottomCloseButton.isEnabled = true
 //        openAnimation()
-        fadeInAnimation()
-    }
+//        fadeInAnimation()
+//    }
     
     private func getTime(index:Int) -> String{
         switch index {
@@ -135,17 +128,23 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
     }
     
     // アニメーション ------------------------------------------------------------------------
+    func setBottomSheet(){
+        bottomSheetView.isHidden = false
+        bottomCloseButton.isHidden = false
+        openAnimation()
+        fadeInAnimation()
+    }
     
     private let ANIM_SPEED = 0.3
     
-    private func openAnimation(){
+    func openAnimation(){
         UIView.animate(withDuration: ANIM_SPEED, animations: {
             self.bottomSheetView.frame.origin.y = 150
             self.bottomCloseButton.isEnabled = true
         })
     }
     
-    private func closeAnimation(){
+    func closeAnimation(){
         UIView.transition(with: bottomSheetView,
                           duration: 0.1,
                           options: .transitionCrossDissolve,
@@ -154,15 +153,51 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
         }, completion: { _ in })
     }
     
-    private  func fadeInAnimation(){
+    func fadeInAnimation(){
         UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
             self.bottomCloseButton.alpha = 1.0
         }
     }
-    private func fadeOutAnimation(){
+    func fadeOutAnimation(){
         UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
             self.bottomCloseButton.alpha = 0.0
         }
     }
+//    
+//    private let ANIM_SPEED = 0.3
+//    
+//    private func openAnimation(){
+//         self.bottomSheetView.isHidden = false
+////        self.bottomSheetView.frame.origin.y -= 150
+//        UIView.animate(withDuration: ANIM_SPEED, animations: {
+//            self.bottomSheetView.frame.origin.y += 150
+//            self.bottomCloseButton.isEnabled = true
+//        })
+//    }
+//    
+//    private func closeAnimation(){
+//        UIView.animate(withDuration: ANIM_SPEED, animations: {
+//            self.bottomSheetView.frame.origin.y -= 150
+//            self.bottomCloseButton.isEnabled = false
+////            self.bottomSheetView.isHidden = true
+//        })
+////        UIView.transition(with: bottomSheetView,
+////                          duration: 0.1,
+////                          options: .transitionCrossDissolve,
+////                          animations: {() -> Void in
+////                            self.bottomSheetView.isHidden = true
+////        }, completion: { _ in })
+//    }
+//    
+//    private  func fadeInAnimation(){
+//        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
+//            self.bottomCloseButton.alpha = 1.0
+//        }
+//    }
+//    private func fadeOutAnimation(){
+//        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
+//            self.bottomCloseButton.alpha = 0.0
+//        }
+//    }
     
 }
