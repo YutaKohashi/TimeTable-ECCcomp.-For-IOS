@@ -162,12 +162,13 @@ internal class HttpHelper:HttpBase{
                             return
                         }
                         
-                        items.forEach({ (item) in
+                        for item in items {
                             guard ScheduleAccessor.sharedInstance.set(data: item) else {
                                 callback(false)
                                 return
                             }
-                        })
+                        }
+                        
                     })
                     callback(true)
                 }
@@ -439,6 +440,7 @@ internal class HttpHelper:HttpBase{
             scheduleContainsItem.month = scheduleItem.month
             scheduleContainsItem.day = scheduleItem.day
             scheduleContainsItem.text = scheduleItem.body
+            scheduleContainsItem.originalTxt = scheduleItem.body
             scheduleContainsItem.yearMonthDay = scheduleItem.date
             
             items.append(scheduleContainsItem)

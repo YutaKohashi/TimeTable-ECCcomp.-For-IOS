@@ -20,7 +20,7 @@ class ScheduleAccessor:AccessorBase, AccessorProtcol{
     }
     
     func getByMonth(month:Int) -> Results<ScheduleContainsItem>?{
-         let models = super.realm.objects(ScheduleContainsItem.self).filter("month = '\(month)'").sorted(byKeyPath: "day", ascending: true)
+         let models = super.realm.objects(ScheduleContainsItem.self).filter("month = \(month)").sorted(byKeyPath: "day", ascending: true)
         if models.count > 0 {
             return models
         } else {

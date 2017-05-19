@@ -79,6 +79,7 @@
 		79C447D71EC62AA2007DF16F /* SchoolNewsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C447D61EC62AA2007DF16F /* SchoolNewsAccessor.swift */; };
 		79C447D91EC62AB0007DF16F /* TaninNewsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C447D81EC62AB0007DF16F /* TaninNewsAccessor.swift */; };
 		79E095F41D984AC200A5248D /* iocn ver1.6.0.png in Resources */ = {isa = PBXBuildFile; fileRef = 79E095F31D984AC200A5248D /* iocn ver1.6.0.png */; };
+		79ED85461ECEA37A009D4DC2 /* CalendarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED85451ECEA37A009D4DC2 /* CalendarItemCell.swift */; };
 		79F1FB371DC985C9007B7386 /* gear-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F1FB361DC985C9007B7386 /* gear-7.png */; };
 		79F1FB391DC99400007B7386 /* PreferenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB381DC99400007B7386 /* PreferenceController.swift */; };
 		79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1FB3A1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift */; };
@@ -181,6 +182,7 @@
 		79CA52901E32140700118AB5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		79CA52911E32140700118AB5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		79E095F31D984AC200A5248D /* iocn ver1.6.0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iocn ver1.6.0.png"; sourceTree = "<group>"; };
+		79ED85451ECEA37A009D4DC2 /* CalendarItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarItemCell.swift; sourceTree = "<group>"; };
 		79F1FB361DC985C9007B7386 /* gear-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear-7.png"; sourceTree = "<group>"; };
 		79F1FB381DC99400007B7386 /* PreferenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceController.swift; sourceTree = "<group>"; };
 		79F1FB3A1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeTimeTableViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */,
 				D64601291E589BCF0034323F /* NewsTitleCell.swift */,
 				D646012B1E589BD90034323F /* NewsItemCell.swift */,
+				79ED85451ECEA37A009D4DC2 /* CalendarItemCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */,
 				79B585841EBDF1C6005B4E1A /* ScheduleCategory.swift in Sources */,
 				79B5855A1EBBEA62005B4E1A /* EscRequest.swift in Sources */,
+				79ED85461ECEA37A009D4DC2 /* CalendarItemCell.swift in Sources */,
 				7951A65E1DD3426C0075ACC8 /* HttpConnector.swift in Sources */,
 				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */,

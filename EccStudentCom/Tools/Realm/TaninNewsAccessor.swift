@@ -21,7 +21,7 @@ class TaninNewsAccessor:AccessorBase, AccessorProtcol{
     }
     
     func getByID(id:Int) -> TaninNewsItem? {
-        let models = super.realm.objects(TaninNewsItem.self).filter("newsId = '\(id)'")
+        let models = super.realm.objects(TaninNewsItem.self).filter("newsId = \(id)")
         if models.count > 0 {
             return models[0]
         } else {
