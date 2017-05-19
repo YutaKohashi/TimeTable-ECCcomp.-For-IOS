@@ -10,18 +10,21 @@ import UIKit
 import FSCalendar
 import RealmSwift
 
-class CalendarViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate {
+class CalendarViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate, FSCalendarDelegateAppearance  {
+    
+    private let BUDGE_COLOR = UIColor(hue: 0.5139, saturation: 1, brightness: 0.7, alpha: 1.0)
     
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
-    var dummyList = Array<ScheduleContainsItem>()
     var list = Array<Results<ScheduleContainsItem>?>()
+    
+    var items:Results<ScheduleContainsItem>?
     
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter
     }()
     
@@ -32,7 +35,7 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
         panGesture.minimumNumberOfTouches = 1
         panGesture.maximumNumberOfTouches = 2
         return panGesture
-    }()
+        }()
     
     
     override func viewDidLoad() {
@@ -42,25 +45,22 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
         Util.setStatusBarBackgroundColor(color: Util.getPrimaryColor())
         self.setNeedsStatusBarAppearanceUpdate();
         
-        
         // 本日を選択
         self.calendarView.select(Date())
-        
+        self.calendarView.clipsToBounds = true
+        self.calendarView.appearance.headerDateFormat = DateFormatter.dateFormat(fromTemplate: "MMM", options: 0, locale: Locale(identifier: "ja"))
+        self.calendarView.locale = Locale(identifier: "en")
         self.view.addGestureRecognizer(self.scopeGesture)
         self.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-//        self.calendarView.scope = .week
+        //        self.calendarView.scope = .week
         
-        // dummy --------------------------------
-        for i in 0..<100 {
-            let item = ScheduleContainsItem()
-            item.text = "テキスト"
-            item.day = i
-            
-            dummyList.append(item)
-        }
-        
+        // データベースからスケジュールを取得
         list = getSchedule();
         
+        // tableviewに現在の月のスケジュールを反映
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: Date())
+        items = list[getIndexFromMonth(month: month)]
         
     }
     
@@ -69,7 +69,7 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     // MARK:- UIGestureRecognizerDelegate
     
@@ -93,7 +93,7 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     
     // セルの個数を指定するデリゲートメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let l = list[0] else {
+        guard let l = items else {
             return 0
         }
         
@@ -101,17 +101,17 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarItemCell") as! CalendarItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarItemCell") as! CalendarItemCell
         
         
-        guard let l = list[0] else {
+        guard let l = items else {
             return cell
         }
         
         let day:String = String(l[indexPath.row].day) + "日"
         let text:String = l[indexPath.row].text
         
-      
+        
         
         cell.setCell(body: text, date: day)
         
@@ -130,10 +130,15 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     
-     // CalendarView  -------------------------------------------------------
+    // CalendarView  -------------------------------------------------------
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        print("\(self.dateFormatter.string(from: calendar.currentPage))")
+        let date = calendar.currentPage
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: date)
+        
+        items = list[getIndexFromMonth(month: month)]
+        tableView.reloadData()
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
@@ -143,12 +148,27 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     
     // calendarセルのセレクトイベント
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        print("did select date \(self.dateFormatter.string(from: date))")
-//        let selectedDates = calendar.selectedDates.map({self.dateFormatter.string(from: $0)})
-//        print("selected dates is \(selectedDates)")
-//        if monthPosition == .next || monthPosition == .previous {
-//            calendar.setCurrentPage(date, animated: true)
-//        }
+        //        print("did select date \(self.dateFormatter.string(from: date))")
+        //        let selectedDates = calendar.selectedDates.map({self.dateFormatter.string(from: $0)})
+        //        print("selected dates is \(selectedDates)")
+        //        if monthPosition == .next || monthPosition == .previous {
+        //            calendar.setCurrentPage(date, animated: true)
+        //        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter.string(from: date)
+        let item:ScheduleContainsItem? =  ScheduleAccessor.sharedInstance.getByID(id: key)
+        
+        guard item != nil else {
+            return nil
+        }
+        
+        guard item!.text.isEmpty else {
+            return BUDGE_COLOR
+        }
+        
+        return nil
     }
     
     func minimumDate(for calendar: FSCalendar) -> Date {
@@ -167,25 +187,33 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     //  private  ------------------------------------------------------------------------
     
     
-    func getSchedule() -> Array<Results<ScheduleContainsItem>?>{
+    private func getSchedule() -> Array<Results<ScheduleContainsItem>?>{
         var list : Array<Results<ScheduleContainsItem>?> = Array<Results<ScheduleContainsItem>>()
         
         
         // ４月から３月の順にリストに格納する
         for i in 0 ..< 12 {
-            let month:Int = getMonth(month: i)
+            let month:Int = getMonthFromIndex(index: i)
             let l:Results<ScheduleContainsItem>? = ScheduleAccessor.sharedInstance.getByMonth(month: month)!
             list.append(l)
-
+            
         }
         return list
     }
     
-    private func getMonth(month:Int) -> Int {
-        if (month >= 0 && month <= 8) {
-            return month + 4
+    private func getMonthFromIndex(index:Int) -> Int {
+        if (index >= 0 && index <= 8) {
+            return index + 4
         } else {
-            return month - 8
+            return index - 8
+        }
+    }
+    
+    private func getIndexFromMonth(month:Int) -> Int {
+        if (month >= 4 && month <= 12) {
+            return month - 4
+        } else {
+            return month + 8
         }
     }
 }

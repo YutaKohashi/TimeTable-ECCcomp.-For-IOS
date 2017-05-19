@@ -14,7 +14,7 @@ import RealmSwift
 protocol AccessorProtcol {
     associatedtype ObjectType: Object
     
-    func getByID(id: Int) -> ObjectType?
+//    func getByID(id: Int) -> ObjectType?
     
     func getAll() -> Results<ObjectType>?
     

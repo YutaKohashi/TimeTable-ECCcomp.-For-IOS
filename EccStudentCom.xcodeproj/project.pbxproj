@@ -32,10 +32,6 @@
 		796729441DFE3F5100F8E491 /* default512.png in Resources */ = {isa = PBXBuildFile; fileRef = 796729431DFE3F5100F8E491 /* default512.png */; };
 		7970A8931E3AFD2200F6706D /* email-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7970A8921E3AFD2200F6706D /* email-7.png */; };
 		797FC4791E5D171E0065B89E /* calendar-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 797FC4781E5D171E0065B89E /* calendar-7.png */; };
-		79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */; };
-		79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */; };
-		79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */; };
-		79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */; };
 		798C078E1DCD8E0B00929F17 /* CallBackClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078D1DCD8E0B00929F17 /* CallBackClass.swift */; };
 		798C07901DCE138200929F17 /* CALayer+RuntimeAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */; };
 		798FF07D1EBE0D5800FF1F11 /* EscApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */; };
@@ -66,7 +62,6 @@
 		79B585821EBDF1A6005B4E1A /* ScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B585811EBDF1A6005B4E1A /* ScheduleItem.swift */; };
 		79B585841EBDF1C6005B4E1A /* ScheduleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B585831EBDF1C6005B4E1A /* ScheduleCategory.swift */; };
 		79B9DD921DC62600009153B6 /* TimeTableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD911DC62600009153B6 /* TimeTableItem.swift */; };
-		79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */; };
 		79BB5B6A1ECC980D002CC9CE /* ScheduleAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BB5B691ECC980D002CC9CE /* ScheduleAccessor.swift */; };
 		79BB5B6C1ECDDCE3002CC9CE /* BottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79BB5B6B1ECDDCE3002CC9CE /* BottomSheetView.xib */; };
 		79BB5B6E1ECDEB75002CC9CE /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BB5B6D1ECDEB75002CC9CE /* BottomSheetView.swift */; };
@@ -133,10 +128,6 @@
 		796729431DFE3F5100F8E491 /* default512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default512.png; sourceTree = "<group>"; };
 		7970A8921E3AFD2200F6706D /* email-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-7.png"; sourceTree = "<group>"; };
 		797FC4781E5D171E0065B89E /* calendar-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-7.png"; sourceTree = "<group>"; };
-		79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellTue.swift; sourceTree = "<group>"; };
-		79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellWed.swift; sourceTree = "<group>"; };
-		79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellThur.swift; sourceTree = "<group>"; };
-		79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellFri.swift; sourceTree = "<group>"; };
 		798C078D1DCD8E0B00929F17 /* CallBackClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallBackClass.swift; sourceTree = "<group>"; };
 		798C078F1DCE138200929F17 /* CALayer+RuntimeAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+RuntimeAttribute.swift"; sourceTree = "<group>"; };
 		798FF07C1EBE0D5800FF1F11 /* EscApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscApiManager.swift; sourceTree = "<group>"; };
@@ -167,7 +158,6 @@
 		79B585811EBDF1A6005B4E1A /* ScheduleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItem.swift; sourceTree = "<group>"; };
 		79B585831EBDF1C6005B4E1A /* ScheduleCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCategory.swift; sourceTree = "<group>"; };
 		79B9DD911DC62600009153B6 /* TimeTableItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableItem.swift; sourceTree = "<group>"; };
-		79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableCellMon.swift; sourceTree = "<group>"; };
 		79BB5B691ECC980D002CC9CE /* ScheduleAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleAccessor.swift; sourceTree = "<group>"; };
 		79BB5B6B1ECDDCE3002CC9CE /* BottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomSheetView.xib; sourceTree = "<group>"; };
 		79BB5B6D1ECDEB75002CC9CE /* BottomSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
@@ -305,11 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				794F668C1D96D8BA00C1D9B6 /* CustomTableCell.swift */,
-				79B9DD961DC79561009153B6 /* CustomTimeTableCellMon.swift */,
-				79838BB71DC8A8BB005C51BE /* CustomTimeTableCellTue.swift */,
-				79838BB91DC8A8C9005C51BE /* CustomTimeTableCellWed.swift */,
-				79838BBB1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift */,
-				79838BBD1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift */,
 				D64601291E589BCF0034323F /* NewsTitleCell.swift */,
 				D646012B1E589BD90034323F /* NewsItemCell.swift */,
 				79ED85451ECEA37A009D4DC2 /* CalendarItemCell.swift */,
@@ -656,16 +641,13 @@
 				79BB5B6E1ECDEB75002CC9CE /* BottomSheetView.swift in Sources */,
 				D632069A1E54BDA00004E359 /* SchoolNewsItem.swift in Sources */,
 				7924B03D1DEB380300D43894 /* SelectColor+UItableViewCell.swift in Sources */,
-				79838BBE1DC8A8E3005C51BE /* CustomTimeTableCellFri.swift in Sources */,
 				79B585761EBDCE80005B4E1A /* NewsDetail.swift in Sources */,
 				79F1FB3B1DCA3ADC007B7386 /* ChangeTimeTableViewController.swift in Sources */,
 				791DE0551DD169DD00FEB18A /* HttpBase.swift in Sources */,
 				79B5855E1EBBECEC005B4E1A /* NewsRequest.swift in Sources */,
 				79B585781EBDCE8E005B4E1A /* NewsDetailRoot.swift in Sources */,
 				790E838C1DCF117800D7D714 /* PrefUtil.swift in Sources */,
-				79838BBC1DC8A8D7005C51BE /* CustomTimeTableCellThur.swift in Sources */,
 				79B585801EBDF195005B4E1A /* ScheduleRoot.swift in Sources */,
-				79838BB81DC8A8BB005C51BE /* CustomTimeTableCellTue.swift in Sources */,
 				798FF0871EC0095900FF1F11 /* TimeTableViewCell.swift in Sources */,
 				D646012C1E589BD90034323F /* NewsItemCell.swift in Sources */,
 				799F60151DC5B80100C95A68 /* TimeTableViewController.swift in Sources */,
@@ -700,7 +682,6 @@
 				79B5855A1EBBEA62005B4E1A /* EscRequest.swift in Sources */,
 				79ED85461ECEA37A009D4DC2 /* CalendarItemCell.swift in Sources */,
 				7951A65E1DD3426C0075ACC8 /* HttpConnector.swift in Sources */,
-				79B9DD971DC79561009153B6 /* CustomTimeTableCellMon.swift in Sources */,
 				D64601281E5885D80034323F /* TaninNewsItem.swift in Sources */,
 				7924B03B1DEB211F00D43894 /* DetailTimeViewController.swift in Sources */,
 				D646012E1E5915A70034323F /* NewsDetailViewController.swift in Sources */,
@@ -711,7 +692,6 @@
 				79F1FB391DC99400007B7386 /* PreferenceController.swift in Sources */,
 				79F93EA11EC0C525009247AE /* TimeTableView1.swift in Sources */,
 				79B9DD921DC62600009153B6 /* TimeTableItem.swift in Sources */,
-				79838BBA1DC8A8C9005C51BE /* CustomTimeTableCellWed.swift in Sources */,
 				794F66891D96BB8B00C1D9B6 /* AttendanceRateItem.swift in Sources */,
 				79B5856E1EBCE03C005B4E1A /* TimeTable.swift in Sources */,
 				794F66781D96B7C300C1D9B6 /* EccStudentCom.xcdatamodeld in Sources */,

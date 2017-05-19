@@ -10,6 +10,7 @@ import RealmSwift
 import Realm
 
 class ScheduleAccessor:AccessorBase, AccessorProtcol{
+    
     static let sharedInstance = ScheduleAccessor()
     private override init() {
         super.init()
@@ -28,7 +29,7 @@ class ScheduleAccessor:AccessorBase, AccessorProtcol{
         }
     }
     
-    func getByID(id:Int) -> ScheduleContainsItem? {
+    func getByID(id:String) -> ScheduleContainsItem? {
         let models = super.realm.objects(ScheduleContainsItem.self).filter("yearMonthDay = '\(id)'")
         if models.count > 0 {
             return models[0]

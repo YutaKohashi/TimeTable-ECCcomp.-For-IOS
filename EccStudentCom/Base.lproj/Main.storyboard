@@ -1815,10 +1815,10 @@
             </objects>
             <point key="canvasLocation" x="3426" y="629"/>
         </scene>
-        <!--Data Source-->
+        <!--カレンダー-->
         <scene sceneID="0zO-dl-RrN">
             <objects>
-                <viewController id="mAE-f1-IuU" customClass="CalendarViewController" customModule="EccStudentCom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mAE-f1-IuU" userLabel="カレンダー" customClass="CalendarViewController" customModule="EccStudentCom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t1g-uK-RmC"/>
                         <viewControllerLayoutGuide type="bottom" id="PjN-gj-GBk"/>
@@ -1840,7 +1840,7 @@
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5ly-0p-Yto">
                                 <rect key="frame" x="0.0" y="325" width="375" height="293"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.85911069539999996" green="0.85911069539999996" blue="0.85911069539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.85911069539999996" green="0.85911069539999996" blue="0.85911069539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CalendarItemCell" rowHeight="44" id="MNm-IA-rX4" customClass="CalendarItemCell" customModule="EccStudentCom" customModuleProvider="target">
@@ -1860,13 +1860,13 @@
                                                                 <constraint firstAttribute="width" constant="64" id="4CR-Wj-2gF"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="0.28998480900000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" white="0.21582031247222222" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7q-IZ-OJL">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7q-IZ-OJL">
                                                             <rect key="frame" x="72" y="0.0" width="287" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="0.28998480902777779" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" white="0.224365234375" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1934,10 +1934,9 @@
                             <constraint firstAttribute="trailing" secondItem="So5-lR-n1L" secondAttribute="trailing" id="3Lg-K5-hOq"/>
                             <constraint firstAttribute="trailing" secondItem="5ly-0p-Yto" secondAttribute="trailing" id="3th-ra-AlI"/>
                             <constraint firstItem="PjN-gj-GBk" firstAttribute="top" secondItem="5ly-0p-Yto" secondAttribute="bottom" id="5Lt-2t-q4X"/>
-                            <constraint firstItem="R1d-mq-9yS" firstAttribute="top" secondItem="So5-lR-n1L" secondAttribute="bottom" id="6i5-Le-K2s"/>
                             <constraint firstItem="So5-lR-n1L" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leading" id="BkH-SF-033"/>
+                            <constraint firstItem="R1d-mq-9yS" firstAttribute="top" secondItem="So5-lR-n1L" secondAttribute="bottom" id="E7y-Ta-WZN"/>
                             <constraint firstItem="5ly-0p-Yto" firstAttribute="top" secondItem="R1d-mq-9yS" secondAttribute="bottom" id="OBf-9K-J3r"/>
-                            <constraint firstItem="R1d-mq-9yS" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leadingMargin" constant="-16" id="XL5-XQ-nud"/>
                             <constraint firstItem="5ly-0p-Yto" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leading" id="e93-bv-uJu"/>
                             <constraint firstAttribute="trailing" secondItem="R1d-mq-9yS" secondAttribute="trailing" id="kSL-gh-rPp"/>
                             <constraint firstItem="R1d-mq-9yS" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leading" id="r9X-Jm-iJu"/>
@@ -2224,6 +2223,6 @@
         <image name="text-align-justify-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OuR-D5-PBA"/>
+        <segue reference="mvF-On-AWz"/>
     </inferredMetricsTieBreakers>
 </document>
