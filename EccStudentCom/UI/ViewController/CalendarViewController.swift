@@ -103,18 +103,13 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarItemCell") as! CalendarItemCell
         
-        
         guard let l = items else {
             return cell
         }
         
         let day:String = String(l[indexPath.row].day) + "日"
         let text:String = l[indexPath.row].text
-        
-        
-        
         cell.setCell(body: text, date: day)
-        
         return cell
         
     }
@@ -129,16 +124,54 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
         }
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollingEnd()
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollingEnd()
+    }
+    
+    func scrollingEnd() {
+        //enter code here
+        print("scroll end")
+//        guard let indexPaths:[IndexPath] = tableView.indexPathsForVisibleRows else {
+//            return
+//        }
+        
+        // TODO : ---------------------------
+//        let indexPath:IndexPath = indexPaths[0]
+//        
+//        let date:Date = calendarView.currentPage
+//        let calendar = Calendar(identifier: .gregorian)
+//        let date2 = calendar.date(from: DateComponents(year: calendar.component(.year, from: date),
+//                                                       month:  calendar.component(.month, from: date),
+//                                                       day: indexPath.row + 1))
+//        calendarView.select(date2, scrollToDate: true)
+        // TODO : ---------------------------
+    }
+    
+    
+    
     
     // CalendarView  -------------------------------------------------------
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        print(self.dateFormatter.string(from: calendar.currentPage))
         let date = calendar.currentPage
         let calendar = Calendar.current
         let month = calendar.component(.month, from: date)
         
         items = list[getIndexFromMonth(month: month)]
         tableView.reloadData()
+        
+        let day = Int(calendar.component(.day, from: date))
+        let i = IndexPath(row: day - 1, section: 0)
+        if items != nil && items!.count > day - 1 {
+             tableView.scrollToRow(at: i, at: .top, animated: true)
+        }
     }
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
@@ -148,12 +181,14 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
     
     // calendarセルのセレクトイベント
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        //        print("did select date \(self.dateFormatter.string(from: date))")
-        //        let selectedDates = calendar.selectedDates.map({self.dateFormatter.string(from: $0)})
-        //        print("selected dates is \(selectedDates)")
-        //        if monthPosition == .next || monthPosition == .previous {
-        //            calendar.setCurrentPage(date, animated: true)
-        //        }
+//        do {
+//            let calendar = Calendar.current
+//            let day = Int(calendar.component(.day, from: date))
+//            let i = IndexPath(row: day - 1, section: 0)
+//            try tableView.scrollToRow(at: i, at: .top, animated: true)
+//        }catch{
+//            
+//        }
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
@@ -194,7 +229,10 @@ class CalendarViewController: UIViewController , UITableViewDataSource, UITableV
         // ４月から３月の順にリストに格納する
         for i in 0 ..< 12 {
             let month:Int = getMonthFromIndex(index: i)
-            let l:Results<ScheduleContainsItem>? = ScheduleAccessor.sharedInstance.getByMonth(month: month)!
+            var l:Results<ScheduleContainsItem>? = ScheduleAccessor.sharedInstance.getByMonth(month: month)
+            if l == nil {
+                
+            }
             list.append(l)
             
         }

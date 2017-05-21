@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class TimeTableViewController: UIViewController, TimeTableDelegate{
     var refreshFlg:Bool = false
@@ -33,7 +34,11 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
         // ステータスバーのスタイル変更を促す
         Util.setStatusBarBackgroundColor(color: Util.getPrimaryColor())
         self.setNeedsStatusBarAppearanceUpdate();
-
+        
+        // 通知の許可を求める
+        // 通知を使用可能にする設定
+        requestPermision()
+       
         bottomSheetView.isHidden = true
         bottomCloseButton.isHidden = true
         bottomCloseButton.isEnabled = false
@@ -163,41 +168,33 @@ class TimeTableViewController: UIViewController, TimeTableDelegate{
             self.bottomCloseButton.alpha = 0.0
         }
     }
-//    
-//    private let ANIM_SPEED = 0.3
-//    
-//    private func openAnimation(){
-//         self.bottomSheetView.isHidden = false
-////        self.bottomSheetView.frame.origin.y -= 150
-//        UIView.animate(withDuration: ANIM_SPEED, animations: {
-//            self.bottomSheetView.frame.origin.y += 150
-//            self.bottomCloseButton.isEnabled = true
-//        })
-//    }
-//    
-//    private func closeAnimation(){
-//        UIView.animate(withDuration: ANIM_SPEED, animations: {
-//            self.bottomSheetView.frame.origin.y -= 150
-//            self.bottomCloseButton.isEnabled = false
-////            self.bottomSheetView.isHidden = true
-//        })
-////        UIView.transition(with: bottomSheetView,
-////                          duration: 0.1,
-////                          options: .transitionCrossDissolve,
-////                          animations: {() -> Void in
-////                            self.bottomSheetView.isHidden = true
-////        }, completion: { _ in })
-//    }
-//    
-//    private  func fadeInAnimation(){
-//        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
-//            self.bottomCloseButton.alpha = 1.0
-//        }
-//    }
-//    private func fadeOutAnimation(){
-//        UIView.animate(withDuration: ANIM_SPEED) { () -> Void in
-//            self.bottomCloseButton.alpha = 0.0
-//        }
-//    }
     
+ 
+    // ------------------------------------------------------------------------
+    
+    private func requestPermision(){
+        if #available(iOS 10.0, *) {
+            // iOS 10
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+                if error != nil {
+                    return
+                }
+                
+                if granted {
+                    // 通知許可
+                } else {
+                    // 通知拒否
+                    // 通知の許可を求める趣旨のダイアログを出す
+                    
+                    
+                }
+            })
+            
+        } else {
+            // iOS 9
+            let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+    }
 }

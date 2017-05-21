@@ -33,6 +33,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         debugPrint("viewDidLoad")
         
         //cellを選択不可に
         tableView.allowsSelection = false
@@ -79,7 +80,7 @@ class TableViewController: UIViewController, UITableViewDataSource {
                                 userId: PrefUtil.getSavedId(),
                                 password: PrefUtil.getSavedPass())
         { (result) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
                 self.items = AttedanceRateAccessor.sharedInstance.getAll()
                 self.updateEmptyLabelStatus()

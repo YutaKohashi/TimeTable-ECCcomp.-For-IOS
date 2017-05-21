@@ -47,6 +47,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // 以前ログインしていたかをチェック
         // ログインしていた場合に何か行いたい時
         if PrefUtil.loginedCheck() {
+            
+            // 以前のデータをすべて削除
+            let realm = try! Realm()
+            try! realm.write {
+                realm.deleteAll()
+            }
+            
+            EscApiManager.resetToken()
+            
+            PrefUtil.saveLoginedState(false)
+            //保存されていたpassIdを削除
+            PrefUtil.removeSavedIdPass()
             //            let alert: UIAlertController = UIAlertController(title: "お詫び",
             //                                                             message: "新機能実装のため ログアウト させていただきました。\n再度ログインをお願いします。",
             //                                                             preferredStyle:   UIAlertControllerStyle.alert)

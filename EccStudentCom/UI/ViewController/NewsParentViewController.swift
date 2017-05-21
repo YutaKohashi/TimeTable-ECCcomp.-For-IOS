@@ -11,8 +11,9 @@ import RealmSwift
 import Realm
 import SpringIndicator
 import SVProgressHUD
+import UserNotifications
 
-class NewsParentViewController:UIViewController, UITableViewDataSource , UITableViewDelegate{
+class NewsParentViewController:UIViewController, UITableViewDataSource , UITableViewDelegate, UNUserNotificationCenterDelegate {
     
 //    let realm = try! Realm()
     @IBOutlet weak var tableView: UITableView!
