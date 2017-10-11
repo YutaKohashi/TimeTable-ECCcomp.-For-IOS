@@ -192,11 +192,21 @@ class NewsParentViewController:UIViewController, UITableViewDataSource , UITable
         // セルを取得
         index = indexPath.row
         
-        let title :String = schoolNewsItems![index].title
+        var title :String = schoolNewsItems![index].title
         let date :String = schoolNewsItems![index].date
         let newsId :String  = String(schoolNewsItems![index].newsId)
         let from:String = schoolNewsItems![index].from
         
+//        if tableView.tag == 0 {
+//            newsTitle = schoolNewsItems?[index].title
+//            date = schoolNewsItems?[index].date
+//            newsId = schoolNewsItems?[index].newsId
+//        } else {
+//            newsTitle = taninNewsItems?[index].title
+//            date = taninNewsItems?[index].date
+//            newsId = taninNewsItems?[index].newsId
+//        }
+//        
         // 記事
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemCell") as! NewsItemCell
         cell.setCell(title, date: date, newsId: newsId, from:from)

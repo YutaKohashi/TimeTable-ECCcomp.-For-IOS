@@ -11,7 +11,7 @@ import Himotoki
 /**
  * トークンを扱うモデル
  */
-struct Token:Decodable{
+struct Token:Himotoki.Decodable{
     // 認証成功CD00001 / 認証失敗ER00001
     let code:String
     // アクセストークン

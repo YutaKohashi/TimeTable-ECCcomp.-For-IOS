@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct NewsItem :Decodable{
+struct NewsItem :Himotoki.Decodable{
     
     //お知らせのID
     let id:Int

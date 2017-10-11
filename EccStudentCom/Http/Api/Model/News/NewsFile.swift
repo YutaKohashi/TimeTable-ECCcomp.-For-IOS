@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct NewsFile:Decodable {
+struct NewsFile:Himotoki.Decodable {
     
     let id:Int
     let fileName:String

@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IZb-BX-ahb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IZb-BX-ahb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Arial.ttf">
+            <string>ArialMT</string>
+        </array>
+        <array key="ArialBold.ttf">
+            <string>Arial-BoldMT</string>
+        </array>
+        <array key="HiraginoKakuGothic.ttc">
+            <string>HiraginoSans-W3</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -205,7 +216,7 @@
                                     <navigationItem title="時間割" id="qml-ND-c65">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="uC9-fm-Kvk">
                                             <view key="customView" contentMode="scaleToFill" id="pe2-1G-nUR">
-                                                <rect key="frame" x="16" y="5" width="83" height="33"/>
+                                                <rect key="frame" x="16" y="5.5" width="83" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
@@ -1494,15 +1505,44 @@
                                                                     <color key="textColor" red="0.51100491751269028" green="0.51100491751269028" blue="0.51100491751269028" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R1d-mq-9yS" customClass="FSCalendar">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+                                                                    <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="261" id="Ofd-7D-5ck"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelection" value="NO"/>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsMultipleSelection" value="NO"/>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="titleDefaultColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="titleWeekendColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <outlet property="dataSource" destination="mAE-f1-IuU" id="3sX-pP-0ur"/>
+                                                                        <outlet property="delegate" destination="mAE-f1-IuU" id="9w7-UO-kFH"/>
+                                                                    </connections>
+                                                                </view>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="8L1-Ey-3aK" firstAttribute="leading" secondItem="Cno-lI-jM3" secondAttribute="leading" constant="8" id="HSf-NQ-2u9"/>
                                                                 <constraint firstItem="fZy-MK-Uly" firstAttribute="leading" secondItem="Cno-lI-jM3" secondAttribute="leading" constant="8" id="Is0-Dh-PgM"/>
                                                                 <constraint firstItem="fZy-MK-Uly" firstAttribute="top" secondItem="Cno-lI-jM3" secondAttribute="top" constant="8" id="KBp-th-Vhp"/>
+                                                                <constraint firstAttribute="trailing" secondItem="R1d-mq-9yS" secondAttribute="trailing" constant="-10" id="PYz-CL-hWu"/>
                                                                 <constraint firstAttribute="trailing" secondItem="fZy-MK-Uly" secondAttribute="trailing" constant="8" id="QEl-2f-cWh"/>
                                                                 <constraint firstAttribute="bottom" secondItem="8L1-Ey-3aK" secondAttribute="bottom" constant="7" id="Sxe-Gh-xrS"/>
                                                                 <constraint firstAttribute="bottom" secondItem="jG3-2N-Ou4" secondAttribute="bottom" constant="8" id="XNA-FK-iDm"/>
+                                                                <constraint firstItem="R1d-mq-9yS" firstAttribute="leading" secondItem="Cno-lI-jM3" secondAttribute="leading" id="ZE0-ZA-mrT"/>
                                                                 <constraint firstAttribute="height" constant="74" id="k6R-PD-aOF"/>
                                                                 <constraint firstAttribute="trailing" secondItem="jG3-2N-Ou4" secondAttribute="trailing" constant="8" id="pc9-9y-iaD"/>
                                                             </constraints>
@@ -1598,7 +1638,7 @@
                                     <navigationItem id="R7u-Gq-U23">
                                         <nil key="title"/>
                                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="C2H-F6-4AO">
-                                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                                            <rect key="frame" x="119" y="7.5" width="137" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="学校から"/>
@@ -1846,7 +1886,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5ly-0p-Yto">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5ly-0p-Yto">
                                 <rect key="frame" x="0.0" y="325" width="375" height="293"/>
                                 <color key="backgroundColor" red="0.85911069539999996" green="0.85911069539999996" blue="0.85911069539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.85911069539999996" green="0.85911069539999996" blue="0.85911069539999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1909,33 +1949,6 @@
                                     <outlet property="delegate" destination="mAE-f1-IuU" id="XSb-hs-hjs"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1d-mq-9yS" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="64" width="375" height="261"/>
-                                <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="261" id="Ofd-7D-5ck"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelection" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsMultipleSelection" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="titleDefaultColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="titleWeekendColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="mAE-f1-IuU" id="3sX-pP-0ur"/>
-                                    <outlet property="delegate" destination="mAE-f1-IuU" id="9w7-UO-kFH"/>
-                                </connections>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1943,11 +1956,7 @@
                             <constraint firstAttribute="trailing" secondItem="5ly-0p-Yto" secondAttribute="trailing" id="3th-ra-AlI"/>
                             <constraint firstItem="PjN-gj-GBk" firstAttribute="top" secondItem="5ly-0p-Yto" secondAttribute="bottom" id="5Lt-2t-q4X"/>
                             <constraint firstItem="So5-lR-n1L" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leading" id="BkH-SF-033"/>
-                            <constraint firstItem="R1d-mq-9yS" firstAttribute="top" secondItem="So5-lR-n1L" secondAttribute="bottom" id="E7y-Ta-WZN"/>
-                            <constraint firstItem="5ly-0p-Yto" firstAttribute="top" secondItem="R1d-mq-9yS" secondAttribute="bottom" id="OBf-9K-J3r"/>
                             <constraint firstItem="5ly-0p-Yto" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leading" id="e93-bv-uJu"/>
-                            <constraint firstAttribute="trailing" secondItem="R1d-mq-9yS" secondAttribute="trailing" id="kSL-gh-rPp"/>
-                            <constraint firstItem="R1d-mq-9yS" firstAttribute="leading" secondItem="zUr-e4-EZj" secondAttribute="leading" id="r9X-Jm-iJu"/>
                             <constraint firstItem="So5-lR-n1L" firstAttribute="top" secondItem="t1g-uK-RmC" secondAttribute="bottom" id="vxQ-Gw-BOE"/>
                         </constraints>
                     </view>
@@ -1967,7 +1976,7 @@
             <objects>
                 <tableViewController id="oKN-Eb-111" customClass="PreferenceController" customModule="EccStudentCom" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lYG-FG-mM7">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
@@ -1982,7 +1991,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="時間割を更新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tZV-Cx-RLJ">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2004,7 +2013,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="ログアウト" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B7Z-WK-Jhi">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2022,7 +2031,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="このアプリについて" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sic-qB-Kso">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2043,7 +2052,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="ライセンス" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8bc-uc-DrA">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2064,7 +2073,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="アプリバージョン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fEh-IF-X0y">
-                                                    <rect key="frame" x="15" y="12" width="139" height="20.5"/>
+                                                    <rect key="frame" x="16" y="12" width="139" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2136,7 +2145,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lGc-4o-wnP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="g2H-p2-P8p">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2js-rJ-h9Z">
@@ -2170,7 +2179,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bXg-dI-4Ug"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="y0a-kt-Y98">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l01-Lt-BHc">
@@ -2200,7 +2209,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GMA-kd-gwc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9vT-rE-Yhm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.0039215686269999999" green="0.28627450980000002" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2231,6 +2240,6 @@
         <image name="text-align-justify-7.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OuR-D5-PBA"/>
+        <segue reference="YOh-aI-vLD"/>
     </inferredMetricsTieBreakers>
 </document>

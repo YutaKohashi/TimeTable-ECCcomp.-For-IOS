@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct ScheduleItem:Decodable{
+struct ScheduleItem:Himotoki.Decodable{
     
     let date:String // Stringだとprimarykeyになれる
     let year:Int

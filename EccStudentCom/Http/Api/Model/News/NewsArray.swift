@@ -10,7 +10,7 @@ import Foundation
 import Himotoki
 
 
-struct NewsArray :Decodable{
+struct NewsArray :Himotoki.Decodable{
     // API正常実行
     let code:String
      // お知らせArray

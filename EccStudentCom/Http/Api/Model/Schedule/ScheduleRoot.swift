@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct ScheduleRoot :Decodable{
+struct ScheduleRoot :Himotoki.Decodable{
     
     let schedules:[ScheduleCategory]?
     

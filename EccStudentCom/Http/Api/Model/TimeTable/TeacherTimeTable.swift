@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct TeacherTimeTable :Decodable{
+struct TeacherTimeTable :Himotoki.Decodable{
     // 先生名字
     let firstName:String
     // 先生名前

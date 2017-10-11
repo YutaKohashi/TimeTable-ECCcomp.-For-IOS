@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct NewsCourse:Decodable {
+struct NewsCourse:Himotoki.Decodable {
     let courseName:String
     
     init(courseName:String) {

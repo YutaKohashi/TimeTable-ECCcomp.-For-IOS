@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct RootTimeTable:Decodable {
+struct RootTimeTable:Himotoki.Decodable {
     
     let code:String
     let timeTables:[TimeTable]

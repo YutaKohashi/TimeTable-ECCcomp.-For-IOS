@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct TimeTable:Decodable{
+struct TimeTable:Himotoki.Decodable{
     // 時間割ID。時間割を識別する為の固有番号
     let id:Int
     // 曜日 1:月 2:火 3:水 4:木 5:金 6:土 0: 日

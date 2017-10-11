@@ -9,7 +9,7 @@
 import Foundation
 import Himotoki
 
-struct ScheduleCategory:Decodable {
+struct ScheduleCategory:Himotoki.Decodable {
     
     let categoryId:Int
     let title:String
